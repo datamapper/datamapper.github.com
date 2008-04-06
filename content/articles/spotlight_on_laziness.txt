@@ -125,9 +125,13 @@ For now, just remember that DataMapper embraces lazy-loading, yet isn't overly z
 
 And, most importantly, you can avoid doing work you don't have to do for as long as you can avoid it.
 
-h2(newRelease). Contribute a "Spotlight On..." Article
+<div class="puff">
 
-p(newRelease).  Got something important to say?  Want something explained a little<br>
+h2. Contribute a "Spotlight On..." Article
+  
+Got something important to say?  Want something explained a little<br>
 better or demonstrated? Contribute or request a "Spotlight On..." <br> article! 
 Email the "DataMapper Mailing List":http://groups.google.com/group/datamapper with the request or <br>
 contribution and we'll post it here.
+
+</div>

@@ -54,9 +54,9 @@ body {
   padding:1em 10px 0.7em 10px;
   float:left;
 }
-#getDataMapper {
-  background:left center no-repeat url(../images/get_button.gif);
-  width:158px;
+#getStarted {
+  background:left center no-repeat url(../images/get_started_button.gif);
+  width:125px;
   text-indent:-1000em;
   float:right !important;
 }
@@ -127,10 +127,17 @@ ul,
 ol {
   padding:0 0 0 2em;
 }
+blockquote {
+  margin: auto 1em;
+  font-style: italic;
+}
 
 /* HOME PAGE */
 #home #content {
   background-image:url(../images/home_bkg.gif);
+}
+#home .blurb {
+  font-size:1.2em;
 }
 #home h1,
 #home h2,
@@ -178,24 +185,40 @@ ol {
 #home h1 {
   clear:both;
 }
+#home dd {
+  width:360px;
+}
+/* NEWS AND HOME LISTINGS */
+#news dd p,
+#home dd p {
+  margin:0;
+}
+#news dd .meta,
+#home dd .meta {
+  font-size:0.85em;
+}
 /* PUFFS */
 div.puff,
+div.puff h2,
 h2.latestRelease {
   background:no-repeat url(/images/puff_bkg.gif);
 }
-div.puff,
-.latestRelease {
-  background-color:#11233D !important;
-}
 div.puff {
+  background-position:bottom left;
+  padding-bottom:0.4em;
   margin-bottom:1.5em;
 }
 div.puff h2 {
+  background-position:left top;
+  margin:0;
+  padding:0.9em 30px 0 30px;
   color:#ffffff;
 }
+
 /* LATEST RELEASE */
 h2.latestRelease,
 p.latestRelease {
+  background-color:#11233D;
   padding-left:30px;
   padding-right:30px;
 }
@@ -241,7 +264,8 @@ p.attribution {
   font-size:0.8em;
   margin-top:-2em;
 }
-/* DOCUMENTATION */
+
+/* DEFINITION LIST */
 dl {
   margin-top:1em;
   margin-bottom:2em;
@@ -272,27 +296,20 @@ dt a {
 dd {
   clear:right;
 }
-
-div.yearbook {
-  margin:1em;
+/* COMMUNITY YEARBOOK */
+#yearbook {
+  margin:0;
+  padding:0;
 }
-div.yearbook div.thumb {
-  display:block;
-  float:left;
-  width:120px;
-  height:120px;
-  margin:0.5em;
+#yearbook li {
+  list-style-type:none;
+  width:20%;
+  padding:1em 0 0 0;
+  height:9em;
+  margin:0;
   text-align:center;
+  float:left;
 }
-
-div.yearbook div.thumb p {
-  margin:auto -0.5em;
-}
-small {
-  font-size:.8em;
-}
-
-blockquote {
-  margin: auto 1em;
-  font-style: italic;
+#yearbook li p {
+  margin:0;
 }

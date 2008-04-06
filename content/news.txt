@@ -15,14 +15,16 @@ h1. <%= @page.title %>
    paginate(articles, 20) do |page|
 %>
 
-  <dt>
-    <a href="<%= page.url %>"> <%= page.title %></a>
-    <br>
-    <small><%= page.created_at.strftime(" Posted On %m/%d/%Y") %> by <%= page.author %></small>
-  </dt>
-  <dd><%= page.summary %></dd>
+  <dt><a href="<%= page.url %>"> <%= page.title %></a></dt>
+  <dd>
+    <p><%= page.summary %></p>
+    <p class="meta"><%= page.created_at.strftime(" Posted On %m/%d/%Y") %> by <%= page.author %></p>
+  </dd>
 
 <% end %>
 </dl>
 
-<p><%= link_to("Prev", @pager.prev) if @pager.prev? %> <%= link_to("Next", @pager.next) if @pager.next? %></p>
+<p>
+  <%= link_to("Prev", @pager.prev) if @pager.prev? %> 
+  <%= link_to("Next", @pager.next) if @pager.next? %>
+</p>
