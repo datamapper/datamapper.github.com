@@ -3,6 +3,7 @@
   margin:0;
   font-weight:normal;
   font-size:1em;
+  text-align:left;
 }
 body {
   background:center top url(../images/page_bkg.gif);
@@ -312,4 +313,129 @@ dd {
 }
 #yearbook li p {
   margin:0;
+}
+
+/* LOGGER */
+#logger form {
+  margin:-2.5em 30px 2em 0;
+  float:right;
+}
+#logger form input {
+  background:transparent left top no-repeat url(/images/search_bkg.gif);
+  color:#ffffff;
+  border:0;
+  padding:0 15px;
+  height:27px;
+  width:150px;
+}
+#logger form button {
+  background:transparent left top no-repeat url(/images/search_button_bkg.gif);
+  border:0;
+  text-indent:-1000em;
+  height:27px;
+  width:40px;
+}
+#logger #transcripts {
+  width:630px;
+  float:left;
+}
+#logger table {
+  width:100%;
+  margin:0 0 0 30px;
+  float:left;
+}
+#logger td {
+  vertical-align:top;
+  border-top:1px solid #152C4C;
+}
+#logger tr.odd td {
+  background-color:#133053;
+}
+#logger tr.even td {
+  background-color:#0F3459;
+}
+#logger th {
+  background:right top no-repeat url(/images/puff_bkg.gif);
+  font-weight:bold;
+  padding:0.5em 0;
+}
+#logger th.person {
+  background-position:left top;
+}
+#logger table .person {
+  width:170px;
+  padding:0 0 0 10px;
+}
+#logger .person h2,
+#logger .person p {
+  padding-left: 42px;
+}
+#logger .person h2 {
+  color:#ffffff;
+  font-weight:bold;
+  font-size:1em;
+  margin:0.5em 0 0 0;
+}
+#logger td.person img {
+  margin:-32px 0 0 0;
+}
+#logger .person p {
+  font-size:0.8em;
+  margin:0 0 -1em 0;
+}
+#logger td.log p {
+  font-size:0.9em !important;
+  padding:0.5em 10px 0.5em 0;
+  margin:0;
+}
+#logger .action {
+  background-color:#11233D;
+  color:#1D64A9;
+}
+#logger .action p {
+  margin:0.5em 10px;
+}
+#meMessages {
+  margin-right:30px;
+  width:180px;
+  float:right;
+}
+#meMessages h2 {
+  font-size:1.2em;
+  margin-bottom:1em;
+}
+#meMessages p {
+  font-size:0.9em;
+  line-height:1.2;
+}
+#meMessages h3 {
+  color:#777777;
+  font-size:0.9em;
+}
+#logger #paginator {
+  background:bottom left no-repeat url(/images/paginator_bkg.gif);
+  padding:0;
+  width:100%;
+  float:left;
+}
+#logger #paginator li {
+  list-style-type:none;
+  padding:0.7em 10px;
+  width:160px;
+}
+#logger #paginator a {
+  text-decoration:none !important;
+  color: #ffffff !important;
+}
+#logger #paginator #previous {
+  float:left;
+}
+#logger #paginator #current {
+  text-align:center;
+  width:250px;
+  float:left;
+}
+#logger #paginator #next {
+  text-align:right;
+  float:right;
 }
