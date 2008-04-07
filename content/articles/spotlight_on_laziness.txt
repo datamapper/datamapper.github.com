@@ -2,7 +2,7 @@
 body_id: news
 title: Spotlight on... Laziness
 created_at: 2008-04-03T23:08:12-05:00
-summary: Don't Get Stuff Done Until You Gotta Get Stuff Done
+summary: Don't Get Stuff Done Until You Gotta Get Stuff Done # The Fastest Code Is No Code
 release_type: blog
 author: afrench
 filter:
@@ -12,11 +12,21 @@ filter:
 
 h1. <%= @page.title %>
 
+# Less funny, more business. ;-) I'd use that as a general guideline...
+
 Laziness.  It means "an unwillingness to work or use energy" and typically indicates that the dishes don't get washed after lunch, the bath tub doesn't get cleaned, and the trash sits around an extra few days and stinks up the place.
 
-But that very same definition in software takes on a whole new meaning: To avoid doing work you don't have to do for as long as you can avoid it; sometimes never doing it at all.  It's a good thing. It means that expensive and slow tasks can be put off until the very last cycle possible and thus only incur their cost when it really is worth it. 
+But that very same definition in software takes on a whole new meaning: To avoid doing work you don't have to do for as long as you can avoid it; sometimes never doing it at all.  It's a good thing. It means that expensive and slow tasks can be put off until the very last cycle possible and thus only incur their cost when it really is worth it. # If ever.
 
 Maybe you put off running a specific subroutine because it's slow, or because it locks a file that might be needed elsewhere, or because instantiating the resulting object eats up RAM.  Either way, deferring execution of a block of code until the very last possible moment can be the difference between a snappy application that rarely slows down and a slow application that rarely speeds up.
+
+# There aren't any costs to lazyness. It's always a good thing.
+# Unless it means you end up doing more work in the long run
+# ( you inflate your total number of queries if you aggressively 
+# mark everything lazy, but your usage pattern accesses most of
+# those attributes anyways). So it should be tuned to the usage
+# patterns of the application. Other than that, the most aggressive
+# usage is usually going to be the best usage of the concept in general.
 
 But laziness isn't without its hidden costs.  If you put off everything to the very last cycle, you don't get anything done. You might even run into concurrency problems and race conditions when things do finally get executed.
 
