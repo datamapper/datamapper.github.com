@@ -2,7 +2,7 @@
 body_id: news
 title: Spotlight on... Laziness
 created_at: 2008-04-03T23:08:12-05:00
-summary: Don't Get Stuff Done Until You Gotta Get Stuff Done # The Fastest Code Is No Code
+summary: The Fastest Code Is No Code
 release_type: blog
 author: afrench
 filter:
@@ -12,27 +12,17 @@ filter:
 
 h1. <%= @page.title %>
 
-# Less funny, more business. ;-) I'd use that as a general guideline...
-
 Laziness.  It means "an unwillingness to work or use energy" and typically indicates that the dishes don't get washed after lunch, the bath tub doesn't get cleaned, and the trash sits around an extra few days and stinks up the place.
 
-But that very same definition in software takes on a whole new meaning: To avoid doing work you don't have to do for as long as you can avoid it; sometimes never doing it at all.  It's a good thing. It means that expensive and slow tasks can be put off until the very last cycle possible and thus only incur their cost when it really is worth it. # If ever.
+But that very same definition in software takes on a whole new meaning: To avoid doing work you don't have to do for as long as you can avoid it; sometimes never doing it at all.  It's a good thing. It means that expensive and slow tasks can be put off until the very last cycle possible and thus only incur their cost when it really is worth it. Maybe you never execute the code at all.
 
-Maybe you put off running a specific subroutine because it's slow, or because it locks a file that might be needed elsewhere, or because instantiating the resulting object eats up RAM.  Either way, deferring execution of a block of code until the very last possible moment can be the difference between a snappy application that rarely slows down and a slow application that rarely speeds up.
+You could put off running a specific subroutine because it's slow, or because it locks a file that might be needed elsewhere, or because instantiating the resulting object eats up RAM.  Either way, deferring execution of a block of code until the very last possible moment can be the difference between a snappy application that rarely slows down and a slow application that rarely speeds up.
 
-# There aren't any costs to lazyness. It's always a good thing.
-# Unless it means you end up doing more work in the long run
-# ( you inflate your total number of queries if you aggressively 
-# mark everything lazy, but your usage pattern accesses most of
-# those attributes anyways). So it should be tuned to the usage
-# patterns of the application. Other than that, the most aggressive
-# usage is usually going to be the best usage of the concept in general.
-
-But laziness isn't without its hidden costs.  If you put off everything to the very last cycle, you don't get anything done. You might even run into concurrency problems and race conditions when things do finally get executed.
+But laziness isn't without its hidden costs.  If you put off everything to the very last moment, you forfeit the opportunity to do more than one thing at a time, and likely create more work for yourself, rather than less.
 
 So where's the balance?
 
-I don't know. Where is the balance for your specific application?  Ultimately, it's up to you. And having the tools that offer you the flexibility you need to design your application ought to be one of the most important requirements.  Every system, after all, is unique and breaks the mold of systems before it.
+Ultimately, it depends on your application. The tools you use should offer you the flexibility you need to design your application optimally.  Every system, after all, is unique and breaks the mold of systems before it.
 
 This brings us to DataMapper. 
 
@@ -52,13 +42,13 @@ end
 In this case, we're intentionally marking this Post's @:title@ property as lazy, as well as letting the @:body@ be lazy by default.  If we go and inspect our query log for the retrieval of a post with the ID of 1, we see
 
 <% coderay(:lang => "sql") do -%>
-SELECT `id` FROM `posts` WHERE `id` IN (1)
+SELECT `id` FROM `posts` WHERE `id` = 1
 <% end %>
 
 DataMapper didn't request the two lazy columns.  But when we call @.title@ off of our post, we suddenly see
 
 <% coderay(:lang => "sql") do -%>
-SELECT `title` FROM `posts` WHERE `id` IN (1)
+SELECT `title` FROM `posts` WHERE `id` = 1
 <% end %>
 
 This is the very definition of a lazy-loaded property;  The lazy column didn't get requested from our data store until we actually needed it, and no sooner.
@@ -69,9 +59,9 @@ But this is just for one individual instance of a post.  How does this behave wh
 SELECT `title` FROM `posts` WHERE `id` IN (1, 2, 3, 4, 5)
 <% end %>
 
-DataMapper loaded up the title for all of the posts in our collection in one query.  It didn't issue the lazy-load retrieval from above over and over for each individual post, nor did it chicken out and issue the lazy-load retrieval for ALL of the posts in the database.
+DataMapper loaded up the title for all of the posts in our collection in one query.  It didn't issue the lazy-load retrieval from above over and over for each individual post, nor did it chicken out and issue the lazy-load retrieval for ALL of the posts in the data store.
 
-When you retrieve a set of results using DataMapper's @.all@, each instance it returns knows about the others in the result set, which makes it brutally simple to issue just one lazy-load retrieval of @:title@, and thus solving the n+1 query problem.
+When you retrieve a set of results using DataMapper's @.all@, each instance it returns knows about the others in the result set, which makes it brutally simple to issue just one lazy-load retrieval of @:title@, and thus solving the n+1 query problem without having to do anything special in the initial retrieval.
 
 h2. Contextual Lazy-loading
 
@@ -91,7 +81,7 @@ class Post
 end
 <% end %>
 
-So now, when you load an attribute and it has the @:summary@ context, DataMapper will load up all of the other lazy-loaded properties marked @:summary@ in one query to the data store.
+So now, when you load an attribute with the @:summary@ context, DataMapper will load up all of the other lazy-loaded properties marked @:summary@ in one query to the data store.
 
 In your query log, you'll see:
 
@@ -123,7 +113,7 @@ For example, this is a severe "no no" in ActiveRecord:
 
 This is a very bad idea because the ORM must query the "animals" table over and over again to load the association for each iteration.  It's far better to use @Zoo.find(:all, :include => [:animals]).each {}@ because a JOIN occurs and everything is retrieved in 1 query.
 
-But the same issue doesn't exist in DataMapper. Each instance is aware of the other instances it was retrieved with.  The same iterator example from above only fires off 2 queries as you're iterating and calling the association inside the @each@.  You don't have to specify the @:include@ directive if you don't want to; when you don't, DataMapper behaves sanely.
+But the same issue doesn't exist in DataMapper. Each instance is aware of the other instances it was retrieved with.  The same iterator example from above only fires off 2 queries as you're iterating and calling the association inside the @each@.  If you forget to @:include => [:association]@ in the initial query, DataMapper only ever fires off one more query to get what it needs.
 
 "Yehuda Katz":http://www.yehudakatz.com/ has aptly named this 'Strategic Eager Loading'.
 
