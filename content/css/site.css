@@ -313,6 +313,7 @@ dd {
 }
 #yearbook li p {
   margin:0;
+  text-align:center;
 }
 
 /* LOGGER */
