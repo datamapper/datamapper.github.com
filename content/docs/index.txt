@@ -105,7 +105,7 @@ h3. Alternatives
 
 h3. Public, Semi-Public, and Private
 
-At the end of the method documentation, indicate they kind of consumption this method is suited for.  *Public* methods are part of the public API for DataMapper, *Semi-Public* are methods which are used in other parts of DataMapper and likely the spec's as well, and *Private* API consists of methods which are internal to DataMapper and can be changed or reimplimented at will, so long as spec's continue to pass.
+At the end of the method documentation, indicate the kind of consumption this method is suited for.  *Public* methods are part of the public API for DataMapper, *Semi-Public* are methods which are used in other parts of DataMapper and likely the spec's as well, and *Private* API consists of methods which are internal to DataMapper and can be changed or re-implimented at will, so long as spec's continue to pass.
 
 For a full explanation of this documentation style, visit "http://yehudakatz.com/2008/01/14/merbnext/":http://yehudakatz.com/2008/01/14/merbnext/.
 
