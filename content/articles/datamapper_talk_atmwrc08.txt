@@ -16,5 +16,5 @@ h1. <%= @page.title %>
 
 At this year's "Mountain West Ruby Conference 2008":http://mtnwestrubyconf.org/, DataMapper's own Yehuda Katz gave a presentation entitled "Faster, Better ORM With DataMapper."
 
-The video of the talk is available for viewing and downloading at "http://mwrc2008.confreaks.com/04katz.html":http://mwrc2008.confreaks.com/04katz.html and is brought to you buy the good people at "confreaks.com":http://confreaks.com
+The video of the talk is available for viewing and downloading at "http://mwrc2008.confreaks.com/04katz.html":http://mwrc2008.confreaks.com/04katz.html and is brought to you by the good people at "confreaks.com":http://confreaks.com
 
