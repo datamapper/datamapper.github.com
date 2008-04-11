@@ -25,7 +25,7 @@ SVN development is for 0.3.0 (Stable) bug-fixes only. "Tip" DataMapper has moved
 svn co http://datamapper.rubyforge.org/svn/trunk/ data_mapper
 <% end %>
 
-h2. Coding Conventions and Adminstriva
+h2. Coding Conventions and Considerations
 
 When contributing any code to DataMapper, please follow these guidelines.
 
