@@ -90,7 +90,7 @@ In your query log, you'll see:
 SELECT `id` FROM `posts`
 
 -- lazy-loading of multiple properties in a given context in one query
-SELECT `title`, `body` FROM `posts`
+SELECT `id`, `title`, `body` FROM `posts`
 <% end %>
 
 If you use this wisely, it would mean that DataMapper will never load more than it needs nor will it ever fire off more than the absolutely necessary amount of queries to get the job done.  

@@ -67,7 +67,7 @@ Has Many Through is a special kind of Has Many relationship which, rather than u
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post < DataMapper::Base
-  has_many :categories,
+  has_many_and_belongs_to_many :categories,
      :join_table => "categorizations",
      :left_foreign_key => "post_id",
      :right_foreign_key => "category_id",

@@ -63,14 +63,14 @@ h2. Find By SQL
 Sometimes you may find that you need to tweak a query using your own SQL. 
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-zoos = repository.query('SELECT name, open FROM zoos WHERE open = 1')
+zoos = database.query('SELECT name, open FROM zoos WHERE open = 1')
 #      Zoo.find_by_sql() would have worked here, too
 <% end %>
 
 @zoos@ will be full of Struct objects with @name@, and @open@ attributes, rather than instances of the Zoo class.  They'll also be read-only. You can still use the interpolated array condition syntax as well:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-zoos = repository.query('SELECT name, open FROM zoos WHERE name = ?', "Awesome Zoo")
+zoos = database.query('SELECT name, open FROM zoos WHERE name = ?', "Awesome Zoo")
 <% end %>
 
 h2. Counting
