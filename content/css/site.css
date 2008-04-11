@@ -266,6 +266,10 @@ p.attribution {
   margin-top:-2em;
 }
 
+p.footnote {
+  font-size:0.8em;
+}
+
 /* DEFINITION LIST */
 dl {
   margin-top:1em;

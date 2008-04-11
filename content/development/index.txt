@@ -32,6 +32,30 @@ When contributing any code to DataMapper, please follow these guidelines.
 # Spec first. Spec thoroughly. (DataMapper is written with "Rspec":http://rspec.info/)
 # Parentheses around parameter lists for methods
 # Two space indent - not tabs!
-# Documentation is required (use the "Merb documentation style":http://yehudakatz.com/2008/01/14/merbnext/)
+# Documentation is required (use the "official documentation style":/docs/)
 
 Consider following the "code optimization tips":http://wiki.datamapper.org/doku.php?id=codeoptimizationtips page on the wiki.
+
+h2. Running the Benchmarks
+
+DataMapper is built for speed and comes with a benchmarking suite to help us keep it that way.  In order to run the suite, make sure you have the following things installed:
+
+* data_objects 0.9.0
+* do_mysql 0.9.0
+* faker
+* active_record (for comparison)
+
+You'll then need a @data_mapper_1@ and @data_mapper_2@ database setup in your MySQL installation and accessible via your DB's @root@ user[1]. For more connection information and settings, crack open @script/performance.rb@.
+
+DataMapper will auto-migrate the databases into the proper state for benchmarking.
+
+Then, simply:
+
+<% coderay(:lang => "bash", :line_numbers => "inline") do -%>
+script/performance.rb
+<% end %>
+
+The most recent official performance ratings can be found in PERFORMANCE.
+
+
+fn1(footnote). For those without @root@ access, the connection information can be found in @script/performance.rb@, but please remember to revert your changes to the file before committing.  
