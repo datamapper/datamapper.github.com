@@ -21,7 +21,7 @@ end
 
 h2. Creating
 
-Let's create a new instance of the model, update it's properties and save it to the database. Save will return true if the save succeeds, or false when something went wrong.
+Let's create a new instance of the model, update its properties and save it to the data store. Save will return true if the save succeeds, or false when something went wrong.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 zoo = Zoo.new

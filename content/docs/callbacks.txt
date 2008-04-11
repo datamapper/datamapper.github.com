@@ -56,7 +56,7 @@ end
 
 h2. True to Go, False to Stop
 
-Callbacks have to return true else the relevant action will be halted. For example if you use a before_save callback and fail to return true, the record will not save. 
+Callbacks have to return true otherwise the relevant action will be halted. For example if you use a before_save callback and fail to return true, the record will not save. 
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post < DataMapper::Base

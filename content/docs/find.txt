@@ -25,7 +25,7 @@ zoos  = Zoo.all(:open => true)      # all zoos that are open
 
 h2. Conditions
 
-Now, this is where we get really clever. Rather than defining conditions using SQL fragments, we can actually specify conditions using a hash.
+Rather than defining conditions using SQL fragments, we can actually specify conditions using a hash.
 
 The examples above are pretty simple, but you might be wondering how we can specify conditions beyond equality without resorting to SQL. Well, thanks to some clever additions to the Symbol class it's easy!
 
