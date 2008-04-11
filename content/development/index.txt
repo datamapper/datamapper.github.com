@@ -5,12 +5,33 @@ filter:
   - erb
   - textile
 --- 
-h2. <%= @page.title %>
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc congue ipsum vestibulum libero. Aenean vitae justo. Nam eget tellus. Etiam convallis, est eu lobortis mattis, lectus tellus tempus felis, a ultricies erat ipsum at metus.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi et risus. Aliquam nisl. Nulla facilisi. Cras accumsan vestibulum ante. Vestibulum sed tortor. Praesent tempus fringilla elit. Ut elit diam, sagittis in, nonummy in, gravida non, nunc. Ut orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Nam egestas, orci eu imperdiet malesuada, nisl purus fringilla odio, quis commodo est orci vitae justo. Aliquam placerat odio tincidunt nulla. Cras in libero. Aenean rutrum, magna non tristique posuere, erat odio eleifend nisl, non convallis est tortor blandit ligula. Nulla id augue.
+h1. Development
 
-bq. Nullam mattis, odio ut tempus facilisis, metus nisl facilisis metus, auctor consectetuer felis ligula nec mauris. Vestibulum odio erat, fermentum at, commodo vitae, ultrices et, urna. Mauris vulputate, mi pulvinar sagittis condimentum, sem nulla aliquam velit, sed imperdiet mi purus eu magna. Nulla varius metus ut eros. Aenean aliquet magna eget orci. Class aptent taciti sociosqu ad litora.
+DataMapper development has switched to the "Git":http://git.or.cz SCM. Please see "using git":/using-git.html to learn how to contribute.  To check out "tip" DataMapper anonymously:
 
-Vivamus euismod. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse vel nibh ut turpis dictum sagittis. Aliquam vel velit a elit auctor sollicitudin. Nam vel dui vel neque lacinia pretium. Quisque nunc erat, venenatis id, volutpat ut, scelerisque sed, diam. Mauris ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec mattis. Morbi dignissim sollicitudin libero. Nulla lorem.
+<% coderay(:lang => "bash", :line_numbers => "inline") do -%>
+git clone git://github.com/sam/dm-core.git
+<% end %>
+
+If you have a "github":http://www.github.com account, log in, and _fork_ "Sam's Repo":http://github.com/sam/dm-core/tree/master.  When you think you're ready, send Sam a "pull request".
+
+h2. SVN - Bug Fixes for 0.3.0 (gem before The Great Refactor)
+
+SVN development is for 0.3.0 (Stable) bug-fixes only. "Tip" DataMapper has moved to "Git":http://github.com/sam/dm-core.
+
+<% coderay(:lang => "bash", :line_numbers => "inline") do -%>
+svn co http://datamapper.rubyforge.org/svn/trunk/ data_mapper
+<% end %>
+
+h2. Coding Conventions and Adminstriva
+
+When contributing any code to DataMapper, please follow these guidelines.
+
+# Spec first. Spec thoroughly. (DataMapper is written with "Rspec":http://rspec.info/)
+# Parentheses around parameter lists for methods
+# Two space indent - not tabs!
+# Documentation is required (use the "Merb documentation style":http://yehudakatz.com/2008/01/14/merbnext/)
+
+Consider following the "code optimization tips":http://wiki.datamapper.org/doku.php?id=codeoptimizationtips page on the wiki.
