@@ -97,6 +97,10 @@ h2. The People Behind DataMapper
     <p><a href="http://robertrevans.com/">Robert Evans</a></p>
   </li>
   <li>
+    !http://www.gravatar.com/avatar/e7cff3cfd41c495e1012227d7dc24202(Luis Lavana)!
+    <p><a href="http://blog.mmediasys.com">Luis Lavana</a></p>
+  </li>
+  <li>
     <img src="/images/martini.gif" title="you" alt="you could be here" />
     <p>More to come!</p>
   </li>
