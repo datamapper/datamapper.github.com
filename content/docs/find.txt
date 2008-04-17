@@ -64,6 +64,7 @@ Sometimes you may find that you need to tweak a query using your own SQL.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 zoos = database.query('SELECT name, open FROM zoos WHERE open = 1')
+#      Note that this will not return Zoo objects, rather the raw data straight from the database
 #      Zoo.find_by_sql() would have worked here, too
 <% end %>
 
