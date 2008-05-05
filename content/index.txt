@@ -4,6 +4,7 @@ title: DataMapper
 filter:
   - erb
   - textile
+dirty: true
 --- 
 
 <p class="blurb">DataMapper is a "Object Relational Mapper":http://en.wikipedia.org/wiki/Object-relational_mapping written in "Ruby.":http://ruby-lang.org/ The goal is to create an ORM which is fast, thread-safe and feature rich.</p>
