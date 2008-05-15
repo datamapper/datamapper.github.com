@@ -9,54 +9,59 @@ filter:
 
 h1. <%= @page.title %>
 
-DataMapper implements a series of before and after callback hooks for you to use to call your own code whenever you create, save, update or destroy a record. You might use this to sanitize certain values, or generate values that you don't want users to directly access -- say a salt to mix in with an encrypted password.
+DataMapper supports callbacks using an "aspect-oriented approach":http://en.wikipedia.org/wiki/Aspect_oriented.  You can define callbacks for any method as well as any class method arbitrarily.  
 
-Before and after callbacks are defined for:
+h2. Adding Instance-Level Advice
 
-* Materialize (pulling a record from the DB)
-* Create
-* Save
-* Validation
-* Update
-* Destroy
-
-h2. Adding a Callback
-
-Callbacks are declared inside your model. There are multiple ways of adding a callback. Each behaves slightly differently.
-
-h3. Block or Procs
-
-Blocks and Procs are not evaluated inside the model instance. Instead they are passed a reference to the model. You should be aware of this if you need to access private methods, in which case you need to set the callbacks using a symbol or string.
+To declare advice (callback) for a specific method, first define a new method to be run when another is called, then define your point-cut.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post < DataMapper::Base
-  before_save do |post|
-    logger.info("We are saving the post")
-    true
-  end
+class Post
+  include DataMapper::Resource
   
-  before_destroy Proc.new {|post| logger.info("We are destroying the post #{post.name}"); true}
-end
-<% end %>
-
-h3. Symbol or String
-
-Symbols and Strings are treated as a reference to a method inside your model. 
-
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post < DataMapper::Base
-  after_validation :log_success
+  before :save, :categorize
   
-  def log_success
-    logger.info("YAY!") if errors.empty?
-    true
+  def categorize
+  # ... code here
   end
 end
 <% end %>
+
+Alternatively, you can declare the advice during the point-cut by supplying a block rather than a symbol representing a method.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+class Post
+  include DataMapper::Resource
+  
+  before :save do
+    # ... code here
+  end
+  
+end
+<% end %>
+
+h2. Adding Class-Level Advice
+
+To install advice around a class method, use @before_class_method@ or @after_class_method@:
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+class Post
+  include DataMapper::Resource
+
+  before_class_method :find, :prepare
+  
+  def self.prepare
+    # ... code here
+  end
+end
+<% end %>
+
+Class level advice does not have access to any resulting instances from the class method, so they might not be the best fit for @after_create@ or @after_save@.
+
 
 h2. True to Go, False to Stop
 
-Callbacks have to return true otherwise the relevant action will be halted. For example if you use a before_save callback and fail to return true, the record will not save. 
+Advace have to return true otherwise the relevant action will be halted. For example if you use a before_save callback and fail to return true, the record will not save. 
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post < DataMapper::Base

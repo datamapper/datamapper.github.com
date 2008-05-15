@@ -15,7 +15,7 @@ h2. What we need
 
 Currently DataMapper needs help in a few particular areas:
 
-* API Documentation (using the "Merb documentation style":http://yehudakatz.com/2008/01/14/merbnext/)
+* API Documentation (using the "YARD documentation style":http://github.com/lsegal/yard/tree/master)
 * Tutorials
 * Code contributions
 * Bug Reports
@@ -28,13 +28,6 @@ DataMapper development has switched to the "Git":http://git.or.cz SCM. Please se
   <pre>$ git clone git://github.com/sam/dm-core.git</pre>
 </div>
 
-h2. SVN - Bug Fixes for 0.2.5 (gem before The Great Refactor)
-
-SVN development is for 0.2.5 (Stable) bug-fixes only. Edge DataMapper has moved to "Git":http://github.com/sam/dm-core
-
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-$ svn co http://datamapper.rubyforge.org/svn/trunk/ data_mapper
-<% end %>
 
 h2. Code Style Guidelines
 
@@ -43,5 +36,5 @@ When contributing any code to DataMapper, please follow these guidelines.
 # Spec first. Spec thoroughly. (DataMapper is written with "Rspec":http://rspec.info/)
 # Parentheses around parameter lists for methods
 # Two space indent - not tabs!
-# Documentation is required (use the "Merb documentation style":http://yehudakatz.com/2008/01/14/merbnext/)
+# Documentation is required (use the "YARD documentation style":http://github.com/lsegal/yard/tree/master)
 

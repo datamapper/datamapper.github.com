@@ -17,14 +17,6 @@ git clone git://github.com/sam/dm-core.git
 
 If you have a "github":http://www.github.com account, log in, and _fork_ "Sam's Repo":http://github.com/sam/dm-core/tree/master.  When you think you're ready, send Sam a "pull request".
 
-h2. SVN - Bug Fixes for 0.3.0 (gem before The Great Refactor)
-
-SVN development is for 0.3.0 (Stable) bug-fixes only. "Tip" DataMapper has moved to "Git":http://github.com/sam/dm-core.
-
-<% coderay(:lang => "bash", :line_numbers => "inline") do -%>
-svn co http://datamapper.rubyforge.org/svn/trunk/ data_mapper
-<% end %>
-
 h2. Coding Conventions and Considerations
 
 When contributing any code to DataMapper, please follow these guidelines.
