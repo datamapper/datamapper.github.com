@@ -13,65 +13,72 @@ Associations are a way of declaring relationships between models, for example a 
 
 The types of associations currently in DataMapper are:
 
-<ul>
-  <li>Has Many</li>
-  <li>Has One</li>
-  <li>Belongs To</li>
-  <li>Has and Belongs to Many</li>
-  <li>Self-Referential Has And Belongs To Many</li>
-  <li>Has Many Through (done manually - see below)</li>
-</ul>
+<table summary="Associations">
+  <thead>
+    <tr>
+      <td>ActiveRecord Terminology</td>
+      <td>DataMapepr 0.9 Terminology</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>has_many</td>
+      <td>has n</td>
+    </tr>
+    <tr>
+      <td>has_one</td>
+      <td>has 1</td>
+    </tr>
+    <tr>
+      <td>belongs_to</td>
+      <td>belongs_to, many_to_one</td>
+    </tr>
+    <tr>
+      <td>has_and_belongs_to_many</td>
+      <td>has :association => :join_table</td>
+    </tr>
+    <tr>
+      <td>has_many :association, :through => Model</td>
+      <td>has :association => :model</td>
+    </tr>
+  </tbody>
+</table>
 
 h2. Declaring Associations
 
-This is done via declarations inside your model class. The class name of the related model is determined by the symbol you pass in. For illustration, we'll add an association of each type. Pay attention to the pluralisation or the related model's name.
+This is done via declarations inside your model class. The class name of the related model is determined by the symbol you pass in. For illustration, we'll add an association of each type. Pay attention to the pluralization or the related model's name.
 
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post < DataMapper::Base
-  has_many :comments
-  has_and_belongs_to_many :categories
+  has n, :comments
+  has :categories => :categories_posts
   belongs_to :author
 end
 <% end %>
 
 
-h2. Customising Associations
+h2. Customizing Associations
 
-The association declarations make certain assumptions about which classes are being related and the names of foreign keys based on some simple conventions. In some situations you may need to tweak them a little. The association declarations accept additional options to allow you to customise them as you need
-
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post < DataMapper::Base
-  belongs_to :author, :class => 'User', :foreign_key => 'user_id'
-end
-<% end %>
-
-h2. Creating New Records via Associations
-
-You can create an instance, update it and save or you can create and save an associated record in a single step.
-
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-post = Post[1]
-# Creates a new instance of Comment and sets it's foreign key to point to the post
-comment = post.comments.build
-# Then we update and save it
-comment.attributes = {:name => 'King Rat', :body => 'London will be mine!'}
-comment.save
-# Alternately we can create a new instance and save it in one step
-post.comments.create(:name => 'Anansi', :body => 'I would lose a leg before I let you!')
-<% end %>
-
-h2. Has Many Through
-
-Has Many Through is a special kind of Has Many relationship which, rather than using an 'automatic' @table_table@ join table, uses another model's table.  Though at present DataMapper does no have a special syntax for defining an HMT relationship, it's very easily done manually with the following:
+The association declarations make certain assumptions about which classes are being related and the names of foreign keys based on some simple conventions. In some situations you may need to tweak them a little. The association declarations accept additional options to allow you to customize them as you need
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post < DataMapper::Base
-  has_many_and_belongs_to_many :categories,
-     :join_table => "categorizations",
-     :left_foreign_key => "post_id",
-     :right_foreign_key => "category_id",
-     :class => "Category"
+  belongs_to :author, :class_name => 'User', :child_key => [:post_id]
 end
 <% end %>
+
+h2. Finders off Associations
+
+When you call an association off of a model, internally DataMapper creates a Query object which it then executes when you start iterating or call @length@ off of. But if you instead call @.all@ or @.first@ off of the association and provide it the exact same arguments as a regular @all@ and @first@, it merges the new query with the query from the association and hands you back a requested subset of the association's query results.  
+
+In a way, it acts like a database view in that respect.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+@post = Post.first
+@post.categories # returns the full association
+@post.categories.all(:limit => 10, :order => [:name.asc]) # return the first 10 categories ordered by name
+<% end %>
+
+
 

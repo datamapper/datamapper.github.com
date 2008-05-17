@@ -1,0 +1,213 @@
+--- 
+body_id:      news
+title:        DataMapper 0.9 Has Been Released!
+created_at:   2008-05-16T20:26:24-05:00
+summary:      And you thought that The Great Refactoring was for naught
+release_type: important
+author:       ssmoot, afrench
+filter:
+  - erb
+  - textile
+---
+
+h1. <%= @page.title %>
+
+
+After long last, DataMapper 0.9 is ready for the world.  It brings with it a massive overhaul of the internals of DataMapper, a shift in terminology, a dramatic bump in speed, improved code-base organization, and support for more than just database data-stores.
+
+This is NOT a backwards compatible release. Code written for DataMapper 0.3 will not function with DataMapper 0.9 due to syntactical changes and library improvements.
+
+REPEAT: This is NOT a backwards compatible release.
+
+<table summary="Sytax Differences"  cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <td colspan="3" class="pointer"><h3 style="text-align:center;">Syntax Differences</h3></td>
+    </tr>
+    <tr class="head">
+      <td width="49%" class="pointer">DataMapper 0.3</th>
+      <td width="2%" class="pointer"></th>
+      <td width="49%" class="pointer">DataMapper 0.9</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+<% coderay(:lang => "ruby") do -%>
+class Post < DataMapper::Base
+end<% end %>
+      </td>
+      <td class="pointer">
+        Creating A Class
+      </td>
+      <td>
+<% coderay(:lang => "ruby") do -%>
+class Post
+  include DataMapper::Resource
+end<% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+<% coderay(:lang => "ruby") do -%>
+# Key was not mandatory
+# Automatically added +id+ if missing
+#
+# Natural Key
+property :name, :string, :key => true
+#
+# Composite Key
+property :id, :integer,  :key => true
+property :slug, :string, :key => true
+<% end %>
+      </td>
+      <td class="pointer">
+        Keys
+      </td>
+      <td>
+<% coderay(:lang => "ruby") do -%>
+# keys are now mandatory
+property :id, Integer,  :key => true
+#
+# Natural Key
+property :slug, String, :key => true
+#
+# Composite Key
+property :id, Integer,  :key => true
+property :slug, String, :key => true
+<% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+<% coderay(:lang => "ruby") do -%>
+property :title,      :string
+property :body,       :text
+property :posted_on,  :datetime
+property :active,     :boolean
+<% end %>
+      </td>
+      <td class="pointer">
+        Properties
+      </td>
+      <td>
+<% coderay(:lang => "ruby") do -%>
+property :title,      String
+property :body,       Text
+property :posted_on,  Datetime
+property :active,     Boolean
+<% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+<% coderay(:lang => "ruby") do -%>
+has_many :comments
+belongs_to :blog
+has_and_belongs_to_many :categories
+has_one :author
+<% end %>
+      </td>
+      <td class="pointer">
+        Associations
+      </td>
+      <td>
+<% coderay(:lang => "ruby") do -%>
+has 0..n, :comments
+belongs_to :blog
+has :categories => :categories_posts
+has 1, :author
+<% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <% coderay(:lang => "ruby") do -%>
+Post.first :order => 'created_at desc'
+Post.all 
+  :conditions => ['active = ?', true]
+
+database.query %Q{select 1}
+database.execute %Q{update posts...}
+        <% end %>
+      </td>
+      <td class="pointer">
+        Finders
+      </td>
+      <td>
+        <% coderay(:lang => "ruby") do -%>
+Post.first :order => [:created_at.desc]
+Post.all 
+  :conditions => ['active = ?', true]
+
+repository(:default).adapter.query %Q{select 1}
+repository(:default).adapter.execute %Q{update posts...}
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <% coderay(:lang => "ruby") do -%>
+validates_presence_of     :title
+validates_numericality_of :rating
+validates_format_of       :email,   
+  :with => :email_address
+validates_length_of       :summary, 
+  :within => (1..100)
+validates_uniqueness_of   :slug
+        <% end %>
+      </td>
+      <td class="pointer">
+        Validations
+      </td>
+      <td>
+        <% coderay(:lang => "ruby") do -%>
+validates_present     :title
+validates_is_number   :rating
+validates_format      :email, 
+  :as => :email_address
+validates_length      :summary, 
+  :in => (1..100)
+validates_is_unique   :slug
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <% coderay(:lang => "ruby") do -%>
+before_save :categorize
+
+before_create do |post|
+  # do stuff with post
+end
+
+# return false to abort
+        <% end %>
+      </td>
+      <td class="pointer">Callbacks</td>
+      <td>
+        <% coderay(:lang => "ruby") do -%>
+before :save, :categorize
+
+before_class_method :create do
+# do stuff with self
+end
+
+# throw :halt to abort
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+DM-Core now sports over 1,000 specs split between unit tests and full integration tests.  If you ever have any questions about syntax, dig into the integration specs first.  It's very likely your use-case is represented there.
+
+DataObjects (do_mysql, do_postgres, and do_sqlite3) has gotten a performance rewrite as well, making them up to 40x faster than before in some cases.
+
+h3. Pre-Release Warning
+
+Though DataMapper 0.9 is stable and production ready, it represents a pre-release before 1.0, and as such, is a work in progress.  If you come across ANYTHING of concern, hop on "#datamapper":irc://irc.freenode.net/#datamapper or the "mailing list":http://groups.google.com/group/datamapper, or file a bug on our "issue tracker":http://wm.lighthouseapp.com/projects/4819-datamapper.  We want to hear from you!
+
+
+

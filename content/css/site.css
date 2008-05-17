@@ -444,3 +444,25 @@ dd {
   text-align:right;
   float:right;
 }
+
+table {
+  margin:15px 29px 29px 30px;
+  width:90%;
+}
+table tr.head {
+  height:2em;
+  margin-bottom:20em;
+}
+table tr.head th {
+  font-weight:bold;
+  text-align:center;
+  padding-bottom:5px;
+}
+table tr td {
+/*  padding:5px;*/
+  vertical-align:top;
+}
+table tr td.pointer {
+  vertical-align:middle;
+  text-align:center;
+}

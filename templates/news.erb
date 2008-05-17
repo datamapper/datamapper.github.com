@@ -1,11 +1,10 @@
 --- 
-body_id: news
-title: Release Notes Title
-created_at: <%= Time.now.iso8601 %>
-summary: Summary Goes Here
+body_id:      news
+title:        Title shall go here
+created_at:   <%= Time.now.iso8601 %>
+summary:      Summary Goes Here
 release_type: important
-author: <%= ENV['USER'] %>
-destination: articles/
+author:       <%= ENV['USER'] %>
 filter:
   - erb
   - textile

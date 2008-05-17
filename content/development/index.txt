@@ -37,9 +37,9 @@ DataMapper is built for speed and comes with a benchmarking suite to help us kee
 * faker
 * active_record (for comparison)
 
-You'll then need a @data_mapper_1@ and @data_mapper_2@ database setup in your MySQL installation and accessible via your DB's @root@ user[1]. For more connection information and settings, crack open @script/performance.rb@.
+You'll then need a @data_mapper_1@ and @data_mapper_2@ database setup in your MySQL and Postgres installations and accessible via your DB's @root@ user. For more connection information and settings, crack open @script/performance.rb@.
 
-DataMapper will auto-migrate the databases into the proper state for benchmarking.
+DataMapper will auto-migrate the databases into the proper state for benchmarking and then generate 10,000 rows to play with.
 
 Then, simply:
 
@@ -48,6 +48,3 @@ script/performance.rb
 <% end %>
 
 The most recent official performance ratings can be found in PERFORMANCE.
-
-
-fn1(footnote). For those without @root@ access, the connection information can be found in @script/performance.rb@, but please remember to revert your changes to the file before committing.  
