@@ -23,13 +23,13 @@ h1. <%= @page.title %>
   <dt><a href="/docs/create_and_destroy.html">Creating, Saving and Destroying Records</a></dt>
   <dd>Obviously you're going to be doing a lot of this :)</dd>
   <dt><a href="/docs/find.html">Finding and Counting Records</a></dt>
-  <dd>There are lots of nice ways to find records, including some found in the ActiveRecord impersonation module.</dd>
+  <dd>There are lots of nice ways to find records.</dd>
   <dt><a href="/docs/associations.html">Associations</a></dt>
-  <dd>Models can be associated to each other in various ways -- has_many, belongs_to, has_and_belongs_to_many</dd>
-  <dt><a href="/docs/callbacks.html">Callbacks</a></dt>
-  <dd>Callbacks allow you to call your own code each time a record is created, validated and saved if you need.</dd>
+  <dd>Models can be associated to each other in various ways using the <code>has</code> keyword</dd>
+  <dt><a href="/docs/callbacks.html">Hooks</a></dt>
+  <dd>Hooks, AKA Callbacks, allow you to "advise other methods" by running methods before or after calling other methods.</dd>
   <dt><a href="/docs/misc.html">Misc. Features</a></dt>
-  <dd>Paranoia, Single Table Inheritance, Multiple Database Connections, and Chained Associations</dd>
+  <dd>Paranoia, Single Table Inheritance, and Multiple Repositories.</dd>
 </dl>
 
 h1. Documentarians Wanted!

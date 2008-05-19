@@ -1,6 +1,6 @@
 --- 
-page_id: gettingStarted
-title:      Getting started with DataMapper 0.3.0
+page_id:    gettingStarted
+title:      Getting started with DataMapper 0.9.0
 created_at: Wed Aug 29 20:36:53 +0930 2007
 filter:
   - erb
@@ -15,25 +15,17 @@ So lets imagine we're setting up some models for a blogging app. We'll keep it n
 
 h2. Install DataMapper
 
-If you have RubyGems installed, pop open your console and install DataMapper.
+If you have RubyGems installed, pop open your console and install a few things. (Substitute @do_mysql@ with @do_postgres@ if your into Postgres)
 
 <% coderay(:lang => "bash", :line_numbers => "inline") do -%>
-gem install datamapper
-<% end %>
-
-h2. Install the "DataObjects.rb":http://dataobjects.devjavu.com drivers. 
-
-Issue the following command to install your preferred flavor of DataObjects. This is the equivalent to @gem install mysql@ when you installed ActiveRecord.
-
-<% coderay(:lang => "bash", :line_numbers => "inline") do -%>
-gem install do_mysql # or do_sqlite3 or do_postgres
+gem install data_objects do_sqlite3 do_mysql dm-core dm-more
 <% end %>
 
 h2. Require it in your application
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 require 'rubygems'
-require 'data_mapper'
+require 'dm-core'
 <% end %>
 
 h2. Specify your database connection
@@ -41,7 +33,7 @@ h2. Specify your database connection
 You need make sure this is set before you define your models.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-DataMapper::Database.setup({
+DataMapper::Database.setup(:default, {
   :adapter  => 'mysql',
   :host     => 'localhost',
   :username => 'root',
@@ -52,44 +44,39 @@ DataMapper::Database.setup({
 
 h2. Define your models
 
-The Post model should inherit from DataMapper::Base. The convention with model names is to use the singular, not plural version. 
+The Post model is going to need to be persistent, so we'll include DataMapper::Resource. The convention with model names is to use the singular, not plural version...but that's just the convention, you can do whatever you want.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post < DataMapper::Base
-  property :title, :string
-  property :body, :text
-  property :created_at, :datetime
-end
-<% end %>
-
-You can also mix-in DataMapper through an @include@.
-
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post 
-  include DataMapper::Persistence
-  
-  property :title, :string
-  property :body, :text
-  property :created_at, :datetime
+class Post
+  include DataMapper::Resource
+  property :id,         Integer, :serial => true
+  property :title,      String
+  property :body,       Text
+  property :created_at, DateTime
 end
 <% end %>
 
 h3. Associations
 
-We want to associate the posts with the categories and comments. 
+We want to associate the posts with the categories and comments. Categories can have many Posts and Posts can have many Categories.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Category < DataMapper::Base  
-  property :name, :string
+class Category
+  include DataMapper::Resource
+  property :id,   Integer, :serial => true
+  property :name, String
 
-  has_many :posts
+  has :posts => :categories_posts
 end
 
-class Comment < DataMapper::Base
-  property :posted_by, :string
-  property :email, :string
-  property :url, :string
-  property :body, :text
+class Comment
+  include DataMapper::Resource
+  property :id,         Integer, :serial => true
+  
+  property :posted_by,  String
+  property :email,      String
+  property :url,        String
+  property :body,       Text
 
   belongs_to :post
 end
@@ -98,23 +85,23 @@ end
 # This would be best included in with the original definition 
 # of the class, but for the purposes of our demo, this'll do.
 class Post
-  has_many :comments
-  belongs_to :category
+  has n, :comments
+  has :categories => :categories_posts
 end
 <% end %>
 
 h2. Set up your database tables
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-Post.table.create!
-Category.table.create!
-Comment.table.create!
+Post.auto_migrate!
+Category.auto_migrate!
+Comment.auto_migrate!
 <% end %>
 
-This will issue the necessary CREATE statements to define each table according to their properties.
+This will issue the necessary CREATE statements to define each storage according to their properties.
 
 You could also do:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-DataMapper::Persistence.auto_migrate!
+DataMapper::Resource.auto_migrate!
 <% end %>

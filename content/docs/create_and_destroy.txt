@@ -12,10 +12,13 @@ h1. <%= @page.title %>
 To illustrate the various methods used in manipulating records, we'll create, save and destroy a record - ignoring "validations":/docs/validations.html for now.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Zoo < DataMapper::Base
-  property :name,        :string
-  property :description, :text
-  property :inception,   :datetime
+class Zoo
+  include DataMapper::Resource
+  property :id,           Integer,  :serial => true
+  property :name,         String
+  property :description,  Text
+  property :inception,    DateTime
+  property :open,         Boolean,  :default => false
 end
 <% end %>
 
@@ -51,19 +54,4 @@ To destroy a record, you simply call it's @#destroy!@ method. It will return tru
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 zoo = Zoo[5]
 zoo.destroy! #=> true
-<% end %>
-
-h2. Other Things
-
-If you're feeling particularly zealous, you can also destroy every record in a table. 
-
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-Zoo.delete_all  # iterates over each, deleting them as they go
-Zoo.truncate!   # issues a TRUNCATE
-<% end %>
-
-You can use @find_or_create@ to find an object, or create the object if the it's not there.  @find_or_create@ takes 2 hashes as it's arguments: @search_conditions@ and @create_conditions@, which are reverse-merged together when the object needs to be created.  Searching only happens using the @search_conditions@ though.
-
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-Zoo.find_or_create {:name => 'Zoo'}, {:inception => Time.now}
 <% end %>
