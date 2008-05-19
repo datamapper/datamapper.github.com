@@ -101,6 +101,14 @@ h2. The People Behind DataMapper
     <p><a href="http://blog.mmediasys.com">Luis Lavana</a></p>
   </li>
   <li>
+    !http://en.gravatar.com/avatar/c6e7bc52e950b434362d337bcfa01993(Bernerd Schaefer)!
+    <p>Bernerd Schaefer</p>
+  </li>
+  <li>
+    !/images/people/alex_coles.jpg(Alex Coles)!
+    <p><a href="http://alexcolesportfolio.com">Alex Coles</a></p>
+  </li>
+  <li>
     <img src="/images/martini.gif" title="you" alt="you could be here" />
     <p>More to come!</p>
   </li>

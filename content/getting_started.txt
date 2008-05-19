@@ -33,13 +33,7 @@ h2. Specify your database connection
 You need make sure this is set before you define your models.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-DataMapper::Database.setup(:default, {
-  :adapter  => 'mysql',
-  :host     => 'localhost',
-  :username => 'root',
-  :password => 'R00tPaswooooord',
-  :database => 'myspiffyblog_development'
-})
+  DataMapper.setup(:default, 'mysql://localhost/dm_core_test')
 <% end %>
 
 h2. Define your models

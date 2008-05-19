@@ -38,77 +38,31 @@ Want to help DataMapper, but don't know where to start?  A great way to contribu
 
 h2. Documentation Style
 
-We've decided to follow the Merb documentation as Yehuda Katz outlined in his blog entry "Merb.next":http://yehudakatz.com/2008/01/14/merbnext/.  Here's a brief sample:
+DataMapper uses the YARD standard for RDoc documentation.  Here's a briefe sample from the internals of DM-Core:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-# Render the specified item, with the specified options.
- #
- # ==== Parameters
- # thing<String, Symbol, nil>::
- #   The thing to render. This will default to the current action
- # opts<Hash>:: An options hash (see below)
- #
- # ==== Options (opts)
- # :format<Symbol>:: A registered mime-type format
- # :template<String>::
- #   The path to the template relative to the template root
- # :status<~to_i>::
- #   The status to send to the client. Typically, this would
- #   be an integer (200), or a Merb status code (Accepted)
- # :layout<~to_s>::
- #   A layout to use instead of the default. This should be
- #   relative to the layout root. By default, the layout will
- #   be either the controller_name or application. If you
- #   want to use an alternative content-type than the one
- #   that the base template was rendered as, you will need
- #   to do :layout => “foo.#{content_type}” (i.e. “foo.json”)
- #
- # ==== Returns
- # String:: The rendered template, including layout, if appropriate.
- #
- # ==== Raises
- # TemplateNotFound::
- #   There is no template for the specified location.
- #
- # ==== Alternatives
- # If you pass a Hash as the first parameter, it will be moved to
- # opts and "thing" will be the current action
- #
- #—
- # @public
- def render(thing = nil, opts = {})
-   ....
- end
+##
+# Setups up a connection to a data-store
+#
+# @param name<Symbol> a name for the context, defaults to :default
+# @param uri_or_options<Hash{Symbol => String}, Addressable::URI, String>
+#   connection information
+#
+# @return <Repository> the resulting setup repository
+#
+# @raise <ArgumentError> "+name+ must be a Symbol, but was..." indicates that
+#   an invalid argument was passed for name<Symbol>
+# @raise <ArgumentError> "+uri_or_options+ must be a Hash, URI or String, but was..."
+#   indicates that connection information could not be gleaned from the given
+#   uri_or_options<Hash, Addressable::URI, String>
+# -
+# @api public
+def self.setup(name, uri_or_options)
+  raise ArgumentError, "+name+ must be a Symbol, but was #{name.class}", caller unless Symbol === name
+  ...
 <% end %>
 
-p(attribution). snipped from "http://yehudakatz.com/2008/01/14/merbnext/":http://yehudakatz.com/2008/01/14/merbnext/
-
-h3. Parameters
-
-*Parameters* provides the full method signature, describing the possible arguments of the method in the order they should be specified.  Indicate the expected data-types by writing the acceptable types in a @<Class>@ right next to the argument.
-
-h3. Options
-
-*Options* fleshes out any of the provided options (passed in as if it was named parameters) and what their uses are.  @<~to_i_>@ indicates the method that the object must be able to receive, in this case the @:to_i@ method.
-
-h3. Returns
-
-*Returns* describes the possible return values of the method, indicating the @Class@ of the object first, and a small description of the output.
-
-h3. Raises
-
-*Raises* outlines the possible exceptions that could be raised from within the method and they're exact meaning in the context of the execution of the method.
-
-h3. Alternatives
-
-*Alternatives* briefly describes any funky behavior, catch-alls, or quirks of the method.  In this case, the method will handle a hash as the first argument, if no @thing@ is specified.
-
-h3. Public, Semi-Public, and Private
-
-At the end of the method documentation, indicate the kind of consumption this method is suited for.  *Public* methods are part of the public API for DataMapper, *Semi-Public* are methods which are used in other parts of DataMapper and likely the spec's as well, and *Private* API consists of methods which are internal to DataMapper and can be changed or re-implimented at will, so long as spec's continue to pass.
-
-For a full explanation of this documentation style, visit "http://yehudakatz.com/2008/01/14/merbnext/":http://yehudakatz.com/2008/01/14/merbnext/.
-
+For more information about the YARD documentation style, see "lsegal's YARD repo on github.com":http://github.com/lsegal/yard/tree/master.
 
 <div class="puff">
 

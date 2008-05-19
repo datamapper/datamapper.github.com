@@ -26,14 +26,16 @@ This makes DataMapper faster and allocate less resources to get things done.
 
 h2. Plays Well With Others
 
-In ActiveRecord, all your columns are mapped, whether you want them or not. This slows things down. In the DataMapper you define your mappings in your model. So instead of an @ALTER TABLE ADD COLUMN@ in your Database, you simply add a @property :name, :string@ to your model. DRY. No schema.rb. No migration files to conflict or die without reverting changes. Your model drives the database, not the other way around. 
+In ActiveRecord, all your columns are mapped, whether you want them or not. This slows things down. In the DataMapper you define your mappings in your model. So instead of an @ALTER TABLE ADD COLUMN@ in your Database, you simply add a @property :name, String@ to your model. DRY. No schema.rb. No migration files to conflict or die without reverting changes. Your model drives the data-store, not the other way around. 
 
 Unless of course you want to map to a legacy database. Raise your hand if you like seeing a method called @col2Name@ on your model just because that's what it's called in an old database you can't afford to change right now? In DataMapper you control the mappings:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Fruit < DataMapper::Base
-  set_table_name 'frt'
-  property :name, :string, :column => 'col2'
+class Fruit
+  include DataMapper::Resource
+  storage_names[:default] = 'frt'
+  property :id, Integer, :serial => true
+  property :name, String, :field => 'col2'
 end
 <% end %>
 
@@ -48,9 +50,11 @@ Text columns are expensive in databases. They're generally stored in a different
 Not so with the DataMapper. Text fields are treated like in-row associations by default, meaning they only load when you need them. If you want more control you can enable or disable this feature for any column (not just text-fields) by passing a @lazy@ option to your column mapping with a value of @true@ or @false@.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Animal < DataMapper::Base
-  property :name, :string
-  property :notes, :text, :lazy => false
+class Animal
+  include DataMapper::Resource
+  property :id, Integer, :serial => true
+  property :name, String
+  property :notes, Text, :lazy => false
 end
 <% end %> 
 
@@ -105,10 +109,6 @@ Person.all(:name.not => ['bob','rick','steve'])
 <% end %>
 
 See? Fewer SQL fragments dirtying your Ruby code. And that's just a few of the nice syntax tweaks DataMapper delivers out of the box...
-
-h2. Better Is Great, But Familiar Is Nice
-
-The DataMapper also supports a lot of old-fashioned ActiveRecord syntax. We want to make it easy for you to get started, so aside from mapping your columns and changing the base-class your models inherit from, much of AR syntax for finders are supported as well, making your transition easy.
 
 h2. Open Development
 
