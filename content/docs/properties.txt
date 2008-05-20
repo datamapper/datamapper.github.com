@@ -42,6 +42,7 @@ DM-Core supports the following 'primitive' data-types.
 * BigDecimal,
 * DateTime, Date
 * Object, (marshalled)
+* Discriminator
 
 If you include DM-More's DM-Types, the following data-types are supported:
 

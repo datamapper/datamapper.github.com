@@ -22,7 +22,7 @@ class Post
   before :save, :categorize
   
   def categorize
-  # ... code here
+    # ... code here
   end
 end
 <% end %>
@@ -59,20 +59,22 @@ end
 Class level advice does not have access to any resulting instances from the class method, so they might not be the best fit for @after_create@ or @after_save@.
 
 
-h2. True to Go, False to Stop
+h2. Throw :halt to Stop
 
-Advace have to return true otherwise the relevant action will be halted. For example if you use a before_save callback and fail to return true, the record will not save. 
+You can throw :halt in any callback to stop the chain from continuing. For example if you use a before :destroy callback and throw :halt, the record will not be destroyed. 
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post < DataMapper::Base
+class Post
+  include DataMapper::Resource
+  
   # This record will save properly
-  before_save do |post|
-    true
+  before :save do
+    # ... code here
   end
   
   # But it will not be destroyed
-  before_destroy do |post|
-    false
+  before :destroy do
+    throw :halt
   end
 end
 <% end %>

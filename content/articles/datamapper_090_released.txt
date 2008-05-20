@@ -189,8 +189,8 @@ end
         <% coderay(:lang => "ruby") do -%>
 before :save, :categorize
 
-before_class_method :create do
-# do stuff with self
+before :create do
+  # do stuff with self
 end
 
 # throw :halt to abort

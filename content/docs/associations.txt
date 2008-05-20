@@ -35,11 +35,11 @@ The types of associations currently in DataMapper are:
     </tr>
     <tr>
       <td>has_and_belongs_to_many</td>
-      <td>has :association => :join_table</td>
+      <td>has n, :association => :join_table</td>
     </tr>
     <tr>
       <td>has_many :association, :through => Model</td>
-      <td>has :association => :model</td>
+      <td>has n, :association => :model</td>
     </tr>
   </tbody>
 </table>
@@ -50,9 +50,11 @@ This is done via declarations inside your model class. The class name of the rel
 
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post < DataMapper::Base
+class Post
+  include DataMapper::Resource
+  
   has n, :comments
-  has :categories => :categories_posts
+  has n, :categories => :categories_posts
   belongs_to :author
 end
 <% end %>
@@ -63,8 +65,21 @@ h2. Customizing Associations
 The association declarations make certain assumptions about which classes are being related and the names of foreign keys based on some simple conventions. In some situations you may need to tweak them a little. The association declarations accept additional options to allow you to customize them as you need
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post < DataMapper::Base
+class Post
+  include DataMapper::Resource
   belongs_to :author, :class_name => 'User', :child_key => [:post_id]
+end
+<% end %>
+
+h2. Adding Conditions to Assiciations
+
+If you want to order the association, or supply a scope, you can just pass in the options..
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+class Post
+  include DataMapper::Resource
+  
+  has n, :comments, :order => [:published_on.desc], :rating.gte => 5 # post#comments will now be ordered by publishing-date, and filtered by rating > 5.
 end
 <% end %>
 
@@ -78,6 +93,7 @@ In a way, it acts like a database view in that respect.
 @post = Post.first
 @post.categories # returns the full association
 @post.categories.all(:limit => 10, :order => [:name.asc]) # return the first 10 categories ordered by name
+@post.categories(:limit => 10, :order => [:name.asc]) # alias for #all, you can pass in the options directly
 <% end %>
 
 
