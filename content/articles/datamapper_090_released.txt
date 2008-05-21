@@ -1,6 +1,6 @@
 --- 
 body_id:      news
-title:        DataMapper 0.9 Has Been Released!
+title:        DataMapper 0.9 To Be Released on 26 May 08
 created_at:   2008-05-16T20:26:24-05:00
 summary:      And you thought that The Great Refactoring was for naught
 release_type: important
@@ -13,7 +13,7 @@ filter:
 h1. <%= @page.title %>
 
 
-After long last, DataMapper 0.9 is ready for the world.  It brings with it a massive overhaul of the internals of DataMapper, a shift in terminology, a dramatic bump in speed, improved code-base organization, and support for more than just database data-stores.
+As of 26 May 2008, DataMapper 0.9 will be ready for the world.  It brings with it a massive overhaul of the internals of DataMapper, a shift in terminology, a dramatic bump in speed, improved code-base organization, and support for more than just database data-stores.
 
 This is NOT a backwards compatible release. Code written for DataMapper 0.3 will not function with DataMapper 0.9 due to syntactical changes and library improvements.
 
