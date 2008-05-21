@@ -109,6 +109,10 @@ h2. The People Behind DataMapper
     <p><a href="http://alexcolesportfolio.com">Alex Coles</a></p>
   </li>
   <li>
+    !http://en.gravatar.com/avatar/7f75c16b039cd5946fdee1e0771e4f09?s=80&r=any(Sindre Aarsaether)!
+    <p><a href="http://blog.somebee.com">Sindre Aarsaether</a></p>
+  </li>
+  <li>
     <img src="/images/martini.gif" title="you" alt="you could be here" />
     <p>More to come!</p>
   </li>

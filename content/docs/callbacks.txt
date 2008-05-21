@@ -22,7 +22,7 @@ class Post
   before :save, :categorize
   
   def categorize
-  # ... code here
+    # ... code here
   end
 end
 <% end %>
@@ -59,7 +59,6 @@ end
 
 Class level advice does not have access to any resulting instances from the class method, so they might not be the best fit for @after_create@ or @after_save@.
 
-
 h2. Throw :halt, in the name of love...
 
 In order to abort advice and prevent the advised method from being called, throw :halt
@@ -68,13 +67,15 @@ In order to abort advice and prevent the advised method from being called, throw
 class Post 
   include DataMapper::Resource
   # ... key and properties here
-  
+    
   # This record will save properly
+
   before :save do |post|
     true
   end
   
   # But it will not be destroyed
+
   before :destroy do |post|
     throw :halt
   end
