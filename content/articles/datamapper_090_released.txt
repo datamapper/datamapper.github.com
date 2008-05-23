@@ -115,7 +115,7 @@ has_one :author
 <% coderay(:lang => "ruby") do -%>
 has 0..n, :comments
 belongs_to :blog
-has :categories => :categories_posts
+has n, :categories => :categories_posts
 has 1, :author
 <% end %>
       </td>
@@ -127,8 +127,8 @@ Post.first :order => 'created_at desc'
 Post.all 
   :conditions => ['active = ?', true]
 
-database.query %Q{select 1}
-database.execute %Q{update posts...}
+database.query %Q{SELECT 1}
+database.execute %Q{UPDATE posts...}
         <% end %>
       </td>
       <td class="pointer">
@@ -140,8 +140,8 @@ Post.first :order => [:created_at.desc]
 Post.all 
   :conditions => ['active = ?', true]
 
-repository(:default).adapter.query %Q{select 1}
-repository(:default).adapter.execute %Q{update posts...}
+repository(:default).adapter.query %Q{SELECT 1}
+repository(:default).adapter.execute %Q{UPDATE posts...}
         <% end %>
       </td>
     </tr>
