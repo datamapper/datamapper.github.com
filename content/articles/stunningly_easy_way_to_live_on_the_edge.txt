@@ -37,7 +37,15 @@ Next, you'll need @git@.  It's the source code management tool DataMapper uses. 
 * "Git On Windows":http://ropiku.wordpress.com/2007/12/28/git-on-windows/
 * "Installing Git on Ubuntu":http://chrisolsen.org/2008/03/10/installing-git-on-ubuntu/
 
-After that, you'll need to @gem uninstall@ any of the "dm-*" projects you already have installed.  This includes 'data_objects' and its associated adapters.  Once that's done and your system is clean, do the following:
+After that, you'll need to @gem uninstall@ any of the "dm-*" projects you already have installed.  This includes 'data_objects' and its associated adapters.  
+
+Next, you'll need a few of the base dependencies.  To install them, run
+
+<% coderay(:lang => "bash") do -%>
+sudo gem install addressable english rspec
+<% end %>
+
+Once that's done, do the following:
 
 <% coderay(:lang => "bash", :line_numbers => "inline") do -%>
 mkdir -p ~/src
