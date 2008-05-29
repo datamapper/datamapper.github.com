@@ -1,6 +1,6 @@
 --- 
 page_id:    gettingStarted
-title:      Getting started with DataMapper 0.9.0
+title:      Getting started with DataMapper
 created_at: Wed Aug 29 20:36:53 +0930 2007
 filter:
   - erb
@@ -18,6 +18,7 @@ h2. Install DataMapper
 If you have RubyGems installed, pop open your console and install a few things. (Substitute @do_mysql@ with @do_postgres@ if your into Postgres)
 
 <% coderay(:lang => "bash", :line_numbers => "inline") do -%>
+gem sources -a http://gems.datamapper.org
 gem install data_objects do_sqlite3 do_mysql dm-core dm-more
 <% end %>
 
@@ -25,7 +26,8 @@ h2. Require it in your application
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 require 'rubygems'
-require 'dm-core'
+gem 'dm-core'
+require 'data_mapper'
 <% end %>
 
 h2. Specify your database connection
@@ -33,7 +35,12 @@ h2. Specify your database connection
 You need make sure this is set before you define your models.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  # An in-memory Sqlite3 connection:
+  DataMapper.setup(:default, 'sqlite3::memory:')
+  # A MySQL 4.x+ connection:
   DataMapper.setup(:default, 'mysql://localhost/dm_core_test')
+  # A Postgres 8.2+ connection:
+  DataMapper.setup(:default, 'postgres://localhost/dm_core_test')
 <% end %>
 
 h2. Define your models
