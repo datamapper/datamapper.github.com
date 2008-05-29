@@ -13,6 +13,17 @@ First, if you think you might need some help, there's an active community suppor
 
 So lets imagine we're setting up some models for a blogging app. We'll keep it nice and simple. The first thing to decide on is what models we want. Post is a given. So is Comment. But let's mix it up and do Category too.
 
+<% if Date.today < Date.parse("26 may 2008")%>
+<div class="puff">
+  
+h2. It's not the 26th yet...
+
+For those of you itching to use DataMapper 0.9 before it has officially been released,<br>
+see "The Stunningly Easy Way To Live On The Edge":/articles/stunningly_easy_way_to_live_on_the_edge.html.
+  
+</div>
+<% end %>
+
 h2. Install DataMapper
 
 If you have RubyGems installed, pop open your console and install a few things. (Substitute @do_mysql@ with @do_postgres@ if your into Postgres)
