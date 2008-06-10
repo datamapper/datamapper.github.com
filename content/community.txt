@@ -24,8 +24,8 @@ h2. Links, Blogs, Wiki's, and Stuff
   <dd>Official IRC Channel</dd>
   <dt><a href="http://groups.google.com/group/datamapper"> Google Groups</a></dt>
   <dd>Official Mailing List</dd>
-  
-  
+  <dt><a href="http://wm.lighthouseapp.com/projects/4819-datamapper/overview">Lighthouse</a></dt>
+  <dd>Official Bug Tracking System</dd>
 </dl> 
 
 
@@ -45,7 +45,7 @@ h2. The People Behind DataMapper
     <p><a href="http://www.theamazingrando.com/">Paul Sadauskas</a></p>
   </li>
   <li>
-    <img src="http://gravatar.com/avatar/089d4a0c54ac9eee0950444826ed20f0?s=80" title="Adam French" alt="Adam French" />
+    <img src="http://en.gravatar.com/avatar/089d4a0c54ac9eee0950444826ed20f0?s=80&r=any" title="Adam French" alt="Adam French" />
     <p><a href="http://adam.speaksoutofturn.com">Adam French</a></p>
   </li>
   <li>
