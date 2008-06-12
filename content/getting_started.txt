@@ -115,5 +115,5 @@ This will issue the necessary CREATE statements to define each storage according
 You could also do:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-DataMapper::Resource.auto_migrate!
+DataMapper.auto_migrate!
 <% end %>
