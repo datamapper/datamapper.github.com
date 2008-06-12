@@ -122,7 +122,7 @@ has_one :author
       </td>
       <td>
 <% coderay(:lang => "ruby") do -%>
-has 0..n, :comments
+has n, :comments
 belongs_to :blog
 has n, :categories => :categories_posts
 has 1, :author
