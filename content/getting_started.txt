@@ -96,8 +96,9 @@ end
 class Categorizations
   include DataMapper::Resource
   property :id, Integer, :serial => true
-  property :category_id, Integer
-  property :post_id, Integer
+  
+  property :created_at, DateTime
+  
   belongs_to :category
   belongs_to :post
 end
