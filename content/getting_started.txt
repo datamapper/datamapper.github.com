@@ -30,7 +30,7 @@ If you have RubyGems installed, pop open your console and install a few things. 
 
 <% coderay(:lang => "bash", :line_numbers => "inline") do -%>
 gem sources -a http://gems.datamapper.org
-gem install data_objects do_sqlite3 do_mysql dm-core dm-more
+gem install data_objects do_sqlite3 do_mysql dm-core
 <% end %>
 
 h2. Require it in your application
@@ -38,7 +38,7 @@ h2. Require it in your application
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 require 'rubygems'
 gem 'dm-core'
-require 'data_mapper'
+require 'dm-core'
 <% end %>
 
 h2. Specify your database connection
@@ -78,7 +78,7 @@ class Category
   property :id,   Integer, :serial => true
   property :name, String
 
-  has :posts => :categories_posts
+  has n, :posts, :through => :categorizations
 end
 
 class Comment
@@ -93,12 +93,22 @@ class Comment
   belongs_to :post
 end
 
+class Categorizations
+  include DataMapper::Resource
+  property :id, Integer, :serial => true
+  property :category_id, Integer
+  property :post_id, Integer
+  belongs_to :category
+  belongs_to :post
+end
+
 # Now we re-open our Post class to define the associations.  
 # This would be best included in with the original definition 
 # of the class, but for the purposes of our demo, this'll do.
+
 class Post
   has n, :comments
-  has :categories => :categories_posts
+  has n, :categories, :through => :categorizations
 end
 <% end %>
 
@@ -108,6 +118,7 @@ h2. Set up your database tables
 Post.auto_migrate!
 Category.auto_migrate!
 Comment.auto_migrate!
+Categorization.auto_migrate!
 <% end %>
 
 This will issue the necessary CREATE statements to define each storage according to their properties.
