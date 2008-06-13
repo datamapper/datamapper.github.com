@@ -97,7 +97,7 @@ h3. Has and belongs to many
 Categories can have many Posts and Posts can have many Categories, so we'll need a 1:N:1 relationships commonly referred to "has and belongs to many".  We'll setup a quick model to wrap our join table between the two so that we can record a little bit of meta-data about when the post was categorized into a category.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Categorizations
+class Categorization
   include DataMapper::Resource
   property :id,         Integer, :serial => true
   

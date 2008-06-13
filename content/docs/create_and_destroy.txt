@@ -9,7 +9,7 @@ filter:
 
 h1. <%= @page.title %>
 
-To illustrate the various methods used in manipulating records, we'll create, save and destroy a record - ignoring "validations":/docs/validations.html for now.
+To illustrate the various methods used in manipulating records, we'll create, save and destroy a record.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Zoo
