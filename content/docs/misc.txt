@@ -53,13 +53,13 @@ DataMapper sports a concept called a Context which encapsulates the database con
 But if you supply a context name, you will now have 2 database contexts with their own unique loggers, connection pool, identity map....one default context and one named context.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-DataMapper::Database.setup(:external, 'mysql://someother_host/dm_core_test')
+DataMapper.setup(:external, 'mysql://someother_host/dm_core_test')
 <% end %>
 
 To use one context rather than another, simply wrap your code block inside a @database@ call. It will return whatever your block of code returns.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-database(:external) { Person.first }
+repository(:external) { Person.first }
 # hits up your :external database and retrieves the first Person
 <% end %>
 

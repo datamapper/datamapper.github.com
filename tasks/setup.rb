@@ -13,7 +13,7 @@ SITE.page_defaults = {
   'layout'    => 'default'
 }
 
-SITE.host       = 'dmweb@blake.wieck.com'
+SITE.host       = 'wieck@datamapper.org'
 SITE.remote_dir = '/var/www/datamapper.org'
 SITE.rsync_args = %w(-av --delete)
 
