@@ -17,7 +17,7 @@ The types of associations currently in DataMapper are:
   <thead>
     <tr>
       <td>ActiveRecord Terminology</td>
-      <td>DataMapepr 0.9 Terminology</td>
+      <td>DataMapper 0.9 Terminology</td>
     </tr>
   </thead>
   <tbody>
@@ -35,11 +35,11 @@ The types of associations currently in DataMapper are:
     </tr>
     <tr>
       <td>has_and_belongs_to_many</td>
-      <td>has n, :association => :join_table</td>
+      <td>has n, :things, :through => Resource</td>
     </tr>
     <tr>
       <td>has_many :association, :through => Model</td>
-      <td>has n, :association => :model</td>
+      <td>has n, :things, :through => :model</td>
     </tr>
   </tbody>
 </table>
@@ -48,17 +48,66 @@ h2. Declaring Associations
 
 This is done via declarations inside your model class. The class name of the related model is determined by the symbol you pass in. For illustration, we'll add an association of each type. Pay attention to the pluralization or the related model's name.
 
+h3. has n and belongs_to (or One-To-Many)
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
   
   has n, :comments
-  has n, :categories => :categories_posts
-  belongs_to :author
+end
+
+class Comment
+  include DataMapper::Resource
+
+  belongs_to :post
 end
 <% end %>
 
+h3. has n, :through (or One-To-Many-Through)
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+class Photo
+  include DataMapper::Resource
+
+  has n, :taggings
+  has n, :tags, :through => :taggings
+end
+
+class Tag
+  include DataMapper::Resource
+
+  has n, :taggings
+  has n, :photos, :through => :taggings
+end
+
+class Tagging
+  include DataMapper::Resource
+
+  belongs_to :tag
+  belongs_to :photo
+end
+
+<% end %>
+
+h3. Has, and belongs to, many (Or Many-To-Many)
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+class Article
+  include DataMapper::Resource
+
+  has n, :categories, :through => Resource
+end
+
+class Category
+  include DataMapper::Resource
+
+  has n, :articles, :through => Resource
+end
+
+<% end %>
+
+The use of Resource in place of a class name tells DataMapper to use an anonymous resource to link the two models up.
 
 h2. Customizing Associations
 
@@ -71,15 +120,16 @@ class Post
 end
 <% end %>
 
-h2. Adding Conditions to Assiciations
+h2. Adding Conditions to Associations
 
-If you want to order the association, or supply a scope, you can just pass in the options..
+If you want to order the association, or supply a scope, you can just pass in the options...
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
   
-  has n, :comments, :order => [:published_on.desc], :rating.gte => 5 # post#comments will now be ordered by publishing-date, and filtered by rating > 5.
+  has n, :comments, :order => [:published_on.desc], :rating.gte => 5 
+  # post#comments will now be ordered by published_on, and filtered by rating > 5.
 end
 <% end %>
 
