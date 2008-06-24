@@ -13,6 +13,7 @@
 #  approval of a maintainer
 #
 # $Id$
+gem 'webby', '=0.8.2'
 
 load 'tasks/setup.rb'
 
