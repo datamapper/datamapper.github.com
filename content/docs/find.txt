@@ -16,9 +16,10 @@ h2. Finder Methods
 DataMapper has methods which allow you to grab a single record by key, the first match to a set of conditions, or a collection of records matching conditions.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-zoo   = Zoo[1]                            # get the zoo with primary key of 1
-zoo   = Zoo['DFW']                        # wow, support for natural primary keys
-zoo   = Zoo['Metro', 'DFW']               # more wow, composite key look-up
+zoo   = Zoo.get(1)                        # get the zoo with primary key of 1.
+zoo   = Zoo.get!(1)                       # Or get! if you want an ObjectNotFoundError on failure
+zoo   = Zoo.get('DFW')                    # wow, support for natural primary keys
+zoo   = Zoo.get('Metro', 'DFW')           # more wow, composite key look-up
 zoo   = Zoo.first(:name => 'Luke')        # first matching record with the name 'Luke'
 zoos  = Zoo.all                           # all zoos
 zoos  = Zoo.all(:open => true)            # all zoos that are open
