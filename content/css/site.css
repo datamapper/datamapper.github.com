@@ -466,3 +466,24 @@ table tr td.pointer {
   vertical-align:middle;
   text-align:center;
 }
+
+/* CHANGE SUMMARY */
+.changeSummary {
+  width: 840px !important;
+}
+.changeSummary thead th {
+  font-size: 1.5em;
+}
+.changeSummary tbody th {
+  width: 120px !important;
+  vertical-align: top;
+  padding-top: 1em;
+}
+.changeSummary td {
+  width: 358px;
+  padding-top: 1em;
+}
+.changeSummary .CodeRay {
+  width: 298px;
+  margin: 0 30px 0 0;
+}

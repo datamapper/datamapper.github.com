@@ -28,26 +28,20 @@ This is NOT a backwards compatible release. Code written for DataMapper 0.3 will
 
 REPEAT: This is NOT a backwards compatible release.
 
-<table summary="Sytax Differences"  cellspacing="0" cellpadding="0">
+<table class="changeSummary" cellspacing="0" cellpadding="0">
   <thead>
-    <tr>
-      <td colspan="3" class="pointer"><h3 style="text-align:center;">Syntax Differences</h3></td>
-    </tr>
-    <tr class="head">
-      <td width="49%" class="pointer">DataMapper 0.3</th>
-      <td width="2%" class="pointer"></th>
-      <td width="49%" class="pointer">DataMapper 0.9.*</th> 
-    </tr>
+    <th>&nbsp;</th>
+    <th>DataMapper 0.3</th>
+    <th>DataMapper 0.9</th>
   </thead>
   <tbody>
     <tr>
+      <th>Creating a class</th>
       <td>
 <% coderay(:lang => "ruby") do -%>
 class Post < DataMapper::Base
-end<% end %>
-      </td>
-      <td class="pointer">
-        Creating A Class
+end
+<% end %>
       </td>
       <td>
 <% coderay(:lang => "ruby") do -%>
@@ -57,6 +51,7 @@ end<% end %>
       </td>
     </tr>
     <tr>
+      <th>Keys</th>
       <td>
 <% coderay(:lang => "ruby") do -%>
 # Key was not mandatory
@@ -69,9 +64,6 @@ property :name, :string, :key => true
 property :id, :integer,  :key => true
 property :slug, :string, :key => true
 <% end %>
-      </td>
-      <td class="pointer">
-        Keys
       </td>
       <td>
 <% coderay(:lang => "ruby") do -%>
@@ -88,6 +80,7 @@ property :slug, String, :key => true
       </td>
     </tr>
     <tr>
+      <th>Properties</th>
       <td>
 <% coderay(:lang => "ruby") do -%>
 property :title,      :string
@@ -95,9 +88,6 @@ property :body,       :text
 property :posted_on,  :datetime
 property :active,     :boolean
 <% end %>
-      </td>
-      <td class="pointer">
-        Properties
       </td>
       <td>
 <% coderay(:lang => "ruby") do -%>
@@ -109,6 +99,7 @@ property :active,     Boolean
       </td>
     </tr>
     <tr>
+      <th>Associations</th>
       <td>
 <% coderay(:lang => "ruby") do -%>
 has_many :comments
@@ -116,9 +107,6 @@ belongs_to :blog
 has_and_belongs_to_many :categories
 has_one :author
 <% end %>
-      </td>
-      <td class="pointer">
-        Associations
       </td>
       <td>
 <% coderay(:lang => "ruby") do -%>
@@ -130,6 +118,7 @@ has 1, :author
       </td>
     </tr>
     <tr>
+      <th>Finders</th>
       <td>
         <% coderay(:lang => "ruby") do -%>
 Post.first :order => 'created_at DESC'
@@ -139,9 +128,6 @@ Post.all
 database.query %Q{SELECT 1}
 database.execute %Q{UPDATE posts...}
         <% end %>
-      </td>
-      <td class="pointer">
-        Finders
       </td>
       <td>
         <% coderay(:lang => "ruby") do -%>
@@ -155,6 +141,7 @@ repository(:default).adapter.execute %Q{UPDATE posts...}
       </td>
     </tr>
     <tr>
+      <th>Validations</th>
       <td>
         <% coderay(:lang => "ruby") do -%>
 validates_presence_of     :title
@@ -165,9 +152,6 @@ validates_length_of       :summary,
   :within => (1..100)
 validates_uniqueness_of   :slug
         <% end %>
-      </td>
-      <td class="pointer">
-        Validations
       </td>
       <td>
         <% coderay(:lang => "ruby") do -%>
@@ -182,8 +166,9 @@ validates_is_unique   :slug
       </td>
     </tr>
     <tr>
+      <th>Callbacks</th>
       <td>
-        <% coderay(:lang => "ruby") do -%>
+<% coderay(:lang => "ruby") do -%>
 before_save :categorize
 
 before_create do |post|
@@ -191,11 +176,10 @@ before_create do |post|
 end
 
 # return false to abort
-        <% end %>
+<% end %>
       </td>
-      <td class="pointer">Callbacks</td>
       <td>
-        <% coderay(:lang => "ruby") do -%>
+<% coderay(:lang => "ruby") do -%>
 before :save, :categorize
 
 before :create do
@@ -203,20 +187,8 @@ before :create do
 end
 
 # throw :halt to abort
-        <% end %>
+<% end %>
       </td>
     </tr>
   </tbody>
 </table>
-
-
-DM-Core now sports over 1,000 specs split between unit tests and full integration tests.  If you ever have any questions about syntax, dig into the integration specs first.  It's very likely your use-case is represented there.
-
-DataObjects (do_mysql, do_postgres, and do_sqlite3) has gotten a performance rewrite as well, making them up to 40x faster than before in some cases.
-
-h3. Pre-Release Warning
-
-Though DataMapper 0.9.* is stable and production ready, it represents a pre-release before 1.0, and as such, is a work in progress.  If you come across ANYTHING of concern, hop on "#datamapper":irc://irc.freenode.net/#datamapper or the "mailing list":http://groups.google.com/group/datamapper, or file a bug on our "issue tracker":http://wm.lighthouseapp.com/projects/4819-datamapper.  We want to hear from you!
-
-
-
