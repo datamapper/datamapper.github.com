@@ -86,7 +86,7 @@ In addition to the @valid?@ method, there is also an @all_valid?@ method that re
 
 h2. Working with Validation Errors
 
-If your validators find errors in your model, they will populate the <%= doc('Validate::ValidationErrors', 'add') %> object that is available through each of your models via calls to your model's errors method.
+If your validators find errors in your model, they will populate the <%= doc('Validate::ValidationErrors') %> object that is available through each of your models via calls to your model's errors method.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
   my_account = Account.new(:name => "Jose")
