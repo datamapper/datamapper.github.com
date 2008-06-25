@@ -9,7 +9,7 @@ filter:
 
 h1. <%= @page.title %>
 
-The finder methods for DataMapper objects are defined in DataMapper::Repository. They include @[]@, @all()@, @first()@
+The finder methods for DataMapper objects are defined in <%= doc('DataMapper::Repository') %>. They include @[]@, @all()@, @first()@
 
 h2. Finder Methods
 

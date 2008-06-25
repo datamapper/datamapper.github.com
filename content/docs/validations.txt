@@ -1,0 +1,104 @@
+--- 
+title:      Validations
+body_id:    docs
+created_at: Fri Jun 13 17:41:32 +1030 2007
+filter:
+  - erb
+  - textile
+--- 
+
+h1. <%= @page.title %>
+
+Datamapper validations allow you to vet data prior to saving to a database. To make validations available to your app you simply '@require dm-validations@' in your application. With Datamapper there are two different ways you can validate your classes' properties.
+ 
+h2. Manual Validation
+
+Much like a certain other Ruby ORM we can call validation methods directly by passing them a property name (or an array of names) to validate against.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  validates_length :name
+  validates_length [:name, :description]
+<% end %>
+
+These are the currently available manual validations available. Please refer to the <a href="http://datamapper.rubyforge.org/DataMapper/Validate/ClassMethods.html">API</a> for more detailed information.
+
+* validates_present
+* validates_absent
+* validates_is_accepted
+* validates_is_confirmed
+* validates_format
+* validates_length
+* validates_with_method
+* validates_is_number
+* validates_is_unique
+* validates_within
+
+h2. Auto-Validations
+
+By adding triggers to your property definitions you can both define and validate your classes properties all in one fell swoop.
+
+Triggers that generate validator creation:
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  :nullable => false
+<% end %>
+
+Setting the option :nullable to false causes a validates_present validator to be automatically created on the property
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  :size => 20 or :length => 20
+<% end %>
+
+Setting the option @:size@ or @:length@ causes a validates_length validator to be automatically created on the property. If the value is a Integer the validation will set @:maximum => value@ if the value is a Range the validation will set :within => value
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  :format => :predefined / lambda / Proc
+<% end %>
+
+Setting the @:format@ option causes a @validates_format@ validator to be automatically created on the property
+
+Here we see an example of a class with both a manual and and auto-validation declared:
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  require 'dm-validations'
+
+  class Account
+    include DataMapper::Resource
+
+    property :name, String
+
+    # good old fashioned manual validation
+    validates_length :name 
+
+    # auto_validation that ensures the content property 
+    # is a minimum of 100 characters and and maximum of 500 characters
+    property :content, Text, :length => (100..500) 
+  end
+<% end %>
+
+h2. Validating
+
+DataMapper validations, when included, alter the default save/create/update process for a model.  Unless you specify a context the resource must be valid in the @:default@ context before saving.
+
+You may manually validate a resource using the @valid?@ method, which will return true if the resource is valid, and false if it is invalid.
+
+In addition to the @valid?@ method, there is also an @all_valid?@ method that recursively walks both the current object and its associated objects and returns its true/false result for the entire walk.
+
+h2. Working with Validation Errors
+
+If your validators find errors in your model, they will populate the <%= doc('Validate::ValidationErrors', 'add') %> object that is available through each of your models via calls to your model's errors method.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  my_account = Account.new(:name => "Jose")
+  if my_account.save
+    # my_account is valid and has been saved
+  else
+    my_account.errors.each do |e|
+      puts e
+    end
+  end
+<% end %>
+
+h2. Contextual Validations
+
+DataMapper Validations also provide a means of grouping your validations into contexts. This enables you to run different sets of validations under different contexts.

@@ -22,6 +22,8 @@ h1. <%= @page.title %>
   <dd>Properties declared in your model map to the fields in the database.</dd>
   <dt><a href="/docs/create_and_destroy.html">Creating, Saving and Destroying Records</a></dt>
   <dd>Obviously you're going to be doing a lot of this :)</dd>
+  <dt><a href="/docs/validations.html">Validations</a></dt>
+  <dd>Auto-validations, manual validations, contextual validations</dd>
   <dt><a href="/docs/find.html">Finding and Counting Records</a></dt>
   <dd>There are lots of nice ways to find records.</dd>
   <dt><a href="/docs/associations.html">Associations</a></dt>

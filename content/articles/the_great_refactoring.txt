@@ -40,7 +40,7 @@ class Planet
 end
 <% end %>
 
-A couple of things are going on here.  First, DataMapper::Base and DataMapper::Persistence are gone and replaced with DataMapper::Resource.  Next @set_table_name@ has been replaced with @resource_names@ hash where you specify which arena play occurs in. After that we have a couple of Property definitions that look a little different.
+A couple of things are going on here.  First, DataMapper::Base and DataMapper::Persistence are gone and replaced with <%= doc('DataMapper::Resource') %>.  Next @set_table_name@ has been replaced with @resource_names@ hash where you specify which arena play occurs in. After that we have a couple of Property definitions that look a little different.
 
 First off, Properties will no longer take @:symbols@ for their types and instead take real constants like String, Fixnum, DateTime.  Also on the docket are the ability to define your own custom types.
 

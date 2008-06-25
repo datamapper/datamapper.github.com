@@ -23,6 +23,6 @@ module BreadcrumbsHelper
   end
 end  # module Breadcrumbs
 
-Webby::Helpers.register(BreadcrumbsHelper)
+# Webby::Helpers.register(BreadcrumbsHelper)
 
 # EOF

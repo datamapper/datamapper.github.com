@@ -11,7 +11,7 @@ DataMapper comes loaded features, many of which other ORMs require external libr
 
 h2. Single Table Inheritance
 
-Many ORMs support Single Table Inheritance and DataMapper is no different.  In order to declare a model for Single Table Inheritance, define a property with the data-type of @Discriminator@
+Many ORMs support Single Table Inheritance and DataMapper is no different.  In order to declare a model for Single Table Inheritance, define a property with the data-type of <%= doc('Types::Discriminator') %>
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Person
@@ -32,19 +32,19 @@ class Daughter < Woman; end
 
 <% end %>
 
-When DataMapper sees your @type@ column declared as type @Discriminator@, it will automatically insert the class name of the object you've created and later instantiate that row as that class. It also supports deep inheritance, so doing Woman.all will select all women, mothers, and daughters (and deeper inherited classes if they exist).
+When DataMapper sees your @type@ column declared as type <%= doc('Types::Discriminator') %>, it will automatically insert the class name of the object you've created and later instantiate that row as that class. It also supports deep inheritance, so doing Woman.all will select all women, mothers, and daughters (and deeper inherited classes if they exist).
 
 h2. Paranoia
 
-Sometimes...most times...you don't _really_ want to destroy a row in the database, you just want to mark it as deleted so that you can restore it later if need be.  This is aptly-named Paranoia and DataMapper has basic support for this baked right in.  Just declare a property and assign it a type of ParanoidDateTime or ParanoidBoolean:
+Sometimes...most times...you don't _really_ want to destroy a row in the database, you just want to mark it as deleted so that you can restore it later if need be.  This is aptly-named Paranoia and DataMapper has basic support for this baked right in.  Just declare a property and assign it a type of <%= doc('Types::ParanoidDateTime') %> or <%= doc('Types::ParanoidBoolean') %>:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 property :deleted_at, ParanoidDateTime
 <% end %>
 
-h2. Multiple Database Connections
+h2. Multiple Data-Store Connections
 
-DataMapper sports a concept called a Context which encapsulates the database context in which you want operations to occur.  For example, when you setup a database connection in "getting_started":/getting_started.html, you were defining a context known as @:default@
+DataMapper sports a concept called a context which encapsulates the data-store context in which you want operations to occur.  For example, when you setup a  connection in "getting_started":/getting_started.html, you were defining a context known as @:default@
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
   DataMapper.setup(:default, 'mysql://localhost/dm_core_test')
@@ -63,7 +63,7 @@ repository(:external) { Person.first }
 # hits up your :external database and retrieves the first Person
 <% end %>
 
-This will use your connection to the @:external@ database and the first Person it finds.  Later, when you call @.save@ on that person, it'll get saved back to the @:external@ database; An object is aware of what context it came from and should be saved back to.
+This will use your connection to the @:external@ data-store and the first Person it finds.  Later, when you call @.save@ on that person, it'll get saved back to the @:external@ data-store; An object is aware of what context it came from and should be saved back to.
 
 h2. Chained Associations
 
