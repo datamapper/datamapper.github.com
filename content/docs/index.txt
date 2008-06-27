@@ -40,7 +40,7 @@ Want to help DataMapper, but don't know where to start?  A great way to contribu
 
 h2. Documentation Style
 
-DataMapper uses the YARD standard for RDoc documentation.  Here's a briefe sample from the internals of DM-Core:
+DataMapper uses the YARD standard for RDoc documentation.  Here's a brief sample from the internals of DM-Core:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 ##
