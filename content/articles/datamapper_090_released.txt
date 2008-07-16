@@ -18,7 +18,6 @@ DataMapper 0.9 is ready for the world.  It brings with it a massive overhaul of 
 To install it:
 
 <% coderay(:lang => "bash") do -%>
-gem sources -a http://gems.datamapper.org
 sudo gem install addressable english rspec
 sudo gem install data_objects do_mysql do_postgres do_sqlite3
 sudo gem install dm-core dm-more

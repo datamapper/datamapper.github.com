@@ -15,10 +15,9 @@ So lets imagine we're setting up some models for a blogging app. We'll keep it n
 
 h2. Install DataMapper
 
-If you have RubyGems installed, pop open your console and install a few things. (Substitute @do_mysql@ with @do_postgres@ if your into Postgres)
+If you have RubyGems installed, pop open your console and install a few things. (Substitute @do_mysql@ with @do_postgres@ if you're into Postgres)
 
 <% coderay(:lang => "bash", :line_numbers => "inline") do -%>
-gem sources -a http://gems.datamapper.org
 gem install data_objects do_sqlite3 do_mysql dm-core
 <% end %>
 
