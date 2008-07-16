@@ -1,6 +1,6 @@
 --- 
 body_id: 		news
-title: 			The Stunningly Easy to Live On The Edge Of DataMapper
+title: 			The Stunningly Easy Way to Live On The Edge Of DataMapper
 created_at: 	2008-05-07T19:04:34-05:00
 summary: 		A little sake goes a long way
 release_type: 	blog
