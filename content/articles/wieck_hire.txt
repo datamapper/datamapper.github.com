@@ -12,4 +12,6 @@ filter:
 
 h1. <%= @page.title %>
 
-"Wieck Media":http://wieck.com, sponsors of the DataMapper project are looking for a local, on-site, full-time developer in Dallas, TX to join the team. The work includes client projects for Honda, The New York Times and FIA among others as well as developing our own products and supporting open source efforts including DataMapper. If this sounds like your cup of tea, get in touch with "sam" at  "wieck.com" with the subject "DataMapper Developer" with your resume and a little note about yourself.
+"Wieck Media":http://wieck.com, sponsors of the DataMapper project are looking for a local, on-site, full-time developer in Dallas, TX to join the team. The work includes client projects for Honda, The New York Times and FIA among others as well as developing our own products and supporting open source efforts including DataMapper.
+
+If this sounds like your cup of tea, get in touch with "sam" at  "wieck.com" with the subject "DataMapper Developer" with your resume, a little note about yourself, and your contact information. Points awarded if you're awesome.
