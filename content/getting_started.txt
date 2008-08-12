@@ -18,14 +18,13 @@ h2. Install DataMapper
 If you have RubyGems installed, pop open your console and install a few things. (Substitute @do_mysql@ with @do_postgres@ if you're into Postgres)
 
 <% coderay(:lang => "bash", :line_numbers => "inline") do -%>
-gem install data_objects do_sqlite3 do_mysql dm-core
+gem install extlib data_objects do_sqlite3 do_mysql dm-core
 <% end %>
 
 h2. Require it in your application
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 require 'rubygems'
-gem 'dm-core'
 require 'dm-core'
 <% end %>
 
