@@ -41,28 +41,23 @@ By adding triggers to your property definitions you can both define and validate
 Triggers that generate validator creation:
 
 <% coderay(:lang => "ruby") do -%>
-  :nullable => false
-<% end %>
+  # implicitly creates a validates_present
+  :nullable => false 
+  :length => (1..n)
 
-Setting the option :nullable to false causes a validates_present validator to be automatically created on the property
-
-<% coderay(:lang => "ruby") do -%>
+  # implicitly creates a validates_length 
   :length => 20
   :length => (1..20) # cant be null
   :length => (0..20) # can be null
   # :size is a synonym to :length
-<% end %>
 
-Setting the option @:size@ or @:length@ causes a validates_length validator to be automatically created on the property. If the value is a Integer the validation will set @:maximum => value@ if the value is a Range the validation will set :within => value
-
-<% coderay(:lang => "ruby") do -%>
-  :format => :email_address # or a number of predefined regex
+  # implicitly creates a validates_format
+  :format => :email_address # more predefined regexes to come
   :format => /\w+_\w+/
   :format => lambda {|str| str }
   :format => Proc.new { |str| str }
 <% end %>
 
-Setting the @:format@ option causes a @validates_format@ validator to be automatically created on the property
 
 Here we see an example of a class with both a manual and and auto-validation declared:
 
@@ -241,7 +236,7 @@ To set a context on a validation, we use the @:when@ option.  It might also be d
   # we can save it just fine as a published article though.
 <% end %>
 
-That was a long example, but it shows how to set up validations in differing contexts and also how to save in a particular context.  *One thing to be careful of when saving in a context is to make sure that any database level constraints, such as a @NOT NULL@ column definition are checked in the context, or a database error will ensue.*
+That was a long example, but it shows how to set up validations in differing contexts and also how to save in a particular context.  *One thing to be careful of when saving in a context is to make sure that any database level constraints, such as a @NOT NULL@ column definition in a database, are checked in that context, or a data-store error may ensue.*
 
 h2. Setting Properties Before Validation
 
