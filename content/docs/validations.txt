@@ -1,16 +1,16 @@
---- 
+---
 title:      Validations
 body_id:    docs
 created_at: Fri Jun 13 17:41:32 +1030 2007
 filter:
   - erb
   - textile
---- 
+---
 
 h1. <%= @page.title %>
 
-Datamapper validations allow you to vet data prior to saving to a database. To make validations available to your app you simply '@require dm-validations@' in your application. With Datamapper there are two different ways you can validate your classes' properties.
- 
+DataMapper validations allow you to vet data prior to saving to a database. To make validations available to your app you simply '@require "dm-validations"@' in your application. With DataMapper there are two different ways you can validate your classes' properties.
+
 h2. Manual Validation
 
 Much like a certain other Ruby ORM we can call validation methods directly by passing them a property name (or an array of names) to validate against.
@@ -29,6 +29,7 @@ These are the currently available manual validations available. Please refer to 
 * validates_format
 * validates_length
 * validates_with_method
+* validates_with_block
 * validates_is_number
 * validates_is_unique
 * validates_within
@@ -39,19 +40,19 @@ By adding triggers to your property definitions you can both define and validate
 
 Triggers that generate validator creation:
 
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+<% coderay(:lang => "ruby") do -%>
   :nullable => false
 <% end %>
 
 Setting the option :nullable to false causes a validates_present validator to be automatically created on the property
 
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+<% coderay(:lang => "ruby") do -%>
   :size => 20 or :length => 20
 <% end %>
 
 Setting the option @:size@ or @:length@ causes a validates_length validator to be automatically created on the property. If the value is a Integer the validation will set @:maximum => value@ if the value is a Range the validation will set :within => value
 
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+<% coderay(:lang => "ruby") do -%>
   :format => :predefined / lambda / Proc
 <% end %>
 
@@ -78,7 +79,7 @@ Here we see an example of a class with both a manual and and auto-validation dec
 
 h2. Validating
 
-DataMapper validations, when included, alter the default save/create/update process for a model.  Unless you specify a context the resource must be valid in the @:default@ context before saving.
+DataMapper validations, when included, alter the default save/create/update process for a model.
 
 You may manually validate a resource using the @valid?@ method, which will return true if the resource is valid, and false if it is invalid.
 
@@ -99,6 +100,162 @@ If your validators find errors in your model, they will populate the <%= doc('Va
   end
 <% end %>
 
+h2. Error Messages
+
+The error messages for validations provided by DataMapper are generally clear, and explain exactly what has gone wrong.  If they're not what you want though, they can be changed.  This is done via providing a @:message@ in the options hash, for example:
+
+<% coderay(:lang => "ruby") do -%>
+  validates_is_unique :title, :scope => :section_id,
+    :message => "There's already a page of that title in this section"
+<% end %>
+
+This example also demonstrates the use of the @:scope@ option to only check the property's uniqueness within a narrow scope.
+
+Something similar can be done for auto-validations, too, via setting @:messages@ in the property options.
+
+<% coderay(:lang => "ruby") do -%>
+  property :email, String, :nullable => false, :unique => true, :format => :email,
+                           :messages => {
+                             :presence => "We need your email address.",
+                             :is_unique => "We already have that email.",
+                             :format => "Doesn't look like an email address to me ..."
+                           }
+<% end %>
+
+To set an error message on an arbitrary field of the model, DataMapper provides the @add@ command.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  @resource.errors.add(:title, "Doesn't mention DataMapper"
+<% end %>
+
+This is probably of most use in custom validations, so ...
+
+h2. Custom Validations
+
+DataMapper provides a number of validations for various common situations such as checking for the length or presence of strings, or that a number falls in a particular range.  Often this is enough, especially when validations are combined together to check a field for a number of properties.  For the situations where it isn't, DataMapper provides a couple of methods: @validates_with_block@ and @validates_with_method@.  They're very similar in operation, with one accepting a block as the argument and the other taking a symbol representing a method name.  (under the hood, the block validator defines a method using the block given)
+
+The method, or block, performs the validation tests and then should return @true@ if the resource is valid or @false@ if it is invalid.  If the resource isn't valid instead of just returning @false@, an array containing @false@ and an error message, such as @[false, "FAIL!"]@ can be returned.  This will add the message to the @errors@ on the resource.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  class WikiPage
+    include DataMapper::Resource
+    # properties ...
+
+    validates_with_method :check_citations
+
+    # checks that we've included at least 5 citations for our wikipage.
+    def check_citations
+      # in a 'real' example, the number of citations might be a property set by
+      # a before :valid? hook.
+      num = count_citations(self.body)
+      if num > 4
+        return true
+      else
+        [false, "You must have at least #{5-num} more citations for this article"]
+      end
+    end
+  end
+<% end %>
+
+Instead of setting an error on the whole resource you can set an error on an individual property by passing this as the first argument to @validates_with_block@ or @validates_with_method@.  To use the previous example, replacing line 5 with
+
+<% coderay(:lang => "ruby") do -%>
+  validates_with_method :body, :check_citations
+<% end %>
+
+would result in the citations error message being added to the error messages for the body, which might improve how it is presented to the user.
+
 h2. Contextual Validations
 
-DataMapper Validations also provide a means of grouping your validations into contexts. This enables you to run different sets of validations under different contexts.
+DataMapper Validations also provide a means of grouping your validations into contexts. This enables you to run different sets of validations under different contexts.  All validations are performed in a context, even those defined by the auto-validations DataMapper applies.  This context is the @:default@ context.  Unless you specify otherwise, any validations added will be added to the @:default@ context and the @valid?@ method checks all the validations in this context.
+
+One example might be differing standards for saving a draft version of an article, compared with the full and ready to publish article.  A published article has a title, a body of over 1000 characters, and a sidebar picture.  A draft article just needs a title and some kind of body.  The length and the sidebar picture we can supply later.  There's also a @published@ property, which is used as part of queries to select articles for public display.
+
+To set a context on a validation, we use the @:when@ option.  It might also be desirable to set @:auto_validation => false@ on the properties concerned, especially if we're messing with default validations.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  class Article
+    include DataMapper::Resource
+
+    property :id, Serial
+    property :title, String
+    property :sidebar_picture_url, String
+    property :body, Text
+    property :published, Boolean
+
+    # validations
+    validates_present :title, :when => [:draft, :publish]
+    validates_present :sidebar_picture_url, :when => [:publish]
+    validates_present :body, :when => [:draft, :publish]
+    validates_length :body, :minimum => 1000, :when => [:publish]
+    validates_absent :published, :when => [:draft]
+  end
+
+  # and now some results
+  @article = Article.new
+
+  @article.valid?(:draft)
+  #=> false.  We have no title, for a start.
+
+  @article.valid_for_publish?
+  #=> false.  We have no title, amongst many other issues.
+
+  # now set some properties
+  @article.title = "DataMapper is awesome because ..."
+  @article.body = "Well, where to begin ..."
+
+  @article.valid?(:draft)
+  #=> true.  We have a title, and a little body
+
+  @article.valid?(:publish)
+  #=> false.  Our body isn't long enough yet.
+
+  # save our article in the :draft context
+  @article.save(:draft)
+  #=> true
+
+  # set some more properties
+  @article.sidebar_picture_url = "http://www.greatpictures.com/flower.jpg"
+  @article.body = an_essay_about_why_datamapper_rocks
+
+  @article.valid?(:draft)
+  #=> true.  Nothing wrong still
+
+  @article.valid?(:publish)
+  #=> true.  We have everything we need for a full article to be published!
+
+  @article.published = true
+
+  @article.save(:draft)
+  #=> false.  We set the published to true, so we can't save this as a draft.
+  # As long as our drafting method always saves with the :draft context, we won't ever
+  # accidentally save a half finished draft that the public will see.
+
+  @article.save(:publish)
+  #=> true
+  # we can save it just fine as a published article though.
+<% end %>
+
+That was a long example, but it shows how to set up validations in differing contexts and also how to save in a particular context.  One thing to be careful of when saving in a context is to make sure that any database level constraints, such as a @NOT NULL@ column definition are checked in the context, or a database error will ensue.
+
+h2. Setting Properties Before Validation
+
+It is sometimes necessary to set properties before a resource is saved or validated.  Perhaps a required property can have a default value set from other properties or derived from the environment.  To set these properties, a @before :valid?@ <a href="/docs/callbacks.html">hook</a> should be used.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  class Article
+    include DataMapper::Resource
+
+    property :id, Serial
+    property :title, String, :nullable => false
+    property :permalink, String, :nullable => false
+
+    before :valid?, :set_permalink
+
+    # our callback needs to accept the context used in the validation,
+    # even if it ignores it, as #save calls #valid? with a context.
+    def set_permalink(context = :default)
+      self.permalink = title.gsub(/\s+/,'-')
+    end
+  end
+<% end %>
