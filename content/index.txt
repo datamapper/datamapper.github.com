@@ -23,8 +23,7 @@ p(latestRelease). <%= update.title %> <br> <%= update.summary %> <a href="<%= up
 
 h2. Help!
 
-If you're having trouble, don't forget to check the documentation, which has both references and step by step tutorials.<br/>
-"Read documentation":/docs
+If you're having trouble, don't forget to check the documentation, which has both references and step by step tutorials.<br/>"Read documentation":/docs
 
 </div>
 
