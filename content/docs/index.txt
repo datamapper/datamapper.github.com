@@ -32,6 +32,8 @@ h1. <%= @page.title %>
   <dd>Hooks, AKA Callbacks, allow you to "advise other methods" by running methods before or after calling other methods.</dd>
   <dt><a href="/docs/misc.html">Misc. Features</a></dt>
   <dd>Paranoia, Single Table Inheritance, and Multiple Repositories.</dd>
+  <dt><a href="/docs/dm_more/index.html">dm-more</a></dt>
+  <dd>Plugins galore for DataMapper.</dd>
 </dl>
 
 h1. Documentarians Wanted!
