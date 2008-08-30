@@ -116,6 +116,10 @@ h2. The People Behind DataMapper
     !http://en.gravatar.com/avatar/cc371b26b5881c44cde17f7885ccd608?s=80&r=any(Tony Pitale)!
     <p><a href="http://t.pitale.com">Tony Pitale</a></p>
   </li>
+  <li>
+    !http://en.gravatar.com/avatar/476d2a42689da3bd46375955fda053df?s=80&r=any(Jonathan Stott)!
+    <p><a href="http://t.pitale.com">Jonathan Stott</a></p>
+  </li>
   
   <li>
     <img src="/images/martini.gif" title="you" alt="you could be here" />
