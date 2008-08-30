@@ -29,7 +29,7 @@ This provides methods for database calls to aggregate functions such as @count@,
 
 h3. dm-types
 
-This provides several more allowable property types. @Enum@ and @Flag@ allow a column to take a few set values.  @URI@, @FilePath@, @Regexp@, @EpochTime@ and @BCryptHash@ save database representations of the classes, restoring them on retrieval. @Csv@, @Json@ and @Yaml@ store data in the columns in the serial formats and de-serialize them on retrieval.
+This provides several more allowable property types. @Enum@ and @Flag@ allow a field to take a few set values.  @URI@, @FilePath@, @Regexp@, @EpochTime@ and @BCryptHash@ save database representations of the classes, restoring them on retrieval. @Csv@, @Json@ and @Yaml@ store data in the field in the serial formats and de-serialize them on retrieval.
 
 h3. dm-serializer
 
@@ -73,7 +73,7 @@ The model becomes 'remixable'.  It can then be included (or remixed) in other mo
 
 h2. Adapters
 
-These plugins provide new adaptors for different storage schemes, allowing them to used to store resources, instead of the more conventional relational database store.
+These plugins provide new adapters for different storage schemes, allowing them to be used to store resources, instead of the more conventional relational database store.
 
 h3. dm-couchdb-adapter
 
@@ -93,7 +93,7 @@ Integration with the <a href="http://www.merbivore.com/">merb</a> web framework.
 
 h3. rails_datamapper
 
-Integration with <a href="http://www.rubyonrails.org/">Rails</a>.  It provides a Model generator and also takes care of connecting to the database through DataMapper.
+Integration with <a href="http://www.rubyonrails.org/">Rails</a>.  It provides a Model generator and also takes care of connecting to the data-store through DataMapper.
 
 h2. Utility Plugins
 
@@ -117,7 +117,7 @@ Observers watch other classes, doing things when certain operations are performe
 
 h3. dm-cli
 
-The @dm@ executable is a DataMapper optimized version of @irb@.  It automatically connections to a database based on the arguments passed to it and supports easy loading of datamapper plugins, models from a directory as well as reading connection information from a database.yml file.
+The @dm@ executable is a DataMapper optimized version of @irb@.  It automatically connections to a data-store based on the arguments passed to it and supports easy loading of datamapper plugins, models from a directory as well as reading connection information from a YAML configuration file.
 
 h3. dm-querizer
 
