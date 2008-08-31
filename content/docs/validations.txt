@@ -42,10 +42,10 @@ Triggers that generate validator creation:
 
 <% coderay(:lang => "ruby") do -%>
   # implicitly creates a validates_present
-  :nullable => false 
+  :nullable => false
   :length => (1..n)
 
-  # implicitly creates a validates_length 
+  # implicitly creates a validates_length
   :length => 20
   :length => (1..20) # cant be null
   :length => (0..20) # can be null
@@ -72,7 +72,7 @@ Here we see an example of a class with both a manual and and auto-validation dec
     # good old fashioned manual validation
     validates_length :name, :max => 20
 
-    property :content, Text, :length => (100..500) 
+    property :content, Text, :length => (100..500)
   end
 <% end %>
 
@@ -113,7 +113,7 @@ This example also demonstrates the use of the @:scope@ option to only check the 
 Something similar can be done for auto-validations, too, via setting @:messages@ in the property options.
 
 <% coderay(:lang => "ruby") do -%>
-  property :email, String, :nullable => false, :unique => true, :format => :email,
+  property :email, String, :nullable => false, :unique => true, :format => :email_address,
                            :messages => {
                              :presence => "We need your email address.",
                              :is_unique => "We already have that email.",
@@ -124,7 +124,7 @@ Something similar can be done for auto-validations, too, via setting @:messages@
 To set an error message on an arbitrary field of the model, DataMapper provides the @add@ command.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-  @resource.errors.add(:title, "Doesn't mention DataMapper"
+  @resource.errors.add(:title, "Doesn't mention DataMapper")
 <% end %>
 
 This is probably of most use in custom validations, so ...
