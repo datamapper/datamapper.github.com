@@ -13,8 +13,8 @@ SITE.page_defaults = {
   'layout'    => 'default'
 }
 
-SITE.host       = 'wieck@datamapper.org'
-SITE.remote_dir = '/var/www/datamapper.org'
+SITE.host       = 'datamapper@datamapper.org'
+SITE.remote_dir = 'site'
 SITE.rsync_args = %w(-av --delete)
 
 require 'lib/dochelper.rb'
