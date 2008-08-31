@@ -7,7 +7,7 @@ filter:
 ---
 h1. <%= h(@page.title) %>
 
-DataMapper is intended to have a lean and minimalistic core, which provides the minimum nessessary features for an ORM.  It's also designed to be easily extensible, so that everything you want in an ORM can be added in with a minimum of fuss.  It does this through plugins, which provide everything from automatically updated timestamps to factories for random DataMapper resources.  The biggest collection of these plugins is in dm-more, which isn't to say that there's anything wrong with plugins which arn't included in dm-more -- it will never house all the possible plugins.
+DataMapper is intended to have a lean and minimalistic core, which provides the minimum necessary features for an ORM.  It's also designed to be easily extensible, so that everything you want in an ORM can be added in with a minimum of fuss.  It does this through plugins, which provide everything from automatically updated timestamps to factories for random DataMapper resources.  The biggest collection of these plugins is in dm-more, which isn't to say that there's anything wrong with plugins which arn't included in dm-more -- it will never house all the possible plugins.
 
 This page gives an overview of the plugins available in dm-more, loosely categorised by what type of plugin they are.
 
@@ -17,7 +17,7 @@ These plugins modify the behavior of all resources in an application, adding new
 
 h3. dm-validations
 
-This provides validations for resources.  The plugin both defines automatic validations based on the properties specified and also allows assignment of manual validations.  It also supports contextual validation, allowing a resource to be considered valid for some purposes but not others. For futher information, see <a href="/docs/validations.html">here</a>.
+This provides validations for resources.  The plugin both defines automatic validations based on the properties specified and also allows assignment of manual validations.  It also supports contextual validation, allowing a resource to be considered valid for some purposes but not others. For further information, see the <%= link_to_page('validations', :title => 'Validations') %> page.
 
 h3. dm-timestamps
 
@@ -25,7 +25,7 @@ This defines callbacks on the common timestamp properties, making them auto-upda
 
 h3. dm-aggregates
 
-This provides methods for database calls to aggregate functions such as @count@, @sum@, @avg@, @max and @min@.  These aggregate functions are added to both collections and Models.
+This provides methods for database calls to aggregate functions such as @count@, @sum@, @avg@, @max@ and @min@.  These aggregate functions are added to both collections and Models.
 
 h3. dm-types
 
@@ -65,7 +65,7 @@ The model is versioned.  When it is updated, instead of the previous version bei
 
 h3. dm-is-state_machine
 
-The model acts as a state machine.  Instead of a column being allowed to take any value, it is used to track the state of the machine, which is updated through events that cause transtions.  For example, this might step a model through a signup process, or some other complex task.
+The model acts as a state machine.  Instead of a column being allowed to take any value, it is used to track the state of the machine, which is updated through events that cause transitions.  For example, this might step a model through a sign-up process, or some other complex task.
 
 h3. dm-is-remixable
 
@@ -113,15 +113,15 @@ This plugin eases operations involving models across multiple repositories, allo
 
 h3. dm-observer
 
-Observers watch other classes, doing things when certain operations are performed on the remote class.  This can be anything, but they are commonly used for writing logs or notifying via email or xmpp when a critical operation has occured.
+Observers watch other classes, doing things when certain operations are performed on the remote class.  This can be anything, but they are commonly used for writing logs or notifying via email or xmpp when a critical operation has occurred.
 
 h3. dm-cli
 
-The @dm@ executable is a DataMapper optimized version of @irb@.  It automatically connections to a data-store based on the arguments passed to it and supports easy loading of datamapper plugins, models from a directory as well as reading connection information from a YAML configuration file.
+The @dm@ executable is a DataMapper optimized version of @irb@.  It automatically connections to a data-store based on the arguments passed to it and supports easy loading of DataMapper plugins, models from a directory as well as reading connection information from a YAML configuration file.
 
 h3. dm-querizer
 
-This provides alternate syntax for queries, replacing the hash which DataMapper uses with a more 'rubyish' use of @&&@, @==@ and @=~@.
+This provides alternate syntax for queries, replacing the hash which DataMapper uses with a more 'ruby-ish' use of @&&@, @==@ and @=~@.
 
 h3. dm-ar_finders
 
