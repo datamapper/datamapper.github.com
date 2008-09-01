@@ -9,7 +9,7 @@ filter:
 
 h1. <%= @page.title %>
 
-The finder methods for DataMapper objects are defined in <%= doc('DataMapper::Repository') %>. They include @[]@, @all()@, @first()@
+The finder methods for DataMapper objects are defined in <%= doc('DataMapper::Repository') %>. They include @get()@, @all()@, @first()@
 
 h2. Finder Methods
 
@@ -28,7 +28,7 @@ zoos  = Zoo.all(:opened_on => (s..e))     # all zoos that opened on a date in th
 
 h2. Scopes and Chaining
 
-A call to @all()@ or @first()@ can be chained together to further build a query to the database:
+A call to @all()@ or @first()@ can be chained together to further build a query to the data-store:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 all_zoos = Zoo.all
@@ -83,7 +83,8 @@ h2. Order
 To specify the order in which your results are to be sorted, use:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-Zoo.all(:order => [:tiger_count.desc])
+@zoos_by_tiger_count = Zoo.all(:order => [:tiger_count.desc])
+# in SQL =>  select * from zoos ORDER BY tiger_count DESC
 <% end %>
 
 Available order vectors are:
@@ -91,6 +92,13 @@ Available order vectors are:
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 asc  # sorting ascending
 desc # sorting descending
+<% end %>
+
+Once you have the query, the order can be modified too.  Just call reverse:
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+@least_tigers_first = @zoos_by_tiger_count.reverse
+# in SQL =>  select * from zoos ORDER BY tiger_count ASC
 <% end %>
 
 h3. Compatibility
