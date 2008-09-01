@@ -83,12 +83,13 @@ h2. Over-riding Accessors
 When a property has declared accessors for getting and setting, it's values are added to the model. Just like using @attr_accessor@, you can over-ride these with your own custom accessors. It's a simple matter of adding an accessor after the property declaration.  Reopening the Post class....
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post 
+class Post
   property :slug,  String
-  
+
   def slug=(new_slug)
     raise ArgumentError if new_slug != 'DataMapper is Awesome'
-    attribute_set(:slug, new_title)   # use attribute_set instead of talking to the @ivars directly.  
+    attribute_set(:slug, new_title)   # use attribute_set instead of talking
+                                      # to the @ivars directly.
                                       # This tracks dirtiness.
   end
 end
@@ -102,7 +103,7 @@ Properties can be configured to be lazy loading. A lazily loaded property is not
 class Post
   include DataMapper::Resource
   property :id,     Integer,  :serial => true
-  property :title,  String                 
+  property :title,  String
   property :body,   Text                        # Is lazily loaded by default
   property :notes,  Text,     :lazy => false    # Isn't lazily loaded
 end
@@ -110,23 +111,18 @@ end
 
 h2. Primary Keys, Natural Keys, and Composite Keys
 
-<br/>
-
 <div class="puff">
-<h2>Important Change</h2>
+h2. Important Change
 
-<p>Primary keys are not automatically created for you, as with previous versions <br/>
-  of DataMapper or ActiveRecord.  You MUST configure at least one key property on <br/>
-  your data-store.</p>
+Primary keys are not automatically created for you, as with previous versions
+of DataMapper or ActiveRecord.  You MUST configure at least one key property on
+your data-store.
 </div>
-
-
-
 
 To set your own primary key, and even use a string column as a primary 'natural' key, pass @:key => true@ as an option.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post 
+class Post
   include DataMapper::Resource
   property :slug,  String, :key => true
 end
@@ -139,4 +135,5 @@ class Post
   include DataMapper::Resource
   property :old_id, Integer, :key => true
   property :new_id, Integer, :key => true
+end
 <% end %>
