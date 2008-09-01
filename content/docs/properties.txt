@@ -24,11 +24,47 @@ Inside your class, call the property method for each property you want to add. T
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post 
   include DataMapper::Resource
-  property :id,         Integer,    :serial => true    # primary serial key
+  property :id,         Serial                         # primary serial key
   property :title,      String,     :nullable => false # Cannot be null
   property :published,  Boolean,    :default  => false # Default value for new records is false
 end
 <% end %>
+
+h2. Keys
+
+h3. Primary Keys
+
+Primary keys are not automatically created for you, as with ActiveRecord.  You MUST configure at least one key property on your data-store.  More often than not, you'll want an auto-incrementing integer as a primary key, so DM has a shortcut:
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  property :id, Serial
+<% end %>
+
+h3. Natural Keys
+
+Anything can be a key. Just pass @:key => true@ as an option during the property definition.  Most commonly, you'll see String as a natural key:
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  property :slug,  String, :key => true
+                   # any Type is available here
+<% end %>
+
+Natural Keys are protected against mass-assignment, so their @setter=@ will need to be called individually if your looking to set them.
+
+*Fair warning:*  Using Boolean, Discriminator, and the time related types as keys may cause your DBA to hunt you down and "educate" you. DM will not be held responsible for any injuries or death that may result.
+
+h3. Composite Keys
+
+You can even have more than one key:
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+class Post
+  include DataMapper::Resource
+  property :old_id, Integer, :key => true
+  property :new_id, Integer, :key => true
+end
+<% end %>
+
 
 h2. Available Types
 
@@ -40,7 +76,7 @@ DM-Core supports the following 'primitive' data-types.
 * Float
 * Fixnum, Integer
 * BigDecimal,
-* DateTime, Date
+* DateTime, Date, Time
 * Object, (marshalled)
 * Discriminator
 
@@ -57,6 +93,53 @@ If you include DM-More's DM-Types, the following data-types are supported:
 * Json
 * BCryptHash
 * Regex
+
+h2. Setting Defaults
+
+Defaults can be set via the @:default@ key for a property.  They can be static values, such as @12@ or @"Hello"@, but DataMapper also offers the ability to use a Proc to set the default value.  The property becomes whatever the Proc returns, which will be called the first time the property is used without having first set a value.  The Proc itself receives two arguments: The resource the property is being set on, and the property itself.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+class Image
+  include DataMapper::Resource
+  property :id, Serial
+  property :path, FilePath, :nullable => false
+  property :md5sum, String, :length => 32,
+                   :default => Proc.new { |r, p| Digest::MD5.hexdigest(r.path.read) if r.path }
+end
+<% end %>
+
+On saving the resource, or the first time the @md5sum@ property is accessed, it will be set to the hex digest of the file referred to by @path@.  Using a default in this way, instead of a before <%= link_to_page 'hook', :title => 'Hooks (AKA Callbacks)' %>, has advantages and disadvantages.  By making it a default, the @md5sum@ can easily be used before the resource is saved to the data-store but if the @path@ subsequently changes, the @md5sum@ won't get updated.  Of course, the setter method for @path@ (see further up the page) could be used to set @md5sum@ to @nil@ if the @path@ is changed, removing this problem whilst still allowing the calculation of the sum to be deferred as late as possible.  A word of warning: A property default must _not_ refer to the value of the property it is about to set, or there will be an infinite loop as DataMapper tries to figure out the value of the property, finds it doesn't have one ... and so calls for the default.
+
+h2. Lazy Loading
+
+Properties can be configured to be lazy loading. A lazily loaded property is not requested from the data-store by default. Instead it is only loaded when it's accessor is called for the first time. This means you can stop default queries from being greedy, a particular problem with text fields. Text fields are lazily loaded by default, which you can over-ride if you need to.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+class Post
+  include DataMapper::Resource
+  property :id,     Integer,  :serial => true
+  property :title,  String
+  property :body,   Text                        # Is lazily loaded by default
+  property :notes,  Text,     :lazy => false    # Isn't lazy, will load by default
+end
+<% end %>
+
+Lazy Loading can also be done via contexts, which let you group lazily loaded properties together, so that when one is fetched, all the associated ones will be as well, cutting down on trips to the data-store.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+class Post
+  include DataMapper::Resource
+  property :id,         Integer,  :serial => true
+  property :title,      String
+  property :subtitle,   String  :lazy => [:show]
+  property :body,       Text      :lazy => [:show]
+  property :views,      Integer, :lazy => [:show]
+  property :summary,    Text
+end
+<% end %>
+
+In this example, only the title (and the id, of course) will be loaded from the data-store on a query.  But as soon as the value for subtitle, body or views called for, all three will be loaded at once, as they share the @:show@ group.  The summary property on the other hand, will only be fetched when it is asked for, as it is lazy and not part of a group.
+
 
 h2. Limiting Access
 
@@ -95,77 +178,3 @@ class Post
 end
 <% end %>
 
-h2. Lazy Loading
-
-Properties can be configured to be lazy loading. A lazily loaded property is not requested from the data-store by default. Instead it is only loaded when it's accessor is called for the first time. This means you can stop default queries from being greedy, a particular problem with text fields. Text fields are lazily loaded by default, which you can over-ride if you need to.
-
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post
-  include DataMapper::Resource
-  property :id,     Integer,  :serial => true
-  property :title,  String
-  property :body,   Text                        # Is lazily loaded by default
-  property :notes,  Text,     :lazy => false    # Isn't lazily loaded
-end
-<% end %>
-
-Lazy Loading can also be done via contexts, which let you group lazily loaded properties together, so that when one is fetched, all the associated ones will be as well, cutting down on trips to the data-store.
-
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post
-  include DataMapper::Resource
-  property :id,         Integer,  :serial => true
-  property :title,      String
-  property :subtitle,   String  :lazy => [:show]
-  property :body,       Text      :lazy => [:show]
-  property :views,      Integer, :lazy => [:show]
-  property :summary,    Text
-end
-<% end %>
-
-In this example, only the title (and the id, of course) will be loaded from the data-store on a query.  But as soon as the value for subtitle, body or views called for, all three will be loaded at once, as they share the @:show@ group.  The summary property on the other hand, will only be fetched when it is asked for, as it is lazy and not part of a group.
-
-h2. Primary Keys, Natural Keys, and Composite Keys
-
-<div class="puff">
-h2. Important Change
-
-Primary keys are not automatically created for you, as with previous versions
-of DataMapper or ActiveRecord.  You MUST configure at least one key property on
-your data-store.
-</div>
-
-To set your own primary key, and even use a string column as a primary 'natural' key, pass @:key => true@ as an option.
-
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post
-  include DataMapper::Resource
-  property :slug,  String, :key => true
-end
-<% end %>
-
-To use a composite key of any length, simply create more than one property with the @:key => true@ as an option.
-
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post
-  include DataMapper::Resource
-  property :old_id, Integer, :key => true
-  property :new_id, Integer, :key => true
-end
-<% end %>
-
-h2. Setting Defaults
-
-Defaults can be set via the @:default@ key for a property.  They can be static values, such as @12@ or @"Hello"@, but DataMapper also offers the ability to use a Proc to set the default value.  The property becomes whatever the Proc returns, which will be called the first time the property is used without having first set a value.  The Proc itself receives two arguments: The resource the property is being set on, and the property itself.
-
-<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Image
-  include DataMapper::Resource
-  property :id, Serial
-  property :path, FilePath, :nullable => false
-  property :md5sum, String, :length => 32,
-                   :default => Proc.new { |r, p| Digest::MD5.hexdigest(r.path.read) if r.path }
-end
-<% end %>
-
-On saving the resource, or the first time the @md5sum@ property is accessed, it will be set to the hex digest of the file referred to by @path@.  Using a default in this way, instead of a before <%= link_to_page 'hook', :title => 'Hooks (AKA Callbacks)' %>, has advantages and disadvantages.  By making it a default, the @md5sum@ can easily be used before the resource is saved to the data-store but if the @path@ subsequently changes, the @md5sum@ won't get updated.  Of course, the setter method for @path@ (see further up the page) could be used to set @md5sum@ to @nil@ if the @path@ is changed, removing this problem whilst still allowing the calculation of the sum to be deferred as late as possible.  A word of warning: A property default must _not_ refer to the value of the property it is about to set, or there will be an infinite loop as DataMapper tries to figure out the value of the property, finds it doesn't have one ... and so calls for the default.

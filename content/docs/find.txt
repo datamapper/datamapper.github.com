@@ -23,8 +23,36 @@ zoo   = Zoo.get('Metro', 'DFW')           # more wow, composite key look-up
 zoo   = Zoo.first(:name => 'Luke')        # first matching record with the name 'Luke'
 zoos  = Zoo.all                           # all zoos
 zoos  = Zoo.all(:open => true)            # all zoos that are open
-zoos  = Zoo.all(:opened_on => start..end) # all zoos that opened on a date in the date-range
+zoos  = Zoo.all(:opened_on => (s..e))     # all zoos that opened on a date in the date-range
 <% end %>
+
+h2. Scopes and Chaining
+
+A call to @all()@ or @first()@ can be chained together to further build a query to the database:
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+all_zoos = Zoo.all
+open_zoos = all_zoos.all(:open => true)
+big_open_zoos = open_zoos.all(:animal_count => 1000)
+<% end %>
+
+As a direct consequence, you can define scopes without any extra work in your model.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+class Zoo
+  # all the keys and property setup here
+  def self.open
+    all(:open => true)
+  end
+  def self.big
+    all(:animal_count => 1000)
+  end
+end
+
+big_open_zoos = Zoo.big.open
+<% end %>
+
+Scopes like this can even have arguments.  Do anything in them, just ensure they return a Query of some kind.
 
 h2. Conditions
 
