@@ -109,6 +109,22 @@ class Post
 end
 <% end %>
 
+Lazy Loading can also be done via contexts, which let you group lazily loaded properties together, so that when one is fetched, all the associated ones will be as well, cutting down on trips to the data-store.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+class Post
+  include DataMapper::Resource
+  property :id,         Integer,  :serial => true
+  property :title,      String
+  property :subtitle,   String  :lazy => [:show]
+  property :body,       Text      :lazy => [:show]
+  property :views,      Integer, :lazy => [:show]
+  property :summary,    Text
+end
+<% end %>
+
+In this example, only the title (and the id, of course) will be loaded from the data-store on a query.  But as soon as the value for subtitle, body or views called for, all three will be loaded at once, as they share the @:show@ group.  The summary property on the other hand, will only be fetched when it is asked for, as it is lazy and not part of a group.
+
 h2. Primary Keys, Natural Keys, and Composite Keys
 
 <div class="puff">
