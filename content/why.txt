@@ -8,7 +8,7 @@ filter:
 
 h1. Why DataMapper?
 
-You might be wondering "Why Yet Another ORM?"
+DataMapper differentiates itself from other Ruby Object/Relational Mappers in a number of ways:
 
 h2. Identity Map
 
@@ -26,28 +26,26 @@ This makes DataMapper faster and allocate less resources to get things done.
 
 h2. Plays Well With Others
 
-In ActiveRecord, all your columns are mapped, whether you want them or not. This slows things down. In the DataMapper you define your mappings in your model. So instead of an @ALTER TABLE ADD COLUMN@ in your Database, you simply add a @property :name, String@ to your model. DRY. No schema.rb. No migration files to conflict or die without reverting changes. Your model drives the data-store, not the other way around. 
+With DataMapper you define your mappings in your model. Your data-store can develop independently of your models using Migrations.
 
-Unless of course you want to map to a legacy database. Raise your hand if you like seeing a method called @col2Name@ on your model just because that's what it's called in an old database you can't afford to change right now? In DataMapper you control the mappings:
+To support data-stores which you don't have the ability to manage yourself, it's simply a matter of telling DataMapper where to look.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Fruit
   include DataMapper::Resource
-  storage_names[:default] = 'frt'
+  storage_names[:default] = 'frt' # equivalent to set_table_name in AR
   property :id, Integer, :serial => true
   property :name, String, :field => 'col2'
 end
 <% end %>
 
-Additionally, ActiveRecord updates every column in a row during a save whether that column changed or not. So it performs work it doesn't really need to making it much slower, and more likely to eat data during concurrent access if you don't go around adding locking support to everything. 
-
-DataMapper only does what it needs to. So it plays well with others. You can use it in an Integration Database without worrying that your application will be a bad actor causing trouble for all of your other processes.  
+DataMapper only issues updates or creates for the properties it knows about. So it plays well with others. You can use it in an Integration Database without worrying that your application will be a bad actor causing trouble for all of your other processes.  
 
 h2. Laziness Can Be A Virtue
 
-Text columns are expensive in databases. They're generally stored in a different place than the rest of your data. So instead of a fast sequential read from your hard-drive, your database server has to hop around all over the place to get what it needs. Since ActiveRecord returns everything by default, adding a text column to a table slows everything down drastically, across the board.
+Columns of potentially infinite length, like Text columns, are expensive in data-stores. They're generally stored in a different place from the rest of your data. So instead of a fast sequential read from your hard-drive, your data-store has to hop around all over the place to get what it needs. 
 
-Not so with the DataMapper. Text fields are treated like in-row associations by default, meaning they only load when you need them. If you want more control you can enable or disable this feature for any column (not just text-fields) by passing a @lazy@ option to your column mapping with a value of @true@ or @false@.
+With DataMapper, these fields are treated like in-row associations by default, meaning they if and only if you load. If you want more control you can enable or disable this feature for any column (not just text-fields) by passing a @lazy@ option to your column mapping with a value of @true@ or @false@.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Animal
@@ -58,7 +56,7 @@ class Animal
 end
 <% end %> 
 
-Plus, lazy-loading of text fields happens automatically and intelligently when working with associations.  The following only issues 2 queries to load up all of the notes fields on each animal:
+Plus, lazy-loading of Text property happens automatically and intelligently when working with associations.  The following only issues 2 queries to load up all of the notes fields on each animal:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 animals = Animal.all
@@ -69,7 +67,7 @@ end
 
 h2. Strategic Eager Loading
 
-Ready for something amazing? The following example executes only two queries.
+DataMapper will only issue the very bare minimums of queries to your data-store that it needs to.  For example, the following example will only issue 2 queries.  Notice how we don't supply any extra @:include@ information.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 zoos = Zoo.all
@@ -77,23 +75,29 @@ first = zoos.first
 first.exhibits # Loads the exhibits for all the Zoo objects in the zoos variable.
 <% end %>
 
-Pretty impressive huh? The idea is that you aren't going to load a set of objects and use only an association in just one of them. This should hold up pretty well against a 99% rule. When you don't want it to work like this, just load the item you want in it's own set. So the DataMapper thinks ahead. We like to call it "performant by default". This feature single-handedly wipes out the "N+1 Query Problem". No need to specify an @include@ option in your finders.
+The idea is that you aren't going to load a set of objects and use only an association in just one of them. This should hold up pretty well against a 99% rule. 
+
+When you don't want it to work like this, just load the item you want in it's own set. So DataMapper thinks ahead. We like to call it "performant by default". This feature single-handedly wipes out the "N+1 Query Problem". 
+
+DataMapper also waits until the very last second to actually issue the query to your data-store.  For example, @zoos = Zoo.all@ won't run the query until you start iteration over @zoos@.  Even the @[]@ method on @zoos@ won't actually run the query until you do something with the result. (Yes, even the more wild uses for @[]@ won't run the query until the very last possible second.)  If you never do anything with the results of a query, DataMapper won't incur the latency of talking to your data-store.
 
 h2. All Ruby, All The Time
 
-It's great that ActiveRecord allows you to write SQL when you need to, but should we have to so often? 
+DataMapper goes further than most Ruby ORMs in letting you avoid writing raw query fragments yourself.  It  provides more helpers and a unique hash-based conditions syntax to cover more of the use-cases where issuing your own SQL would have been the only way to go. 
 
-DataMapper supports issuing your own SQL, but it also provides more helpers and a unique hash-based condition syntax to cover more of the use-cases where issuing your own SQL would have been the only way to go. For example, any finder option that's non-standard is considered a condition. So you can write @Zoo.all(:name => 'Dallas')@ and DataMapper will look for zoos with the name of 'Dallas'. 
+For example, any finder option that are non-standard is considered a condition. So you can write @Zoo.all(:name => 'Dallas')@ and DataMapper will look for zoos with the name of 'Dallas'. 
 
-It's just a little thing, but it's so much nicer than writing @Zoo.find(:all, :conditions => ['name = ?', 'Dallas'])@. What if you need other comparisons though? Try these:
+It's just a little thing, but it's so much nicer than writing @Zoo.find(:all, :conditions => ['name = ?', 'Dallas'])@ and won't incur the Ruby overhead of @Zoo.find_by_name('Dallas')@. 
+
+What if you need other comparisons though? Try these:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-Zoo.first(:name => 'Galveston')
+Zoo.first(:name.eql => 'Galveston')
 
-# 'gt' means greater-than. We also do 'lt'.
+# 'gt' means greater-than. 'lt' is less-than.
 Person.all(:age.gt => 30)
 
-# 'gte' means greather-than-or-equal-to. We also do 'lte'.
+# 'gte' means greather-than-or-equal-to. 'lte' is also available
 Person.all(:age.gte => 30)
 
 Person.all(:name.not => 'bob')
@@ -101,15 +105,24 @@ Person.all(:name.not => 'bob')
 # If the value of a pair is an Array, we do an IN-clause for you.
 Person.all(:name.like => 'S%', :id => [1, 2, 3, 4, 5])
 
-# An alias for Zoo.get(11)
-Zoo[11]
-
 # Does a NOT IN () clause for you.
 Person.all(:name.not => ['bob','rick','steve'])
+
+# Ordering
+Person.all(:order => [:age.desc])
+# .asc is the default
 <% end %>
 
-See? Fewer SQL fragments dirtying your Ruby code. And that's just a few of the nice syntax tweaks DataMapper delivers out of the box...
+To query a model by it's associations, you can use a QueryPath:
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  Person.all(:links => [:pets], Person.pets.name => 'Pixel')
+<% end %>
+
+You can even chain calls to @all@ or @first@ to continue refining your query or search within a scope. See "Finders":/docs/find.html for more information.
 
 h2. Open Development
 
-DataMapper sports a very accessible code-base and a welcoming community. Outside contributions and feedback are welcome and encouraged, especially constructive criticism. Make your voice heard! "Submit a ticket or patch":http://wm.lighthouseapp.com/projects/4819-datamapper/overview, speak up on our "mailing-list":http://groups.google.com/group/datamapper/, chat with us on "irc":irc://irc.freenode.net/#datamapper, write a spec, get it reviewed, ask for commit rights. It's as easy as that to become a contributor.
+DataMapper sports a very accessible code-base and a welcoming community. Outside contributions and feedback are welcome and encouraged, especially constructive criticism. Go ahead, fork DataMapper, we'd love to see what you come up with!
+
+Make your voice heard! "Submit a ticket or patch":http://wm.lighthouseapp.com/projects/4819-datamapper/overview, speak up on our "mailing-list":http://groups.google.com/group/datamapper/, chat with us on "irc":irc://irc.freenode.net/#datamapper, write a spec, get it reviewed, ask for commit rights. It's as easy as that to become a contributor.
