@@ -54,6 +54,9 @@ If you include DM-More's DM-Types, the following data-types are supported:
 * IPAddress
 * URI
 * Yaml
+* Json
+* BCryptHash
+* Regex
 
 h2. Limiting Access
 
