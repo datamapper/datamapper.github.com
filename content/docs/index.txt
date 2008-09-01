@@ -68,14 +68,3 @@ def self.setup(name, uri_or_options)
 
 For more information about the YARD documentation style, see "lsegal's YARD repo on github.com":http://github.com/lsegal/yard/tree/master.
 
-<div class="puff">
-
-h2. Contribute a "Spotlight On..." Article
-  
-Got something important to say?  Want something explained a little<br>
-better or demonstrated? Contribute or request a "Spotlight On..." <br> article! 
-Email the "DataMapper Mailing List":http://groups.google.com/group/datamapper with the request or <br>
-contribution and we'll post it here.
-
-</div>
-

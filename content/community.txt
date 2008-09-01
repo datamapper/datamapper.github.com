@@ -120,6 +120,22 @@ h2. The People Behind DataMapper
     !http://en.gravatar.com/avatar/476d2a42689da3bd46375955fda053df?s=80&r=any(Jonathan Stott)!
     <p><a href="http://t.pitale.com">Jonathan Stott</a></p>
   </li>
+  <li>
+    !/images/people/matt_aimonetti.png(Matt Aimonetti)!
+    <p><a href="http://www.railsontherun.com">Matt Aimonetti</a></p>
+  </li>
+  <li>
+    !http://en.gravatar.com/userimage/3495582/149a1aaf5921e34fbcb1ba6a975ed2d4.jpeg(Evan Light)!
+    <p><a href="http://evan.tiggerpalace.com/">Evan Light</a></p>
+  </li>
+  <li>
+    !http://img.skitch.com/20080901-m66fgxbr395p92q9bati3ijjf9.jpg(Carl Lereche)!
+    <p>Carl Lereche</p>
+  </li>
+  <li>
+    !http://www.gravatar.com/avatar/5e518814b76962fdd1ad0e74dfac5ea7(Martin Gamsjaeger)!
+    <p><a href="http://sick.snusnu.info/">Martin Gamsjaeger</a></p>
+  </li>
   
   <li>
     <img src="/images/martini.gif" title="you" alt="you could be here" />
