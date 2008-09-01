@@ -65,35 +65,6 @@ class Post
 end
 <% end %>
 
-
-h2. Available Types
-
-DM-Core supports the following 'primitive' data-types.
-
-* TrueClass, Boolean
-* String
-* Text
-* Float
-* Fixnum, Integer
-* BigDecimal,
-* DateTime, Date, Time
-* Object, (marshalled)
-* Discriminator
-
-If you include DM-More's DM-Types, the following data-types are supported:
-
-* Csv
-* Enum
-* EpochTime
-* FilePath
-* Flag
-* IPAddress
-* URI
-* Yaml
-* Json
-* BCryptHash
-* Regex
-
 h2. Setting Defaults
 
 Defaults can be set via the @:default@ key for a property.  They can be static values, such as @12@ or @"Hello"@, but DataMapper also offers the ability to use a Proc to set the default value.  The property becomes whatever the Proc returns, which will be called the first time the property is used without having first set a value.  The Proc itself receives two arguments: The resource the property is being set on, and the property itself.
@@ -108,11 +79,13 @@ class Image
 end
 <% end %>
 
-On saving the resource, or the first time the @md5sum@ property is accessed, it will be set to the hex digest of the file referred to by @path@.  Using a default in this way, instead of a before <%= link_to_page 'hook', :title => 'Hooks (AKA Callbacks)' %>, has advantages and disadvantages.  By making it a default, the @md5sum@ can easily be used before the resource is saved to the data-store but if the @path@ subsequently changes, the @md5sum@ won't get updated.  Of course, the setter method for @path@ (see further up the page) could be used to set @md5sum@ to @nil@ if the @path@ is changed, removing this problem whilst still allowing the calculation of the sum to be deferred as late as possible.  A word of warning: A property default must _not_ refer to the value of the property it is about to set, or there will be an infinite loop as DataMapper tries to figure out the value of the property, finds it doesn't have one ... and so calls for the default.
+When creating the resource, or the first time the @md5sum@ property is accessed, it will be set to the hex digest of the file referred to by @path@.  
+
+*Fair Warning*: A property default must _not_ refer to the value of the property it is about to set, or there will be an infinite loop.
 
 h2. Lazy Loading
 
-Properties can be configured to be lazy loading. A lazily loaded property is not requested from the data-store by default. Instead it is only loaded when it's accessor is called for the first time. This means you can stop default queries from being greedy, a particular problem with text fields. Text fields are lazily loaded by default, which you can over-ride if you need to.
+Properties can be configured to be lazy loaded. A lazily loaded property is not requested from the data-store by default. Instead it is only loaded when it's accessor is called for the first time. This means you can stop default queries from being greedy, a particular problem with text fields. Text fields are lazily loaded by default, which you can over-ride if you need to.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
@@ -138,12 +111,39 @@ class Post
 end
 <% end %>
 
-In this example, only the title (and the id, of course) will be loaded from the data-store on a query.  But as soon as the value for subtitle, body or views called for, all three will be loaded at once, as they share the @:show@ group.  The summary property on the other hand, will only be fetched when it is asked for, as it is lazy and not part of a group.
+In this example, only the title (and the id, of course) will be loaded from the data-store on a @Post.all()@.  But as soon as the value for subtitle, body or views are called, all three will be loaded at once, since they're members of the @:show@ group.  The summary property on the other hand, will only be fetched when it is asked for.
 
+h2. Available Types
+
+DM-Core supports the following 'primitive' data-types.
+
+* TrueClass, Boolean
+* String
+* Text
+* Float
+* Fixnum, Integer
+* BigDecimal,
+* DateTime, Date, Time
+* Object, (marshalled)
+* Discriminator
+
+If you include DM-Types, the following data-types are supported:
+
+* Csv
+* Enum
+* EpochTime
+* FilePath
+* Flag
+* IPAddress
+* URI
+* Yaml
+* Json
+* BCryptHash
+* Regex
 
 h2. Limiting Access
 
-Access for properties is defined using the same semantics as Ruby. Accessors are public by default, but you can declare them as private or protected if you need. You can set access using the @:accessor@ option.  For demonstration, we'll reopen our Post class.
+Access for properties is defined using the same semantics as Ruby. Accessors are public by default, but you can declare them as private or protected if you need to. You can set access using the @:accessor@ option.  For demonstration, we'll reopen our Post class.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post 
