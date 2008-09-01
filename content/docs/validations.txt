@@ -164,6 +164,34 @@ Instead of setting an error on the whole resource, you can set an error on an in
 
 This would result in the citations error message being added to the error messages for the body, which might improve how it is presented to the user.
 
+h2. Conditional Validations
+
+Validations don't always have to be run.  For example, an issue tracking system designed for git integration might require a commit identifier for the fix--but only for a ticket which is being set to 'complete'.  A new, open or invalid ticket, of course, doesn't necessarily have one.  To cope with this situation and others like it, DataMapper offers conditional validation, using the @:if@ and @:unless@ clauses on a validation.
+
+@:if@ and @:unless@ take as their value a symbol representing a method name or a Proc.  The associated validation will run only if (or unless) the method or Proc returns something which evaluates to @true@.  The chosen method should take no arguments, whilst the Proc will be called with a single argument, the resource being validated.
+
+<% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
+  class Ticket
+    include DataMapper::Resource
+
+    property :id, Serial
+    property :title, String, :nullable => false
+    property :description, Text
+    property :commit, String
+    property :status, Enum[:new, :open, :invalid, :complete]
+
+    validates_present :commit, :if => Proc.new {|t| t.status == :complete }
+  end
+<% end %>
+
+The autovalidation that requires the title to be present will always run, but the validates_present on the commit hash will only run if the status is @:complete@.  Another example might be a change summary that is only required if the resource is already there--'initial commit' is hardly an enlightening message.
+
+<% coderay(:lang => "ruby") do -%>
+  validates_length :change_summary, :min => 10, :unless => :new_record?
+<% end %>
+
+Sometimes a simple on and off switch is not enough, and so ...
+
 h2. Contextual Validations
 
 DataMapper Validations also provide a means of grouping your validations into contexts. This enables you to run different sets of validations under different contexts.  All validations are performed in a context, even the auto-validations.  This context is the @:default@ context.  Unless you specify otherwise, any validations added will be added to the @:default@ context and the @valid?@ method checks all the validations in this context.
