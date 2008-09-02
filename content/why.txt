@@ -79,7 +79,7 @@ The idea is that you aren't going to load a set of objects and use only an assoc
 
 When you don't want it to work like this, just load the item you want in it's own set. So DataMapper thinks ahead. We like to call it "performant by default". This feature single-handedly wipes out the "N+1 Query Problem". 
 
-DataMapper also waits until the very last second to actually issue the query to your data-store.  For example, @zoos = Zoo.all@ won't run the query until you start iteration over @zoos@.  Even the @[]@ method on @zoos@ won't actually run the query until you do something with the result. (Yes, even the more wild uses for @[]@ won't run the query until the very last possible second.)  If you never do anything with the results of a query, DataMapper won't incur the latency of talking to your data-store.
+DataMapper also waits until the very last second to actually issue the query to your data-store.  For example, @zoos = Zoo.all@ won't run the query until you start iteration over @zoos@.  Even the @get()@ method on @zoos@ won't actually run the query until you do something with the result. (Yes, even the more wild uses for @get()@ won't run the query until the very last possible second.)  If you never do anything with the results of a query, DataMapper won't incur the latency of talking to your data-store.
 
 h2. All Ruby, All The Time
 
