@@ -142,7 +142,11 @@ h2. The People Behind DataMapper
     !http://farm4.static.flickr.com/3119/2818724949_c9eaaf3ae3_o.jpg(Bryan Ray)!
     <p><a href="http://bryanray.net/">Bryan Ray</a></p>
   </li>
-  
+  <li>
+    <img src="http://en.gravatar.com/userimage/3961329/ab869cf398cb79a0310627c8f6a76e0d.jpg" title="monki (Wesley Beary)" alt="monki (Wesley Beary)" />
+    <p><a href="http://monki.geemus.com/">monki (Wesley Beary)</a></p>
+  </li>
+
   <li>
     <img src="/images/martini.gif" title="you" alt="you could be here" />
     <p>More to come!</p>
