@@ -120,7 +120,7 @@ h2. The People Behind DataMapper
   </li>
   <li>
     !http://en.gravatar.com/avatar/476d2a42689da3bd46375955fda053df?s=80&r=any(Jonathan Stott)!
-    <p><a href="http://t.pitale.com">Jonathan Stott</a></p>
+    <p>Jonathan Stott</p>
   </li>
   <li>
     !/images/people/matt_aimonetti.png(Matt Aimonetti)!
