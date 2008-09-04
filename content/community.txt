@@ -123,7 +123,7 @@ h2. The People Behind DataMapper
     <p>Jonathan Stott</p>
   </li>
   <li>
-    !/images/people/matt_aimonetti.png(Matt Aimonetti)!
+    !http://railsontherun.com/matt_aimonetti.jpg(Matt Aimonetti)!
     <p><a href="http://www.railsontherun.com">Matt Aimonetti</a></p>
   </li>
   <li>
