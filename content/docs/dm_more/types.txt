@@ -1,5 +1,5 @@
 ---
-title:      Types
+title:      DM-Types
 created_at: 2008-09-06 18:30:16.740699 +01:00
 filter:
   - erb

@@ -1,0 +1,92 @@
+---
+title:      DM-Aggregates
+created_at: 2008-09-06 14:11:54.160780 -05:00
+filter:
+  - erb
+  - textile
+---
+h1. <%= @page.title %>
+
+DM-Aggregates provides a reporting API which offers aggregating functions like @count@, @min@, @max@, @avg@, @sum@, and @aggregate@.
+
+h3. Setup
+
+Simply @require 'dm-aggregates'@ somewhere before you connect to your data-store and you're ready to go.
+
+h3. Count
+
+You can issue a totaling query with DM-Aggregates in a couple of ways.  First, you can build a totaling query off of your Resource:
+
+<% coderay(:lang => "ruby") do -%>
+  Post.count(:published_at.lte => Time.now)
+<% end %>
+
+Secondly, you can call @count@ off of a pre-build query object.
+
+<% coderay(:lang => "ruby") do -%>
+  Post.all(:published_at.lte => Time.now).count
+<% end %>
+
+Your query will become a totaling query without having to retrieve the objects and total on the retrieved array.    These two approaches can be combined as well.
+
+<% coderay(:lang => "ruby") do -%>
+  Post.all(:published_at.lte => Time.now).count(:offensive => false)
+<% end %>
+
+h3. Min, Max
+
+Minimum and Maximum values from fields in your data-store can be retrieved by specifying which property you want to retrieve the value from.
+
+<% coderay(:lang => "ruby") do -%>
+  Post.min(:created_at)
+  Post.max(:published_at)
+<% end %>
+
+Further conditions to your min and max queries are simply supplied after the property.
+
+<% coderay(:lang => "ruby") do -%>
+  Post.min(:created_at, :word_count.gte => 20)
+  Post.max(:published_at, :title.not => nil, :slug.like => "%thing%")
+<% end %>
+
+h3. Sum, Average
+
+Both @sum@, and @avg@ work very similarly to @min@ and @max@.
+
+<% coderay(:lang => "ruby") do -%>
+  Post.sum(:votes)
+  Post.sum(:votes, :published_at.lte => Time.now)
+  
+  Post.avg(:votes)
+  Post.avg(:votes, :published_at.lte => Time.now)
+<% end %>
+
+h3. Aggregate
+
+The @aggregate@ method will let you combine all of the other aggregating methods together to retrieve in one call to the data-store.  DM-Aggregates adds in a few extra symbol operators in order to enable this.
+
+<% coderay(:lang => "ruby") do -%>
+  Dragon.aggregate(:all.count, :name.count, :toes_on_claw.min, 
+    :toes_on_claw.max, :toes_on_claw.avg, :toes_on_claw.sum, 
+    :is_fire_breathing) 
+  # [ 
+  #   [ 1, 1, 3, 3, 3.0, 3, false ], 
+  #   [ 2, 1, 4, 5, 4.5, 9, true ] 
+  # ]
+<% end %>
+
+This will compile all of the aggregating queries together and return them in an array of arrays.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

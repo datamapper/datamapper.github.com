@@ -15,19 +15,19 @@ h2. Resource Plugins
 
 These plugins modify the behavior of all resources in an application, adding new functionality to them, or providing easier ways of doing things.
 
-h3. dm-validations
+h3. <%= link_to_page('DM-Validations', :title => 'Validations') %>
 
-This provides validations for resources.  The plugin both defines automatic validations based on the properties specified and also allows assignment of manual validations.  It also supports contextual validation, allowing a resource to be considered valid for some purposes but not others. For further information, see the <%= link_to_page('validations', :title => 'Validations') %> page.
+This provides validations for resources.  The plugin both defines automatic validations based on the properties specified and also allows assignment of manual validations.  It also supports contextual validation, allowing a resource to be considered valid for some purposes but not others.
 
-h3. dm-timestamps
+h3. <%# link_to_page('DM-Timestamps', :title => 'DM-Timestamps') %> DM-Timestamps
 
 This defines callbacks on the common timestamp properties, making them auto-update when the models are created or updated.  The targeted properties are @:created_at@ and @:updated_at@ for DateTime properties and @:created_on@ and @:updated_on@ for Date properties.
 
-h3. dm-aggregates
+h3. <%# link_to_page('DM-Aggregates', :title => 'DM-Aggregates') %> DM-Aggregates
 
 This provides methods for database calls to aggregate functions such as @count@, @sum@, @avg@, @max@ and @min@.  These aggregate functions are added to both collections and Models.
 
-h3. dm-types
+h3. <%# link_to_page('DM-Types', :title => 'DM-Types') %> DM-Types
 
 This provides several more allowable property types. @Enum@ and @Flag@ allow a field to take a few set values.  @URI@, @FilePath@, @Regexp@, @EpochTime@ and @BCryptHash@ save database representations of the classes, restoring them on retrieval. @Csv@, @Json@ and @Yaml@ store data in the field in the serial formats and de-serialize them on retrieval.
 

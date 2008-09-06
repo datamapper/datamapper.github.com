@@ -18,13 +18,13 @@ If you like to live life on the edge, this is the happiest way to do it.
 
 h3. Step 0 - The Setup
 
-A couple of very basic requirements before we begin.  First, you'll need to have an up-to-date installation of "Rubygems":http://www.rubygems.org/, the Ruby package management system.  The most recent version is 1.1.1.  To check what version you have do:
+A couple of very basic requirements before we begin.  First, you'll need to have an up-to-date installation of "Rubygems":http://www.rubygems.org/, the Ruby package management system.  To check what version you have do:
 
 <% coderay(:lang => "bash", :line_numbers => "inline") do -%>
 gem --version
 <% end %>
 
-If you aren't on 1.1.1, update by running
+If you aren't on 1.2.x, update by running
 
 <% coderay(:lang => "bash", :line_numbers => "inline") do -%>
 sudo gem update --system
