@@ -61,7 +61,7 @@ Rather than defining conditions using SQL fragments, we can actually specify con
 The examples above are pretty simple, but you might be wondering how we can specify conditions beyond equality without resorting to SQL. Well, thanks to some clever additions to the Symbol class, it's easy!
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-exhibitions = Exibition.all(:run_time.gt => 2, :run_time.lt => 5)
+exhibitions = Exhibition.all(:run_time.gt => 2, :run_time.lt => 5)
 # => SQL conditions: 'run_time > 1 AND run_time < 5'
 <% end %>
 
