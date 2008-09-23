@@ -159,7 +159,7 @@ The method or block performs the validation tests and then should return @true@ 
 Instead of setting an error on the whole resource, you can set an error on an individual property by passing this as the first argument to @validates_with_block@ or @validates_with_method@.  To use the previous example, replacing line 5 with:
 
 <% coderay(:lang => "ruby") do -%>
-  validates_with_method :body, :check_citations
+  validates_with_method :body, :method => :check_citations
 <% end %>
 
 This would result in the citations error message being added to the error messages for the body, which might improve how it is presented to the user.
