@@ -18,19 +18,19 @@ h3. Count
 You can issue a totaling query with DM-Aggregates in a couple of ways.  First, you can build a totaling query off of your Resource:
 
 <% coderay(:lang => "ruby") do -%>
-  Post.count(:published_at.lte => Time.now)
+  Dragon.count(:homes_destroyed.lte => 12)
 <% end %>
 
 Secondly, you can call @count@ off of a pre-build query object.
 
 <% coderay(:lang => "ruby") do -%>
-  Post.all(:published_at.lte => Time.now).count
+  Dragon.all(:age.lte => 3).count
 <% end %>
 
 Your query will become a totaling query without having to retrieve the objects and total on the retrieved array.    These two approaches can be combined as well.
 
 <% coderay(:lang => "ruby") do -%>
-  Post.all(:published_at.lte => Time.now).count(:offensive => false)
+  Dragon.all(:homes_destroyed.lte => 12).count(:rating => 'amateur')
 <% end %>
 
 h3. Min, Max
@@ -38,15 +38,15 @@ h3. Min, Max
 Minimum and Maximum values from fields in your data-store can be retrieved by specifying which property you want to retrieve the value from.
 
 <% coderay(:lang => "ruby") do -%>
-  Post.min(:created_at)
-  Post.max(:published_at)
+  Dragon.min(:homes_destroyed)
+  Dragon.max(:homes_destroyed)
 <% end %>
 
 Further conditions to your min and max queries are simply supplied after the property.
 
 <% coderay(:lang => "ruby") do -%>
-  Post.min(:created_at, :word_count.gte => 20)
-  Post.max(:published_at, :title.not => nil, :slug.like => "%thing%")
+  Dragon.min(:homes_destroyed, :battles_won.gte => 20)
+  Dragon.max(:homes_destroyed, :title.not => nil, :nickname.like => "%puff%")
 <% end %>
 
 h3. Sum, Average
@@ -54,11 +54,11 @@ h3. Sum, Average
 Both @sum@, and @avg@ work very similarly to @min@ and @max@.
 
 <% coderay(:lang => "ruby") do -%>
-  Post.sum(:votes)
-  Post.sum(:votes, :published_at.lte => Time.now)
+  Dragon.sum(:toes_on_claw)
+  Dragon.sum(:toes_on_claw, :is_fire_breathing => true)
   
-  Post.avg(:votes)
-  Post.avg(:votes, :published_at.lte => Time.now)
+  Dragon.avg(:toes_on_claw)
+  Dragon.avg(:toes_on_claw, :is_fire_breathing => true)
 <% end %>
 
 h3. Aggregate
