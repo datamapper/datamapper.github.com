@@ -124,7 +124,7 @@ h2. The People Behind DataMapper
   </li>
   <li>
     !http://railsontherun.com/matt_aimonetti.jpg(Matt Aimonetti)!
-    <p><a href="http://www.railsontherun.com">Matt Aimonetti</a></p>
+    <p><a href="http://www.merbist.com">Matt Aimonetti</a></p>
   </li>
   <li>
     !http://en.gravatar.com/userimage/3495582/149a1aaf5921e34fbcb1ba6a975ed2d4.jpeg(Evan Light)!
@@ -143,8 +143,8 @@ h2. The People Behind DataMapper
     <p><a href="http://bryanray.net/">Bryan Ray</a></p>
   </li>
   <li>
-    <img src="http://en.gravatar.com/userimage/3961329/ab869cf398cb79a0310627c8f6a76e0d.jpg" title="monki (Wesley Beary)" alt="monki (Wesley Beary)" />
-    <p><a href="http://monki.geemus.com/">monki (Wesley Beary)</a></p>
+    <img src="http://en.gravatar.com/userimage/3961329/ab869cf398cb79a0310627c8f6a76e0d.jpg" title="Wesley Beary" alt="Wesley Beary" />
+    <p><a href="http://monki.geemus.com/">Wesley Beary</a></p>
   </li>
 
   <li>
