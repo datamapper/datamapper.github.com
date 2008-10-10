@@ -34,7 +34,7 @@ To support data-stores which you don't have the ability to manage yourself, it's
 class Fruit
   include DataMapper::Resource
   storage_names[:default] = 'frt' # equivalent to set_table_name in AR
-  property :id, Integer, :serial => true
+  property :id, Serial
   property :name, String, :field => 'col2'
 end
 <% end %>
@@ -50,9 +50,9 @@ With DataMapper, these fields are treated like in-row associations by default, m
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Animal
   include DataMapper::Resource
-  property :id, Integer, :serial => true
+  property :id, Serial
   property :name, String
-  property :notes, Text, :lazy => false
+  property :notes, Text        # lazy-loads by default
 end
 <% end %> 
 
