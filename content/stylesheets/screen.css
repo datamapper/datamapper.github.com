@@ -1,0 +1,92 @@
+---
+filter: sass
+extension: css
+layout: false
+---
+/ Reused colours
+!light_blue = #26518A
+!mid_blue = #1A365C
+/* Widths
+!layout = 961px
+!margin = 30px
+/* Reset
+*
+  :font
+    :weight normal
+    :size 1em
+  :line-height 1
+  :padding 0
+  :margin 0
+
+/* Body and base
+body
+  :background 
+    :color= !light_blue
+    :position center top 
+    :image url(/images/layout/page-bkg.gif)
+  :font
+    :family "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif
+    :size 80%
+  :color white
+
+/* Layout
+#heading
+  :background top center no-repeat url(/images/layout/header-bkg.gif)
+  :height 216px
+  :width 100%
+  
+  a
+    :background 23px 108px no-repeat url(/images/layout/header-animation.gif)
+    :margin 0 auto
+    :width= !layout
+    :height 100%
+    :display block
+    /* hide text
+    :text-indent -1000em
+    :letter-spacing -1000em
+    
+#navigation
+  :background #1E252E
+  :padding 0.5em 30px
+  :width= !layout - (!margin * 2)
+  :float left
+  
+  li
+    :list-style-type none
+    
+  li, a
+    :float left
+    
+  a
+    :font
+      :size 0.9em
+      :weight bold
+    :text-decoration none !important
+    :color white !important
+    :padding 0.65em 1.2em
+    :-webkit-border-radius 4px
+    
+  a.current
+    :background #171819
+
+#content
+  :background left top no-repeat url(/images/layout/content-bkg.gif)
+  :margin 0 auto
+  :width= !layout
+
+#footer
+  :background= !mid_blue
+  :padding 1.5em 0
+  :width= !layout
+  :clear both
+
+/* Content
+#content
+  h1#page-title
+    :background= !mid_blue
+    :font-size 2.2em
+    :text-indent= !margin
+    :padding 0.5em 0
+    :margin-bottom= !margin
+    :width 100%
+    :float left

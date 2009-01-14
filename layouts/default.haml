@@ -2,3 +2,30 @@
 extension: html
 filter:    haml
 ---
+!!! XML
+!!! 1.1
+%html
+  %head
+    %title= "DataMapper - #{@page.title}"
+    %link{:href => "/stylesheets/screen.css", :type => "text/css", :media => "all", :rel => "Stylesheet"}/
+  %body
+    %h1#heading
+      %a{:href => "/", :title => "Return to the homepage."} DataMapper
+      
+    %div#content
+      %ul#navigation
+        %li
+          %a{:href => "/", :title => "Return to the homepage.", :class => "current"} Home
+        %li
+          %a{:href => "/", :title => "Return to the homepage."} Why DataMapper?
+        %li
+          %a{:href => "/", :title => "Return to the homepage."} News
+        %li
+          %a{:href => "/", :title => "Return to the homepage."} Community
+          
+      %h1#page-title= @page.title
+      
+      = @content
+      
+      %div#footer
+        %h1 Site-map & Copyright
