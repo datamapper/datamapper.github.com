@@ -128,3 +128,30 @@ body
   a
     :font-size 0.9em
     :color white !important
+    
+/* Home
+#home
+  #page-title
+    :position absolute
+    :left -1000em
+    
+  #blurb,
+  #more-info
+    :margin-left= !margin
+    :float left
+    :clear both
+    
+  #blurb
+    :background right top no-repeat url(/images/home/butler.gif)
+    :font-size 1.5em
+    :line-height 1.4
+    :padding-right= !margin * 16
+    :padding-top 10px
+    :padding-bottom 30px
+    :margin-top 30px
+    :margin-bottom -15px
+    :width= !layout - (!margin * 17)
+    
+  #more-info
+    :font-size 1.1em
+    :margin-bottom= !margin * 2
