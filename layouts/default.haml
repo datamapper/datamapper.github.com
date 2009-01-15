@@ -8,20 +8,18 @@ filter:    haml
   %head
     %title= "DataMapper - #{@page.title}"
     %link{:href => "/stylesheets/screen.css", :type => "text/css", :media => "all", :rel => "Stylesheet"}/
-  %body
+  %body{:id => body_id}
     %h1#heading
       %a{:href => "/", :title => "Return to the homepage."} DataMapper
       
     %div#content
       %ul#navigation
-        %li
-          %a{:href => "/", :title => "Return to the homepage.", :class => "current"} Home
-        %li
-          %a{:href => "/", :title => "Return to the homepage."} Why DataMapper?
-        %li
-          %a{:href => "/", :title => "Return to the homepage."} News
-        %li
-          %a{:href => "/", :title => "Return to the homepage."} Community
+        %li= nav_entry("Home", "/", "Return to the homepage.")
+        %li= nav_entry("Why DataMapper?", "/why", "Learn a little more about the project.")
+        %li= nav_entry("News", "/news", "Get the latest on developments.")
+        %li= nav_entry("Community", "/community", "Sources for help and discussion.")
+        %li= nav_entry("Development", "/development", "If you feel like contributing, have a look here.")
+        %li= nav_entry("Documentation", "/documentation", "Your first port of call for help. Includes API documentation and the wiki.")
           
       %h1#page-title= @page.title
       
