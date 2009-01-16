@@ -135,6 +135,7 @@ body
     :font-size 0.85em
     :line-height 1.3
     :color #5E728D
+    :margin 0
     :position absolute
     :bottom 2.5em
     :left= !margin
@@ -185,7 +186,7 @@ body
     
   #more-info
     :font-size 1.1em
-    :margin-bottom= !margin * 2
+    :margin-bottom= !margin + 10
     
   #panel,
   #latest-updates,
