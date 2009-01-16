@@ -180,6 +180,7 @@ body
     :margin-top 30px
     :margin-bottom -15px
     :width= !layout - (!margin * 17)
+    :overflow hidden
     
   #more-info
     :font-size 1.1em
