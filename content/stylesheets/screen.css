@@ -94,10 +94,6 @@ body
   a:visited
     :color #CEB165
     
-  a:hover
-    :background black
-    :color white
-    :text-decoration none
  
 /* Navigation
 #navigation
@@ -110,6 +106,7 @@ body
     :float left
     
   a
+    :background transparent -250px 0 no-repeat url(/images/layout/navigation-hover.gif)
     :font
       :size 0.9em
       :weight bold
@@ -122,7 +119,7 @@ body
     :background #171819
     
   a:hover
-    :background= !mid_blue
+    :background-color transparent !important
     
 /* Footer
 #footer
