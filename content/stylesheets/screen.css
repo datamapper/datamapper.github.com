@@ -1,7 +1,7 @@
 ---
 filter: sass
 extension: css
-layout: false
+layout: nil
 ---
 / Reused colours
 !light_blue = #26518A
@@ -163,6 +163,28 @@ body
   #page-title
     :position absolute
     :left -1000em
+  
+  #content
+    :position relative
+    
+  #twitter-feed
+    :margin-top 30px
+    :width 270px
+    :position absolute
+    :top 3em
+    :right 29px
+    
+    #tweet
+      :background left top no-repeat url(/images/home/tweet-bkg.gif)
+      :font-size 1.2em
+      :padding 10px 15px 2px 39px
+      :margin 0
+    
+    #tweet-time
+      :background 0 -293px no-repeat url(/images/home/tweet-bkg.gif)
+      :font-size 0.9em
+      :color #738094
+      :padding 13px 0 0 39px
     
   #blurb,
   #more-info
