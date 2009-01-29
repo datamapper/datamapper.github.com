@@ -6,6 +6,7 @@ layout: nil
 / Reused colours
 !light_blue = #26518A
 !mid_blue = #1A365C
+!dark_blue = #152C4C
 !heading_blue= #69B5FF
 /* Widths
 !layout = 961px
@@ -93,7 +94,20 @@ body
     
   a:visited
     :color #CEB165
-    
+
+
+/* Blocks
+#content .block
+  :background-color= !mid_blue
+  :-webkit-border-radius 4px
+  
+  h2
+    :border-bottom 
+      :width 1px 
+      :style solid
+      :color= !dark_blue
+    :font-weight bold
+    :color white
  
 /* Navigation
 #navigation
@@ -208,13 +222,10 @@ body
     :font-size 1.1em
     :margin-bottom= !margin + 10
     
-  #panel,
-  #latest-updates,
-  #learning-help
-    :background no-repeat url(/images/home/panel-bkg.gif)
-    
   #panel
-    :background-position bottom left
+    :background-image url(/images/layout/splitter.gif)
+    :background-repeat repeat-y
+    :background-position 510px 0
     :padding-bottom 1em
     :margin-left= !margin
     :margin-bottom= !margin
@@ -223,17 +234,17 @@ body
     :clear both
     
     h2
+      :border 0
+      :color= !heading_blue
       :margin-top 0.8em
       :margin-bottom 0.8em
     
   #latest-updates
-    :background-position top left
     :padding-left= !margin
     :width= !margin * 15
     :float left
     
   #learning-help
-    :background-position top right
     :padding-right= !margin
     :width= !margin * 11
     :float right
