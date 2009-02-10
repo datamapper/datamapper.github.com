@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+     <title>DataMapper - Documentation</title>
+     <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+     <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
+     <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
+     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
+  </head>
+
+  <body id="docs">
+    <div id="content">
+      <div id="header">
+        <h1><a href="/">DataMapper</a></h1>
+
+        <ul>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/development">Development</a></li>
+          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+        </ul>
+      </div>
+
+      <h1>Documentation</h1>
+<dl>
+  <dt><a href="http://datamapper.rubyforge.org/">API</a></dt>
+  <dd>The API for the current gem release.</dd>
+  <dt><a href="/why.html">Why DataMapper?</a></dt>
+  <dd>If you haven&#8217;t read this yet, you should, right now!</dd>
+  <dt><a href="/getting_started.html">Getting Started</a></dt>
+  <dd>A whirlwind tour of DM. This is the place to start if you haven&#8217;t used the library before.</dd>
+  <dt><a href="/docs/install.html">Common installation issues</a></dt>
+  <dd>Troubleshooting installation, with instructions for specific platforms.</dd>
+  <dt><a href="/docs/properties.html">Properties</a></dt>
+  <dd>Properties declared in your model map to the fields in the database.</dd>
+  <dt><a href="/docs/create_and_destroy.html">Creating, Saving and Destroying Records</a></dt>
+  <dd>Obviously you&#8217;re going to be doing a lot of this :)</dd>
+  <dt><a href="/docs/validations.html">Validations</a></dt>
+  <dd>Auto-validations, manual validations, contextual validations</dd>
+  <dt><a href="/docs/find.html">Finding and Counting Records</a></dt>
+  <dd>There are lots of nice ways to find records.</dd>
+  <dt><a href="/docs/associations.html">Associations</a></dt>
+  <dd>Models can be associated to each other in various ways using the <code>has</code> keyword</dd>
+  <dt><a href="/docs/callbacks.html">Hooks</a></dt>
+  <dd>Hooks, AKA Callbacks, allow you to &#8220;advise other methods&#8221; by running methods before or after calling other methods.</dd>
+  <dt><a href="/docs/misc.html">Misc. Features</a></dt>
+  <dd>Paranoia, Single Table Inheritance, and Multiple Repositories.</dd>
+  <dt><a href="/docs/dm_more/index.html">More</a></dt>
+  <dd>Plugins galore for DataMapper.</dd>
+</dl>
+<h1>Documentarians Wanted!</h1>
+<p>Want to help DataMapper, but don&#8217;t know where to start?  A great way to contribute is to help out in the documentation effort.</p>
+<h2>Documentation Style</h2>
+<p>DataMapper uses the YARD standard for RDoc documentation.  Here&#8217;s a brief sample from the internals of DM-Core:</p>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="c">##</span>
+<span class="no"> 2</span> <span class="c"># Setups up a connection to a data-store</span>
+<span class="no"> 3</span> <span class="c">#</span>
+<span class="no"> 4</span> <span class="c"># @param name&lt;Symbol&gt; a name for the context, defaults to :default</span>
+<span class="no"> 5</span> <span class="c"># @param uri_or_options&lt;Hash{Symbol =&gt; String}, Addressable::URI, String&gt;</span>
+<span class="no"> 6</span> <span class="c">#   connection information</span>
+<span class="no"> 7</span> <span class="c">#</span>
+<span class="no"> 8</span> <span class="c"># @return &lt;Repository&gt; the resulting setup repository</span>
+<span class="no"> 9</span> <span class="c">#</span>
+<span class="no"><strong>10</strong></span> <span class="c"># @raise &lt;ArgumentError&gt; &quot;+name+ must be a Symbol, but was...&quot; indicates that</span>
+<span class="no">11</span> <span class="c">#   an invalid argument was passed for name&lt;Symbol&gt;</span>
+<span class="no">12</span> <span class="c"># @raise &lt;ArgumentError&gt; &quot;+uri_or_options+ must be a Hash, URI or String, but was...&quot;</span>
+<span class="no">13</span> <span class="c">#   indicates that connection information could not be gleaned from the given</span>
+<span class="no">14</span> <span class="c">#   uri_or_options&lt;Hash, Addressable::URI, String&gt;</span>
+<span class="no">15</span> <span class="c"># -</span>
+<span class="no">16</span> <span class="c"># @api public</span>
+<span class="no">17</span> <span class="r">def</span> <span class="pc">self</span>.setup(name, uri_or_options)
+<span class="no">18</span>   raise <span class="co">ArgumentError</span>, <span class="s"><span class="dl">&quot;</span><span class="k">+name+ must be a Symbol, but was </span><span class="il"><span class="idl">#{</span>name.class<span class="idl">}</span></span><span class="dl">&quot;</span></span>, caller <span class="r">unless</span> <span class="co">Symbol</span> === name
+<span class="no">19</span>   ...
+</pre></div><p>For more information about the YARD documentation style, see <a href="http://github.com/lsegal/yard/tree/master">lsegal&#8217;s YARD repo on github.com</a>.</p>
+
+      <div id="footer">
+        <p>Copyright Sam Smoot 2009</p>
+        <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-569671-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+
+  </body>
+</html>

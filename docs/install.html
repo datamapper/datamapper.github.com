@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+     <title>DataMapper - Installation Issues</title>
+     <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+     <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
+     <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
+     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
+  </head>
+
+  <body id="docs">
+    <div id="content">
+      <div id="header">
+        <h1><a href="/">DataMapper</a></h1>
+
+        <ul>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/development">Development</a></li>
+          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+        </ul>
+      </div>
+
+      <h1>Installation Issues</h1>
+<p>If you&#8217;ve followed the <a href="/getting_started.html">install instructions</a> but run into problems, you can find some tips below.</p>
+<h2 class="newRelease">Windows Users</h2>
+<p class="newRelease">At present, <a href="https://rubyforge.org/projects/dorb/">DataObjects</a> does not run well on Windows natively <br>and will require you to install cygwin or another linux-like <br>environment.  People have been able to get it installed and running <br>on Windows but with severe drops in performance.  This is a known <br>issue and we&#8217;re working on it.</p>
+<h2>Dependencies</h2>
+<p>First port of call if you&#8217;re having issues with an installation is to make sure you have all the dependencies installed. Rubygems should take care of this for you, but just in case, make sure you have the following gems as well:</p>
+<ul>
+	<li>fastthread</li>
+	<li>json</li>
+	<li>rspec &#8211; for running specs on DataMapper itself</li>
+</ul>
+<h2 id="trunk">Using Trunk</h2>
+<p>You will also need to install the DataObject gem and the adaptor for your platform</p>
+<div class="CodeRay"><pre><span class="no">1</span> sudo gem install data_objects
+<span class="no">2</span> sudo gem install do_mysql
+</pre></div><p>The current database adaptors are:</p>
+<ul>
+	<li>do_mysql</li>
+	<li>do_sqlite3</li>
+	<li>do_postgres</li>
+</ul>
+<h2>Getting Help</h2>
+<p>If you still have issues, we suggest getting onto the <a href="http://groups.google.com/group/datamapper">mailing list</a> or the <a href="irc://irc.freenode.net/#datamapper">IRC channel</a> and asking around. There&#8217;s friendly people there to help you out.</p>
+
+      <div id="footer">
+        <p>Copyright Sam Smoot 2009</p>
+        <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-569671-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+
+  </body>
+</html>

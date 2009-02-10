@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+     <title>DataMapper - DataMapper 0.9 is Released</title>
+     <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+     <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
+     <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
+     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
+  </head>
+
+  <body id="news">
+    <div id="content">
+      <div id="header">
+        <h1><a href="/">DataMapper</a></h1>
+
+        <ul>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/development">Development</a></li>
+          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+        </ul>
+      </div>
+
+      <h1>DataMapper 0.9 is Released</h1>
+<p>DataMapper 0.9 is ready for the world.  It brings with it a massive overhaul of the internals of DataMapper, a shift in terminology, a dramatic bump in speed, improved code-base organization, and support for more than just database data-stores.</p>
+<p>To install it:</p>
+<div class="CodeRay"><pre>sudo gem install addressable english rspec
+sudo gem install data_objects do_mysql do_postgres do_sqlite3
+sudo gem install dm-core dm-more
+</pre></div><p>This is NOT a backwards compatible release. Code written for DataMapper 0.3 will not function with DataMapper 0.9.* due to syntactical changes and library improvements.</p>
+<p>REPEAT: This is NOT a backwards compatible release.</p>
+<table class="changeSummary" cellspacing="0" cellpadding="0">
+<thead>
+    <th>&nbsp;</th>
+    <th>DataMapper 0.3</th>
+    <th>DataMapper 0.9</th>
+</thead>
+<tbody>
+<tr>
+      <th>Creating a class</th>
+<td>
+<div class="CodeRay"><pre><span class="r">class</span> <span class="cl">Post</span> &lt; <span class="co">DataMapper</span>::<span class="co">Base</span>
+<span class="r">end</span>
+</pre></div></td>
+<td>
+<div class="CodeRay"><pre><span class="r">class</span> <span class="cl">Post</span>
+  include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="r">end</span></pre></div></td>
+</tr>
+<tr>
+      <th>Keys</th>
+<td>
+<div class="CodeRay"><pre><span class="c"># Key was not mandatory</span>
+<span class="c"># Automatically added +id+ if missing</span>
+<span class="c">#</span>
+<span class="c"># Natural Key</span>
+property <span class="sy">:name</span>, <span class="sy">:string</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+<span class="c">#</span>
+<span class="c"># Composite Key</span>
+property <span class="sy">:id</span>, <span class="sy">:integer</span>,  <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+property <span class="sy">:slug</span>, <span class="sy">:string</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+</pre></div></td>
+<td>
+<div class="CodeRay"><pre><span class="c"># keys are now mandatory</span>
+property <span class="sy">:id</span>, <span class="co">Integer</span>,  <span class="sy">:serial</span> =&gt; <span class="pc">true</span>
+<span class="c">#</span>
+<span class="c"># Natural Key</span>
+property <span class="sy">:slug</span>, <span class="co">String</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+<span class="c">#</span>
+<span class="c"># Composite Key</span>
+property <span class="sy">:id</span>, <span class="co">Integer</span>,  <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+property <span class="sy">:slug</span>, <span class="co">String</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+</pre></div></td>
+</tr>
+<tr>
+      <th>Properties</th>
+<td>
+<div class="CodeRay"><pre>property <span class="sy">:title</span>,      <span class="sy">:string</span>
+property <span class="sy">:body</span>,       <span class="sy">:text</span>
+property <span class="sy">:posted_on</span>,  <span class="sy">:datetime</span>
+property <span class="sy">:active</span>,     <span class="sy">:boolean</span>
+</pre></div></td>
+<td>
+<div class="CodeRay"><pre>property <span class="sy">:title</span>,      <span class="co">String</span>
+property <span class="sy">:body</span>,       <span class="co">Text</span>
+property <span class="sy">:posted_on</span>,  <span class="co">DateTime</span>
+property <span class="sy">:active</span>,     <span class="co">Boolean</span>
+</pre></div></td>
+</tr>
+<tr>
+      <th>Associations</th>
+<td>
+<div class="CodeRay"><pre>has_many <span class="sy">:comments</span>
+belongs_to <span class="sy">:blog</span>
+has_and_belongs_to_many <span class="sy">:categories</span>
+has_one <span class="sy">:author</span>
+</pre></div></td>
+<td>
+<div class="CodeRay"><pre>has n, <span class="sy">:comments</span>
+belongs_to <span class="sy">:blog</span>
+has n, <span class="sy">:categories</span> =&gt; <span class="co">Resource</span>
+has <span class="i">1</span>, <span class="sy">:author</span>
+</pre></div></td>
+</tr>
+<tr>
+      <th>Finders</th>
+<td>
+<notextile>
+<div class="CodeRay"><pre><span class="co">Post</span>.first <span class="sy">:order</span> =&gt; <span class="s"><span class="dl">&#8216;</span><span class="k">created_at DESC</span><span class="dl">&#8217;</span></span><br />
+<span class="co">Post</span>.all<br />
+  <span class="sy">:conditions</span> =&gt; [<span class="s"><span class="dl">&#8216;</span><span class="k">active = ?</span><span class="dl">&#8217;</span></span>, <span class="pc">true</span>]<br />
+<br />
+database.query <span class="s"><span class="dl">%Q{</span><span class="k">SELECT 1</span><span class="dl">}</span></span><br />
+database.execute <span class="s"><span class="dl">%Q{</span><span class="k">UPDATE posts&#8230;</span><span class="dl">}</span></span><br />
+        </pre></div>
+<p></notextile></p>
+</td>
+<td>
+<notextile>
+<div class="CodeRay"><pre><span class="co">Post</span>.first <span class="sy">:order</span> =&gt; [<span class="sy">:created_at</span>.desc]<br />
+<span class="co">Post</span>.all<br />
+  <span class="sy">:conditions</span> =&gt; [<span class="s"><span class="dl">&#8216;</span><span class="k">active = ?</span><span class="dl">&#8217;</span></span>, <span class="pc">true</span>]<br />
+<br />
+repository(<span class="sy">:default</span>).adapter.query <span class="s"><span class="dl">%Q{</span><span class="k">SELECT 1</span><span class="dl">}</span></span><br />
+repository(<span class="sy">:default</span>).adapter.execute <span class="s"><span class="dl">%Q{</span><span class="k">UPDATE posts&#8230;</span><span class="dl">}</span></span><br />
+        </pre></div>
+<p></notextile></p>
+</td>
+</tr>
+<tr>
+      <th>Validations</th>
+<td>
+<notextile>
+<div class="CodeRay"><pre>validates_presence_of     <span class="sy">:title</span><br />
+validates_numericality_of <span class="sy">:rating</span><br />
+validates_format_of       <span class="sy">:email</span>,<br />
+  <span class="sy">:with</span> =&gt; <span class="sy">:email_address</span><br />
+validates_length_of       <span class="sy">:summary</span>,<br />
+  <span class="sy">:within</span> =&gt; (<span class="i">1</span>..<span class="i">100</span>)<br />
+validates_uniqueness_of   <span class="sy">:slug</span><br />
+        </pre></div>
+<p></notextile></p>
+</td>
+<td>
+<notextile>
+<div class="CodeRay"><pre>validates_present     <span class="sy">:title</span><br />
+validates_is_number   <span class="sy">:rating</span><br />
+validates_format      <span class="sy">:email</span>,<br />
+  <span class="sy">:as</span> =&gt; <span class="sy">:email_address</span><br />
+validates_length      <span class="sy">:summary</span>,<br />
+  <span class="sy">:in</span> =&gt; (<span class="i">1</span>..<span class="i">100</span>)<br />
+validates_is_unique   <span class="sy">:slug</span><br />
+        </pre></div>
+<p></notextile></p>
+</td>
+</tr>
+<tr>
+      <th>Callbacks</th>
+<td>
+<div class="CodeRay"><pre>before_save <span class="sy">:categorize</span>
+
+before_create <span class="r">do</span> |post|
+  <span class="c"># do stuff with post</span>
+<span class="r">end</span>
+
+<span class="c"># return false to abort</span>
+</pre></div></td>
+<td>
+<div class="CodeRay"><pre>before <span class="sy">:save</span>, <span class="sy">:categorize</span>
+
+before <span class="sy">:create</span> <span class="r">do</span>
+  <span class="c"># do stuff with self</span>
+<span class="r">end</span>
+
+<span class="c"># throw :halt to abort</span>
+</pre></div></td>
+</tr>
+</tbody>
+</table>
+
+      <div id="footer">
+        <p>Copyright Sam Smoot 2009</p>
+        <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-569671-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+
+  </body>
+</html>

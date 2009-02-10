@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+     <title>DataMapper - Finding Records</title>
+     <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+     <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
+     <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
+     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
+  </head>
+
+  <body id="docs">
+    <div id="content">
+      <div id="header">
+        <h1><a href="/">DataMapper</a></h1>
+
+        <ul>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/development">Development</a></li>
+          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+        </ul>
+      </div>
+
+      <h1>Finding Records</h1>
+<p>The finder methods for DataMapper objects are defined in <a href="http://datamapper.rubyforge.org/DataMapper/Repository.html">DataMapper::Repository</a>. They include <code>get()</code>, <code>all()</code>, <code>first()</code></p>
+<h2>Finder Methods</h2>
+<p>DataMapper has methods which allow you to grab a single record by key, the first match to a set of conditions, or a collection of records matching conditions.</p>
+<div class="CodeRay"><pre><span class="no">1</span> zoo   = <span class="co">Zoo</span>.get(<span class="i">1</span>)                        <span class="c"># get the zoo with primary key of 1.</span>
+<span class="no">2</span> zoo   = <span class="co">Zoo</span>.get!(<span class="i">1</span>)                       <span class="c"># Or get! if you want an ObjectNotFoundError on failure</span>
+<span class="no">3</span> zoo   = <span class="co">Zoo</span>.get(<span class="s"><span class="dl">'</span><span class="k">DFW</span><span class="dl">'</span></span>)                    <span class="c"># wow, support for natural primary keys</span>
+<span class="no">4</span> zoo   = <span class="co">Zoo</span>.get(<span class="s"><span class="dl">'</span><span class="k">Metro</span><span class="dl">'</span></span>, <span class="s"><span class="dl">'</span><span class="k">DFW</span><span class="dl">'</span></span>)           <span class="c"># more wow, composite key look-up</span>
+<span class="no">5</span> zoo   = <span class="co">Zoo</span>.first(<span class="sy">:name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">Luke</span><span class="dl">'</span></span>)        <span class="c"># first matching record with the name 'Luke'</span>
+<span class="no">6</span> zoos  = <span class="co">Zoo</span>.all                           <span class="c"># all zoos</span>
+<span class="no">7</span> zoos  = <span class="co">Zoo</span>.all(<span class="sy">:open</span> =&gt; <span class="pc">true</span>)            <span class="c"># all zoos that are open</span>
+<span class="no">8</span> zoos  = <span class="co">Zoo</span>.all(<span class="sy">:opened_on</span> =&gt; (s..e))     <span class="c"># all zoos that opened on a date in the date-range</span>
+</pre></div><h2>Scopes and Chaining</h2>
+<p>A call to <code>all()</code> or <code>first()</code> can be chained together to further build a query to the data-store:</p>
+<div class="CodeRay"><pre><span class="no">1</span> all_zoos = <span class="co">Zoo</span>.all
+<span class="no">2</span> open_zoos = all_zoos.all(<span class="sy">:open</span> =&gt; <span class="pc">true</span>)
+<span class="no">3</span> big_open_zoos = open_zoos.all(<span class="sy">:animal_count</span> =&gt; <span class="i">1000</span>)
+</pre></div><p>As a direct consequence, you can define scopes without any extra work in your model.</p>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Zoo</span>
+<span class="no"> 2</span>   <span class="c"># all the keys and property setup here</span>
+<span class="no"> 3</span>   <span class="r">def</span> <span class="pc">self</span>.open
+<span class="no"> 4</span>     all(<span class="sy">:open</span> =&gt; <span class="pc">true</span>)
+<span class="no"> 5</span>   <span class="r">end</span>
+<span class="no"> 6</span>   <span class="r">def</span> <span class="pc">self</span>.big
+<span class="no"> 7</span>     all(<span class="sy">:animal_count</span> =&gt; <span class="i">1000</span>)
+<span class="no"> 8</span>   <span class="r">end</span>
+<span class="no"> 9</span> <span class="r">end</span>
+<span class="no"><strong>10</strong></span> 
+<span class="no">11</span> big_open_zoos = <span class="co">Zoo</span>.big.open
+</pre></div><p>Scopes like this can even have arguments.  Do anything in them, just ensure they return a Query of some kind.</p>
+<h2>Conditions</h2>
+<p>Rather than defining conditions using SQL fragments, we can actually specify conditions using a hash.</p>
+<p>The examples above are pretty simple, but you might be wondering how we can specify conditions beyond equality without resorting to SQL. Well, thanks to some clever additions to the Symbol class, it&#8217;s easy!</p>
+<div class="CodeRay"><pre><span class="no">1</span> exhibitions = <span class="co">Exhibition</span>.all(<span class="sy">:run_time</span>.gt =&gt; <span class="i">2</span>, <span class="sy">:run_time</span>.lt =&gt; <span class="i">5</span>)
+<span class="no">2</span> <span class="c"># =&gt; SQL conditions: 'run_time &gt; 1 AND run_time &lt; 5'</span>
+</pre></div><p>Valid symbol operators for the conditions are:</p>
+<div class="CodeRay"><pre><span class="no">1</span> gt    <span class="c"># greater than</span>
+<span class="no">2</span> lt    <span class="c"># less than</span>
+<span class="no">3</span> gte   <span class="c"># greater than or equal</span>
+<span class="no">4</span> lte   <span class="c"># less than or equal</span>
+<span class="no">5</span> <span class="r">not</span>   <span class="c"># not equal</span>
+<span class="no">6</span> eql   <span class="c"># equal</span>
+<span class="no">7</span> like  <span class="c"># like</span>
+<span class="no">8</span> <span class="r">in</span>    <span class="c"># in - will be used automatically when an array is passed in as an argument</span>
+</pre></div><h2>Order</h2>
+<p>To specify the order in which your results are to be sorted, use:</p>
+<div class="CodeRay"><pre><span class="no">1</span> <span class="iv">@zoos_by_tiger_count</span> = <span class="co">Zoo</span>.all(<span class="sy">:order</span> =&gt; [<span class="sy">:tiger_count</span>.desc])
+<span class="no">2</span> <span class="c"># in SQL =&gt;  select * from zoos ORDER BY tiger_count DESC</span>
+</pre></div><p>Available order vectors are:</p>
+<div class="CodeRay"><pre><span class="no">1</span> asc  <span class="c"># sorting ascending</span>
+<span class="no">2</span> desc <span class="c"># sorting descending</span>
+</pre></div><p>Once you have the query, the order can be modified too.  Just call reverse:</p>
+<div class="CodeRay"><pre><span class="no">1</span> <span class="iv">@least_tigers_first</span> = <span class="iv">@zoos_by_tiger_count</span>.reverse
+<span class="no">2</span> <span class="c"># in SQL =&gt;  select * from zoos ORDER BY tiger_count ASC</span>
+</pre></div><h3>Compatibility</h3>
+<p>DataMapper supports other conditions syntaxes as well:</p>
+<div class="CodeRay"><pre><span class="no">1</span> zoos = <span class="co">Zoo</span>.all(<span class="sy">:conditions</span> =&gt; {<span class="sy">:id</span> =&gt; <span class="i">34</span>})
+<span class="no">2</span> zoos = <span class="co">Zoo</span>.all(<span class="sy">:conditions</span> =&gt; [<span class="s"><span class="dl">&quot;</span><span class="k">id = ?</span><span class="dl">&quot;</span></span>, <span class="i">34</span>])
+<span class="no">3</span> 
+<span class="no">4</span> <span class="c"># even mix and match</span>
+<span class="no">5</span> zoos = <span class="co">Zoo</span>.all(<span class="sy">:conditions</span> =&gt; {<span class="sy">:id</span> =&gt; <span class="i">34</span>}, <span class="sy">:name</span>.like =&gt; <span class="s"><span class="dl">'</span><span class="k">%foo%</span><span class="dl">'</span></span>)
+</pre></div><h2>Talking directly to your data-store</h2>
+<p>Sometimes you may find that you need to tweak a query manually.</p>
+<div class="CodeRay"><pre><span class="no">1</span> zoos = repository(<span class="sy">:default</span>).adapter.query(<span class="s"><span class="dl">'</span><span class="k">SELECT name, open FROM zoos WHERE open = 1</span><span class="dl">'</span></span>)
+<span class="no">2</span> <span class="c">#      Note that this will not return Zoo objects, rather the raw data straight from the database</span>
+</pre></div><p><code>zoos</code> will be full of Struct objects with <code>name</code>, and <code>open</code> attributes, rather than instances of the Zoo class.  They&#8217;ll also be read-only. You can still use the interpolated array condition syntax as well:</p>
+<div class="CodeRay"><pre><span class="no">1</span> zoos = repository(<span class="sy">:default</span>).adapter.query(<span class="s"><span class="dl">'</span><span class="k">SELECT name, open FROM zoos WHERE name = ?</span><span class="dl">'</span></span>, <span class="s"><span class="dl">&quot;</span><span class="k">Awesome Zoo</span><span class="dl">&quot;</span></span>)
+</pre></div><h2>Counting</h2>
+<p>With DM-More&#8217;s DM-Aggregates included, the <code>count</code> method it adds will returns an integer of the number of records matching the every condition you pass in.</p>
+<div class="CodeRay"><pre><span class="no">1</span> count = <span class="co">Zoo</span>.count(<span class="sy">:age</span>.gt =&gt; <span class="i">200</span>) <span class="c">#=&gt; 2</span>
+</pre></div>
+
+      <div id="footer">
+        <p>Copyright Sam Smoot 2009</p>
+        <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-569671-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+
+  </body>
+</html>

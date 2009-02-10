@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+     <title>DataMapper - The Great Refactoring</title>
+     <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+     <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
+     <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
+     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
+  </head>
+
+  <body id="news">
+    <div id="content">
+      <div id="header">
+        <h1><a href="/">DataMapper</a></h1>
+
+        <ul>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/development">Development</a></li>
+          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+        </ul>
+      </div>
+
+      <h1>The Great Refactoring</h1>
+<p>&#8220;Tip&#8221; DataMapper (hosted on <a href="http://github.com/sam/dm-core">github</a>) is going through a dramatic re-factor.  Here&#8217;s a quick summary of the anticipated NEW public API.</p>
+<h2>Not Just for Databases Anymore</h2>
+<p>DataMapper&#8217;s class terminology will change and &#8216;de-couple&#8217; itself from database-specific terminology.  Gone are &#8220;database&#8221;, &#8220;table&#8221;, &#8220;column&#8221; and &#8220;join&#8221;.  Say hello to &#8220;Repository&#8221;, &#8220;Resource&#8221;, &#8220;Property&#8221;, and &#8220;Link&#8221;.</p>
+<p>&#8220;Why would you want to do that?&#8221;, you ask. Ultimately it&#8217;s because DataMapper will soon support different types of persistence layers, not just databases.  It&#8217;ll talk to all sorts of things like web services (REST and such), XML files, YAML files, non-relational databases, even custom file-types or services of your own design.  Just implement an Adapter that conforms to a certain API and DataMapper could support any type of data store.  No need for a completely separate library or anything.</p>
+<p>As an added benefit, DataMapper become more &#8220;RESTful&#8221;. <a href="http://tomayko.com/writings/rest-to-my-wife">Ryan Tomayko</a> has a very good explanation of REST that all should read entitled <a href="http://tomayko.com/writings/rest-to-my-wife">How I Explained REST to My Wife</a>.</p>
+<h2>Model Definitions Are a Little Different</h2>
+<p>Since we&#8217;re changing up the terminology, model definitions are going to change up a little bit.  Here&#8217;s what a Planet model would look like using the new API:</p>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Planet</span>
+<span class="no"> 2</span> 
+<span class="no"> 3</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 4</span> 
+<span class="no"> 5</span>   resource_names[<span class="sy">:legacy</span>] = <span class="s"><span class="dl">&quot;</span><span class="k">dying_planets</span><span class="dl">&quot;</span></span>
+<span class="no"> 6</span> 
+<span class="no"> 7</span>   property <span class="sy">:name</span>, <span class="co">String</span>
+<span class="no"> 8</span>   property <span class="sy">:age</span>, <span class="co">Fixnum</span>
+<span class="no"> 9</span>   property <span class="sy">:core</span>, <span class="co">String</span>, <span class="sy">:private</span> =&gt; <span class="pc">true</span>
+<span class="no"><strong>10</strong></span> 
+<span class="no">11</span> <span class="r">end</span>
+</pre></div><p>A couple of things are going on here.  First, DataMapper::Base and DataMapper::Persistence are gone and replaced with <a href="http://datamapper.rubyforge.org/DataMapper/Resource.html">DataMapper::Resource</a>.  Next <code>set_table_name</code> has been replaced with <code>resource_names</code> hash where you specify which arena play occurs in. After that we have a couple of Property definitions that look a little different.</p>
+<p>First off, Properties will no longer take <code>:symbols</code> for their types and instead take real constants like String, Fixnum, DateTime.  Also on the docket are the ability to define your own custom types.</p>
+<p>Think about that for a minute.  If developers are able to define their own custom types with their own materialization and serialization methods, DataMapper will be able to support all kinds of wild data-types like GIS information, network information, marshaled objects, JSON&#8230;pretty much anything a developer might need, or want.</p>
+<h2>A Command-Line Interface</h2>
+<p>Taking a lesson from web frameworks, DataMapper will sport an interactive command-line so that you can browse your resources without the need to load up the entire environment of your application.  Here&#8217;s an example session:</p>
+<div class="CodeRay"><pre><span class="no">1</span> $ dm mysql://root@localhost/great_musicians # connecting to a repository
+</pre></div><p>An IRB session boots up&#8230;</p>
+<div class="CodeRay"><pre>&gt;&gt; the_king = <span class="co">Person</span>.first(<span class="sy">:name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">elvis</span><span class="dl">'</span></span>)
+&gt;&gt; the_king.alive? <span class="c"># =&gt; maybe</span>
+</pre></div><p>This is very similar to <code>script/console</code> in Rails or <code>merb -i</code> in Merb, only it won&#8217;t load up the entire environment of your application, just your DataMapper resources and their associations, methods, and such.  If you prefer &#8220;fat models&#8221;, this will constitute the core of your application.</p>
+<h2>How This All Comes Together</h2>
+<p>This is the coolest new feature of DataMapper: we&#8217;re skipping all the way from 0.3.0 to 0.9! Get excited, contact the press, fire up the blogosphere!  Its a huge jump and we&#8217;re honestly concerned that people may not be able to handle it.</p>
+<p>Alright, so it&#8217;s not <em>that</em> big of a deal, but we&#8217;re confident that all of this will get DataMapper so close to going 1.0 that we&#8217;ll be able to taste it.  To get there, DataMapper&#8217;s more advanced features like single table inheritance, paranoia, and chained associations will be re-implimented to use all this new stuff, and then we&#8217;re sure 0.9 will need a touch up or two.</p>
+<p>So close&#8230;.so very very close&#8230;</p>
+<p>Stay tuned in to the <a href="http://groups.google.com/group/datamapper">mailing list</a>, check up on the <a href="http://wiki.datamapper.org/doku.php">wiki</a>, chat it up in <a href="irc://irc.freenode.net/#datamapper">#datamapper</a> and watch <a href="http://github.com/sam/dm-core/commits/master">github commit messages</a> for updates.</p>
+
+      <div id="footer">
+        <p>Copyright Sam Smoot 2009</p>
+        <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-569671-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+
+  </body>
+</html>

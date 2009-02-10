@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+     <title>DataMapper - Validations</title>
+     <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+     <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
+     <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
+     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
+  </head>
+
+  <body id="docs">
+    <div id="content">
+      <div id="header">
+        <h1><a href="/">DataMapper</a></h1>
+
+        <ul>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/development">Development</a></li>
+          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+        </ul>
+      </div>
+
+      <h1>Validations</h1>
+<p>DataMapper validations allow you to vet data prior to saving to a database. To make validations available to your app you simply &#8216;<code>require "dm-validations"</code>&#8217; in your application. With DataMapper there are two different ways you can validate your classes&#8217; properties.</p>
+<h2>Manual Validation</h2>
+<p>Much like a certain other Ruby ORM we can call validation methods directly by passing them a property name (or an array of names) to validate against.</p>
+<div class="CodeRay"><pre><span class="no">1</span>   validates_length <span class="sy">:name</span>
+<span class="no">2</span>   validates_length [<span class="sy">:name</span>, <span class="sy">:description</span>]
+</pre></div><p>These are the currently available manual validations available. Please refer to the <a href="http://datamapper.rubyforge.org/DataMapper/Validate/ClassMethods.html">API</a> for more detailed information.</p>
+<ul>
+	<li>validates_present</li>
+	<li>validates_absent</li>
+	<li>validates_is_accepted</li>
+	<li>validates_is_confirmed</li>
+	<li>validates_format</li>
+	<li>validates_length</li>
+	<li>validates_with_method</li>
+	<li>validates_with_block</li>
+	<li>validates_is_number</li>
+	<li>validates_is_unique</li>
+	<li>validates_within</li>
+</ul>
+<h2>Auto-Validations</h2>
+<p>By adding triggers to your property definitions you can both define and validate your classes properties all in one fell swoop.</p>
+<p>Triggers that generate validator creation:</p>
+<div class="CodeRay"><pre>  <span class="c"># implicitly creates a validates_present</span>
+  <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>
+  <span class="sy">:length</span> =&gt; (<span class="i">1</span>..n)
+
+  <span class="c"># implicitly creates a validates_length</span>
+  <span class="sy">:length</span> =&gt; <span class="i">20</span>
+  <span class="sy">:length</span> =&gt; (<span class="i">1</span>..<span class="i">20</span>) <span class="c"># cant be null</span>
+  <span class="sy">:length</span> =&gt; (<span class="i">0</span>..<span class="i">20</span>) <span class="c"># can be null</span>
+  <span class="c"># :size is a synonym to :length</span>
+
+  <span class="c"># implicitly creates a validates_format</span>
+  <span class="sy">:format</span> =&gt; <span class="sy">:email_address</span> <span class="c"># more predefined regexes to come</span>
+  <span class="sy">:format</span> =&gt; <span class="rx"><span class="dl">/</span><span class="ch">\w</span><span class="k">+_</span><span class="ch">\w</span><span class="k">+</span><span class="dl">/</span></span>
+  <span class="sy">:format</span> =&gt; lambda {|str| str }
+  <span class="sy">:format</span> =&gt; <span class="co">Proc</span>.new { |str| str }
+</pre></div><p>Here we see an example of a class with both a manual and and auto-validation declared:</p>
+<div class="CodeRay"><pre><span class="no"> 1</span>   require <span class="s"><span class="dl">'</span><span class="k">dm-validations</span><span class="dl">'</span></span>
+<span class="no"> 2</span> 
+<span class="no"> 3</span>   <span class="r">class</span> <span class="cl">Account</span>
+<span class="no"> 4</span>     include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 5</span> 
+<span class="no"> 6</span>     property <span class="sy">:name</span>, <span class="co">String</span>
+<span class="no"> 7</span> 
+<span class="no"> 8</span>     <span class="c"># good old fashioned manual validation</span>
+<span class="no"> 9</span>     validates_length <span class="sy">:name</span>, <span class="sy">:max</span> =&gt; <span class="i">20</span>
+<span class="no"><strong>10</strong></span> 
+<span class="no">11</span>     property <span class="sy">:content</span>, <span class="co">Text</span>, <span class="sy">:length</span> =&gt; (<span class="i">100</span>..<span class="i">500</span>)
+<span class="no">12</span>   <span class="r">end</span>
+</pre></div><h2>Validating</h2>
+<p>DataMapper validations, when included, alter the default save/create/update process for a model.</p>
+<p>You may manually validate a resource using the <code>valid?</code> method, which will return true if the resource is valid, and false if it is invalid.</p>
+<p>In addition to the <code>valid?</code> method, there is also an <code>all_valid?</code> method that recursively walks both the current object and its associated objects and returns a comprehensive true/false result for the entire walk. If anything returns <code>false</code>, <code>all_valid?</code> will return <code>false</code></p>
+<h2>Working with Validation Errors</h2>
+<p>If your validators find errors in your model, they will populate the <a href="http://datamapper.rubyforge.org/DataMapper/Validate/ValidationErrors.html">Validate::ValidationErrors</a> object that is available through each of your models via calls to your model&#8217;s <code>errors</code> method.</p>
+<div class="CodeRay"><pre><span class="no">1</span>   my_account = <span class="co">Account</span>.new(<span class="sy">:name</span> =&gt; <span class="s"><span class="dl">&quot;</span><span class="k">Jose</span><span class="dl">&quot;</span></span>)
+<span class="no">2</span>   <span class="r">if</span> my_account.save
+<span class="no">3</span>     <span class="c"># my_account is valid and has been saved</span>
+<span class="no">4</span>   <span class="r">else</span>
+<span class="no">5</span>     my_account.errors.each <span class="r">do</span> |e|
+<span class="no">6</span>       puts e
+<span class="no">7</span>     <span class="r">end</span>
+<span class="no">8</span>   <span class="r">end</span>
+</pre></div><h2>Error Messages</h2>
+<p>The error messages for validations provided by DataMapper are generally clear, and explain exactly what has gone wrong.  If they&#8217;re not what you want though, they can be changed.  This is done via providing a <code>:message</code> in the options hash, for example:</p>
+<div class="CodeRay"><pre>  validates_is_unique <span class="sy">:title</span>, <span class="sy">:scope</span> =&gt; <span class="sy">:section_id</span>,
+    <span class="sy">:message</span> =&gt; <span class="s"><span class="dl">&quot;</span><span class="k">There's already a page of that title in this section</span><span class="dl">&quot;</span></span>
+</pre></div><p>This example also demonstrates the use of the <code>:scope</code> option to only check the property&#8217;s uniqueness within a narrow scope.  This object won&#8217;t be valid if another object with the same <code>section_id</code> already has that title.</p>
+<p>Something similar can be done for auto-validations, too, via setting <code>:messages</code> in the property options.</p>
+<div class="CodeRay"><pre>  property <span class="sy">:email</span>, <span class="co">String</span>, <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>, <span class="sy">:unique</span> =&gt; <span class="pc">true</span>, <span class="sy">:format</span> =&gt; <span class="sy">:email_address</span>,
+                           <span class="sy">:messages</span> =&gt; {
+                             <span class="sy">:presence</span> =&gt; <span class="s"><span class="dl">&quot;</span><span class="k">We need your email address.</span><span class="dl">&quot;</span></span>,
+                             <span class="sy">:is_unique</span> =&gt; <span class="s"><span class="dl">&quot;</span><span class="k">We already have that email.</span><span class="dl">&quot;</span></span>,
+                             <span class="sy">:format</span> =&gt; <span class="s"><span class="dl">&quot;</span><span class="k">Doesn't look like an email address to me ...</span><span class="dl">&quot;</span></span>
+                           }
+</pre></div><p>To set an error message on an arbitrary field of the model, DataMapper provides the <code>add</code> command.</p>
+<div class="CodeRay"><pre><span class="no">1</span>   <span class="iv">@resource</span>.errors.add(<span class="sy">:title</span>, <span class="s"><span class="dl">&quot;</span><span class="k">Doesn't mention DataMapper</span><span class="dl">&quot;</span></span>)
+</pre></div><p>This is probably of most use in custom validations, so &#8230;</p>
+<h2>Custom Validations</h2>
+<p>DataMapper provides a number of validations for various common situations such as checking for the length or presence of strings, or that a number falls in a particular range.  Often this is enough, especially when validations are combined together to check a field for a number of properties.  For the situations where it isn&#8217;t, DataMapper provides a couple of methods: <code>validates_with_block</code> and <code>validates_with_method</code>.  They&#8217;re very similar in operation, with one accepting a block as the argument and the other taking a symbol representing a method name.</p>
+<p>The method or block performs the validation tests and then should return <code>true</code> if the resource is valid or <code>false</code> if it is invalid.  If the resource isn&#8217;t valid instead of just returning <code>false</code>, an array containing <code>false</code> and an error message, such as <code>[false, "FAIL!"]</code> can be returned.  This will add the message to the <code>errors</code> on the resource.</p>
+<div class="CodeRay"><pre><span class="no"> 1</span>   <span class="r">class</span> <span class="cl">WikiPage</span>
+<span class="no"> 2</span>     include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span>     <span class="c"># properties ...</span>
+<span class="no"> 4</span> 
+<span class="no"> 5</span>     validates_with_method <span class="sy">:check_citations</span>
+<span class="no"> 6</span> 
+<span class="no"> 7</span>     <span class="c"># checks that we've included at least 5 citations for our wikipage.</span>
+<span class="no"> 8</span>     <span class="r">def</span> <span class="fu">check_citations</span>
+<span class="no"> 9</span>       <span class="c"># in a 'real' example, the number of citations might be a property set by</span>
+<span class="no"><strong>10</strong></span>       <span class="c"># a before :valid? hook.</span>
+<span class="no">11</span>       num = count_citations(<span class="pc">self</span>.body)
+<span class="no">12</span>       <span class="r">if</span> num &gt; <span class="i">4</span>
+<span class="no">13</span>         <span class="r">return</span> <span class="pc">true</span>
+<span class="no">14</span>       <span class="r">else</span>
+<span class="no">15</span>         [<span class="pc">false</span>, <span class="s"><span class="dl">&quot;</span><span class="k">You must have at least </span><span class="il"><span class="idl">#{</span><span class="i">5</span> - num<span class="idl">}</span></span><span class="k"> more citations for this article</span><span class="dl">&quot;</span></span>]
+<span class="no">16</span>       <span class="r">end</span>
+<span class="no">17</span>     <span class="r">end</span>
+<span class="no">18</span>   <span class="r">end</span>
+</pre></div><p>Instead of setting an error on the whole resource, you can set an error on an individual property by passing this as the first argument to <code>validates_with_block</code> or <code>validates_with_method</code>.  To use the previous example, replacing line 5 with:</p>
+<div class="CodeRay"><pre>  validates_with_method <span class="sy">:body</span>, <span class="sy">:method</span> =&gt; <span class="sy">:check_citations</span>
+</pre></div><p>This would result in the citations error message being added to the error messages for the body, which might improve how it is presented to the user.</p>
+<h2>Conditional Validations</h2>
+<p>Validations don&#8217;t always have to be run.  For example, an issue tracking system designed for git integration might require a commit identifier for the fix&#8212;but only for a ticket which is being set to &#8216;complete&#8217;.  A new, open or invalid ticket, of course, doesn&#8217;t necessarily have one.  To cope with this situation and others like it, DataMapper offers conditional validation, using the <code>:if</code> and <code>:unless</code> clauses on a validation.</p>
+<p><code>:if</code> and <code>:unless</code> take as their value a symbol representing a method name or a Proc.  The associated validation will run only if (or unless) the method or Proc returns something which evaluates to <code>true</code>.  The chosen method should take no arguments, whilst the Proc will be called with a single argument, the resource being validated.</p>
+<div class="CodeRay"><pre><span class="no"> 1</span>   <span class="r">class</span> <span class="cl">Ticket</span>
+<span class="no"> 2</span>     include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>     property <span class="sy">:id</span>, <span class="co">Serial</span>
+<span class="no"> 5</span>     property <span class="sy">:title</span>, <span class="co">String</span>, <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>
+<span class="no"> 6</span>     property <span class="sy">:description</span>, <span class="co">Text</span>
+<span class="no"> 7</span>     property <span class="sy">:commit</span>, <span class="co">String</span>
+<span class="no"> 8</span>     property <span class="sy">:status</span>, <span class="co">Enum</span>[<span class="sy">:new</span>, <span class="sy">:open</span>, <span class="sy">:invalid</span>, <span class="sy">:complete</span>]
+<span class="no"> 9</span> 
+<span class="no"><strong>10</strong></span>     validates_present <span class="sy">:commit</span>, <span class="sy">:if</span> =&gt; <span class="co">Proc</span>.new {|t| t.status == <span class="sy">:complete</span> }
+<span class="no">11</span>   <span class="r">end</span>
+</pre></div><p>The autovalidation that requires the title to be present will always run, but the validates_present on the commit hash will only run if the status is <code>:complete</code>.  Another example might be a change summary that is only required if the resource is already there&#8212;&#8216;initial commit&#8217; is hardly an enlightening message.</p>
+<div class="CodeRay"><pre>  validates_length <span class="sy">:change_summary</span>, <span class="sy">:min</span> =&gt; <span class="i">10</span>, <span class="sy">:unless</span> =&gt; <span class="sy">:new_record?</span>
+</pre></div><p>Sometimes a simple on and off switch is not enough, and so &#8230;</p>
+<h2>Contextual Validations</h2>
+<p>DataMapper Validations also provide a means of grouping your validations into contexts. This enables you to run different sets of validations under different contexts.  All validations are performed in a context, even the auto-validations.  This context is the <code>:default</code> context.  Unless you specify otherwise, any validations added will be added to the <code>:default</code> context and the <code>valid?</code> method checks all the validations in this context.</p>
+<p>One example might be differing standards for saving a draft version of an article, compared with the full and ready to publish article.  A published article has a title, a body of over 1000 characters, and a sidebar picture.  A draft article just needs a title and some kind of body.  The length and the sidebar picture we can supply later.  There&#8217;s also a <code>published</code> property, which is used as part of queries to select articles for public display.</p>
+<p>To set a context on a validation, we use the <code>:when</code> option.  It might also be desirable to set <code>:auto_validation =&gt; false</code> on the properties concerned, especially if we&#8217;re messing with default validations.</p>
+<div class="CodeRay"><pre><span class="no"> 1</span>   <span class="r">class</span> <span class="cl">Article</span>
+<span class="no"> 2</span>     include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>     property <span class="sy">:id</span>, <span class="co">Serial</span>
+<span class="no"> 5</span>     property <span class="sy">:title</span>, <span class="co">String</span>
+<span class="no"> 6</span>     property <span class="sy">:sidebar_picture_url</span>, <span class="co">String</span>
+<span class="no"> 7</span>     property <span class="sy">:body</span>, <span class="co">Text</span>
+<span class="no"> 8</span>     property <span class="sy">:published</span>, <span class="co">Boolean</span>
+<span class="no"> 9</span> 
+<span class="no"><strong>10</strong></span>     <span class="c"># validations</span>
+<span class="no">11</span>     validates_present <span class="sy">:title</span>, <span class="sy">:when</span> =&gt; [<span class="sy">:draft</span>, <span class="sy">:publish</span>]
+<span class="no">12</span>     validates_present <span class="sy">:sidebar_picture_url</span>, <span class="sy">:when</span> =&gt; [<span class="sy">:publish</span>]
+<span class="no">13</span>     validates_present <span class="sy">:body</span>, <span class="sy">:when</span> =&gt; [<span class="sy">:draft</span>, <span class="sy">:publish</span>]
+<span class="no">14</span>     validates_length <span class="sy">:body</span>, <span class="sy">:minimum</span> =&gt; <span class="i">1000</span>, <span class="sy">:when</span> =&gt; [<span class="sy">:publish</span>]
+<span class="no">15</span>     validates_absent <span class="sy">:published</span>, <span class="sy">:when</span> =&gt; [<span class="sy">:draft</span>]
+<span class="no">16</span>   <span class="r">end</span>
+<span class="no">17</span> 
+<span class="no">18</span>   <span class="c"># and now some results</span>
+<span class="no">19</span>   <span class="iv">@article</span> = <span class="co">Article</span>.new
+<span class="no"><strong>20</strong></span> 
+<span class="no">21</span>   <span class="iv">@article</span>.valid?(<span class="sy">:draft</span>)
+<span class="no">22</span>   <span class="c">#=&gt; false.  We have no title, for a start.</span>
+<span class="no">23</span> 
+<span class="no">24</span>   <span class="iv">@article</span>.valid_for_publish?
+<span class="no">25</span>   <span class="c">#=&gt; false.  We have no title, amongst many other issues.</span>
+<span class="no">26</span>   <span class="c"># valid_for_publish? is provided shorthand for valid?(:publish)</span>
+<span class="no">27</span> 
+<span class="no">28</span>   <span class="c"># now set some properties</span>
+<span class="no">29</span>   <span class="iv">@article</span>.title = <span class="s"><span class="dl">&quot;</span><span class="k">DataMapper is awesome because ...</span><span class="dl">&quot;</span></span>
+<span class="no"><strong>30</strong></span>   <span class="iv">@article</span>.body = <span class="s"><span class="dl">&quot;</span><span class="k">Well, where to begin ...</span><span class="dl">&quot;</span></span>
+<span class="no">31</span> 
+<span class="no">32</span>   <span class="iv">@article</span>.valid?(<span class="sy">:draft</span>)
+<span class="no">33</span>   <span class="c">#=&gt; true.  We have a title, and a little body</span>
+<span class="no">34</span> 
+<span class="no">35</span>   <span class="iv">@article</span>.valid?(<span class="sy">:publish</span>)
+<span class="no">36</span>   <span class="c">#=&gt; false.  Our body isn't long enough yet.</span>
+<span class="no">37</span> 
+<span class="no">38</span>   <span class="c"># save our article in the :draft context</span>
+<span class="no">39</span>   <span class="iv">@article</span>.save(<span class="sy">:draft</span>)
+<span class="no"><strong>40</strong></span>   <span class="c">#=&gt; true</span>
+<span class="no">41</span> 
+<span class="no">42</span>   <span class="c"># set some more properties</span>
+<span class="no">43</span>   <span class="iv">@article</span>.sidebar_picture_url = <span class="s"><span class="dl">&quot;</span><span class="k">http://www.greatpictures.com/flower.jpg</span><span class="dl">&quot;</span></span>
+<span class="no">44</span>   <span class="iv">@article</span>.body = an_essay_about_why_datamapper_rocks
+<span class="no">45</span> 
+<span class="no">46</span>   <span class="iv">@article</span>.valid?(<span class="sy">:draft</span>)
+<span class="no">47</span>   <span class="c">#=&gt; true.  Nothing wrong still</span>
+<span class="no">48</span> 
+<span class="no">49</span>   <span class="iv">@article</span>.valid?(<span class="sy">:publish</span>)
+<span class="no"><strong>50</strong></span>   <span class="c">#=&gt; true.  We have everything we need for a full article to be published!</span>
+<span class="no">51</span> 
+<span class="no">52</span>   <span class="iv">@article</span>.published = <span class="pc">true</span>
+<span class="no">53</span> 
+<span class="no">54</span>   <span class="iv">@article</span>.save(<span class="sy">:draft</span>)
+<span class="no">55</span>   <span class="c">#=&gt; false.  We set the published to true, so we can't save this as a draft.</span>
+<span class="no">56</span>   <span class="c"># As long as our drafting method always saves with the :draft context, we won't ever</span>
+<span class="no">57</span>   <span class="c"># accidentally save a half finished draft that the public will see.</span>
+<span class="no">58</span> 
+<span class="no">59</span>   <span class="iv">@article</span>.save(<span class="sy">:publish</span>)
+<span class="no"><strong>60</strong></span>   <span class="c">#=&gt; true</span>
+<span class="no">61</span>   <span class="c"># we can save it just fine as a published article though.</span>
+</pre></div><p>That was a long example, but it shows how to set up validations in differing contexts and also how to save in a particular context.  <strong>One thing to be careful of when saving in a context is to make sure that any database level constraints, such as a <code>NOT NULL</code> column definition in a database, are checked in that context, or a data-store error may ensue.</strong></p>
+<h2>Setting Properties Before Validation</h2>
+<p>It is sometimes necessary to set properties before a resource is saved or validated.  Perhaps a required property can have a default value set from other properties or derived from the environment.  To set these properties, a <code>before :valid?</code> <a href="/docs/callbacks.html">hook</a> should be used.</p>
+<div class="CodeRay"><pre><span class="no"> 1</span>   <span class="r">class</span> <span class="cl">Article</span>
+<span class="no"> 2</span>     include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>     property <span class="sy">:id</span>, <span class="co">Serial</span>
+<span class="no"> 5</span>     property <span class="sy">:title</span>, <span class="co">String</span>, <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>
+<span class="no"> 6</span>     property <span class="sy">:permalink</span>, <span class="co">String</span>, <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>
+<span class="no"> 7</span> 
+<span class="no"> 8</span>     before <span class="sy">:valid?</span>, <span class="sy">:set_permalink</span>
+<span class="no"> 9</span> 
+<span class="no"><strong>10</strong></span>     <span class="c"># our callback needs to accept the context used in the validation,</span>
+<span class="no">11</span>     <span class="c"># even if it ignores it, as #save calls #valid? with a context.</span>
+<span class="no">12</span>     <span class="r">def</span> <span class="fu">set_permalink</span>(context = <span class="sy">:default</span>)
+<span class="no">13</span>       <span class="pc">self</span>.permalink = title.gsub(<span class="rx"><span class="dl">/</span><span class="ch">\s</span><span class="k">+</span><span class="dl">/</span></span>,<span class="s"><span class="dl">'</span><span class="k">-</span><span class="dl">'</span></span>)
+<span class="no">14</span>     <span class="r">end</span>
+<span class="no">15</span>   <span class="r">end</span>
+</pre></div><p>Be careful not to <code>save</code> your resource in these kinds of methods, or your application will spin off into infinite trying to save your object while saving your object.</p>
+
+      <div id="footer">
+        <p>Copyright Sam Smoot 2009</p>
+        <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-569671-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+
+  </body>
+</html>

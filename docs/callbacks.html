@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+     <title>DataMapper - Hooks (AKA Callbacks)</title>
+     <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+     <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
+     <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
+     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
+  </head>
+
+  <body id="docs">
+    <div id="content">
+      <div id="header">
+        <h1><a href="/">DataMapper</a></h1>
+
+        <ul>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/development">Development</a></li>
+          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+        </ul>
+      </div>
+
+      <h1>Hooks (AKA Callbacks)</h1>
+<p>DataMapper supports callbacks using an <a href="http://en.wikipedia.org/wiki/Aspect_oriented">aspect-oriented approach</a>.  You can define callbacks for any method as well as any class method arbitrarily.</p>
+<h2>Adding Instance-Level Advice</h2>
+<p>To declare advice (callback) for a specific method, first define a new method to be run when another is called, then define your point-cut.</p>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Post</span>
+<span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span>   <span class="c"># ... key and properties here</span>
+<span class="no"> 4</span>   before <span class="sy">:save</span>, <span class="sy">:categorize</span>
+<span class="no"> 5</span> 
+<span class="no"> 6</span>   <span class="r">def</span> <span class="fu">categorize</span>
+<span class="no"> 7</span>     <span class="c"># ... code here</span>
+<span class="no"> 8</span>   <span class="r">end</span>
+<span class="no"> 9</span> <span class="r">end</span>
+</pre></div><p>Alternatively, you can declare the advice during the point-cut by supplying a block rather than a symbol representing a method.</p>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Post</span>
+<span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span>   <span class="c"># ... key and properties here</span>
+<span class="no"> 4</span> 
+<span class="no"> 5</span>   before <span class="sy">:save</span> <span class="r">do</span>
+<span class="no"> 6</span>     <span class="c"># ... code here</span>
+<span class="no"> 7</span>   <span class="r">end</span>
+<span class="no"> 8</span> 
+<span class="no"> 9</span> <span class="r">end</span>
+</pre></div><h2>Adding Class-Level Advice</h2>
+<p>To install advice around a class method, use <code>before_class_method</code> or <code>after_class_method</code>:</p>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Post</span>
+<span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span>   <span class="c"># ... key and properties here</span>
+<span class="no"> 4</span>   before_class_method <span class="sy">:find</span>, <span class="sy">:prepare</span>
+<span class="no"> 5</span> 
+<span class="no"> 6</span>   <span class="r">def</span> <span class="pc">self</span>.prepare
+<span class="no"> 7</span>     <span class="c"># ... code here</span>
+<span class="no"> 8</span>   <span class="r">end</span>
+<span class="no"> 9</span> <span class="r">end</span>
+</pre></div><p>Class level advice does not have access to any resulting instances from the class method, so they might not be the best fit for <code>after_create</code> or <code>after_save</code>.</p>
+<h2>Throw :halt, in the name of love&#8230;</h2>
+<p>In order to abort advice and prevent the advised method from being called, throw <code>:halt</code></p>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Post</span>
+<span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span>   <span class="c"># ... key and properties here</span>
+<span class="no"> 4</span> 
+<span class="no"> 5</span>   <span class="c"># This record will save properly</span>
+<span class="no"> 6</span>   before <span class="sy">:save</span> <span class="r">do</span> |post|
+<span class="no"> 7</span>     <span class="pc">true</span>
+<span class="no"> 8</span>   <span class="r">end</span>
+<span class="no"> 9</span> 
+<span class="no"><strong>10</strong></span>   <span class="c"># But it will not be destroyed</span>
+<span class="no">11</span>   before <span class="sy">:destroy</span> <span class="r">do</span> |post|
+<span class="no">12</span>     throw <span class="sy">:halt</span>
+<span class="no">13</span>   <span class="r">end</span>
+<span class="no">14</span> <span class="r">end</span>
+</pre></div><p>Remember, if you <code>throw :halt</code> inside an <code>after</code> advice, the advised method will have already ran and returned.  Because of this, the <code>after</code> advice will be the only thing halted.</p>
+
+      <div id="footer">
+        <p>Copyright Sam Smoot 2009</p>
+        <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-569671-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+
+  </body>
+</html>

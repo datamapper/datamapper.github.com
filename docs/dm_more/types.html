@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+     <title>DataMapper - DM-Types</title>
+     <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+     <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
+     <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
+     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
+  </head>
+
+  <body id="">
+    <div id="content">
+      <div id="header">
+        <h1><a href="/">DataMapper</a></h1>
+
+        <ul>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/development">Development</a></li>
+          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+        </ul>
+      </div>
+
+      <h1></h1>
+<p>Types are used by DataMapper to map ruby objects into values in the data-store on saving and to translate the values back into ruby objects when a resource is retrieved.  The core library supplies several different types, providing mappings for most of the simple ruby objects as direct values in the data-store as well as the Object type which can store any Marshallable ruby object.</p>
+<p>They&#8217;re intended to make the storage of ruby objects as transparent as possible, no matter what the ruby object is, or which data-store is used as the backend.</p>
+<h2>dm-types</h2>
+<p>In <a href="/docs/dm_more">DM More</a> there is the dm-types gem, which supplies several more types that map less common ruby classes to data-store values or take care of serializing them to text based formats.</p>
+<h3>Enum</h3>
+<p>The Enum type uses an Integer create a property which can take one of a number of symbolic values.  A use for this might be bug status for an issue tracker or the protocol being used in a packet logging application.</p>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Issue</span>
+<span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span>   property <span class="sy">:status</span>, <span class="co">Enum</span>[<span class="sy">:new</span>, <span class="sy">:open</span>, <span class="sy">:closed</span>, <span class="sy">:invalid</span>], <span class="sy">:default</span> =&gt; <span class="sy">:new</span>
+<span class="no"> 4</span>   <span class="c"># other properties ...</span>
+<span class="no"> 5</span> <span class="r">end</span>
+<span class="no"> 6</span> 
+<span class="no"> 7</span> <span class="iv">@i</span> = <span class="co">Issue</span>.new
+<span class="no"> 8</span> <span class="iv">@i</span>.status
+<span class="no"> 9</span> <span class="c">#=&gt; :new</span>
+<span class="no"><strong>10</strong></span> <span class="iv">@i</span>.status = <span class="sy">:open</span>
+<span class="no">11</span> <span class="c">#=&gt; :open</span>
+</pre></div><h3>Flag</h3>
+<p>A Flag is similar to an Enum, though the property that is created can hold multiple symbol values at once.  This could be used for recording which colours a product can be ordered in, or what extra features an account has enabled.</p>
+<div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Widget</span>
+<span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no">3</span>   property <span class="sy">:colours</span>, <span class="co">Flag</span>[<span class="sy">:red</span>, <span class="sy">:green</span>, <span class="sy">:blue</span>, <span class="sy">:heliotrope</span>]
+<span class="no">4</span>   <span class="c"># other properties ...</span>
+<span class="no">5</span> <span class="r">end</span>
+<span class="no">6</span> 
+<span class="no">7</span> <span class="iv">@w</span> = <span class="co">Widget</span>.new
+<span class="no">8</span> <span class="iv">@w</span>.colours = [<span class="sy">:red</span>, <span class="sy">:heliotrope</span>]
+</pre></div><h3>Object Mappings</h3>
+<p>These map objects into simple data-store primitives, then re-initialize as the ruby types</p>
+<dl>
+<dt>EpochTime</dt>
+<dd>A ruby Time object stored in the data-store as an Integer &#8212; the number of seconds since the UNIX epoch.</dd>
+<dt>URI</dt>
+<dd>A ruby URI object, pre-parsed for use of methods such as <code>#params</code> or <code>#uri</code>, stored as a string in the data-store.</dd>
+<dt>FilePath</dt>
+<dd>Stored as a string in the data-store, FilePaths initialize Pathname objects, making it easy to perform various file operations on the file.</dd>
+<dt>Regex</dt>
+<dd>A ruby regex, stored as a string.</dd>
+<dt>IPAddress</dt>
+<dd>Ruby IPAddr, stored as the string representation.</dd>
+<dt>BCryptHash</dt>
+<dd>Stored in the data-store as string representing the salt, hash and cost of a password using OpenBSD&#8217;s bcrypt algorithm, it offers an alternative to the more usual pair of hash and salt columns.</dd>
+</dl>
+<h3>Serializers</h3>
+<p>These store values in the data-store using text based serialization formats.  They work via calling dumping the object to the format on saving and parsing the text to reinitialize them on loading.</p>
+<ul>
+	<li>Csv</li>
+	<li>Json</li>
+	<li>Yaml</li>
+</ul>
+<h2>Writing Your Own</h2>
+<p>Writing your own custom type isn&#8217;t difficult.  There are two (or perhaps three) methods to implement, as well as the selection of an appropriate primitive.  All types are a class which should descend from <code>DataMapper::Type</code>.</p>
+<h3>The Primitive</h3>
+<p>DataMapper offers several choices for a data-store primitive.</p>
+<ul>
+	<li>Integer</li>
+	<li>Float</li>
+	<li>String</li>
+	<li>Date</li>
+	<li>DateTime</li>
+</ul>
+<p>To assign a primitive to a type, either make the type descend from <code>DataMapper::Type(PrimitiveClass)</code> or within the class definition, use <code>primitive PrimitiveClass</code>.</p>
+<h3>dump</h3>
+<p>A type&#8217;s <code>self.dump(value, property)</code> method is called when the object is saved to the data-store.  It is responsible for mapping whatever is assigned to the property on to the primitive type.  For example, the EpochTime Type saves an integer directly to the data-store, or calls <code>to_i()</code> if a Time object is passed to it.</p>
+<h3>load</h3>
+<p>The <code>self.load(value, property)</code> method is called when the property is retrieved from the data-store.  It takes the primitive value and initializes a ruby object from it.  For example, the Json type performs <code>JSON.parse(value)</code> to convert the json string back into appropriate ruby.</p>
+<h3>typecast</h3>
+<p>Typecasting is provided by the types <code>self.typecast(value, property)</code> method, which tries to coerce whatever value the property has into an appropriate type.  A type doesn&#8217;t have to provide a typecast but it can be useful, for example to allow the string &#8216;2008-09-06&#8217; to be converted to a ruby Date without having to reload the model.</p>
+<h3>Examples</h3>
+<p>For examples of the types, the best place to look is <a href="http://github.com/sam/dm-more/tree/master/dm-types">dm-types</a> on github.</p>
+
+      <div id="footer">
+        <p>Copyright Sam Smoot 2009</p>
+        <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-569671-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+     <title>DataMapper - DM More</title>
+     <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+     <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
+     <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
+     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
+  </head>
+
+  <body id="">
+    <div id="content">
+      <div id="header">
+        <h1><a href="/">DataMapper</a></h1>
+
+        <ul>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/development">Development</a></li>
+          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+        </ul>
+      </div>
+
+      <h1>DM More</h1>
+<p>DataMapper is intended to have a lean and minimalistic core, which provides the minimum necessary features for an ORM.  It&#8217;s also designed to be easily extensible, so that everything you want in an ORM can be added in with a minimum of fuss.  It does this through plugins, which provide everything from automatically updated timestamps to factories for generating DataMapper resources.  The biggest collection of these plugins is in dm-more, which isn&#8217;t to say that there&#8217;s anything wrong with plugins which aren&#8217;t included in dm-more &#8212; it will never house all the possible plugins.</p>
+<p>This page gives an overview of the plugins available in dm-more, loosely categorized by what type of plugin they are.</p>
+<h2>Resource Plugins</h2>
+<p>These plugins modify the behavior of all resources in an application, adding new functionality to them, or providing easier ways of doing things.</p>
+<h3><a href="/docs/validations.html">DM-Validations</a></h3>
+<p>This provides validations for resources.  The plugin both defines automatic validations based on the properties specified and also allows assignment of manual validations.  It also supports contextual validation, allowing a resource to be considered valid for some purposes but not others.</p>
+<h3><a href="/docs/dm_more/timestamps.html">DM-Timestamps</a></h3>
+<p>This defines callbacks on the common timestamp properties, making them auto-update when the models are created or updated.  The targeted properties are <code>:created_at</code> and <code>:updated_at</code> for DateTime properties and <code>:created_on</code> and <code>:updated_on</code> for Date properties.</p>
+<h3><a href="/docs/dm_more/dm-aggregates.html">DM-Aggregates</a></h3>
+<p>This provides methods for database calls to aggregate functions such as <code>count</code>, <code>sum</code>, <code>avg</code>, <code>max</code> and <code>min</code>.  These aggregate functions are added to both collections and Models.</p>
+<h3><a href="/docs/dm_more/types.html">DM-Types</a></h3>
+<p>This provides several more allowable property types. <code>Enum</code> and <code>Flag</code> allow a field to take a few set values.  <code>URI</code>, <code>FilePath</code>, <code>Regexp</code>, <code>EpochTime</code> and <code>BCryptHash</code> save database representations of the classes, restoring them on retrieval. <code>Csv</code>, <code>Json</code> and <code>Yaml</code> store data in the field in the serial formats and de-serialize them on retrieval.</p>
+<h3>DM-Serializer</h3>
+<p>This provides &#8216;<code>to_*</code>&#8217; methods which take a resource and convert it to a serial format to be restored later.  Currently the plugin provides <code>to_xml</code>, <code>to_yaml</code> and <code>to_json</code></p>
+<h3>DM-Constraints</h3>
+<p>This plugin provides foreign key constrains on has n relationships for Postgres and MySQL adapters.</p>
+<h3>DM-Adjust</h3>
+<p>This plugin allows properties on resources, collections and models to incremented or decremented by a fixed amount.</p>
+<h2>is Plugins</h2>
+<p>These plugins make new functionality available to models, which can be accessed via the <code>is</code> method, for example <code>is :list</code>.  These make the models behave in new ways.</p>
+<h3>DM-Is-List</h3>
+<p>The model acts as an item on a list.  It has a position, and there are methods defined for moving it up or down the list based on this position.  The position can also be scoped, for example on a user id.</p>
+<h3>DM-Is-Tree</h3>
+<p>The model acts as a node of a tree.  It gains methods for querying parents and children as well as all the nodes of the current generation, the trail of ancestors to the root node and the root node itself.</p>
+<h3>DM-Is-Nested_Set</h3>
+<p>The model acts as an item in a &#8216;nested set&#8217;.  This might be used for some kind of categorization system, or for threaded conversations on a forum.  The advantage this has over a tree is that is easy to fetch all the descendants or ancestors of a particular set in one query, not just the next generation.  Added to a nested set is more complex under the hood, but the plugin takes care of this for you.</p>
+<h3>DM-Is-Versioned</h3>
+<p>The model is versioned.  When it is updated, instead of the previous version being lost in the mists of time, it is saved in a subsidiary table, so that it can be restored later if needed.</p>
+<h3>DM-Is-State_Machine</h3>
+<p>The model acts as a state machine.  Instead of a column being allowed to take any value, it is used to track the state of the machine, which is updated through events that cause transitions.  For example, this might step a model through a sign-up process, or some other complex task.</p>
+<h3>DM-Is-Remixable</h3>
+<p>The model becomes &#8216;remixable&#8217;.  It can then be included (or remixed) in other models, which defines a new table to hold the remixed model and can have other properties or methods defined on it.  It&#8217;s something like class table inheritance for relationships :)</p>
+<h2>Adapters</h2>
+<p>These plugins provide new adapters for different storage schemes, allowing them to be used to store resources, instead of the more conventional relational database store.</p>
+<h3>DM-CouchDB-Adapter</h3>
+<p>An adapter for the JSON based document database <a href="http://incubator.apache.org/couchdb/">couch-db</a>.  The adaptor has support for both defining models backed by a couch-db store and also for couch-db views.</p>
+<h3>DM-Rest-Adapter</h3>
+<p>An adapter for a XML based REST-backed storage scheme.  All the usual DataMapper operations are performed as HTTP GETs, POSTs, UPDATEs and DELETEs, operating on the URIs of the resources.</p>
+<h2>Integration Plugins</h2>
+<p>These plugins are designed to ease integration with other libraries, currently just web frameworks.</p>
+<h3>merb_datamapper</h3>
+<p>Integration with the <a href="http://www.merbivore.com/">merb</a> web framework. The plugin takes care of setting up the DataMapper connection when the framework starts, provides several useful rake tasks as well as generators for Models, ResourceControllers and Migrations.</p>
+<h3>rails_datamapper</h3>
+<p>Integration with <a href="http://www.rubyonrails.org/">Rails</a>.  It provides a Model generator and also takes care of connecting to the data-store through DataMapper.</p>
+<h2>Utility Plugins</h2>
+<p>These provide useful functionality, though are unlikely to be used by every project or assist more with development than production use.</p>
+<h3>DM-Sweatshop</h3>
+<p>A model factory for DataMapper, supporting the creation of random models for specing or to fill an application for development.  Properties can be picked at random or made to conform to a variety of regular expressions.  dm-sweatshop also understands has n relationships and can assign a random selection of child models to a parent.</p>
+<h3>DM-Migrations</h3>
+<p>Migrations for DataMapper, allowing modification of the database schema with more control than <code>auto_migrate!</code> and <code>auto_upgrade!</code>.  Migrations can be written to create, modify and drop tables and columns.  In addition, the plugin provides support for specing migrations and verifying they perform as intended.</p>
+<h3>DM-Shorthand</h3>
+<p>This plugin eases operations involving models across multiple repositories, allowing wrapping in a <code>repository(:foo)</code> block to be replaced with a <code>MyModel(:foo).some_method</code> call.</p>
+<h3>DM-Observer</h3>
+<p>Observers watch other classes, doing things when certain operations are performed on the remote class.  This can be anything, but they are commonly used for writing logs or notifying via email or xmpp when a critical operation has occurred.</p>
+<h3>DM-CLI</h3>
+<p>The <code>dm</code> executable is a DataMapper optimized version of <code>irb</code>.  It automatically connections to a data-store based on the arguments passed to it and supports easy loading of DataMapper plugins, models from a directory as well as reading connection information from a YAML configuration file.</p>
+<h3>DM-Querizer</h3>
+<p>This provides alternate syntax for queries, replacing the hash which DataMapper uses with a more &#8216;ruby-ish&#8217; use of <code>&amp;&amp;</code>, <code>==</code> and <code>=~</code>.</p>
+<h3>DM-Ar_Finders</h3>
+<p>ActiveRecord style syntax for DataMapper.  This includes functionality such as <code>find_by_name</code>, <code>find_or_create</code> and <code>find_all_by_title</code>.</p>
+
+      <div id="footer">
+        <p>Copyright Sam Smoot 2009</p>
+        <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-569671-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+
+  </body>
+</html>

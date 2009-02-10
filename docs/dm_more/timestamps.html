@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+     <title>DataMapper - DM-Timestamps</title>
+     <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+     <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
+     <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
+     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
+  </head>
+
+  <body id="">
+    <div id="content">
+      <div id="header">
+        <h1><a href="/">DataMapper</a></h1>
+
+        <ul>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/development">Development</a></li>
+          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+        </ul>
+      </div>
+
+      <h1>DM-Timestamps</h1>
+<p>DM-Timestamps provides automatic updates of <code>created_at</code> or <code>created_on</code> and <code>updated_at</code> or <code>updated_on</code> properties for your resources.  To use it, simply <code>require 'dm-timestamps'</code> and assign one or all of these properties to your Resource.</p>
+<p>Here&#8217;s some basic usage.</p>
+<div class="CodeRay"><pre><span class="no"> 1</span> require <span class="s"><span class="dl">'</span><span class="k">rubygems</span><span class="dl">'</span></span>
+<span class="no"> 2</span> require <span class="s"><span class="dl">'</span><span class="k">dm-core</span><span class="dl">'</span></span>
+<span class="no"> 3</span> require <span class="s"><span class="dl">'</span><span class="k">dm-timestamps</span><span class="dl">'</span></span>
+<span class="no"> 4</span> 
+<span class="no"> 5</span> <span class="co">DataMapper</span>.setup(<span class="sy">:default</span>, <span class="s"><span class="dl">'</span><span class="k">sqlite3::memory:</span><span class="dl">'</span></span>)
+<span class="no"> 6</span> 
+<span class="no"> 7</span> <span class="r">class</span> <span class="cl">Post</span>
+<span class="no"> 8</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 9</span>   property <span class="sy">:id</span>, <span class="co">Serial</span>
+<span class="no"><strong>10</strong></span>   property <span class="sy">:title</span>, <span class="co">String</span>, <span class="sy">:length</span> =&gt; <span class="i">255</span>
+<span class="no">11</span> 
+<span class="no">12</span>   property <span class="sy">:created_at</span>, <span class="co">DateTime</span>
+<span class="no">13</span>   property <span class="sy">:created_on</span>, <span class="co">Date</span>
+<span class="no">14</span> 
+<span class="no">15</span>   property <span class="sy">:updated_at</span>, <span class="co">DateTime</span>
+<span class="no">16</span>   property <span class="sy">:updated_on</span>, <span class="co">Date</span>
+<span class="no">17</span> <span class="r">end</span>
+</pre></div><p>If you&#8217;re familiar with the &#8216;magic&#8217; properties from ActiveRecord, this is very similar.  When your model is initially saved, DM-Timestamps will update that object&#8217;s <code>created_at</code> and/or <code>created_on</code> fields with the time of creation.  When the object is edited and then saved out to the data-store, DM-Timestamps will update the <code>updated_at</code> and <code>updated_on</code> fields with the time of update.</p>
+
+      <div id="footer">
+        <p>Copyright Sam Smoot 2009</p>
+        <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-569671-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+     <title>DataMapper - Associations</title>
+     <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+     <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
+     <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
+     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
+  </head>
+
+  <body id="docs">
+    <div id="content">
+      <div id="header">
+        <h1><a href="/">DataMapper</a></h1>
+
+        <ul>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/development">Development</a></li>
+          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+        </ul>
+      </div>
+
+      <h1>Associations</h1>
+<p>Associations are a way of declaring relationships between models, for example a blog Post &#8220;has many&#8221; Comments, or a Post belongs to an Author. They add a series of methods to your models which allow you to create relationships and retrieve related models along with a few other useful features. Which records are related to which are determined by their foreign keys.</p>
+<p>The types of associations currently in DataMapper are:</p>
+<table summary="Associations">
+<thead>
+<tr>
+      <td>ActiveRecord Terminology</td>
+      <td>DataMapper 0.9 Terminology</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+      <td>has_many</td>
+      <td>has n</td>
+</tr>
+<tr>
+      <td>has_one</td>
+      <td>has 1</td>
+</tr>
+<tr>
+      <td>belongs_to</td>
+      <td>belongs_to, many_to_one</td>
+</tr>
+<tr>
+      <td>has_and_belongs_to_many</td>
+      <td>has n, :things, :through =&gt; Resource</td>
+</tr>
+<tr>
+      <td>has_many :association, :through =&gt; Model</td>
+      <td>has n, :things, :through =&gt; :model</td>
+</tr>
+</tbody>
+</table>
+<h2>Declaring Associations</h2>
+<p>This is done via declarations inside your model class. The class name of the related model is determined by the symbol you pass in. For illustration, we&#8217;ll add an association of each type. Pay attention to the pluralization or the related model&#8217;s name.</p>
+<h3>has n and belongs_to (or One-To-Many)</h3>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Post</span>
+<span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   has n, <span class="sy">:comments</span>
+<span class="no"> 5</span> <span class="r">end</span>
+<span class="no"> 6</span> 
+<span class="no"> 7</span> <span class="r">class</span> <span class="cl">Comment</span>
+<span class="no"> 8</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 9</span> 
+<span class="no"><strong>10</strong></span>   belongs_to <span class="sy">:post</span>
+<span class="no">11</span> <span class="r">end</span>
+<span class="no">12</span> 
+</pre></div><h3>has n, :through (or One-To-Many-Through)</h3>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Photo</span>
+<span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   has n, <span class="sy">:taggings</span>
+<span class="no"> 5</span>   has n, <span class="sy">:tags</span>, <span class="sy">:through</span> =&gt; <span class="sy">:taggings</span>
+<span class="no"> 6</span> <span class="r">end</span>
+<span class="no"> 7</span> 
+<span class="no"> 8</span> <span class="r">class</span> <span class="cl">Tag</span>
+<span class="no"> 9</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"><strong>10</strong></span> 
+<span class="no">11</span>   has n, <span class="sy">:taggings</span>
+<span class="no">12</span>   has n, <span class="sy">:photos</span>, <span class="sy">:through</span> =&gt; <span class="sy">:taggings</span>
+<span class="no">13</span> <span class="r">end</span>
+<span class="no">14</span> 
+<span class="no">15</span> <span class="r">class</span> <span class="cl">Tagging</span>
+<span class="no">16</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no">17</span> 
+<span class="no">18</span>   belongs_to <span class="sy">:tag</span>
+<span class="no">19</span>   belongs_to <span class="sy">:photo</span>
+<span class="no"><strong>20</strong></span> <span class="r">end</span>
+<span class="no">21</span> 
+</pre></div><h3>Has, and belongs to, many (Or Many-To-Many)</h3>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Article</span>
+<span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   has n, <span class="sy">:categories</span>, <span class="sy">:through</span> =&gt; <span class="co">Resource</span>
+<span class="no"> 5</span> <span class="r">end</span>
+<span class="no"> 6</span> 
+<span class="no"> 7</span> <span class="r">class</span> <span class="cl">Category</span>
+<span class="no"> 8</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 9</span> 
+<span class="no"><strong>10</strong></span>   has n, <span class="sy">:articles</span>, <span class="sy">:through</span> =&gt; <span class="co">Resource</span>
+<span class="no">11</span> <span class="r">end</span>
+<span class="no">12</span> 
+</pre></div><p>The use of Resource in place of a class name tells DataMapper to use an anonymous resource to link the two models up.</p>
+<h2>Adding To Associations</h2>
+<p>Adding to associations, to add a comment to a post for example, is quite simple.<br />
+<code>build</code> or <code>create</code> can be called directly on the association, or an already<br />
+existing item can be appended to the association with <code>&lt;&lt;</code> and then the item<br />
+saved.</p>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="c"># Assume we set up comments and posts as before, as actual models.</span>
+<span class="no"> 2</span> 
+<span class="no"> 3</span> <span class="c"># find a post to add a comment to</span>
+<span class="no"> 4</span> <span class="iv">@post</span> = <span class="co">Post</span>.get(<span class="i">1</span>)
+<span class="no"> 5</span> 
+<span class="no"> 6</span> <span class="c"># Add the comment</span>
+<span class="no"> 7</span> <span class="c"># (also #create can be used - it acts as Comment.create would)</span>
+<span class="no"> 8</span> <span class="iv">@comment</span> = <span class="iv">@post</span>.comments.build(<span class="sy">:subject</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">DataMapper ...</span><span class="dl">'</span></span>, ...)
+<span class="no"> 9</span> 
+<span class="no"><strong>10</strong></span> <span class="c"># and save it</span>
+<span class="no">11</span> <span class="iv">@comment</span>.save
+<span class="no">12</span> 
+<span class="no">13</span> 
+<span class="no">14</span> <span class="c"># Or if we already have a comment ...</span>
+<span class="no">15</span> 
+<span class="no">16</span> <span class="c"># append it to the comments</span>
+<span class="no">17</span> <span class="iv">@post</span>.comments &lt;&lt; <span class="iv">@comment</span>
+<span class="no">18</span> 
+<span class="no">19</span> <span class="c"># and save.</span>
+<span class="no"><strong>20</strong></span> <span class="iv">@post</span>.save
+</pre></div><h2>Customizing Associations</h2>
+<p>The association declarations make certain assumptions about which classes are being related and the names of foreign keys based on some simple conventions. In some situations you may need to tweak them a little. The association declarations accept additional options to allow you to customize them as you need</p>
+<div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
+<span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no">3</span>   belongs_to <span class="sy">:author</span>, <span class="sy">:class_name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">User</span><span class="dl">'</span></span>, <span class="sy">:child_key</span> =&gt; [<span class="sy">:post_id</span>]
+<span class="no">4</span> <span class="r">end</span>
+</pre></div><h2>Adding Conditions to Associations</h2>
+<p>If you want to order the association, or supply a scope, you can just pass in the options&#8230;</p>
+<div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
+<span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no">3</span> 
+<span class="no">4</span>   has n, <span class="sy">:comments</span>, <span class="sy">:order</span> =&gt; [<span class="sy">:published_on</span>.desc], <span class="sy">:rating</span>.gte =&gt; <span class="i">5</span>
+<span class="no">5</span>   <span class="c"># post#comments will now be ordered by published_on, and filtered by rating &gt; 5.</span>
+<span class="no">6</span> <span class="r">end</span>
+</pre></div><h2>Finders off Associations</h2>
+<p>When you call an association off of a model, internally DataMapper creates a Query object which it then executes when you start iterating or call <code>length</code> off of. But if you instead call <code>.all</code> or <code>.first</code> off of the association and provide it the exact same arguments as a regular <code>all</code> and <code>first</code>, it merges the new query with the query from the association and hands you back a requested subset of the association&#8217;s query results.</p>
+<p>In a way, it acts like a database view in that respect.</p>
+<div class="CodeRay"><pre><span class="no">1</span> <span class="iv">@post</span> = <span class="co">Post</span>.first
+<span class="no">2</span> <span class="iv">@post</span>.categories <span class="c"># returns the full association</span>
+<span class="no">3</span> <span class="iv">@post</span>.categories.all(<span class="sy">:limit</span> =&gt; <span class="i">10</span>, <span class="sy">:order</span> =&gt; [<span class="sy">:name</span>.asc]) <span class="c"># return the first 10 categories ordered by name</span>
+<span class="no">4</span> <span class="iv">@post</span>.categories(<span class="sy">:limit</span> =&gt; <span class="i">10</span>, <span class="sy">:order</span> =&gt; [<span class="sy">:name</span>.asc]) <span class="c"># alias for #all, you can pass in the options directly</span>
+</pre></div>
+
+      <div id="footer">
+        <p>Copyright Sam Smoot 2009</p>
+        <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-569671-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+
+  </body>
+</html>
