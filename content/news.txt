@@ -1,4 +1,4 @@
---- 
+---
 body_id: news
 title: DataMapper News and Notes
 filter:
@@ -9,9 +9,9 @@ filter:
 h1. <%= @page.title %>
 
 <dl>
-<% 
+<%
   articles = @pages.find(:limit => :all, :in_directory => 'articles') {|a| a.release_type != 'draft'}.sort{|a, b| b.created_at <=> a.created_at}
-  
+
    paginate(articles, 20) do |page|
 %>
 
@@ -25,6 +25,6 @@ h1. <%= @page.title %>
 </dl>
 
 <p>
-  <%= link_to("Prev", @pager.prev) if @pager.prev? %> 
+  <%= link_to("Prev", @pager.prev) if @pager.prev? %>
   <%= link_to("Next", @pager.next) if @pager.next? %>
 </p>

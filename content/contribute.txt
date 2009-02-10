@@ -1,13 +1,13 @@
---- 
+---
 title: Contribute to DataMapper
 created_at: Wed Aug 29 20:37:00 +0930 2007
 filter:
   - erb
   - textile
---- 
+---
 h1. <%= @page.title %>
 
-DataMapper is always looking for more contributers.  When you've got an itch to scratch, jump in and contribute!  Write a few specs showing us how your code works, create a patch and "submit it":http://wm.lighthouseapp.com/projects/4819-datamapper/overview as a new ticket or a fix for an existing one.  After a few patches and many thanks, you'll get commit access.  
+DataMapper is always looking for more contributers.  When you've got an itch to scratch, jump in and contribute!  Write a few specs showing us how your code works, create a patch and "submit it":http://wm.lighthouseapp.com/projects/4819-datamapper/overview as a new ticket or a fix for an existing one.  After a few patches and many thanks, you'll get commit access.
 
 We benchmark all but the most trivial of patches, because we care about performance and you should too!
 
@@ -37,4 +37,3 @@ When contributing any code to DataMapper, please follow these guidelines.
 # Parentheses around parameter lists for methods
 # Two space indent - not tabs!
 # Documentation is required (use the "YARD documentation style":http://github.com/lsegal/yard/tree/master)
-

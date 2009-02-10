@@ -126,6 +126,3 @@ This provides alternate syntax for queries, replacing the hash which DataMapper 
 h3. DM-Ar_Finders
 
 ActiveRecord style syntax for DataMapper.  This includes functionality such as @find_by_name@, @find_or_create@ and @find_all_by_title@.
-
-
-

@@ -1,13 +1,13 @@
---- 
+---
 title:      DataMapper's Community
 created_at: Sun Mar 16 23:55:11 -0500 2008
 filter:
   - erb
   - textile
---- 
+---
 h1. <%= @page.title %>
 
-Like all open-source projects, DataMapper has a burgeoning community.  
+Like all open-source projects, DataMapper has a burgeoning community.
 
 h2. Links, Blogs, Wiki's, and Stuff
 
@@ -28,7 +28,7 @@ h2. Links, Blogs, Wiki's, and Stuff
   <dd>Official Bug Tracking System</dd>
   <dt><a href="http://www.twitter.com/datamapper">Twitter</a></dt>
   <dd>Official Twitter Feed</dd>
-</dl> 
+</dl>
 
 
 h2. The People Behind DataMapper

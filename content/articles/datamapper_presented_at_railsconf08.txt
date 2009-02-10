@@ -1,4 +1,4 @@
---- 
+---
 body_id:      news
 title:        DataMapper Presented at RailsConf 2008
 created_at:   2008-06-10T12:30:16-05:00

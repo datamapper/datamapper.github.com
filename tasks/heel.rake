@@ -5,7 +5,7 @@ namespace :heel do
   task :start do
     sh "heel --root #{SITE.output_dir} --port #{SITE.heel_port} --daemonize"
   end
-  
+
   desc 'Stop the heel server'
   task :stop do
     sh "heel --kill"

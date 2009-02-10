@@ -1,9 +1,9 @@
---- 
+---
 title:      Using Git
 created_at: Mon Feb 18 16:18:12 -0600 2008
 filter:
   - erb
---- 
+---
 <h2><%= @page.title %></h2>
 <p>The DataMapper project uses the Git <span class="caps">SCM</span>. Committers need to use git to commit their code directly to the main repository.</p>
 
@@ -36,16 +36,16 @@ git config  --global user.email "my@email"</code></pre>
 
 <ul>
 <li>A hard wrap at 72 characters</li>
-	<li>A single, short, summary of the commit</li>
-	<li>Followed by a single blank line</li>
-	<li>Followed by supporting details</li>
+ <li>A single, short, summary of the commit</li>
+ <li>Followed by a single blank line</li>
+ <li>Followed by supporting details</li>
 </ul>
 
 <p>The supporting details could be a bulleted enumeration or an explanatory paragraph. The single summary line helps folks reviewing commits. An example commit:</p>
 
 <% coderay(:lang => "bash") do -%>
 Fixes for Module#make_my_day return values.
-  
+
 * Return nil when passed ':('
 * Return true when passed ':)'
 * Updated specs for #make_my_day for nil argument case

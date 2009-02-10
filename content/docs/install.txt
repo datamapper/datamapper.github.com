@@ -1,11 +1,11 @@
---- 
+---
 title:      Installation Issues
 body_id:    docs
 created_at: Tue Dec 04 13:20:00 +1030 2007
 filter:
   - erb
   - textile
---- 
+---
 
 h1. <%= @page.title %>
 

@@ -1,11 +1,11 @@
---- 
+---
 title:      Documentation
 body_id:    docs
 created_at: Fri Nov 30 15:29:01 +1030 2007
 filter:
   - erb
   - textile
---- 
+---
 
 h1. <%= @page.title %>
 
@@ -38,7 +38,7 @@ h1. <%= @page.title %>
 
 h1. Documentarians Wanted!
 
-Want to help DataMapper, but don't know where to start?  A great way to contribute is to help out in the documentation effort.  
+Want to help DataMapper, but don't know where to start?  A great way to contribute is to help out in the documentation effort.
 
 h2. Documentation Style
 
@@ -67,4 +67,3 @@ def self.setup(name, uri_or_options)
 <% end %>
 
 For more information about the YARD documentation style, see "lsegal's YARD repo on github.com":http://github.com/lsegal/yard/tree/master.
-

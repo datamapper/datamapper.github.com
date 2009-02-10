@@ -56,7 +56,7 @@ Both @sum@, and @avg@ work very similarly to @min@ and @max@.
 <% coderay(:lang => "ruby") do -%>
   Dragon.sum(:toes_on_claw)
   Dragon.sum(:toes_on_claw, :is_fire_breathing => true)
-  
+
   Dragon.avg(:toes_on_claw)
   Dragon.avg(:toes_on_claw, :is_fire_breathing => true)
 <% end %>
@@ -66,27 +66,13 @@ h3. Aggregate
 The @aggregate@ method will let you combine all of the other aggregating methods together to retrieve in one call to the data-store.  DM-Aggregates adds in a few extra symbol operators in order to enable this.
 
 <% coderay(:lang => "ruby") do -%>
-  Dragon.aggregate(:all.count, :name.count, :toes_on_claw.min, 
-    :toes_on_claw.max, :toes_on_claw.avg, :toes_on_claw.sum, 
-    :is_fire_breathing) 
-  # [ 
-  #   [ 1, 1, 3, 3, 3.0, 3, false ], 
-  #   [ 2, 1, 4, 5, 4.5, 9, true ] 
+  Dragon.aggregate(:all.count, :name.count, :toes_on_claw.min,
+    :toes_on_claw.max, :toes_on_claw.avg, :toes_on_claw.sum,
+    :is_fire_breathing)
+  # [
+  #   [ 1, 1, 3, 3, 3.0, 3, false ],
+  #   [ 2, 1, 4, 5, 4.5, 9, true ]
   # ]
 <% end %>
 
 This will compile all of the aggregating queries together and return them in an array of arrays.
-
-
-
-
-
-
-
-
-
-
-
-
-
-

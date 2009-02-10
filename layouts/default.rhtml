@@ -1,7 +1,7 @@
---- 
+---
 extension: html
 filter:    erb
---- 
+---
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
@@ -15,12 +15,12 @@ filter:    erb
      <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
      <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
   </head>
-  
+
   <body id="<%= @page.body_id %>">
     <div id="content">
       <div id="header">
         <h1><a href="/">DataMapper</a></h1>
-        
+
         <ul>
           <li><a href="/community.html">Community</a></li>
           <li><a href="/docs">Documentation</a></li>
@@ -29,9 +29,9 @@ filter:    erb
           <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
         </ul>
       </div>
-      
+
       <%= @content %>
-      
+
       <div id="footer">
         <p>Copyright Sam Smoot <%= Time.now.year %></p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>

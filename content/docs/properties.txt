@@ -1,11 +1,11 @@
---- 
+---
 title:      Properties
 body_id:    docs
 created_at: Tue Dec 04 13:27:16 +1030 2007
 filter:
   - erb
   - textile
---- 
+---
 
 h1. <%= @page.title %>
 
@@ -22,7 +22,7 @@ h2. Declaring Properties
 Inside your class, call the property method for each property you want to add. The only two required arguments are the name and type, everything else is optional.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post 
+class Post
   include DataMapper::Resource
   property :id,         Serial                         # primary serial key
   property :title,      String,     :nullable => false # Cannot be null
@@ -79,7 +79,7 @@ class Image
 end
 <% end %>
 
-When creating the resource, or the first time the @md5sum@ property is accessed, it will be set to the hex digest of the file referred to by @path@.  
+When creating the resource, or the first time the @md5sum@ property is accessed, it will be set to the hex digest of the file referred to by @path@.
 
 *Fair Warning*: A property default must _not_ refer to the value of the property it is about to set, or there will be an infinite loop.
 
@@ -146,7 +146,7 @@ h2. Limiting Access
 Access for properties is defined using the same semantics as Ruby. Accessors are public by default, but you can declare them as private or protected if you need to. You can set access using the @:accessor@ option.  For demonstration, we'll reopen our Post class.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post 
+class Post
   property :title,  :string, :accessor => :private   # Both reader and writer are private
   property :body,   :text,   :accessor => :protected # Both reader and writer are protected
 end
@@ -177,4 +177,3 @@ class Post
   end
 end
 <% end %>
-

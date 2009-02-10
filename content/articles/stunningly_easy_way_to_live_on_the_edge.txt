@@ -1,4 +1,4 @@
---- 
+---
 body_id: 		news
 title: 			The Stunningly Easy Way to Live On The Edge Of DataMapper
 created_at: 	2008-05-07T19:04:34-05:00
@@ -12,7 +12,7 @@ filter:
 
 h1. <%= @page.title %>
 
-DataMapper is organized into sub-projects, much like "Merb":http://www.merbivore.com, and that tends to confuse even the people working on it....until recently.  Michael Ivey, an active contributer to the Merb project, and our very own Dan Kubb have collaborated on a set of Sake tasks to help automate and streamline checking out, packaging, installing, uninstalling, updating, repackaging, and reinstalling the DataMapper and Merb projects.  
+DataMapper is organized into sub-projects, much like "Merb":http://www.merbivore.com, and that tends to confuse even the people working on it....until recently.  Michael Ivey, an active contributer to the Merb project, and our very own Dan Kubb have collaborated on a set of Sake tasks to help automate and streamline checking out, packaging, installing, uninstalling, updating, repackaging, and reinstalling the DataMapper and Merb projects.
 
 If you like to live life on the edge, this is the happiest way to do it.
 
@@ -37,7 +37,7 @@ Next, you'll need @git@.  It's the source code management tool DataMapper uses. 
 * "Git On Windows":http://ropiku.wordpress.com/2007/12/28/git-on-windows/
 * "Installing Git on Ubuntu":http://chrisolsen.org/2008/03/10/installing-git-on-ubuntu/
 
-After that, you'll need to @gem uninstall@ any of the "dm-*" projects you already have installed.  This includes 'data_objects' and its associated adapters.  
+After that, you'll need to @gem uninstall@ any of the "dm-*" projects you already have installed.  This includes 'data_objects' and its associated adapters.
 
 Next, you'll need a few of the base dependencies.  To install them, run
 
@@ -54,7 +54,7 @@ cd ~/src
 
 h3. Step 1 - Have Some Sake
 
-No, not the wonderful alcoholic beverage, the "system-wide rake tasks library":http://errtheblog.com/posts/60-sake-bomb by "PJ Hyett and Chris Wanstrath of Err. The Blog":http://errtheblog.com/.  Ivey's and dkubb's automated installation and reinstallation scripts are written as sake tasks, so you'll need it installed on your machine. 
+No, not the wonderful alcoholic beverage, the "system-wide rake tasks library":http://errtheblog.com/posts/60-sake-bomb by "PJ Hyett and Chris Wanstrath of Err. The Blog":http://errtheblog.com/.  Ivey's and dkubb's automated installation and reinstallation scripts are written as sake tasks, so you'll need it installed on your machine.
 
 <% coderay(:lang => "bash", :line_numbers => "inline") do -%>
 sudo gem install sake
@@ -119,5 +119,3 @@ sake dm:gems:refresh
 It will uninstall your local gems, pull down fresh changes from github, and reinstall the gems again.
 
 On a side note, checkout "http://merbivore.com/merb-dev.sake":http://merbivore.com/merb-dev.sake for the original merb related sake tasks by Michael Ivey wrote that these came from.
-
-

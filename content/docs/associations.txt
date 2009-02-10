@@ -1,11 +1,11 @@
---- 
+---
 title:      Associations
 body_id:    docs
 created_at: Tue Dec 04 14:46:32 +1030 2007
 filter:
   - erb
   - textile
---- 
+---
 
 h1. <%= @page.title %>
 
@@ -53,7 +53,7 @@ h3. has n and belongs_to (or One-To-Many)
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
-  
+
   has n, :comments
 end
 
@@ -158,15 +158,15 @@ If you want to order the association, or supply a scope, you can just pass in th
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
-  
-  has n, :comments, :order => [:published_on.desc], :rating.gte => 5 
+
+  has n, :comments, :order => [:published_on.desc], :rating.gte => 5
   # post#comments will now be ordered by published_on, and filtered by rating > 5.
 end
 <% end %>
 
 h2. Finders off Associations
 
-When you call an association off of a model, internally DataMapper creates a Query object which it then executes when you start iterating or call @length@ off of. But if you instead call @.all@ or @.first@ off of the association and provide it the exact same arguments as a regular @all@ and @first@, it merges the new query with the query from the association and hands you back a requested subset of the association's query results.  
+When you call an association off of a model, internally DataMapper creates a Query object which it then executes when you start iterating or call @length@ off of. But if you instead call @.all@ or @.first@ off of the association and provide it the exact same arguments as a regular @all@ and @first@, it merges the new query with the query from the association and hands you back a requested subset of the association's query results.
 
 In a way, it acts like a database view in that respect.
 
@@ -176,6 +176,3 @@ In a way, it acts like a database view in that respect.
 @post.categories.all(:limit => 10, :order => [:name.asc]) # return the first 10 categories ordered by name
 @post.categories(:limit => 10, :order => [:name.asc]) # alias for #all, you can pass in the options directly
 <% end %>
-
-
-

@@ -1,10 +1,10 @@
---- 
+---
 body_id: logger
 title: Chat logs for #datamapper
 filter:
   - erb
   - textile
---- 
+---
 h1. <%= @page.title %>
 
 <form>
@@ -28,8 +28,8 @@ h1. <%= @page.title %>
           <img src="/images/avatar_test.gif" />
         </td>
         <td class="log">
-          <p>wycats: I remember now. Thatís the other problem with the DSL style stuff I 
-          wrote before and Sequel uses. OR short-circuits. Maybe the Sequel guys have 
+          <p>wycats: I remember now. Thatís the other problem with the DSL style stuff I
+          wrote before and Sequel uses. OR short-circuits. Maybe the Sequel guys have
           worked around that since I last looked thoí.</p>
         </td>
       </tr>
@@ -45,8 +45,8 @@ h1. <%= @page.title %>
           <img src="/images/avatar_test.gif" />
         </td>
         <td class="log">
-          <p>wycats: I remember now. Thatís the other problem with the DSL style stuff I 
-          wrote before and Sequel uses. OR short-circuits. Maybe the Sequel guys have 
+          <p>wycats: I remember now. Thatís the other problem with the DSL style stuff I
+          wrote before and Sequel uses. OR short-circuits. Maybe the Sequel guys have
           worked around that since I last looked thoí.</p>
         </td>
       </tr>
@@ -57,8 +57,8 @@ h1. <%= @page.title %>
           <img src="/images/avatar_test.gif" />
         </td>
         <td class="log">
-          <p>wycats: I remember now. Thatís the other problem with the DSL style stuff I 
-          wrote before and Sequel uses. OR short-circuits. Maybe the Sequel guys have 
+          <p>wycats: I remember now. Thatís the other problem with the DSL style stuff I
+          wrote before and Sequel uses. OR short-circuits. Maybe the Sequel guys have
           worked around that since I last looked thoí.</p>
         </td>
       </tr>
@@ -69,8 +69,8 @@ h1. <%= @page.title %>
           <img src="/images/avatar_test.gif" />
         </td>
         <td class="log">
-          <p>wycats: I remember now. Thatís the other problem with the DSL style stuff I 
-          wrote before and Sequel uses. OR short-circuits. Maybe the Sequel guys have 
+          <p>wycats: I remember now. Thatís the other problem with the DSL style stuff I
+          wrote before and Sequel uses. OR short-circuits. Maybe the Sequel guys have
           worked around that since I last looked thoí.</p>
         </td>
       </tr>

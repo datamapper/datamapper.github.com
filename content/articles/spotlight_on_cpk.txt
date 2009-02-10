@@ -1,4 +1,4 @@
---- 
+---
 body_id: news
 title: Spotlight on... Composite Keys
 created_at: 2008-03-29T19:09:07-05:00
@@ -32,7 +32,7 @@ Unlike ActiveRecord, Sequel supports CPK(Composite Primary Keys)s natively:
 class Post < Sequel::Model
   set_primary_key [:category, :title]
 end
-  
+
 post = Post['ruby', 'hello world']
 post.pk # => ['ruby', 'hello world']
 <% end %>
@@ -70,6 +70,6 @@ In later "Spotlight On..." articles, we'll examine and demonstrate other DataMap
 h2(newRelease). Contribute a "Spotlight On..." Article
 
 p(newRelease).  Got something important to say?  Want something explained a little<br>
-better or demonstrated? Contribute or request a "Spotlight On..." <br> article! 
+better or demonstrated? Contribute or request a "Spotlight On..." <br> article!
 Email the "DataMapper Mailing List":http://groups.google.com/group/datamapper with the request or <br>
 contribution and we'll post it here.

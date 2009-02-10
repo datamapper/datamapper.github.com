@@ -1,11 +1,11 @@
---- 
+---
 title:      Finding Records
 body_id:    docs
 created_at: Tue Dec 04 14:46:32 +1030 2007
 filter:
   - erb
   - textile
---- 
+---
 
 h1. <%= @page.title %>
 
@@ -115,7 +115,7 @@ zoos = Zoo.all(:conditions => {:id => 34}, :name.like => '%foo%')
 
 h2. Talking directly to your data-store
 
-Sometimes you may find that you need to tweak a query manually. 
+Sometimes you may find that you need to tweak a query manually.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 zoos = repository(:default).adapter.query('SELECT name, open FROM zoos WHERE open = 1')

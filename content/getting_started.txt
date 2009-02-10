@@ -1,11 +1,11 @@
---- 
+---
 page_id:    gettingStarted
 title:      Getting started with DataMapper
 created_at: Wed Aug 29 20:36:53 +0930 2007
 filter:
   - erb
   - textile
---- 
+---
 
 h1. <%= @page.title %>
 
@@ -57,7 +57,7 @@ end
 class Comment
   include DataMapper::Resource
   property :id,         Integer, :serial => true
-  
+
   property :posted_by,  String
   property :email,      String
   property :url,        String
@@ -98,9 +98,9 @@ Categories can have many Posts and Posts can have many Categories, so we'll need
 class Categorization
   include DataMapper::Resource
   property :id,         Integer, :serial => true
-  
+
   property :created_at, DateTime
-  
+
   belongs_to :category
   belongs_to :post
 end

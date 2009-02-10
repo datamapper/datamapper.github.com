@@ -1,4 +1,4 @@
---- 
+---
 body_id: news
 title: Spotlight on... Laziness
 created_at: 2008-04-03T23:08:12-05:00
@@ -24,14 +24,14 @@ So where's the balance?
 
 Ultimately, it depends on your application. The tools you use should offer you the flexibility you need to design your application optimally.  Every system, after all, is unique and breaks the mold of systems before it.
 
-This brings us to DataMapper. 
+This brings us to DataMapper.
 
 h2. Lazy-loading attributes
 
-You likely already know that DataMapper supports lazy properties.  
+You likely already know that DataMapper supports lazy properties.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-class Post 
+class Post
   include DataMapper::Resource
   property :id,      Fixnum,   :serial => true  # auto_incrementing primary key
   property :title,   String,   :lazy   => true  # intentionally lazy
@@ -67,14 +67,14 @@ h2. Contextual Lazy-loading
 
 With a recent commit by "Guy van den Berg":http://www.guyvdb.info/ruby/lazy-loading-properties-in-datamapper/, DataMapper just got a whole lot more flexible.
 
-Most applications have only a few main views of a resource: a brief summary view used in listing results, a complete representation that might appear on a show page and a comprehensive view for when someone is editing something and needs access to metadata.  Wouldn't it be nice to lump all of the lazy-load retrieval queries into one query which loads up multiple lazy properties, rather than query after query for each lazy property as you call them?  
+Most applications have only a few main views of a resource: a brief summary view used in listing results, a complete representation that might appear on a show page and a comprehensive view for when someone is editing something and needs access to metadata.  Wouldn't it be nice to lump all of the lazy-load retrieval queries into one query which loads up multiple lazy properties, rather than query after query for each lazy property as you call them?
 
 DataMapper now does this!
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
-  
+
   property :id,     Fixnum,   :serial => true
   property :title,  String,   :lazy => [:summary, :brief]
   property :body,   Text,     :lazy => [:summary]
@@ -93,13 +93,13 @@ SELECT `id` FROM `posts`
 SELECT `id`, `title`, `body` FROM `posts`
 <% end %>
 
-If you use this wisely, it would mean that DataMapper will never load more than it needs nor will it ever fire off more than the absolutely necessary amount of queries to get the job done.  
+If you use this wisely, it would mean that DataMapper will never load more than it needs nor will it ever fire off more than the absolutely necessary amount of queries to get the job done.
 
 It's lazy ;-)
 
 h2. Strategic Eager Loading
 
-Well, not for everything. 
+Well, not for everything.
 
 Returning for a little bit to our "loaded set" discussion from above, every item you pull out of the data store is aware of any other item that got pulled along with it.  This is a very powerful feature which lets DataMapper defeat n+1 query problems when dealing with associations as well as lazy-loading of properties.
 
@@ -119,7 +119,7 @@ But the same issue doesn't exist in DataMapper. Each instance is aware of the ot
 
 h2. Getting Around to It
 
-A conclusion for our talk about laziness will be written whenever I get around to it.  
+A conclusion for our talk about laziness will be written whenever I get around to it.
 
 For now, just remember that DataMapper embraces lazy-loading, yet isn't overly zealous when the lazy properties are finally retrieved.  It also fills associations strategically, and assumes you're going to iterate over the set of results.  You don't have to catch yourself when you write an iterator because DataMapper loads associations for all of your items in the set, rather than on a one-by-one basis.
 
@@ -128,9 +128,9 @@ And, most importantly, you can avoid doing work you don't have to do for as long
 <div class="puff">
 
 h2. Contribute a "Spotlight On..." Article
-  
+
 Got something important to say?  Want something explained a little<br>
-better or demonstrated? Contribute or request a "Spotlight On..." <br> article! 
+better or demonstrated? Contribute or request a "Spotlight On..." <br> article!
 Email the "DataMapper Mailing List":http://groups.google.com/group/datamapper with the request or <br>
 contribution and we'll post it here.
 

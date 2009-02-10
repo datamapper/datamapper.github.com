@@ -22,35 +22,13 @@ class Post
   include DataMapper::Resource
   property :id, Serial
   property :title, String, :length => 255
-  
+
   property :created_at, DateTime
   property :created_on, Date
-  
+
   property :updated_at, DateTime
   property :updated_on, Date
 end
 <% end %>
 
 If you're familiar with the 'magic' properties from ActiveRecord, this is very similar.  When your model is initially saved, DM-Timestamps will update that object's @created_at@ and/or @created_on@ fields with the time of creation.  When the object is edited and then saved out to the data-store, DM-Timestamps will update the @updated_at@ and @updated_on@ fields with the time of update.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
