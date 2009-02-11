@@ -22,8 +22,8 @@ Grancher::Task.new do |g|
 end
 
 # index.txt is always dirty, so it's always rebuilt
-task :publish => 'content/index.html'
+task :publish => 'output/index.html'
 
-file 'content/index.html' => FileList["content/**/*", "Sitefile"] do
+file 'output/index.html' => FileList["content/**/*", "Sitefile"] do
   sh "webby build"
 end
