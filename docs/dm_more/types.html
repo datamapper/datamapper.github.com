@@ -35,25 +35,28 @@
 <p>The Enum type uses an Integer create a property which can take one of a number of symbolic values.  A use for this might be bug status for an issue tracker or the protocol being used in a packet logging application.</p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Issue</span>
 <span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no"> 3</span>   property <span class="sy">:status</span>, <span class="co">Enum</span>[<span class="sy">:new</span>, <span class="sy">:open</span>, <span class="sy">:closed</span>, <span class="sy">:invalid</span>], <span class="sy">:default</span> =&gt; <span class="sy">:new</span>
-<span class="no"> 4</span>   <span class="c"># other properties ...</span>
-<span class="no"> 5</span> <span class="r">end</span>
-<span class="no"> 6</span> 
-<span class="no"> 7</span> <span class="iv">@i</span> = <span class="co">Issue</span>.new
-<span class="no"> 8</span> <span class="iv">@i</span>.status
-<span class="no"> 9</span> <span class="c">#=&gt; :new</span>
-<span class="no"><strong>10</strong></span> <span class="iv">@i</span>.status = <span class="sy">:open</span>
-<span class="no">11</span> <span class="c">#=&gt; :open</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   property <span class="sy">:status</span>, <span class="co">Enum</span>[ <span class="sy">:new</span>, <span class="sy">:open</span>, <span class="sy">:closed</span>, <span class="sy">:invalid</span> ], <span class="sy">:default</span> =&gt; <span class="sy">:new</span>
+<span class="no"> 5</span>   <span class="c"># other properties ...</span>
+<span class="no"> 6</span> <span class="r">end</span>
+<span class="no"> 7</span> 
+<span class="no"> 8</span> <span class="iv">@i</span> = <span class="co">Issue</span>.new
+<span class="no"> 9</span> <span class="iv">@i</span>.status
+<span class="no"><strong>10</strong></span> <span class="c">#=&gt; :new</span>
+<span class="no">11</span> <span class="iv">@i</span>.status = <span class="sy">:open</span>
+<span class="no">12</span> <span class="c">#=&gt; :open</span>
 </pre></div><h3>Flag</h3>
 <p>A Flag is similar to an Enum, though the property that is created can hold multiple symbol values at once.  This could be used for recording which colours a product can be ordered in, or what extra features an account has enabled.</p>
-<div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Widget</span>
-<span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no">3</span>   property <span class="sy">:colours</span>, <span class="co">Flag</span>[<span class="sy">:red</span>, <span class="sy">:green</span>, <span class="sy">:blue</span>, <span class="sy">:heliotrope</span>]
-<span class="no">4</span>   <span class="c"># other properties ...</span>
-<span class="no">5</span> <span class="r">end</span>
-<span class="no">6</span> 
-<span class="no">7</span> <span class="iv">@w</span> = <span class="co">Widget</span>.new
-<span class="no">8</span> <span class="iv">@w</span>.colours = [<span class="sy">:red</span>, <span class="sy">:heliotrope</span>]
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Widget</span>
+<span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   property <span class="sy">:colours</span>, <span class="co">Flag</span>[ <span class="sy">:red</span>, <span class="sy">:green</span>, <span class="sy">:blue</span>, <span class="sy">:heliotrope</span> ]
+<span class="no"> 5</span> 
+<span class="no"> 6</span>   <span class="c"># other properties ...</span>
+<span class="no"> 7</span> <span class="r">end</span>
+<span class="no"> 8</span> 
+<span class="no"> 9</span> <span class="iv">@w</span> = <span class="co">Widget</span>.new
+<span class="no"><strong>10</strong></span> <span class="iv">@w</span>.colours = [ <span class="sy">:red</span>, <span class="sy">:heliotrope</span> ]
 </pre></div><h3>Object Mappings</h3>
 <p>These map objects into simple data-store primitives, then re-initialize as the ruby types</p>
 <dl>
@@ -99,7 +102,7 @@
 <p>For examples of the types, the best place to look is <a href="http://github.com/sam/dm-more/tree/master/dm-types">dm-types</a> on github.</p>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>

@@ -32,20 +32,21 @@
 <p>Many ORMs support Single Table Inheritance and DataMapper is no different.  In order to declare a model for Single Table Inheritance, define a property with the data-type of <a href="http://datamapper.rubyforge.org/DataMapper/Types/Discriminator.html">Types::Discriminator</a></p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Person</span>
 <span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no"> 3</span>   property <span class="sy">:name</span>, <span class="co">String</span>
-<span class="no"> 4</span>   property <span class="sy">:job</span>, <span class="co">String</span>, <span class="sy">:length</span> =&gt; <span class="i">255</span>
-<span class="no"> 5</span>   property <span class="sy">:type</span>, <span class="co">Discriminator</span>
-<span class="no"> 6</span>   ...
-<span class="no"> 7</span> <span class="r">end</span>
-<span class="no"> 8</span> 
-<span class="no"> 9</span> <span class="r">class</span> <span class="cl">Male</span> &lt; <span class="co">Person</span>; <span class="r">end</span>
-<span class="no"><strong>10</strong></span> <span class="r">class</span> <span class="cl">Father</span> &lt; <span class="co">Male</span>; <span class="r">end</span>
-<span class="no">11</span> <span class="r">class</span> <span class="cl">Son</span> &lt; <span class="co">Male</span>;    <span class="r">end</span>
-<span class="no">12</span> 
-<span class="no">13</span> <span class="r">class</span> <span class="cl">Woman</span> &lt; <span class="co">Person</span>;   <span class="r">end</span>
-<span class="no">14</span> <span class="r">class</span> <span class="cl">Mother</span> &lt; <span class="co">Woman</span>;   <span class="r">end</span>
-<span class="no">15</span> <span class="r">class</span> <span class="cl">Daughter</span> &lt; <span class="co">Woman</span>; <span class="r">end</span>
-<span class="no">16</span> 
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   property <span class="sy">:name</span>, <span class="co">String</span>
+<span class="no"> 5</span>   property <span class="sy">:job</span>,  <span class="co">String</span>,        <span class="sy">:length</span> =&gt; <span class="i">255</span>
+<span class="no"> 6</span>   property <span class="sy">:type</span>, <span class="co">Discriminator</span>
+<span class="no"> 7</span>   ...
+<span class="no"> 8</span> <span class="r">end</span>
+<span class="no"> 9</span> 
+<span class="no"><strong>10</strong></span> <span class="r">class</span> <span class="cl">Male</span> &lt; <span class="co">Person</span>; <span class="r">end</span>
+<span class="no">11</span> <span class="r">class</span> <span class="cl">Father</span> &lt; <span class="co">Male</span>; <span class="r">end</span>
+<span class="no">12</span> <span class="r">class</span> <span class="cl">Son</span> &lt; <span class="co">Male</span>;    <span class="r">end</span>
+<span class="no">13</span> 
+<span class="no">14</span> <span class="r">class</span> <span class="cl">Woman</span> &lt; <span class="co">Person</span>;   <span class="r">end</span>
+<span class="no">15</span> <span class="r">class</span> <span class="cl">Mother</span> &lt; <span class="co">Woman</span>;   <span class="r">end</span>
+<span class="no">16</span> <span class="r">class</span> <span class="cl">Daughter</span> &lt; <span class="co">Woman</span>; <span class="r">end</span>
+<span class="no">17</span> 
 </pre></div><p>When DataMapper sees your <code>type</code> column declared as type <a href="http://datamapper.rubyforge.org/DataMapper/Types/Discriminator.html">Types::Discriminator</a>, it will automatically insert the class name of the object you&#8217;ve created and later instantiate that row as that class. It also supports deep inheritance, so doing Woman.all will select all women, mothers, and daughters (and deeper inherited classes if they exist).</p>
 <h2>Paranoia</h2>
 <p>Sometimes&#8230;most times&#8230;you don&#8217;t <em>really</em> want to destroy a row in the database, you just want to mark it as deleted so that you can restore it later if need be.  This is aptly-named Paranoia and DataMapper has basic support for this baked right in.  Just declare a property and assign it a type of <a href="http://datamapper.rubyforge.org/DataMapper/Types/ParanoidDateTime.html">Types::ParanoidDateTime</a> or <a href="http://datamapper.rubyforge.org/DataMapper/Types/ParanoidBoolean.html">Types::ParanoidBoolean</a>:</p>
@@ -67,7 +68,7 @@
 </pre></div><p>This has great potential for browsing collections of content, like browsing all blog posts&#8217; comments by category or tag.  At present, chaining beyond 2 associations is still experimental.</p>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>

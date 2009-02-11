@@ -67,29 +67,29 @@ property <span class="sy">:slug</span>, <span class="sy">:string</span>, <span c
 </pre></div></td>
 <td>
 <div class="CodeRay"><pre><span class="c"># keys are now mandatory</span>
-property <span class="sy">:id</span>, <span class="co">Integer</span>,  <span class="sy">:serial</span> =&gt; <span class="pc">true</span>
+property <span class="sy">:id</span>,   <span class="co">Serial</span>
 <span class="c">#</span>
 <span class="c"># Natural Key</span>
-property <span class="sy">:slug</span>, <span class="co">String</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+property <span class="sy">:slug</span>, <span class="co">String</span>,  <span class="sy">:key</span> =&gt; <span class="pc">true</span>
 <span class="c">#</span>
 <span class="c"># Composite Key</span>
-property <span class="sy">:id</span>, <span class="co">Integer</span>,  <span class="sy">:key</span> =&gt; <span class="pc">true</span>
-property <span class="sy">:slug</span>, <span class="co">String</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+property <span class="sy">:id</span>,   <span class="co">Integer</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+property <span class="sy">:slug</span>, <span class="co">String</span>,  <span class="sy">:key</span> =&gt; <span class="pc">true</span>
 </pre></div></td>
 </tr>
 <tr>
       <th>Properties</th>
 <td>
-<div class="CodeRay"><pre>property <span class="sy">:title</span>,      <span class="sy">:string</span>
-property <span class="sy">:body</span>,       <span class="sy">:text</span>
-property <span class="sy">:posted_on</span>,  <span class="sy">:datetime</span>
-property <span class="sy">:active</span>,     <span class="sy">:boolean</span>
+<div class="CodeRay"><pre>property <span class="sy">:title</span>,     <span class="sy">:string</span>
+property <span class="sy">:body</span>,      <span class="sy">:text</span>
+property <span class="sy">:posted_on</span>, <span class="sy">:datetime</span>
+property <span class="sy">:active</span>,    <span class="sy">:boolean</span>
 </pre></div></td>
 <td>
-<div class="CodeRay"><pre>property <span class="sy">:title</span>,      <span class="co">String</span>
-property <span class="sy">:body</span>,       <span class="co">Text</span>
-property <span class="sy">:posted_on</span>,  <span class="co">DateTime</span>
-property <span class="sy">:active</span>,     <span class="co">Boolean</span>
+<div class="CodeRay"><pre>property <span class="sy">:title</span>,     <span class="co">String</span>
+property <span class="sy">:body</span>,      <span class="co">Text</span>
+property <span class="sy">:posted_on</span>, <span class="co">DateTime</span>
+property <span class="sy">:active</span>,    <span class="co">Boolean</span>
 </pre></div></td>
 </tr>
 <tr>
@@ -113,7 +113,7 @@ has <span class="i">1</span>, <span class="sy">:author</span>
 <notextile>
 <div class="CodeRay"><pre><span class="co">Post</span>.first <span class="sy">:order</span> =&gt; <span class="s"><span class="dl">&#8216;</span><span class="k">created_at DESC</span><span class="dl">&#8217;</span></span><br />
 <span class="co">Post</span>.all<br />
-  <span class="sy">:conditions</span> =&gt; [<span class="s"><span class="dl">&#8216;</span><span class="k">active = ?</span><span class="dl">&#8217;</span></span>, <span class="pc">true</span>]<br />
+  <span class="sy">:conditions</span> =&gt; [ <span class="s"><span class="dl">&#8216;</span><span class="k">active = ?</span><span class="dl">&#8217;</span></span>, <span class="pc">true</span> ]<br />
 <br />
 database.query <span class="s"><span class="dl">%Q{</span><span class="k">SELECT 1</span><span class="dl">}</span></span><br />
 database.execute <span class="s"><span class="dl">%Q{</span><span class="k">UPDATE posts&#8230;</span><span class="dl">}</span></span><br />
@@ -122,9 +122,9 @@ database.execute <span class="s"><span class="dl">%Q{</span><span class="k">UPDA
 </td>
 <td>
 <notextile>
-<div class="CodeRay"><pre><span class="co">Post</span>.first <span class="sy">:order</span> =&gt; [<span class="sy">:created_at</span>.desc]<br />
+<div class="CodeRay"><pre><span class="co">Post</span>.first <span class="sy">:order</span> =&gt; [ <span class="sy">:created_at</span>.desc ]<br />
 <span class="co">Post</span>.all<br />
-  <span class="sy">:conditions</span> =&gt; [<span class="s"><span class="dl">&#8216;</span><span class="k">active = ?</span><span class="dl">&#8217;</span></span>, <span class="pc">true</span>]<br />
+  <span class="sy">:conditions</span> =&gt; [ <span class="s"><span class="dl">&#8216;</span><span class="k">active = ?</span><span class="dl">&#8217;</span></span>, <span class="pc">true</span> ]<br />
 <br />
 repository(<span class="sy">:default</span>).adapter.query <span class="s"><span class="dl">%Q{</span><span class="k">SELECT 1</span><span class="dl">}</span></span><br />
 repository(<span class="sy">:default</span>).adapter.execute <span class="s"><span class="dl">%Q{</span><span class="k">UPDATE posts&#8230;</span><span class="dl">}</span></span><br />
@@ -138,23 +138,19 @@ repository(<span class="sy">:default</span>).adapter.execute <span class="s"><sp
 <notextile>
 <div class="CodeRay"><pre>validates_presence_of     <span class="sy">:title</span><br />
 validates_numericality_of <span class="sy">:rating</span><br />
-validates_format_of       <span class="sy">:email</span>,<br />
-  <span class="sy">:with</span> =&gt; <span class="sy">:email_address</span><br />
-validates_length_of       <span class="sy">:summary</span>,<br />
-  <span class="sy">:within</span> =&gt; (<span class="i">1</span>..<span class="i">100</span>)<br />
+validates_format_of       <span class="sy">:email</span>,   <span class="sy">:with</span> =&gt; <span class="sy">:email_address</span><br />
+validates_length_of       <span class="sy">:summary</span>, <span class="sy">:within</span> =&gt; (<span class="i">1</span>..<span class="i">100</span>)<br />
 validates_uniqueness_of   <span class="sy">:slug</span><br />
         </pre></div>
 <p></notextile></p>
 </td>
 <td>
 <notextile>
-<div class="CodeRay"><pre>validates_present     <span class="sy">:title</span><br />
-validates_is_number   <span class="sy">:rating</span><br />
-validates_format      <span class="sy">:email</span>,<br />
-  <span class="sy">:as</span> =&gt; <span class="sy">:email_address</span><br />
-validates_length      <span class="sy">:summary</span>,<br />
-  <span class="sy">:in</span> =&gt; (<span class="i">1</span>..<span class="i">100</span>)<br />
-validates_is_unique   <span class="sy">:slug</span><br />
+<div class="CodeRay"><pre>validates_present   <span class="sy">:title</span><br />
+validates_is_number <span class="sy">:rating</span><br />
+validates_format    <span class="sy">:email</span>,   <span class="sy">:as</span> =&gt; <span class="sy">:email_address</span><br />
+validates_length    <span class="sy">:summary</span>, <span class="sy">:in</span> =&gt; (<span class="i">1</span>..<span class="i">100</span>)<br />
+validates_is_unique <span class="sy">:slug</span><br />
         </pre></div>
 <p></notextile></p>
 </td>
@@ -184,7 +180,7 @@ before <span class="sy">:create</span> <span class="r">do</span>
 </table>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>

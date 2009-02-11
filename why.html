@@ -41,20 +41,23 @@
 <p>To support data-stores which you don&#8217;t have the ability to manage yourself, it&#8217;s simply a matter of telling DataMapper where to look.</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Fruit</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no">3</span>   storage_names[<span class="sy">:default</span>] = <span class="s"><span class="dl">'</span><span class="k">frt</span><span class="dl">'</span></span> <span class="c"># equivalent to set_table_name in AR</span>
-<span class="no">4</span>   property <span class="sy">:id</span>, <span class="co">Serial</span>
-<span class="no">5</span>   property <span class="sy">:name</span>, <span class="co">String</span>, <span class="sy">:field</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">col2</span><span class="dl">'</span></span>
-<span class="no">6</span> <span class="r">end</span>
+<span class="no">3</span> 
+<span class="no">4</span>   storage_names[<span class="sy">:default</span>] = <span class="s"><span class="dl">'</span><span class="k">frt</span><span class="dl">'</span></span> <span class="c"># equivalent to set_table_name in AR</span>
+<span class="no">5</span> 
+<span class="no">6</span>   property <span class="sy">:id</span>,   <span class="co">Serial</span>
+<span class="no">7</span>   property <span class="sy">:name</span>, <span class="co">String</span>, <span class="sy">:field</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">col2</span><span class="dl">'</span></span>
+<span class="no">8</span> <span class="r">end</span>
 </pre></div><p>DataMapper only issues updates or creates for the properties it knows about. So it plays well with others. You can use it in an Integration Database without worrying that your application will be a bad actor causing trouble for all of your other processes.</p>
 <h2>Laziness Can Be A Virtue</h2>
 <p>Columns of potentially infinite length, like Text columns, are expensive in data-stores. They&#8217;re generally stored in a different place from the rest of your data. So instead of a fast sequential read from your hard-drive, your data-store has to hop around all over the place to get what it needs.</p>
 <p>With DataMapper, these fields are treated like in-row associations by default, meaning they if and only if you load. If you want more control you can enable or disable this feature for any column (not just text-fields) by passing a <code>lazy</code> option to your column mapping with a value of <code>true</code> or <code>false</code>.</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Animal</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no">3</span>   property <span class="sy">:id</span>, <span class="co">Serial</span>
-<span class="no">4</span>   property <span class="sy">:name</span>, <span class="co">String</span>
-<span class="no">5</span>   property <span class="sy">:notes</span>, <span class="co">Text</span>        <span class="c"># lazy-loads by default</span>
-<span class="no">6</span> <span class="r">end</span>
+<span class="no">3</span> 
+<span class="no">4</span>   property <span class="sy">:id</span>,    <span class="co">Serial</span>
+<span class="no">5</span>   property <span class="sy">:name</span>,  <span class="co">String</span>
+<span class="no">6</span>   property <span class="sy">:notes</span>, <span class="co">Text</span>    <span class="c"># lazy-loads by default</span>
+<span class="no">7</span> <span class="r">end</span>
 </pre></div><p>Plus, lazy-loading of Text property happens automatically and intelligently when working with associations.  The following only issues 2 queries to load up all of the notes fields on each animal:</p>
 <div class="CodeRay"><pre><span class="no">1</span> animals = <span class="co">Animal</span>.all
 <span class="no">2</span> animals.each <span class="r">do</span> |pet|
@@ -80,7 +83,7 @@
 <p>For example, any finder option that are non-standard is considered a condition. So you can write <code>Zoo.all(:name =&gt; 'Dallas')</code> and DataMapper will look for zoos with the name of &#8216;Dallas&#8217;.</p>
 <p>It&#8217;s just a little thing, but it&#8217;s so much nicer than writing <code>Zoo.find(:all, :conditions =&gt; ['name = ?', 'Dallas'])</code> and won&#8217;t incur the Ruby overhead of <code>Zoo.find_by_name('Dallas')</code>.</p>
 <p>What if you need other comparisons though? Try these:</p>
-<div class="CodeRay"><pre><span class="no"> 1</span> <span class="co">Zoo</span>.first(<span class="sy">:name</span>.eql =&gt; <span class="s"><span class="dl">'</span><span class="k">Galveston</span><span class="dl">'</span></span>)
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="co">Zoo</span>.first(<span class="sy">:name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">Galveston</span><span class="dl">'</span></span>)
 <span class="no"> 2</span> 
 <span class="no"> 3</span> <span class="c"># 'gt' means greater-than. 'lt' is less-than.</span>
 <span class="no"> 4</span> <span class="co">Person</span>.all(<span class="sy">:age</span>.gt =&gt; <span class="i">30</span>)
@@ -91,23 +94,23 @@
 <span class="no"> 9</span> <span class="co">Person</span>.all(<span class="sy">:name</span>.not =&gt; <span class="s"><span class="dl">'</span><span class="k">bob</span><span class="dl">'</span></span>)
 <span class="no"><strong>10</strong></span> 
 <span class="no">11</span> <span class="c"># If the value of a pair is an Array, we do an IN-clause for you.</span>
-<span class="no">12</span> <span class="co">Person</span>.all(<span class="sy">:name</span>.like =&gt; <span class="s"><span class="dl">'</span><span class="k">S%</span><span class="dl">'</span></span>, <span class="sy">:id</span> =&gt; [<span class="i">1</span>, <span class="i">2</span>, <span class="i">3</span>, <span class="i">4</span>, <span class="i">5</span>])
+<span class="no">12</span> <span class="co">Person</span>.all(<span class="sy">:name</span>.like =&gt; <span class="s"><span class="dl">'</span><span class="k">S%</span><span class="dl">'</span></span>, <span class="sy">:id</span> =&gt; [ <span class="i">1</span>, <span class="i">2</span>, <span class="i">3</span>, <span class="i">4</span>, <span class="i">5</span> ])
 <span class="no">13</span> 
 <span class="no">14</span> <span class="c"># Does a NOT IN () clause for you.</span>
-<span class="no">15</span> <span class="co">Person</span>.all(<span class="sy">:name</span>.not =&gt; [<span class="s"><span class="dl">'</span><span class="k">bob</span><span class="dl">'</span></span>,<span class="s"><span class="dl">'</span><span class="k">rick</span><span class="dl">'</span></span>,<span class="s"><span class="dl">'</span><span class="k">steve</span><span class="dl">'</span></span>])
+<span class="no">15</span> <span class="co">Person</span>.all(<span class="sy">:name</span>.not =&gt; [ <span class="s"><span class="dl">'</span><span class="k">bob</span><span class="dl">'</span></span>, <span class="s"><span class="dl">'</span><span class="k">rick</span><span class="dl">'</span></span>, <span class="s"><span class="dl">'</span><span class="k">steve</span><span class="dl">'</span></span> ])
 <span class="no">16</span> 
 <span class="no">17</span> <span class="c"># Ordering</span>
-<span class="no">18</span> <span class="co">Person</span>.all(<span class="sy">:order</span> =&gt; [<span class="sy">:age</span>.desc])
+<span class="no">18</span> <span class="co">Person</span>.all(<span class="sy">:order</span> =&gt; [ <span class="sy">:age</span>.desc ])
 <span class="no">19</span> <span class="c"># .asc is the default</span>
 </pre></div><p>To query a model by it&#8217;s associations, you can use a QueryPath:</p>
-<div class="CodeRay"><pre><span class="no">1</span>   <span class="co">Person</span>.all(<span class="sy">:links</span> =&gt; [<span class="sy">:pets</span>], <span class="co">Person</span>.pets.name =&gt; <span class="s"><span class="dl">'</span><span class="k">Pixel</span><span class="dl">'</span></span>)
+<div class="CodeRay"><pre><span class="no">1</span>   <span class="co">Person</span>.all(<span class="sy">:links</span> =&gt; [ <span class="sy">:pets</span> ], <span class="co">Person</span>.pets.name =&gt; <span class="s"><span class="dl">'</span><span class="k">Pixel</span><span class="dl">'</span></span>)
 </pre></div><p>You can even chain calls to <code>all</code> or <code>first</code> to continue refining your query or search within a scope. See <a href="/docs/find.html">Finders</a> for more information.</p>
 <h2>Open Development</h2>
 <p>DataMapper sports a very accessible code-base and a welcoming community. Outside contributions and feedback are welcome and encouraged, especially constructive criticism. Go ahead, fork DataMapper, we&#8217;d love to see what you come up with!</p>
 <p>Make your voice heard! <a href="http://wm.lighthouseapp.com/projects/4819-datamapper/overview">Submit a ticket or patch</a>, speak up on our <a href="http://groups.google.com/group/datamapper/">mailing-list</a>, chat with us on <a href="irc://irc.freenode.net/#datamapper">irc</a>, write a spec, get it reviewed, ask for commit rights. It&#8217;s as easy as that to become a contributor.</p>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>

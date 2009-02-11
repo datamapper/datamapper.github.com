@@ -35,18 +35,16 @@
 <h2>Model Definitions Are a Little Different</h2>
 <p>Since we&#8217;re changing up the terminology, model definitions are going to change up a little bit.  Here&#8217;s what a Planet model would look like using the new API:</p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Planet</span>
-<span class="no"> 2</span> 
-<span class="no"> 3</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no"> 4</span> 
-<span class="no"> 5</span>   resource_names[<span class="sy">:legacy</span>] = <span class="s"><span class="dl">&quot;</span><span class="k">dying_planets</span><span class="dl">&quot;</span></span>
-<span class="no"> 6</span> 
-<span class="no"> 7</span>   property <span class="sy">:name</span>, <span class="co">String</span>
-<span class="no"> 8</span>   property <span class="sy">:age</span>, <span class="co">Fixnum</span>
-<span class="no"> 9</span>   property <span class="sy">:core</span>, <span class="co">String</span>, <span class="sy">:private</span> =&gt; <span class="pc">true</span>
-<span class="no"><strong>10</strong></span> 
-<span class="no">11</span> <span class="r">end</span>
+<span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   resource_names[<span class="sy">:legacy</span>] = <span class="s"><span class="dl">'</span><span class="k">dying_planets</span><span class="dl">'</span></span>
+<span class="no"> 5</span> 
+<span class="no"> 6</span>   property <span class="sy">:name</span>, <span class="co">String</span>
+<span class="no"> 7</span>   property <span class="sy">:age</span>,  <span class="co">Integer</span>
+<span class="no"> 8</span>   property <span class="sy">:core</span>, <span class="co">String</span>,  <span class="sy">:private</span> =&gt; <span class="pc">true</span>
+<span class="no"> 9</span> <span class="r">end</span>
 </pre></div><p>A couple of things are going on here.  First, DataMapper::Base and DataMapper::Persistence are gone and replaced with <a href="http://datamapper.rubyforge.org/DataMapper/Resource.html">DataMapper::Resource</a>.  Next <code>set_table_name</code> has been replaced with <code>resource_names</code> hash where you specify which arena play occurs in. After that we have a couple of Property definitions that look a little different.</p>
-<p>First off, Properties will no longer take <code>:symbols</code> for their types and instead take real constants like String, Fixnum, DateTime.  Also on the docket are the ability to define your own custom types.</p>
+<p>First off, Properties will no longer take <code>:symbols</code> for their types and instead take real constants like String, Integer, DateTime.  Also on the docket are the ability to define your own custom types.</p>
 <p>Think about that for a minute.  If developers are able to define their own custom types with their own materialization and serialization methods, DataMapper will be able to support all kinds of wild data-types like GIS information, network information, marshaled objects, JSON&#8230;pretty much anything a developer might need, or want.</p>
 <h2>A Command-Line Interface</h2>
 <p>Taking a lesson from web frameworks, DataMapper will sport an interactive command-line so that you can browse your resources without the need to load up the entire environment of your application.  Here&#8217;s an example session:</p>
@@ -62,7 +60,7 @@
 <p>Stay tuned in to the <a href="http://groups.google.com/group/datamapper">mailing list</a>, check up on the <a href="http://wiki.datamapper.org/doku.php">wiki</a>, chat it up in <a href="irc://irc.freenode.net/#datamapper">#datamapper</a> and watch <a href="http://github.com/sam/dm-core/commits/master">github commit messages</a> for updates.</p>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>

@@ -38,10 +38,11 @@
 <p>You likely already know that DataMapper supports lazy properties.</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no">3</span>   property <span class="sy">:id</span>,      <span class="co">Fixnum</span>,   <span class="sy">:serial</span> =&gt; <span class="pc">true</span>  <span class="c"># auto_incrementing primary key</span>
-<span class="no">4</span>   property <span class="sy">:title</span>,   <span class="co">String</span>,   <span class="sy">:lazy</span>   =&gt; <span class="pc">true</span>  <span class="c"># intentionally lazy</span>
-<span class="no">5</span>   property <span class="sy">:body</span>,    <span class="co">Text</span>                       <span class="c"># lazy by default</span>
-<span class="no">6</span> <span class="r">end</span>
+<span class="no">3</span> 
+<span class="no">4</span>   property <span class="sy">:id</span>,    <span class="co">Serial</span>                  <span class="c"># auto_incrementing primary key</span>
+<span class="no">5</span>   property <span class="sy">:title</span>, <span class="co">String</span>, <span class="sy">:lazy</span> =&gt; <span class="pc">true</span>   <span class="c"># intentionally lazy</span>
+<span class="no">6</span>   property <span class="sy">:body</span>,  <span class="co">Text</span>                    <span class="c"># lazy by default</span>
+<span class="no">7</span> <span class="r">end</span>
 </pre></div><p>In this case, we&#8217;re intentionally marking this Post&#8217;s <code>:title</code> property as lazy, as well as letting the <code>:body</code> be lazy by default.  If we go and inspect our query log for the retrieval of a post with the ID of 1, we see</p>
 <div class="CodeRay"><pre><span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span> <span class="r">WHERE</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> = <span class="i">1</span>
 </pre></div><p>DataMapper didn&#8217;t request the two lazy columns.  But when we call <code>.title</code> off of our post, we suddenly see</p>
@@ -58,9 +59,9 @@
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
 <span class="no">3</span> 
-<span class="no">4</span>   property <span class="sy">:id</span>,     <span class="co">Fixnum</span>,   <span class="sy">:serial</span> =&gt; <span class="pc">true</span>
-<span class="no">5</span>   property <span class="sy">:title</span>,  <span class="co">String</span>,   <span class="sy">:lazy</span> =&gt; [<span class="sy">:summary</span>, <span class="sy">:brief</span>]
-<span class="no">6</span>   property <span class="sy">:body</span>,   <span class="co">Text</span>,     <span class="sy">:lazy</span> =&gt; [<span class="sy">:summary</span>]
+<span class="no">4</span>   property <span class="sy">:id</span>,    <span class="co">Serial</span>
+<span class="no">5</span>   property <span class="sy">:title</span>, <span class="co">String</span>, <span class="sy">:lazy</span> =&gt; [ <span class="sy">:summary</span>, <span class="sy">:brief</span> ]
+<span class="no">6</span>   property <span class="sy">:body</span>,  <span class="co">Text</span>,   <span class="sy">:lazy</span> =&gt; [ <span class="sy">:summary</span> ]
 <span class="no">7</span> <span class="r">end</span>
 </pre></div><p>So now, when you load an attribute with the <code>:summary</code> context, DataMapper will load up all of the other lazy-loaded properties marked <code>:summary</code> in one query to the data store.</p>
 <p>In your query log, you&#8217;ll see:</p>
@@ -78,8 +79,8 @@
 <div class="CodeRay"><pre><span class="no">1</span>   <span class="co">Zoo</span>.find(<span class="sy">:all</span>).each <span class="r">do</span> |zoo|
 <span class="no">2</span>     zoo.animals
 <span class="no">3</span>   <span class="r">end</span>
-</pre></div><p>This is a very bad idea because the ORM must query the &#8220;animals&#8221; table over and over again to load the association for each iteration.  It&#8217;s far better to use <code>Zoo.find(:all, :include =&gt; [:animals]).each {}</code> because a JOIN occurs and everything is retrieved in 1 query.</p>
-<p>But the same issue doesn&#8217;t exist in DataMapper. Each instance is aware of the other instances it was retrieved with.  The same iterator example from above only fires off 2 queries as you&#8217;re iterating and calling the association inside the <code>each</code>.  If you forget to <code>:include =&gt; [:association]</code> in the initial query, DataMapper only ever fires off one more query to get what it needs.</p>
+</pre></div><p>This is a very bad idea because the ORM must query the &#8220;animals&#8221; table over and over again to load the association for each iteration.  It&#8217;s far better to use <code>Zoo.find(:all, :include =&gt; [ :animals ]).each {}</code> because a JOIN occurs and everything is retrieved in 1 query.</p>
+<p>But the same issue doesn&#8217;t exist in DataMapper. Each instance is aware of the other instances it was retrieved with.  The same iterator example from above only fires off 2 queries as you&#8217;re iterating and calling the association inside the <code>each</code>.  If you forget to <code>:include =&gt; [ :association ]</code> in the initial query, DataMapper only ever fires off one more query to get what it needs.</p>
 <p><a href="http://www.yehudakatz.com/">Yehuda Katz</a> has aptly named this &#8216;Strategic Eager Loading&#8217;.</p>
 <h2>Getting Around to It</h2>
 <p>A conclusion for our talk about laziness will be written whenever I get around to it.</p>
@@ -94,7 +95,7 @@ contribution and we&#8217;ll post it here.</p>
 </div>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>

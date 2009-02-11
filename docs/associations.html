@@ -139,27 +139,28 @@ saved.</p>
 <p>The association declarations make certain assumptions about which classes are being related and the names of foreign keys based on some simple conventions. In some situations you may need to tweak them a little. The association declarations accept additional options to allow you to customize them as you need</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no">3</span>   belongs_to <span class="sy">:author</span>, <span class="sy">:class_name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">User</span><span class="dl">'</span></span>, <span class="sy">:child_key</span> =&gt; [<span class="sy">:post_id</span>]
-<span class="no">4</span> <span class="r">end</span>
+<span class="no">3</span> 
+<span class="no">4</span>   belongs_to <span class="sy">:author</span>, <span class="sy">:class_name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">User</span><span class="dl">'</span></span>, <span class="sy">:child_key</span> =&gt; [ <span class="sy">:post_id</span> ]
+<span class="no">5</span> <span class="r">end</span>
 </pre></div><h2>Adding Conditions to Associations</h2>
 <p>If you want to order the association, or supply a scope, you can just pass in the options&#8230;</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
 <span class="no">3</span> 
-<span class="no">4</span>   has n, <span class="sy">:comments</span>, <span class="sy">:order</span> =&gt; [<span class="sy">:published_on</span>.desc], <span class="sy">:rating</span>.gte =&gt; <span class="i">5</span>
-<span class="no">5</span>   <span class="c"># post#comments will now be ordered by published_on, and filtered by rating &gt; 5.</span>
+<span class="no">4</span>   has n, <span class="sy">:comments</span>, <span class="sy">:order</span> =&gt; [ <span class="sy">:published_on</span>.desc ], <span class="sy">:rating</span>.gte =&gt; <span class="i">5</span>
+<span class="no">5</span>   <span class="c"># Post#comments will now be ordered by published_on, and filtered by rating &gt; 5.</span>
 <span class="no">6</span> <span class="r">end</span>
 </pre></div><h2>Finders off Associations</h2>
 <p>When you call an association off of a model, internally DataMapper creates a Query object which it then executes when you start iterating or call <code>length</code> off of. But if you instead call <code>.all</code> or <code>.first</code> off of the association and provide it the exact same arguments as a regular <code>all</code> and <code>first</code>, it merges the new query with the query from the association and hands you back a requested subset of the association&#8217;s query results.</p>
 <p>In a way, it acts like a database view in that respect.</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="iv">@post</span> = <span class="co">Post</span>.first
 <span class="no">2</span> <span class="iv">@post</span>.categories <span class="c"># returns the full association</span>
-<span class="no">3</span> <span class="iv">@post</span>.categories.all(<span class="sy">:limit</span> =&gt; <span class="i">10</span>, <span class="sy">:order</span> =&gt; [<span class="sy">:name</span>.asc]) <span class="c"># return the first 10 categories ordered by name</span>
-<span class="no">4</span> <span class="iv">@post</span>.categories(<span class="sy">:limit</span> =&gt; <span class="i">10</span>, <span class="sy">:order</span> =&gt; [<span class="sy">:name</span>.asc]) <span class="c"># alias for #all, you can pass in the options directly</span>
+<span class="no">3</span> <span class="iv">@post</span>.categories.all(<span class="sy">:limit</span> =&gt; <span class="i">10</span>, <span class="sy">:order</span> =&gt; [ <span class="sy">:name</span>.asc ]) <span class="c"># return the first 10 categories ordered by name</span>
+<span class="no">4</span> <span class="iv">@post</span>.categories(<span class="sy">:limit</span> =&gt; <span class="i">10</span>, <span class="sy">:order</span> =&gt; [ <span class="sy">:name</span>.asc ]) <span class="c"># alias for #all, you can pass in the options directly</span>
 </pre></div>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>

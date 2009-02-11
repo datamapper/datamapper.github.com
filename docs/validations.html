@@ -31,7 +31,7 @@
 <h2>Manual Validation</h2>
 <p>Much like a certain other Ruby ORM we can call validation methods directly by passing them a property name (or an array of names) to validate against.</p>
 <div class="CodeRay"><pre><span class="no">1</span>   validates_length <span class="sy">:name</span>
-<span class="no">2</span>   validates_length [<span class="sy">:name</span>, <span class="sy">:description</span>]
+<span class="no">2</span>   validates_length [ <span class="sy">:name</span>, <span class="sy">:description</span> ]
 </pre></div><p>These are the currently available manual validations available. Please refer to the <a href="http://datamapper.rubyforge.org/DataMapper/Validate/ClassMethods.html">API</a> for more detailed information.</p>
 <ul>
 	<li>validates_present</li>
@@ -111,22 +111,23 @@
 <p>The method or block performs the validation tests and then should return <code>true</code> if the resource is valid or <code>false</code> if it is invalid.  If the resource isn&#8217;t valid instead of just returning <code>false</code>, an array containing <code>false</code> and an error message, such as <code>[false, "FAIL!"]</code> can be returned.  This will add the message to the <code>errors</code> on the resource.</p>
 <div class="CodeRay"><pre><span class="no"> 1</span>   <span class="r">class</span> <span class="cl">WikiPage</span>
 <span class="no"> 2</span>     include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no"> 3</span>     <span class="c"># properties ...</span>
-<span class="no"> 4</span> 
-<span class="no"> 5</span>     validates_with_method <span class="sy">:check_citations</span>
-<span class="no"> 6</span> 
-<span class="no"> 7</span>     <span class="c"># checks that we've included at least 5 citations for our wikipage.</span>
-<span class="no"> 8</span>     <span class="r">def</span> <span class="fu">check_citations</span>
-<span class="no"> 9</span>       <span class="c"># in a 'real' example, the number of citations might be a property set by</span>
-<span class="no"><strong>10</strong></span>       <span class="c"># a before :valid? hook.</span>
-<span class="no">11</span>       num = count_citations(<span class="pc">self</span>.body)
-<span class="no">12</span>       <span class="r">if</span> num &gt; <span class="i">4</span>
-<span class="no">13</span>         <span class="r">return</span> <span class="pc">true</span>
-<span class="no">14</span>       <span class="r">else</span>
-<span class="no">15</span>         [<span class="pc">false</span>, <span class="s"><span class="dl">&quot;</span><span class="k">You must have at least </span><span class="il"><span class="idl">#{</span><span class="i">5</span> - num<span class="idl">}</span></span><span class="k"> more citations for this article</span><span class="dl">&quot;</span></span>]
-<span class="no">16</span>       <span class="r">end</span>
-<span class="no">17</span>     <span class="r">end</span>
-<span class="no">18</span>   <span class="r">end</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>     <span class="c"># properties ...</span>
+<span class="no"> 5</span> 
+<span class="no"> 6</span>     validates_with_method <span class="sy">:check_citations</span>
+<span class="no"> 7</span> 
+<span class="no"> 8</span>     <span class="c"># checks that we've included at least 5 citations for our wikipage.</span>
+<span class="no"> 9</span>     <span class="r">def</span> <span class="fu">check_citations</span>
+<span class="no"><strong>10</strong></span>       <span class="c"># in a 'real' example, the number of citations might be a property set by</span>
+<span class="no">11</span>       <span class="c"># a before :valid? hook.</span>
+<span class="no">12</span>       num = count_citations(<span class="pc">self</span>.body)
+<span class="no">13</span>       <span class="r">if</span> num &gt; <span class="i">4</span>
+<span class="no">14</span>         <span class="r">return</span> <span class="pc">true</span>
+<span class="no">15</span>       <span class="r">else</span>
+<span class="no">16</span>         [<span class="pc">false</span>, <span class="s"><span class="dl">&quot;</span><span class="k">You must have at least </span><span class="il"><span class="idl">#{</span><span class="i">5</span> - num<span class="idl">}</span></span><span class="k"> more citations for this article</span><span class="dl">&quot;</span></span>]
+<span class="no">17</span>       <span class="r">end</span>
+<span class="no">18</span>     <span class="r">end</span>
+<span class="no">19</span>   <span class="r">end</span>
 </pre></div><p>Instead of setting an error on the whole resource, you can set an error on an individual property by passing this as the first argument to <code>validates_with_block</code> or <code>validates_with_method</code>.  To use the previous example, replacing line 5 with:</p>
 <div class="CodeRay"><pre>  validates_with_method <span class="sy">:body</span>, <span class="sy">:method</span> =&gt; <span class="sy">:check_citations</span>
 </pre></div><p>This would result in the citations error message being added to the error messages for the body, which might improve how it is presented to the user.</p>
@@ -136,11 +137,11 @@
 <div class="CodeRay"><pre><span class="no"> 1</span>   <span class="r">class</span> <span class="cl">Ticket</span>
 <span class="no"> 2</span>     include <span class="co">DataMapper</span>::<span class="co">Resource</span>
 <span class="no"> 3</span> 
-<span class="no"> 4</span>     property <span class="sy">:id</span>, <span class="co">Serial</span>
-<span class="no"> 5</span>     property <span class="sy">:title</span>, <span class="co">String</span>, <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>
+<span class="no"> 4</span>     property <span class="sy">:id</span>,          <span class="co">Serial</span>
+<span class="no"> 5</span>     property <span class="sy">:title</span>,       <span class="co">String</span>, <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>
 <span class="no"> 6</span>     property <span class="sy">:description</span>, <span class="co">Text</span>
-<span class="no"> 7</span>     property <span class="sy">:commit</span>, <span class="co">String</span>
-<span class="no"> 8</span>     property <span class="sy">:status</span>, <span class="co">Enum</span>[<span class="sy">:new</span>, <span class="sy">:open</span>, <span class="sy">:invalid</span>, <span class="sy">:complete</span>]
+<span class="no"> 7</span>     property <span class="sy">:commit</span>,      <span class="co">String</span>
+<span class="no"> 8</span>     property <span class="sy">:status</span>,      <span class="co">Enum</span>[ <span class="sy">:new</span>, <span class="sy">:open</span>, <span class="sy">:invalid</span>, <span class="sy">:complete</span> ]
 <span class="no"> 9</span> 
 <span class="no"><strong>10</strong></span>     validates_present <span class="sy">:commit</span>, <span class="sy">:if</span> =&gt; <span class="co">Proc</span>.new {|t| t.status == <span class="sy">:complete</span> }
 <span class="no">11</span>   <span class="r">end</span>
@@ -154,18 +155,18 @@
 <div class="CodeRay"><pre><span class="no"> 1</span>   <span class="r">class</span> <span class="cl">Article</span>
 <span class="no"> 2</span>     include <span class="co">DataMapper</span>::<span class="co">Resource</span>
 <span class="no"> 3</span> 
-<span class="no"> 4</span>     property <span class="sy">:id</span>, <span class="co">Serial</span>
-<span class="no"> 5</span>     property <span class="sy">:title</span>, <span class="co">String</span>
+<span class="no"> 4</span>     property <span class="sy">:id</span>,                  <span class="co">Serial</span>
+<span class="no"> 5</span>     property <span class="sy">:title</span>,               <span class="co">String</span>
 <span class="no"> 6</span>     property <span class="sy">:sidebar_picture_url</span>, <span class="co">String</span>
-<span class="no"> 7</span>     property <span class="sy">:body</span>, <span class="co">Text</span>
-<span class="no"> 8</span>     property <span class="sy">:published</span>, <span class="co">Boolean</span>
+<span class="no"> 7</span>     property <span class="sy">:body</span>,                <span class="co">Text</span>
+<span class="no"> 8</span>     property <span class="sy">:published</span>,           <span class="co">Boolean</span>
 <span class="no"> 9</span> 
 <span class="no"><strong>10</strong></span>     <span class="c"># validations</span>
-<span class="no">11</span>     validates_present <span class="sy">:title</span>, <span class="sy">:when</span> =&gt; [<span class="sy">:draft</span>, <span class="sy">:publish</span>]
-<span class="no">12</span>     validates_present <span class="sy">:sidebar_picture_url</span>, <span class="sy">:when</span> =&gt; [<span class="sy">:publish</span>]
-<span class="no">13</span>     validates_present <span class="sy">:body</span>, <span class="sy">:when</span> =&gt; [<span class="sy">:draft</span>, <span class="sy">:publish</span>]
-<span class="no">14</span>     validates_length <span class="sy">:body</span>, <span class="sy">:minimum</span> =&gt; <span class="i">1000</span>, <span class="sy">:when</span> =&gt; [<span class="sy">:publish</span>]
-<span class="no">15</span>     validates_absent <span class="sy">:published</span>, <span class="sy">:when</span> =&gt; [<span class="sy">:draft</span>]
+<span class="no">11</span>     validates_present <span class="sy">:title</span>,               <span class="sy">:when</span> =&gt; [ <span class="sy">:draft</span>, <span class="sy">:publish</span> ]
+<span class="no">12</span>     validates_present <span class="sy">:sidebar_picture_url</span>, <span class="sy">:when</span> =&gt; [ <span class="sy">:publish</span> ]
+<span class="no">13</span>     validates_present <span class="sy">:body</span>,                <span class="sy">:when</span> =&gt; [ <span class="sy">:draft</span>, <span class="sy">:publish</span> ]
+<span class="no">14</span>     validates_length  <span class="sy">:body</span>,                <span class="sy">:minimum</span> =&gt; <span class="i">1000</span>, <span class="sy">:when</span> =&gt; [ <span class="sy">:publish</span> ]
+<span class="no">15</span>     validates_absent  <span class="sy">:published</span>,           <span class="sy">:when</span> =&gt; [ <span class="sy">:draft</span> ]
 <span class="no">16</span>   <span class="r">end</span>
 <span class="no">17</span> 
 <span class="no">18</span>   <span class="c"># and now some results</span>
@@ -218,8 +219,8 @@
 <div class="CodeRay"><pre><span class="no"> 1</span>   <span class="r">class</span> <span class="cl">Article</span>
 <span class="no"> 2</span>     include <span class="co">DataMapper</span>::<span class="co">Resource</span>
 <span class="no"> 3</span> 
-<span class="no"> 4</span>     property <span class="sy">:id</span>, <span class="co">Serial</span>
-<span class="no"> 5</span>     property <span class="sy">:title</span>, <span class="co">String</span>, <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>
+<span class="no"> 4</span>     property <span class="sy">:id</span>,        <span class="co">Serial</span>
+<span class="no"> 5</span>     property <span class="sy">:title</span>,     <span class="co">String</span>, <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>
 <span class="no"> 6</span>     property <span class="sy">:permalink</span>, <span class="co">String</span>, <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>
 <span class="no"> 7</span> 
 <span class="no"> 8</span>     before <span class="sy">:valid?</span>, <span class="sy">:set_permalink</span>
@@ -233,7 +234,7 @@
 </pre></div><p>Be careful not to <code>save</code> your resource in these kinds of methods, or your application will spin off into infinite trying to save your object while saving your object.</p>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>

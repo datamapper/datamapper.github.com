@@ -36,7 +36,7 @@
 <h2>Sequel</h2>
 <p>Unlike ActiveRecord, Sequel supports <acronym title="Composite Primary Keys">CPK</acronym>s natively:</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span> &lt; <span class="co">Sequel</span>::<span class="co">Model</span>
-<span class="no">2</span>   set_primary_key [<span class="sy">:category</span>, <span class="sy">:title</span>]
+<span class="no">2</span>   set_primary_key [ <span class="sy">:category</span>, <span class="sy">:title</span> ]
 <span class="no">3</span> <span class="r">end</span>
 <span class="no">4</span> 
 <span class="no">5</span> post = <span class="co">Post</span>[<span class="s"><span class="dl">'</span><span class="k">ruby</span><span class="dl">'</span></span>, <span class="s"><span class="dl">'</span><span class="k">hello world</span><span class="dl">'</span></span>]
@@ -46,17 +46,17 @@
 <p>The latest DataMapper was designed from the ground up to support <acronym title="Composite Primary Keys">CPK</acronym>s:</p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Pig</span>
 <span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no"> 3</span>   property <span class="sy">:id</span>, <span class="co">Fixnum</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
-<span class="no"> 4</span>   property <span class="sy">:slug</span>, <span class="co">String</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
-<span class="no"> 5</span>   property <span class="sy">:name</span>, <span class="co">String</span>
-<span class="no"> 6</span> <span class="r">end</span>
-<span class="no"> 7</span> 
-<span class="no"> 8</span> <span class="co">Pig</span>.get(<span class="i">1</span>, <span class="s"><span class="dl">'</span><span class="k">Porky</span><span class="dl">'</span></span>)
-<span class="no"> 9</span> <span class="co">Pig</span>[<span class="i">2</span>, <span class="s"><span class="dl">'</span><span class="k">Piglet</span><span class="dl">'</span></span>]
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   property <span class="sy">:id</span>,   <span class="co">Integer</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+<span class="no"> 5</span>   property <span class="sy">:slug</span>, <span class="co">String</span>,  <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+<span class="no"> 6</span>   property <span class="sy">:name</span>, <span class="co">String</span>
+<span class="no"> 7</span> <span class="r">end</span>
+<span class="no"> 8</span> 
+<span class="no"> 9</span> pig = <span class="co">Pig</span>.get(<span class="i">1</span>, <span class="s"><span class="dl">'</span><span class="k">Porky</span><span class="dl">'</span></span>)
 <span class="no"><strong>10</strong></span> 
 <span class="no">11</span> pig.key <span class="c"># =&gt; [1, 'Wilbur']</span>
 </pre></div><p>We declared our keys by adding the <code>:key =&gt; true</code> to the appropriate properties. The order is important as it will determine the order keys are addressed throughout the system.</p>
-<p>Next, we mixed and matched the keys&#8217; types.  <code>:id</code> is a Fixnum, but <code>:slug</code> is a String. DataMapper didn&#8217;t flinch when we defined a key column as a String because it supports <a href="http://en.wikipedia.org/wiki/Natural_key">Natural Keys</a> as well.</p>
+<p>Next, we mixed and matched the keys&#8217; types.  <code>:id</code> is a Integer, but <code>:slug</code> is a String. DataMapper didn&#8217;t flinch when we defined a key column as a String because it supports <a href="http://en.wikipedia.org/wiki/Natural_key">Natural Keys</a> as well.</p>
 <p>Lastly, when retrieving rows via <code>get</code> and <code>[]</code> with a <acronym title="Composite Primary Keys">CPK</acronym>, we supplied the keys in the order they were defined within our model.  For example, we defined <code>:id</code> first, then <code>:slug</code> second; later, we retrieved Porky by specifying his <code>:id</code> and <code>:slug</code> in the same order.  Additionally, when we asked Wilbur for his keys, he handed us an array in the order the keys were defined.</p>
 <p>We didn&#8217;t need to mix in an external library to get support for <acronym title="Composite Primary Keys">CPK</acronym>s, nor did we need to call a <code>set_primary_key</code> method and then supply more than one key to it. DataMapper supports Composite Primary Keys intuitively and without compromise!</p>
 <p>In later &#8220;Spotlight On&#8230;&#8221; articles, we&#8217;ll examine and demonstrate other DataMapper features or persistence concepts as well as compare similar features with other ORMs or libraries.</p>
@@ -67,7 +67,7 @@ Email the <a href="http://groups.google.com/group/datamapper">DataMapper Mailing
 contribution and we&#8217;ll post it here.</p>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>

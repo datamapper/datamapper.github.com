@@ -5,7 +5,7 @@
   <subtitle>Ruby Object Relational Mapper</subtitle>
   <link href="http://www.datamapper.org/news.rss" rel="self"/>
   <link href="http://www.datamapper.org/"/>
-  <updated>2009-02-11T00:52:45+00:00</updated>
+  <updated>2009-02-10T17:14:12-08:00</updated>
   <author>
     <name>Maintained By the Community</name>
     <email>datamapper@googlegroups.com</email>
@@ -16,7 +16,7 @@
     <title>DataMapper Sponsor Looking for Developer</title>
     <link href="/articles/wieck_hire.html"/>
     <id>tag:datamapper.org,2008-08-05:1217969640</id>
-    <updated>2008-08-05T21:54:00+01:00</updated>
+    <updated>2008-08-05T13:54:00-07:00</updated>
     <content type="html">&lt;h1&gt;DataMapper Sponsor Looking for Developer&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&quot;http://wieck.com&quot;&gt;Wieck Media&lt;/a&gt;, sponsors of the DataMapper project are looking for a local, on-site, full-time developer in Dallas, TX to join the team. The work includes client projects for Honda, The New York Times and FIA among others as well as developing our own products and supporting open source efforts including DataMapper.&lt;/p&gt;
 &lt;p&gt;If this sounds like your cup of tea, get in touch with &amp;#8220;sam&amp;#8221; at  &amp;#8220;wieck.com&amp;#8221; with the subject &amp;#8220;DataMapper Developer&amp;#8221; with your resume, a little note about yourself, and your contact information. Points awarded if you&amp;#8217;re awesome.&lt;/p&gt;</content>
@@ -26,7 +26,7 @@
     <title>DataMapper Presented at RailsConf 2008</title>
     <link href="/articles/datamapper_presented_at_railsconf08.html"/>
     <id>tag:datamapper.org,2008-06-10:1213119016</id>
-    <updated>2008-06-10T18:30:16+01:00</updated>
+    <updated>2008-06-10T10:30:16-07:00</updated>
     <content type="html">&lt;h1&gt;DataMapper Presented at RailsConf 2008&lt;/h1&gt;
 &lt;p&gt;Yehuda Katz (wycats) gave an updated version of his &amp;#8220;DataMapper &amp;#8211; The Persistence Framework&amp;#8221; presentation at Rails Conf 2008.  Though video isn&amp;#8217;t available for the talk, he was nice enough to share his slides.&lt;/p&gt;
 &lt;div style=&quot;width:425px;text-align:left; margin:0 auto;&quot; id=&quot;__ss_445593&quot;&gt;&lt;object style=&quot;margin:0px&quot; width=&quot;425&quot; height=&quot;355&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://static.slideshare.net/swf/ssplayer2.swf?doc=datamapper-1212540345128334-9&quot;/&gt;&lt;param name=&quot;allowFullScreen&quot; value=&quot;true&quot;/&gt;&lt;param name=&quot;allowScriptAccess&quot; value=&quot;always&quot;/&gt;&lt;embed src=&quot;http://static.slideshare.net/swf/ssplayer2.swf?doc=datamapper-1212540345128334-9&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; allowfullscreen=&quot;true&quot; width=&quot;425&quot; height=&quot;355&quot;&gt;&lt;/embed&gt;&lt;/object&gt;&lt;div style=&quot;font-size:11px;font-family:tahoma,arial;height:26px;padding-top:2px;&quot;&gt;&lt;a href=&quot;http://www.slideshare.net/?src=embed&quot;&gt;&lt;img src=&quot;http://static.slideshare.net/swf/logo_embd.png&quot; style=&quot;border:0px none;margin-bottom:-5px&quot; alt=&quot;SlideShare&quot;/&gt;&lt;/a&gt; | &lt;a href=&quot;http://www.slideshare.net/wycats/datamapper?src=embed&quot; title=&quot;View DataMapper on SlideShare&quot;&gt;View&lt;/a&gt; | &lt;a href=&quot;http://www.slideshare.net/upload?src=embed&quot;&gt;Upload your own&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;
@@ -38,7 +38,7 @@
     <title>DataMapper 0.9 is Released</title>
     <link href="/articles/datamapper_090_released.html"/>
     <id>tag:datamapper.org,2008-05-27:1211875644</id>
-    <updated>2008-05-27T09:07:24+01:00</updated>
+    <updated>2008-05-27T01:07:24-07:00</updated>
     <content type="html">&lt;h1&gt;DataMapper 0.9 is Released&lt;/h1&gt;
 &lt;p&gt;DataMapper 0.9 is ready for the world.  It brings with it a massive overhaul of the internals of DataMapper, a shift in terminology, a dramatic bump in speed, improved code-base organization, and support for more than just database data-stores.&lt;/p&gt;
 &lt;p&gt;To install it:&lt;/p&gt;
@@ -80,29 +80,29 @@ property &lt;span class=&quot;sy&quot;&gt;:slug&lt;/span&gt;, &lt;span class=&qu
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
 &lt;td&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# keys are now mandatory&lt;/span&gt;
-property &lt;span class=&quot;sy&quot;&gt;:id&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;Integer&lt;/span&gt;,  &lt;span class=&quot;sy&quot;&gt;:serial&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
+property &lt;span class=&quot;sy&quot;&gt;:id&lt;/span&gt;,   &lt;span class=&quot;co&quot;&gt;Serial&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# Natural Key&lt;/span&gt;
-property &lt;span class=&quot;sy&quot;&gt;:slug&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:key&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
+property &lt;span class=&quot;sy&quot;&gt;:slug&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;,  &lt;span class=&quot;sy&quot;&gt;:key&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# Composite Key&lt;/span&gt;
-property &lt;span class=&quot;sy&quot;&gt;:id&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;Integer&lt;/span&gt;,  &lt;span class=&quot;sy&quot;&gt;:key&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
-property &lt;span class=&quot;sy&quot;&gt;:slug&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:key&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
+property &lt;span class=&quot;sy&quot;&gt;:id&lt;/span&gt;,   &lt;span class=&quot;co&quot;&gt;Integer&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:key&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
+property &lt;span class=&quot;sy&quot;&gt;:slug&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;,  &lt;span class=&quot;sy&quot;&gt;:key&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
       &lt;th&gt;Properties&lt;/th&gt;
 &lt;td&gt;
-&lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;property &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt;,      &lt;span class=&quot;sy&quot;&gt;:string&lt;/span&gt;
-property &lt;span class=&quot;sy&quot;&gt;:body&lt;/span&gt;,       &lt;span class=&quot;sy&quot;&gt;:text&lt;/span&gt;
-property &lt;span class=&quot;sy&quot;&gt;:posted_on&lt;/span&gt;,  &lt;span class=&quot;sy&quot;&gt;:datetime&lt;/span&gt;
-property &lt;span class=&quot;sy&quot;&gt;:active&lt;/span&gt;,     &lt;span class=&quot;sy&quot;&gt;:boolean&lt;/span&gt;
+&lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;property &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt;,     &lt;span class=&quot;sy&quot;&gt;:string&lt;/span&gt;
+property &lt;span class=&quot;sy&quot;&gt;:body&lt;/span&gt;,      &lt;span class=&quot;sy&quot;&gt;:text&lt;/span&gt;
+property &lt;span class=&quot;sy&quot;&gt;:posted_on&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:datetime&lt;/span&gt;
+property &lt;span class=&quot;sy&quot;&gt;:active&lt;/span&gt;,    &lt;span class=&quot;sy&quot;&gt;:boolean&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
 &lt;td&gt;
-&lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;property &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt;,      &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;
-property &lt;span class=&quot;sy&quot;&gt;:body&lt;/span&gt;,       &lt;span class=&quot;co&quot;&gt;Text&lt;/span&gt;
-property &lt;span class=&quot;sy&quot;&gt;:posted_on&lt;/span&gt;,  &lt;span class=&quot;co&quot;&gt;DateTime&lt;/span&gt;
-property &lt;span class=&quot;sy&quot;&gt;:active&lt;/span&gt;,     &lt;span class=&quot;co&quot;&gt;Boolean&lt;/span&gt;
+&lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;property &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt;,     &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;
+property &lt;span class=&quot;sy&quot;&gt;:body&lt;/span&gt;,      &lt;span class=&quot;co&quot;&gt;Text&lt;/span&gt;
+property &lt;span class=&quot;sy&quot;&gt;:posted_on&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;DateTime&lt;/span&gt;
+property &lt;span class=&quot;sy&quot;&gt;:active&lt;/span&gt;,    &lt;span class=&quot;co&quot;&gt;Boolean&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -126,7 +126,7 @@ has &lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;sy&quot
 &lt;notextile&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;co&quot;&gt;Post&lt;/span&gt;.first &lt;span class=&quot;sy&quot;&gt;:order&lt;/span&gt; =&amp;gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8216;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;created_at DESC&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8217;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
 &lt;span class=&quot;co&quot;&gt;Post&lt;/span&gt;.all&lt;br /&gt;
-  &lt;span class=&quot;sy&quot;&gt;:conditions&lt;/span&gt; =&amp;gt; [&lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8216;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;active = ?&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8217;&lt;/span&gt;&lt;/span&gt;, &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;]&lt;br /&gt;
+  &lt;span class=&quot;sy&quot;&gt;:conditions&lt;/span&gt; =&amp;gt; [ &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8216;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;active = ?&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8217;&lt;/span&gt;&lt;/span&gt;, &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt; ]&lt;br /&gt;
 &lt;br /&gt;
 database.query &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;%Q{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SELECT 1&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
 database.execute &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;%Q{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;UPDATE posts&amp;#8230;&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
@@ -135,9 +135,9 @@ database.execute &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&g
 &lt;/td&gt;
 &lt;td&gt;
 &lt;notextile&gt;
-&lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;co&quot;&gt;Post&lt;/span&gt;.first &lt;span class=&quot;sy&quot;&gt;:order&lt;/span&gt; =&amp;gt; [&lt;span class=&quot;sy&quot;&gt;:created_at&lt;/span&gt;.desc]&lt;br /&gt;
+&lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;co&quot;&gt;Post&lt;/span&gt;.first &lt;span class=&quot;sy&quot;&gt;:order&lt;/span&gt; =&amp;gt; [ &lt;span class=&quot;sy&quot;&gt;:created_at&lt;/span&gt;.desc ]&lt;br /&gt;
 &lt;span class=&quot;co&quot;&gt;Post&lt;/span&gt;.all&lt;br /&gt;
-  &lt;span class=&quot;sy&quot;&gt;:conditions&lt;/span&gt; =&amp;gt; [&lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8216;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;active = ?&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8217;&lt;/span&gt;&lt;/span&gt;, &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;]&lt;br /&gt;
+  &lt;span class=&quot;sy&quot;&gt;:conditions&lt;/span&gt; =&amp;gt; [ &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8216;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;active = ?&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8217;&lt;/span&gt;&lt;/span&gt;, &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt; ]&lt;br /&gt;
 &lt;br /&gt;
 repository(&lt;span class=&quot;sy&quot;&gt;:default&lt;/span&gt;).adapter.query &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;%Q{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SELECT 1&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
 repository(&lt;span class=&quot;sy&quot;&gt;:default&lt;/span&gt;).adapter.execute &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;%Q{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;UPDATE posts&amp;#8230;&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
@@ -151,23 +151,19 @@ repository(&lt;span class=&quot;sy&quot;&gt;:default&lt;/span&gt;).adapter.execu
 &lt;notextile&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;validates_presence_of     &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt;&lt;br /&gt;
 validates_numericality_of &lt;span class=&quot;sy&quot;&gt;:rating&lt;/span&gt;&lt;br /&gt;
-validates_format_of       &lt;span class=&quot;sy&quot;&gt;:email&lt;/span&gt;,&lt;br /&gt;
-  &lt;span class=&quot;sy&quot;&gt;:with&lt;/span&gt; =&amp;gt; &lt;span class=&quot;sy&quot;&gt;:email_address&lt;/span&gt;&lt;br /&gt;
-validates_length_of       &lt;span class=&quot;sy&quot;&gt;:summary&lt;/span&gt;,&lt;br /&gt;
-  &lt;span class=&quot;sy&quot;&gt;:within&lt;/span&gt; =&amp;gt; (&lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;..&lt;span class=&quot;i&quot;&gt;100&lt;/span&gt;)&lt;br /&gt;
+validates_format_of       &lt;span class=&quot;sy&quot;&gt;:email&lt;/span&gt;,   &lt;span class=&quot;sy&quot;&gt;:with&lt;/span&gt; =&amp;gt; &lt;span class=&quot;sy&quot;&gt;:email_address&lt;/span&gt;&lt;br /&gt;
+validates_length_of       &lt;span class=&quot;sy&quot;&gt;:summary&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:within&lt;/span&gt; =&amp;gt; (&lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;..&lt;span class=&quot;i&quot;&gt;100&lt;/span&gt;)&lt;br /&gt;
 validates_uniqueness_of   &lt;span class=&quot;sy&quot;&gt;:slug&lt;/span&gt;&lt;br /&gt;
         &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;/notextile&gt;&lt;/p&gt;
 &lt;/td&gt;
 &lt;td&gt;
 &lt;notextile&gt;
-&lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;validates_present     &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt;&lt;br /&gt;
-validates_is_number   &lt;span class=&quot;sy&quot;&gt;:rating&lt;/span&gt;&lt;br /&gt;
-validates_format      &lt;span class=&quot;sy&quot;&gt;:email&lt;/span&gt;,&lt;br /&gt;
-  &lt;span class=&quot;sy&quot;&gt;:as&lt;/span&gt; =&amp;gt; &lt;span class=&quot;sy&quot;&gt;:email_address&lt;/span&gt;&lt;br /&gt;
-validates_length      &lt;span class=&quot;sy&quot;&gt;:summary&lt;/span&gt;,&lt;br /&gt;
-  &lt;span class=&quot;sy&quot;&gt;:in&lt;/span&gt; =&amp;gt; (&lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;..&lt;span class=&quot;i&quot;&gt;100&lt;/span&gt;)&lt;br /&gt;
-validates_is_unique   &lt;span class=&quot;sy&quot;&gt;:slug&lt;/span&gt;&lt;br /&gt;
+&lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;validates_present   &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt;&lt;br /&gt;
+validates_is_number &lt;span class=&quot;sy&quot;&gt;:rating&lt;/span&gt;&lt;br /&gt;
+validates_format    &lt;span class=&quot;sy&quot;&gt;:email&lt;/span&gt;,   &lt;span class=&quot;sy&quot;&gt;:as&lt;/span&gt; =&amp;gt; &lt;span class=&quot;sy&quot;&gt;:email_address&lt;/span&gt;&lt;br /&gt;
+validates_length    &lt;span class=&quot;sy&quot;&gt;:summary&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:in&lt;/span&gt; =&amp;gt; (&lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;..&lt;span class=&quot;i&quot;&gt;100&lt;/span&gt;)&lt;br /&gt;
+validates_is_unique &lt;span class=&quot;sy&quot;&gt;:slug&lt;/span&gt;&lt;br /&gt;
         &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;/notextile&gt;&lt;/p&gt;
 &lt;/td&gt;
@@ -200,8 +196,8 @@ before &lt;span class=&quot;sy&quot;&gt;:create&lt;/span&gt; &lt;span class=&quo
   <entry>
     <title>The Stunningly Easy Way to Live On The Edge Of DataMapper</title>
     <link href="/articles/stunningly_easy_way_to_live_on_the_edge.html"/>
-    <id>tag:datamapper.org,2008-05-08:1210205074</id>
-    <updated>2008-05-08T01:04:34+01:00</updated>
+    <id>tag:datamapper.org,2008-05-07:1210205074</id>
+    <updated>2008-05-07T17:04:34-07:00</updated>
     <content type="html">&lt;h1&gt;The Stunningly Easy Way to Live On The Edge Of DataMapper&lt;/h1&gt;
 &lt;p&gt;DataMapper is organized into sub-projects, much like &lt;a href=&quot;http://www.merbivore.com&quot;&gt;Merb&lt;/a&gt;, and that tends to confuse even the people working on it&amp;#8230;.until recently.  Michael Ivey, an active contributer to the Merb project, and our very own Dan Kubb have collaborated on a set of Sake tasks to help automate and streamline checking out, packaging, installing, uninstalling, updating, repackaging, and reinstalling the DataMapper and Merb projects.&lt;/p&gt;
 &lt;p&gt;If you like to live life on the edge, this is the happiest way to do it.&lt;/p&gt;
@@ -267,8 +263,8 @@ sake dm&lt;span class=&quot;sy&quot;&gt;:update&lt;/span&gt;                    
   <entry>
     <title>DataMapper Presented at MWRC 2008</title>
     <link href="/articles/datamapper_talk_atmwrc08.html"/>
-    <id>tag:datamapper.org,2008-04-11:1207886859</id>
-    <updated>2008-04-11T05:07:39+01:00</updated>
+    <id>tag:datamapper.org,2008-04-10:1207886859</id>
+    <updated>2008-04-10T21:07:39-07:00</updated>
     <content type="html">&lt;h1&gt;DataMapper Presented at MWRC 2008&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&quot;http://mwrc2008.confreaks.com/04katz.html&quot; style=&quot;border:10px; color:#FFF; text-decoration:none;&quot;&gt;&lt;img src=&quot;/images/wykatz_at_mwrc2008.png&quot; title=&quot;Yehuda Katz&amp;#39; presentation entitled &amp;#39;Faster, Better ORM With DataMapper&quot; alt=&quot;Yehuda Katz&amp;#39; presentation entitled &amp;#39;Faster, Better ORM With DataMapper&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;At this year&amp;#8217;s &lt;a href=&quot;http://mtnwestrubyconf.org/&quot;&gt;Mountain West Ruby Conference 2008&lt;/a&gt;, DataMapper&amp;#8217;s own Yehuda Katz gave a presentation entitled &amp;#8220;Faster, Better ORM With DataMapper.&amp;#8221;&lt;/p&gt;
@@ -278,8 +274,8 @@ sake dm&lt;span class=&quot;sy&quot;&gt;:update&lt;/span&gt;                    
   <entry>
     <title>Spotlight on... Laziness</title>
     <link href="/articles/spotlight_on_laziness.html"/>
-    <id>tag:datamapper.org,2008-04-04:1207282092</id>
-    <updated>2008-04-04T05:08:12+01:00</updated>
+    <id>tag:datamapper.org,2008-04-03:1207282092</id>
+    <updated>2008-04-03T21:08:12-07:00</updated>
     <content type="html">&lt;h1&gt;Spotlight on&amp;#8230; Laziness&lt;/h1&gt;
 &lt;p&gt;Laziness.  It means &amp;#8220;an unwillingness to work or use energy&amp;#8221; and typically indicates that the dishes don&amp;#8217;t get washed after lunch, the bath tub doesn&amp;#8217;t get cleaned, and the trash sits around an extra few days and stinks up the place.&lt;/p&gt;
 &lt;p&gt;But that very same definition in software takes on a whole new meaning: To avoid doing work you don&amp;#8217;t have to do for as long as you can avoid it; sometimes never doing it at all.  It&amp;#8217;s a good thing. It means that expensive and slow tasks can be put off until the very last cycle possible and thus only incur their cost when it really is worth it. Maybe you never execute the code at all.&lt;/p&gt;
@@ -292,10 +288,11 @@ sake dm&lt;span class=&quot;sy&quot;&gt;:update&lt;/span&gt;                    
 &lt;p&gt;You likely already know that DataMapper supports lazy properties.&lt;/p&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;no&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;cl&quot;&gt;Post&lt;/span&gt;
 &lt;span class=&quot;no&quot;&gt;2&lt;/span&gt;   include &lt;span class=&quot;co&quot;&gt;DataMapper&lt;/span&gt;::&lt;span class=&quot;co&quot;&gt;Resource&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;3&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:id&lt;/span&gt;,      &lt;span class=&quot;co&quot;&gt;Fixnum&lt;/span&gt;,   &lt;span class=&quot;sy&quot;&gt;:serial&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# auto_incrementing primary key&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;4&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt;,   &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;,   &lt;span class=&quot;sy&quot;&gt;:lazy&lt;/span&gt;   =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# intentionally lazy&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;5&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:body&lt;/span&gt;,    &lt;span class=&quot;co&quot;&gt;Text&lt;/span&gt;                       &lt;span class=&quot;c&quot;&gt;# lazy by default&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;3&lt;/span&gt; 
+&lt;span class=&quot;no&quot;&gt;4&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:id&lt;/span&gt;,    &lt;span class=&quot;co&quot;&gt;Serial&lt;/span&gt;                  &lt;span class=&quot;c&quot;&gt;# auto_incrementing primary key&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;5&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:lazy&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;   &lt;span class=&quot;c&quot;&gt;# intentionally lazy&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;6&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:body&lt;/span&gt;,  &lt;span class=&quot;co&quot;&gt;Text&lt;/span&gt;                    &lt;span class=&quot;c&quot;&gt;# lazy by default&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this case, we&amp;#8217;re intentionally marking this Post&amp;#8217;s &lt;code&gt;:title&lt;/code&gt; property as lazy, as well as letting the &lt;code&gt;:body&lt;/code&gt; be lazy by default.  If we go and inspect our query log for the retrieval of a post with the ID of 1, we see&lt;/p&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;r&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;posts&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; = &lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;p&gt;DataMapper didn&amp;#8217;t request the two lazy columns.  But when we call &lt;code&gt;.title&lt;/code&gt; off of our post, we suddenly see&lt;/p&gt;
@@ -312,9 +309,9 @@ sake dm&lt;span class=&quot;sy&quot;&gt;:update&lt;/span&gt;                    
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;no&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;cl&quot;&gt;Post&lt;/span&gt;
 &lt;span class=&quot;no&quot;&gt;2&lt;/span&gt;   include &lt;span class=&quot;co&quot;&gt;DataMapper&lt;/span&gt;::&lt;span class=&quot;co&quot;&gt;Resource&lt;/span&gt;
 &lt;span class=&quot;no&quot;&gt;3&lt;/span&gt; 
-&lt;span class=&quot;no&quot;&gt;4&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:id&lt;/span&gt;,     &lt;span class=&quot;co&quot;&gt;Fixnum&lt;/span&gt;,   &lt;span class=&quot;sy&quot;&gt;:serial&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;5&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt;,  &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;,   &lt;span class=&quot;sy&quot;&gt;:lazy&lt;/span&gt; =&amp;gt; [&lt;span class=&quot;sy&quot;&gt;:summary&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:brief&lt;/span&gt;]
-&lt;span class=&quot;no&quot;&gt;6&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:body&lt;/span&gt;,   &lt;span class=&quot;co&quot;&gt;Text&lt;/span&gt;,     &lt;span class=&quot;sy&quot;&gt;:lazy&lt;/span&gt; =&amp;gt; [&lt;span class=&quot;sy&quot;&gt;:summary&lt;/span&gt;]
+&lt;span class=&quot;no&quot;&gt;4&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:id&lt;/span&gt;,    &lt;span class=&quot;co&quot;&gt;Serial&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;5&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:lazy&lt;/span&gt; =&amp;gt; [ &lt;span class=&quot;sy&quot;&gt;:summary&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:brief&lt;/span&gt; ]
+&lt;span class=&quot;no&quot;&gt;6&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:body&lt;/span&gt;,  &lt;span class=&quot;co&quot;&gt;Text&lt;/span&gt;,   &lt;span class=&quot;sy&quot;&gt;:lazy&lt;/span&gt; =&amp;gt; [ &lt;span class=&quot;sy&quot;&gt;:summary&lt;/span&gt; ]
 &lt;span class=&quot;no&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So now, when you load an attribute with the &lt;code&gt;:summary&lt;/code&gt; context, DataMapper will load up all of the other lazy-loaded properties marked &lt;code&gt;:summary&lt;/code&gt; in one query to the data store.&lt;/p&gt;
 &lt;p&gt;In your query log, you&amp;#8217;ll see:&lt;/p&gt;
@@ -332,8 +329,8 @@ sake dm&lt;span class=&quot;sy&quot;&gt;:update&lt;/span&gt;                    
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;no&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;co&quot;&gt;Zoo&lt;/span&gt;.find(&lt;span class=&quot;sy&quot;&gt;:all&lt;/span&gt;).each &lt;span class=&quot;r&quot;&gt;do&lt;/span&gt; |zoo|
 &lt;span class=&quot;no&quot;&gt;2&lt;/span&gt;     zoo.animals
 &lt;span class=&quot;no&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;r&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is a very bad idea because the ORM must query the &amp;#8220;animals&amp;#8221; table over and over again to load the association for each iteration.  It&amp;#8217;s far better to use &lt;code&gt;Zoo.find(:all, :include =&amp;gt; [:animals]).each {}&lt;/code&gt; because a JOIN occurs and everything is retrieved in 1 query.&lt;/p&gt;
-&lt;p&gt;But the same issue doesn&amp;#8217;t exist in DataMapper. Each instance is aware of the other instances it was retrieved with.  The same iterator example from above only fires off 2 queries as you&amp;#8217;re iterating and calling the association inside the &lt;code&gt;each&lt;/code&gt;.  If you forget to &lt;code&gt;:include =&amp;gt; [:association]&lt;/code&gt; in the initial query, DataMapper only ever fires off one more query to get what it needs.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is a very bad idea because the ORM must query the &amp;#8220;animals&amp;#8221; table over and over again to load the association for each iteration.  It&amp;#8217;s far better to use &lt;code&gt;Zoo.find(:all, :include =&amp;gt; [ :animals ]).each {}&lt;/code&gt; because a JOIN occurs and everything is retrieved in 1 query.&lt;/p&gt;
+&lt;p&gt;But the same issue doesn&amp;#8217;t exist in DataMapper. Each instance is aware of the other instances it was retrieved with.  The same iterator example from above only fires off 2 queries as you&amp;#8217;re iterating and calling the association inside the &lt;code&gt;each&lt;/code&gt;.  If you forget to &lt;code&gt;:include =&amp;gt; [ :association ]&lt;/code&gt; in the initial query, DataMapper only ever fires off one more query to get what it needs.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.yehudakatz.com/&quot;&gt;Yehuda Katz&lt;/a&gt; has aptly named this &amp;#8216;Strategic Eager Loading&amp;#8217;.&lt;/p&gt;
 &lt;h2&gt;Getting Around to It&lt;/h2&gt;
 &lt;p&gt;A conclusion for our talk about laziness will be written whenever I get around to it.&lt;/p&gt;
@@ -351,8 +348,8 @@ contribution and we&amp;#8217;ll post it here.&lt;/p&gt;
   <entry>
     <title>Spotlight on... Composite Keys</title>
     <link href="/articles/spotlight_on_cpk.html"/>
-    <id>tag:datamapper.org,2008-03-30:1206835747</id>
-    <updated>2008-03-30T00:09:07+00:00</updated>
+    <id>tag:datamapper.org,2008-03-29:1206835747</id>
+    <updated>2008-03-29T17:09:07-07:00</updated>
     <content type="html">&lt;h1&gt;Spotlight on&amp;#8230; Composite Keys&lt;/h1&gt;
 &lt;p&gt;For those of us who have taken a course on database design in college or university, you may have run across a concept called &amp;#8216;Composite Primary Keys&amp;#8217; (or sometimes &amp;#8216;Compound Keys&amp;#8217; or &amp;#8216;Concatenated Keys&amp;#8217;, and abbreviated &lt;acronym title=&quot;Composite Primary Keys&quot;&gt;CPK&lt;/acronym&gt;s).  It&amp;#8217;s usually right before you tackle JOINs and right after you fight with the &amp;#8220;surrogate key&amp;#8221; or &amp;#8220;primary key&amp;#8221; concept.&lt;/p&gt;
 &lt;p&gt;Boiling &lt;acronym title=&quot;Composite Primary Keys&quot;&gt;CPK&lt;/acronym&gt;s down, they&amp;#8217;re just a way of identifying a row by multiple keys rather than one.  So instead of an auto_incrementing &amp;#8220;serial&amp;#8221; primary key (as in &lt;code&gt;id&lt;/code&gt;), you&amp;#8217;d have a combination of &lt;code&gt;some_column&lt;/code&gt; and &lt;code&gt;some_other_column&lt;/code&gt; that would uniquely identify a row.&lt;/p&gt;
@@ -363,7 +360,7 @@ contribution and we&amp;#8217;ll post it here.&lt;/p&gt;
 &lt;h2&gt;Sequel&lt;/h2&gt;
 &lt;p&gt;Unlike ActiveRecord, Sequel supports &lt;acronym title=&quot;Composite Primary Keys&quot;&gt;CPK&lt;/acronym&gt;s natively:&lt;/p&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;no&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;cl&quot;&gt;Post&lt;/span&gt; &amp;lt; &lt;span class=&quot;co&quot;&gt;Sequel&lt;/span&gt;::&lt;span class=&quot;co&quot;&gt;Model&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;2&lt;/span&gt;   set_primary_key [&lt;span class=&quot;sy&quot;&gt;:category&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt;]
+&lt;span class=&quot;no&quot;&gt;2&lt;/span&gt;   set_primary_key [ &lt;span class=&quot;sy&quot;&gt;:category&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt; ]
 &lt;span class=&quot;no&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;no&quot;&gt;4&lt;/span&gt; 
 &lt;span class=&quot;no&quot;&gt;5&lt;/span&gt; post = &lt;span class=&quot;co&quot;&gt;Post&lt;/span&gt;[&lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ruby&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;/span&gt;, &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;hello world&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;/span&gt;]
@@ -373,17 +370,17 @@ contribution and we&amp;#8217;ll post it here.&lt;/p&gt;
 &lt;p&gt;The latest DataMapper was designed from the ground up to support &lt;acronym title=&quot;Composite Primary Keys&quot;&gt;CPK&lt;/acronym&gt;s:&lt;/p&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;no&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;cl&quot;&gt;Pig&lt;/span&gt;
 &lt;span class=&quot;no&quot;&gt; 2&lt;/span&gt;   include &lt;span class=&quot;co&quot;&gt;DataMapper&lt;/span&gt;::&lt;span class=&quot;co&quot;&gt;Resource&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt; 3&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:id&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;Fixnum&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:key&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt; 4&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:slug&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:key&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt; 5&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:name&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt; 6&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt; 7&lt;/span&gt; 
-&lt;span class=&quot;no&quot;&gt; 8&lt;/span&gt; &lt;span class=&quot;co&quot;&gt;Pig&lt;/span&gt;.get(&lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Porky&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;/span&gt;)
-&lt;span class=&quot;no&quot;&gt; 9&lt;/span&gt; &lt;span class=&quot;co&quot;&gt;Pig&lt;/span&gt;[&lt;span class=&quot;i&quot;&gt;2&lt;/span&gt;, &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Piglet&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;/span&gt;]
+&lt;span class=&quot;no&quot;&gt; 3&lt;/span&gt; 
+&lt;span class=&quot;no&quot;&gt; 4&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:id&lt;/span&gt;,   &lt;span class=&quot;co&quot;&gt;Integer&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:key&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt; 5&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:slug&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;,  &lt;span class=&quot;sy&quot;&gt;:key&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt; 6&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:name&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt; 7&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt; 8&lt;/span&gt; 
+&lt;span class=&quot;no&quot;&gt; 9&lt;/span&gt; pig = &lt;span class=&quot;co&quot;&gt;Pig&lt;/span&gt;.get(&lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Porky&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;/span&gt;)
 &lt;span class=&quot;no&quot;&gt;&lt;strong&gt;10&lt;/strong&gt;&lt;/span&gt; 
 &lt;span class=&quot;no&quot;&gt;11&lt;/span&gt; pig.key &lt;span class=&quot;c&quot;&gt;# =&amp;gt; [1, 'Wilbur']&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We declared our keys by adding the &lt;code&gt;:key =&amp;gt; true&lt;/code&gt; to the appropriate properties. The order is important as it will determine the order keys are addressed throughout the system.&lt;/p&gt;
-&lt;p&gt;Next, we mixed and matched the keys&amp;#8217; types.  &lt;code&gt;:id&lt;/code&gt; is a Fixnum, but &lt;code&gt;:slug&lt;/code&gt; is a String. DataMapper didn&amp;#8217;t flinch when we defined a key column as a String because it supports &lt;a href=&quot;http://en.wikipedia.org/wiki/Natural_key&quot;&gt;Natural Keys&lt;/a&gt; as well.&lt;/p&gt;
+&lt;p&gt;Next, we mixed and matched the keys&amp;#8217; types.  &lt;code&gt;:id&lt;/code&gt; is a Integer, but &lt;code&gt;:slug&lt;/code&gt; is a String. DataMapper didn&amp;#8217;t flinch when we defined a key column as a String because it supports &lt;a href=&quot;http://en.wikipedia.org/wiki/Natural_key&quot;&gt;Natural Keys&lt;/a&gt; as well.&lt;/p&gt;
 &lt;p&gt;Lastly, when retrieving rows via &lt;code&gt;get&lt;/code&gt; and &lt;code&gt;[]&lt;/code&gt; with a &lt;acronym title=&quot;Composite Primary Keys&quot;&gt;CPK&lt;/acronym&gt;, we supplied the keys in the order they were defined within our model.  For example, we defined &lt;code&gt;:id&lt;/code&gt; first, then &lt;code&gt;:slug&lt;/code&gt; second; later, we retrieved Porky by specifying his &lt;code&gt;:id&lt;/code&gt; and &lt;code&gt;:slug&lt;/code&gt; in the same order.  Additionally, when we asked Wilbur for his keys, he handed us an array in the order the keys were defined.&lt;/p&gt;
 &lt;p&gt;We didn&amp;#8217;t need to mix in an external library to get support for &lt;acronym title=&quot;Composite Primary Keys&quot;&gt;CPK&lt;/acronym&gt;s, nor did we need to call a &lt;code&gt;set_primary_key&lt;/code&gt; method and then supply more than one key to it. DataMapper supports Composite Primary Keys intuitively and without compromise!&lt;/p&gt;
 &lt;p&gt;In later &amp;#8220;Spotlight On&amp;#8230;&amp;#8221; articles, we&amp;#8217;ll examine and demonstrate other DataMapper features or persistence concepts as well as compare similar features with other ORMs or libraries.&lt;/p&gt;
@@ -398,7 +395,7 @@ contribution and we&amp;#8217;ll post it here.&lt;/p&gt;</content>
     <title>The Great Refactoring</title>
     <link href="/articles/the_great_refactoring.html"/>
     <id>tag:datamapper.org,2008-03-22:1206219350</id>
-    <updated>2008-03-22T20:55:50+00:00</updated>
+    <updated>2008-03-22T13:55:50-07:00</updated>
     <content type="html">&lt;h1&gt;The Great Refactoring&lt;/h1&gt;
 &lt;p&gt;&amp;#8220;Tip&amp;#8221; DataMapper (hosted on &lt;a href=&quot;http://github.com/sam/dm-core&quot;&gt;github&lt;/a&gt;) is going through a dramatic re-factor.  Here&amp;#8217;s a quick summary of the anticipated NEW public API.&lt;/p&gt;
 &lt;h2&gt;Not Just for Databases Anymore&lt;/h2&gt;
@@ -408,18 +405,16 @@ contribution and we&amp;#8217;ll post it here.&lt;/p&gt;</content>
 &lt;h2&gt;Model Definitions Are a Little Different&lt;/h2&gt;
 &lt;p&gt;Since we&amp;#8217;re changing up the terminology, model definitions are going to change up a little bit.  Here&amp;#8217;s what a Planet model would look like using the new API:&lt;/p&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;no&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;cl&quot;&gt;Planet&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt; 2&lt;/span&gt; 
-&lt;span class=&quot;no&quot;&gt; 3&lt;/span&gt;   include &lt;span class=&quot;co&quot;&gt;DataMapper&lt;/span&gt;::&lt;span class=&quot;co&quot;&gt;Resource&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt; 4&lt;/span&gt; 
-&lt;span class=&quot;no&quot;&gt; 5&lt;/span&gt;   resource_names[&lt;span class=&quot;sy&quot;&gt;:legacy&lt;/span&gt;] = &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;dying_planets&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt; 6&lt;/span&gt; 
-&lt;span class=&quot;no&quot;&gt; 7&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:name&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt; 8&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:age&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;Fixnum&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt; 9&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:core&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:private&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;&lt;strong&gt;10&lt;/strong&gt;&lt;/span&gt; 
-&lt;span class=&quot;no&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt; 2&lt;/span&gt;   include &lt;span class=&quot;co&quot;&gt;DataMapper&lt;/span&gt;::&lt;span class=&quot;co&quot;&gt;Resource&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt; 3&lt;/span&gt; 
+&lt;span class=&quot;no&quot;&gt; 4&lt;/span&gt;   resource_names[&lt;span class=&quot;sy&quot;&gt;:legacy&lt;/span&gt;] = &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;dying_planets&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt; 5&lt;/span&gt; 
+&lt;span class=&quot;no&quot;&gt; 6&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:name&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt; 7&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:age&lt;/span&gt;,  &lt;span class=&quot;co&quot;&gt;Integer&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt; 8&lt;/span&gt;   property &lt;span class=&quot;sy&quot;&gt;:core&lt;/span&gt;, &lt;span class=&quot;co&quot;&gt;String&lt;/span&gt;,  &lt;span class=&quot;sy&quot;&gt;:private&lt;/span&gt; =&amp;gt; &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt; 9&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;p&gt;A couple of things are going on here.  First, DataMapper::Base and DataMapper::Persistence are gone and replaced with &lt;a href=&quot;http://datamapper.rubyforge.org/DataMapper/Resource.html&quot;&gt;DataMapper::Resource&lt;/a&gt;.  Next &lt;code&gt;set_table_name&lt;/code&gt; has been replaced with &lt;code&gt;resource_names&lt;/code&gt; hash where you specify which arena play occurs in. After that we have a couple of Property definitions that look a little different.&lt;/p&gt;
-&lt;p&gt;First off, Properties will no longer take &lt;code&gt;:symbols&lt;/code&gt; for their types and instead take real constants like String, Fixnum, DateTime.  Also on the docket are the ability to define your own custom types.&lt;/p&gt;
+&lt;p&gt;First off, Properties will no longer take &lt;code&gt;:symbols&lt;/code&gt; for their types and instead take real constants like String, Integer, DateTime.  Also on the docket are the ability to define your own custom types.&lt;/p&gt;
 &lt;p&gt;Think about that for a minute.  If developers are able to define their own custom types with their own materialization and serialization methods, DataMapper will be able to support all kinds of wild data-types like GIS information, network information, marshaled objects, JSON&amp;#8230;pretty much anything a developer might need, or want.&lt;/p&gt;
 &lt;h2&gt;A Command-Line Interface&lt;/h2&gt;
 &lt;p&gt;Taking a lesson from web frameworks, DataMapper will sport an interactive command-line so that you can browse your resources without the need to load up the entire environment of your application.  Here&amp;#8217;s an example session:&lt;/p&gt;
@@ -439,7 +434,7 @@ contribution and we&amp;#8217;ll post it here.&lt;/p&gt;</content>
     <title>0.3.0 Gem Released!</title>
     <link href="/articles/gem_030_released.html"/>
     <id>tag:datamapper.org,2008-03-18:1205873750</id>
-    <updated>2008-03-18T20:55:50+00:00</updated>
+    <updated>2008-03-18T13:55:50-07:00</updated>
     <content type="html">&lt;h1&gt;0.3.0 Gem Released!&lt;/h1&gt;
 &lt;p&gt;0.3.0 is a maintenance release, bringing minor bug-fixes and minimal new features to DataMapper 0.2.5. This is the latest stable gem using database terminology and metaphors.&lt;/p&gt;
 &lt;p&gt;This changeset includes:&lt;/p&gt;

@@ -35,35 +35,36 @@
 <p>Inside your class, call the property method for each property you want to add. The only two required arguments are the name and type, everything else is optional.</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no">3</span>   property <span class="sy">:id</span>,         <span class="co">Serial</span>                         <span class="c"># primary serial key</span>
-<span class="no">4</span>   property <span class="sy">:title</span>,      <span class="co">String</span>,     <span class="sy">:nullable</span> =&gt; <span class="pc">false</span> <span class="c"># Cannot be null</span>
-<span class="no">5</span>   property <span class="sy">:published</span>,  <span class="co">Boolean</span>,    <span class="sy">:default</span>  =&gt; <span class="pc">false</span> <span class="c"># Default value for new records is false</span>
-<span class="no">6</span> <span class="r">end</span>
+<span class="no">3</span> 
+<span class="no">4</span>   property <span class="sy">:id</span>,        <span class="co">Serial</span>                       <span class="c"># primary serial key</span>
+<span class="no">5</span>   property <span class="sy">:title</span>,     <span class="co">String</span>,  <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>  <span class="c"># Cannot be null</span>
+<span class="no">6</span>   property <span class="sy">:published</span>, <span class="co">Boolean</span>, <span class="sy">:default</span>  =&gt; <span class="pc">false</span>  <span class="c"># Default value for new records is false</span>
+<span class="no">7</span> <span class="r">end</span>
 </pre></div><h2>Keys</h2>
 <h3>Primary Keys</h3>
 <p>Primary keys are not automatically created for you, as with ActiveRecord.  You MUST configure at least one key property on your data-store.  More often than not, you&#8217;ll want an auto-incrementing integer as a primary key, so DM has a shortcut:</p>
 <div class="CodeRay"><pre><span class="no">1</span>   property <span class="sy">:id</span>, <span class="co">Serial</span>
 </pre></div><h3>Natural Keys</h3>
 <p>Anything can be a key. Just pass <code>:key =&gt; true</code> as an option during the property definition.  Most commonly, you&#8217;ll see String as a natural key:</p>
-<div class="CodeRay"><pre><span class="no">1</span>   property <span class="sy">:slug</span>,  <span class="co">String</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
-<span class="no">2</span>                    <span class="c"># any Type is available here</span>
+<div class="CodeRay"><pre><span class="no">1</span>   property <span class="sy">:slug</span>, <span class="co">String</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>  <span class="c"># any Type is available here</span>
 </pre></div><p>Natural Keys are protected against mass-assignment, so their <code>setter=</code> will need to be called individually if your looking to set them.</p>
 <p><strong>Fair warning:</strong>  Using Boolean, Discriminator, and the time related types as keys may cause your DBA to hunt you down and &#8220;educate&#8221; you. DM will not be held responsible for any injuries or death that may result.</p>
 <h3>Composite Keys</h3>
 <p>You can even have more than one key:</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no">3</span>   property <span class="sy">:old_id</span>, <span class="co">Integer</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
-<span class="no">4</span>   property <span class="sy">:new_id</span>, <span class="co">Integer</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
-<span class="no">5</span> <span class="r">end</span>
+<span class="no">3</span> 
+<span class="no">4</span>   property <span class="sy">:old_id</span>, <span class="co">Integer</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+<span class="no">5</span>   property <span class="sy">:new_id</span>, <span class="co">Integer</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
+<span class="no">6</span> <span class="r">end</span>
 </pre></div><h2>Setting Defaults</h2>
 <p>Defaults can be set via the <code>:default</code> key for a property.  They can be static values, such as <code>12</code> or <code>"Hello"</code>, but DataMapper also offers the ability to use a Proc to set the default value.  The property becomes whatever the Proc returns, which will be called the first time the property is used without having first set a value.  The Proc itself receives two arguments: The resource the property is being set on, and the property itself.</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Image</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no">3</span>   property <span class="sy">:id</span>, <span class="co">Serial</span>
-<span class="no">4</span>   property <span class="sy">:path</span>, <span class="co">FilePath</span>, <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>
-<span class="no">5</span>   property <span class="sy">:md5sum</span>, <span class="co">String</span>, <span class="sy">:length</span> =&gt; <span class="i">32</span>,
-<span class="no">6</span>                    <span class="sy">:default</span> =&gt; <span class="co">Proc</span>.new { |r, p| <span class="co">Digest</span>::<span class="co">MD5</span>.hexdigest(r.path.read) <span class="r">if</span> r.path }
+<span class="no">3</span> 
+<span class="no">4</span>   property <span class="sy">:id</span>,     <span class="co">Serial</span>
+<span class="no">5</span>   property <span class="sy">:path</span>,   <span class="co">FilePath</span>, <span class="sy">:nullable</span> =&gt; <span class="pc">false</span>
+<span class="no">6</span>   property <span class="sy">:md5sum</span>, <span class="co">String</span>,   <span class="sy">:length</span> =&gt; <span class="i">32</span>, <span class="sy">:default</span> =&gt; lambda { |r, p| <span class="co">Digest</span>::<span class="co">MD5</span>.hexdigest(r.path.read) <span class="r">if</span> r.path }
 <span class="no">7</span> <span class="r">end</span>
 </pre></div><p>When creating the resource, or the first time the <code>md5sum</code> property is accessed, it will be set to the hex digest of the file referred to by <code>path</code>.</p>
 <p><strong>Fair Warning</strong>: A property default must <em>not</em> refer to the value of the property it is about to set, or there will be an infinite loop.</p>
@@ -71,30 +72,32 @@
 <p>Properties can be configured to be lazy loaded. A lazily loaded property is not requested from the data-store by default. Instead it is only loaded when it&#8217;s accessor is called for the first time. This means you can stop default queries from being greedy, a particular problem with text fields. Text fields are lazily loaded by default, which you can over-ride if you need to.</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no">3</span>   property <span class="sy">:id</span>,     <span class="co">Integer</span>,  <span class="sy">:serial</span> =&gt; <span class="pc">true</span>
-<span class="no">4</span>   property <span class="sy">:title</span>,  <span class="co">String</span>
-<span class="no">5</span>   property <span class="sy">:body</span>,   <span class="co">Text</span>                        <span class="c"># Is lazily loaded by default</span>
-<span class="no">6</span>   property <span class="sy">:notes</span>,  <span class="co">Text</span>,     <span class="sy">:lazy</span> =&gt; <span class="pc">false</span>    <span class="c"># Isn't lazy, will load by default</span>
-<span class="no">7</span> <span class="r">end</span>
+<span class="no">3</span> 
+<span class="no">4</span>   property <span class="sy">:id</span>,    <span class="co">Serial</span>
+<span class="no">5</span>   property <span class="sy">:title</span>, <span class="co">String</span>
+<span class="no">6</span>   property <span class="sy">:body</span>,  <span class="co">Text</span>                    <span class="c"># Is lazily loaded by default</span>
+<span class="no">7</span>   property <span class="sy">:notes</span>, <span class="co">Text</span>,   <span class="sy">:lazy</span> =&gt; <span class="pc">false</span>  <span class="c"># Isn't lazy, will load by default</span>
+<span class="no">8</span> <span class="r">end</span>
 </pre></div><p>Lazy Loading can also be done via contexts, which let you group lazily loaded properties together, so that when one is fetched, all the associated ones will be as well, cutting down on trips to the data-store.</p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no"> 3</span>   property <span class="sy">:id</span>,         <span class="co">Integer</span>,  <span class="sy">:serial</span> =&gt; <span class="pc">true</span>
-<span class="no"> 4</span>   property <span class="sy">:title</span>,      <span class="co">String</span>
-<span class="no"> 5</span>   property <span class="sy">:subtitle</span>,   <span class="co">String</span>  <span class="sy">:lazy</span> =&gt; [<span class="sy">:show</span>]
-<span class="no"> 6</span>   property <span class="sy">:body</span>,       <span class="co">Text</span>      <span class="sy">:lazy</span> =&gt; [<span class="sy">:show</span>]
-<span class="no"> 7</span>   property <span class="sy">:views</span>,      <span class="co">Integer</span>, <span class="sy">:lazy</span> =&gt; [<span class="sy">:show</span>]
-<span class="no"> 8</span>   property <span class="sy">:summary</span>,    <span class="co">Text</span>
-<span class="no"> 9</span> <span class="r">end</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   property <span class="sy">:id</span>,       <span class="co">Serial</span>
+<span class="no"> 5</span>   property <span class="sy">:title</span>,    <span class="co">String</span>
+<span class="no"> 6</span>   property <span class="sy">:subtitle</span>, <span class="co">String</span>   <span class="sy">:lazy</span> =&gt; [ <span class="sy">:show</span> ]
+<span class="no"> 7</span>   property <span class="sy">:body</span>,     <span class="co">Text</span>     <span class="sy">:lazy</span> =&gt; [ <span class="sy">:show</span> ]
+<span class="no"> 8</span>   property <span class="sy">:views</span>,    <span class="co">Integer</span>, <span class="sy">:lazy</span> =&gt; [ <span class="sy">:show</span> ]
+<span class="no"> 9</span>   property <span class="sy">:summary</span>,  <span class="co">Text</span>
+<span class="no"><strong>10</strong></span> <span class="r">end</span>
 </pre></div><p>In this example, only the title (and the id, of course) will be loaded from the data-store on a <code>Post.all()</code>.  But as soon as the value for subtitle, body or views are called, all three will be loaded at once, since they&#8217;re members of the <code>:show</code> group.  The summary property on the other hand, will only be fetched when it is asked for.</p>
 <h2>Available Types</h2>
 <p>DM-Core supports the following &#8216;primitive&#8217; data-types.</p>
 <ul>
-	<li>TrueClass, Boolean</li>
+	<li>Boolean</li>
 	<li>String</li>
 	<li>Text</li>
 	<li>Float</li>
-	<li>Fixnum, Integer</li>
+	<li>Integer</li>
 	<li>BigDecimal,</li>
 	<li>DateTime, Date, Time</li>
 	<li>Object, (marshalled)</li>
@@ -117,8 +120,8 @@
 <h2>Limiting Access</h2>
 <p>Access for properties is defined using the same semantics as Ruby. Accessors are public by default, but you can declare them as private or protected if you need to. You can set access using the <code>:accessor</code> option.  For demonstration, we&#8217;ll reopen our Post class.</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
-<span class="no">2</span>   property <span class="sy">:title</span>,  <span class="sy">:string</span>, <span class="sy">:accessor</span> =&gt; <span class="sy">:private</span>   <span class="c"># Both reader and writer are private</span>
-<span class="no">3</span>   property <span class="sy">:body</span>,   <span class="sy">:text</span>,   <span class="sy">:accessor</span> =&gt; <span class="sy">:protected</span> <span class="c"># Both reader and writer are protected</span>
+<span class="no">2</span>   property <span class="sy">:title</span>, <span class="co">String</span>, <span class="sy">:accessor</span> =&gt; <span class="sy">:private</span>    <span class="c"># Both reader and writer are private</span>
+<span class="no">3</span>   property <span class="sy">:body</span>,  <span class="co">Text</span>,   <span class="sy">:accessor</span> =&gt; <span class="sy">:protected</span>  <span class="c"># Both reader and writer are protected</span>
 <span class="no">4</span> <span class="r">end</span>
 </pre></div><p>You also have more fine grained control over how you declare access. You can, for example, have a public reader and private writer by using the <code>:writer</code> and <code>:reader</code> options. (Remember, the default is Public)</p>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
@@ -128,7 +131,7 @@
 </pre></div><h2>Over-riding Accessors</h2>
 <p>When a property has declared accessors for getting and setting, it&#8217;s values are added to the model. Just like using <code>attr_accessor</code>, you can over-ride these with your own custom accessors. It&#8217;s a simple matter of adding an accessor after the property declaration.  Reopening the Post class&#8230;.</p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Post</span>
-<span class="no"> 2</span>   property <span class="sy">:slug</span>,  <span class="co">String</span>
+<span class="no"> 2</span>   property <span class="sy">:slug</span>, <span class="co">String</span>
 <span class="no"> 3</span> 
 <span class="no"> 4</span>   <span class="r">def</span> <span class="fu">slug=</span>(new_slug)
 <span class="no"> 5</span>     raise <span class="co">ArgumentError</span> <span class="r">if</span> new_slug != <span class="s"><span class="dl">'</span><span class="k">DataMapper is Awesome</span><span class="dl">'</span></span>
@@ -140,7 +143,7 @@
 </pre></div>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>

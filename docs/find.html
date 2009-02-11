@@ -72,7 +72,7 @@
 <span class="no">8</span> <span class="r">in</span>    <span class="c"># in - will be used automatically when an array is passed in as an argument</span>
 </pre></div><h2>Order</h2>
 <p>To specify the order in which your results are to be sorted, use:</p>
-<div class="CodeRay"><pre><span class="no">1</span> <span class="iv">@zoos_by_tiger_count</span> = <span class="co">Zoo</span>.all(<span class="sy">:order</span> =&gt; [<span class="sy">:tiger_count</span>.desc])
+<div class="CodeRay"><pre><span class="no">1</span> <span class="iv">@zoos_by_tiger_count</span> = <span class="co">Zoo</span>.all(<span class="sy">:order</span> =&gt; [ <span class="sy">:tiger_count</span>.desc ])
 <span class="no">2</span> <span class="c"># in SQL =&gt;  select * from zoos ORDER BY tiger_count DESC</span>
 </pre></div><p>Available order vectors are:</p>
 <div class="CodeRay"><pre><span class="no">1</span> asc  <span class="c"># sorting ascending</span>
@@ -99,7 +99,7 @@
 </pre></div>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>

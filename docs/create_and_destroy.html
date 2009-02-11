@@ -28,14 +28,15 @@
 
       <h1>Create, Update, Save and Destroy</h1>
 <p>To illustrate the various methods used in manipulating records, we&#8217;ll create, save and destroy a record.</p>
-<div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Zoo</span>
-<span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no">3</span>   property <span class="sy">:id</span>,           <span class="co">Integer</span>,  <span class="sy">:serial</span> =&gt; <span class="pc">true</span>
-<span class="no">4</span>   property <span class="sy">:name</span>,         <span class="co">String</span>
-<span class="no">5</span>   property <span class="sy">:description</span>,  <span class="co">Text</span>
-<span class="no">6</span>   property <span class="sy">:inception</span>,    <span class="co">DateTime</span>
-<span class="no">7</span>   property <span class="sy">:open</span>,         <span class="co">Boolean</span>,  <span class="sy">:default</span> =&gt; <span class="pc">false</span>
-<span class="no">8</span> <span class="r">end</span>
+<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Zoo</span>
+<span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   property <span class="sy">:id</span>,          <span class="co">Serial</span>
+<span class="no"> 5</span>   property <span class="sy">:name</span>,        <span class="co">String</span>
+<span class="no"> 6</span>   property <span class="sy">:description</span>, <span class="co">Text</span>
+<span class="no"> 7</span>   property <span class="sy">:inception</span>,   <span class="co">DateTime</span>
+<span class="no"> 8</span>   property <span class="sy">:open</span>,        <span class="co">Boolean</span>,  <span class="sy">:default</span> =&gt; <span class="pc">false</span>
+<span class="no"> 9</span> <span class="r">end</span>
 </pre></div><h2>Creating</h2>
 <p>Let&#8217;s create a new instance of the model, update its properties and save it to the data store. Save will return true if the save succeeds, or false when something went wrong.</p>
 <div class="CodeRay"><pre><span class="no">1</span> zoo = <span class="co">Zoo</span>.new
@@ -54,7 +55,7 @@
 </pre></div>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>

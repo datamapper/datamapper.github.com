@@ -32,55 +32,61 @@
 <p>To declare advice (callback) for a specific method, first define a new method to be run when another is called, then define your point-cut.</p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no"> 3</span>   <span class="c"># ... key and properties here</span>
-<span class="no"> 4</span>   before <span class="sy">:save</span>, <span class="sy">:categorize</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   <span class="c"># ... key and properties here</span>
 <span class="no"> 5</span> 
-<span class="no"> 6</span>   <span class="r">def</span> <span class="fu">categorize</span>
-<span class="no"> 7</span>     <span class="c"># ... code here</span>
-<span class="no"> 8</span>   <span class="r">end</span>
-<span class="no"> 9</span> <span class="r">end</span>
+<span class="no"> 6</span>   before <span class="sy">:save</span>, <span class="sy">:categorize</span>
+<span class="no"> 7</span> 
+<span class="no"> 8</span>   <span class="r">def</span> <span class="fu">categorize</span>
+<span class="no"> 9</span>     <span class="c"># ... code here</span>
+<span class="no"><strong>10</strong></span>   <span class="r">end</span>
+<span class="no">11</span> <span class="r">end</span>
 </pre></div><p>Alternatively, you can declare the advice during the point-cut by supplying a block rather than a symbol representing a method.</p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no"> 3</span>   <span class="c"># ... key and properties here</span>
-<span class="no"> 4</span> 
-<span class="no"> 5</span>   before <span class="sy">:save</span> <span class="r">do</span>
-<span class="no"> 6</span>     <span class="c"># ... code here</span>
-<span class="no"> 7</span>   <span class="r">end</span>
-<span class="no"> 8</span> 
-<span class="no"> 9</span> <span class="r">end</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   <span class="c"># ... key and properties here</span>
+<span class="no"> 5</span> 
+<span class="no"> 6</span>   before <span class="sy">:save</span> <span class="r">do</span>
+<span class="no"> 7</span>     <span class="c"># ... code here</span>
+<span class="no"> 8</span>   <span class="r">end</span>
+<span class="no"> 9</span> 
+<span class="no"><strong>10</strong></span> <span class="r">end</span>
 </pre></div><h2>Adding Class-Level Advice</h2>
 <p>To install advice around a class method, use <code>before_class_method</code> or <code>after_class_method</code>:</p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no"> 3</span>   <span class="c"># ... key and properties here</span>
-<span class="no"> 4</span>   before_class_method <span class="sy">:find</span>, <span class="sy">:prepare</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   <span class="c"># ... key and properties here</span>
 <span class="no"> 5</span> 
-<span class="no"> 6</span>   <span class="r">def</span> <span class="pc">self</span>.prepare
-<span class="no"> 7</span>     <span class="c"># ... code here</span>
-<span class="no"> 8</span>   <span class="r">end</span>
-<span class="no"> 9</span> <span class="r">end</span>
+<span class="no"> 6</span>   before_class_method <span class="sy">:find</span>, <span class="sy">:prepare</span>
+<span class="no"> 7</span> 
+<span class="no"> 8</span>   <span class="r">def</span> <span class="pc">self</span>.prepare
+<span class="no"> 9</span>     <span class="c"># ... code here</span>
+<span class="no"><strong>10</strong></span>   <span class="r">end</span>
+<span class="no">11</span> <span class="r">end</span>
 </pre></div><p>Class level advice does not have access to any resulting instances from the class method, so they might not be the best fit for <code>after_create</code> or <code>after_save</code>.</p>
 <h2>Throw :halt, in the name of love&#8230;</h2>
 <p>In order to abort advice and prevent the advised method from being called, throw <code>:halt</code></p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no"> 3</span>   <span class="c"># ... key and properties here</span>
-<span class="no"> 4</span> 
-<span class="no"> 5</span>   <span class="c"># This record will save properly</span>
-<span class="no"> 6</span>   before <span class="sy">:save</span> <span class="r">do</span> |post|
-<span class="no"> 7</span>     <span class="pc">true</span>
-<span class="no"> 8</span>   <span class="r">end</span>
-<span class="no"> 9</span> 
-<span class="no"><strong>10</strong></span>   <span class="c"># But it will not be destroyed</span>
-<span class="no">11</span>   before <span class="sy">:destroy</span> <span class="r">do</span> |post|
-<span class="no">12</span>     throw <span class="sy">:halt</span>
-<span class="no">13</span>   <span class="r">end</span>
-<span class="no">14</span> <span class="r">end</span>
+<span class="no"> 3</span> 
+<span class="no"> 4</span>   <span class="c"># ... key and properties here</span>
+<span class="no"> 5</span> 
+<span class="no"> 6</span>   <span class="c"># This record will save properly</span>
+<span class="no"> 7</span>   before <span class="sy">:save</span> <span class="r">do</span> |post|
+<span class="no"> 8</span>     <span class="pc">true</span>
+<span class="no"> 9</span>   <span class="r">end</span>
+<span class="no"><strong>10</strong></span> 
+<span class="no">11</span>   <span class="c"># But it will not be destroyed</span>
+<span class="no">12</span>   before <span class="sy">:destroy</span> <span class="r">do</span> |post|
+<span class="no">13</span>     throw <span class="sy">:halt</span>
+<span class="no">14</span>   <span class="r">end</span>
+<span class="no">15</span> <span class="r">end</span>
 </pre></div><p>Remember, if you <code>throw :halt</code> inside an <code>after</code> advice, the advised method will have already ran and returned.  Because of this, the <code>after</code> advice will be the only thing halted.</p>
 
       <div id="footer">
-        <p>Copyright Sam Smoot 2009</p>
+        <p>Copyright Dan Kubb, Sam Smoot 2009</p>
         <p>Web Design by <a href="http://www.mr-eel.com/">Luke Matthew Sutton</a> - Community Maintained</p>
       </div>
     </div>
