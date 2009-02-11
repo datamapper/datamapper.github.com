@@ -1,6 +1,7 @@
 require 'grancher'
 
 # index.txt is always dirty, so it's always rebuilt
+desc 'Publish the website by committing on the master branch'
 task :publish => 'output/.published'
 
 file 'output/index.html' => FileList["content/**/*", "Sitefile"] do
