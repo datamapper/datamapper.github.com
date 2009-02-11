@@ -18,7 +18,9 @@ To declare advice (callback) for a specific method, first define a new method to
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
+
   # ... key and properties here
+
   before :save, :categorize
 
   def categorize
@@ -32,6 +34,7 @@ Alternatively, you can declare the advice during the point-cut by supplying a bl
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
+
   # ... key and properties here
 
   before :save do
@@ -48,7 +51,9 @@ To install advice around a class method, use @before_class_method@ or @after_cla
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
+
   # ... key and properties here
+
   before_class_method :find, :prepare
 
   def self.prepare
@@ -66,6 +71,7 @@ In order to abort advice and prevent the advised method from being called, throw
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
+
   # ... key and properties here
 
   # This record will save properly

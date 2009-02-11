@@ -33,8 +33,10 @@ To support data-stores which you don't have the ability to manage yourself, it's
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Fruit
   include DataMapper::Resource
+
   storage_names[:default] = 'frt' # equivalent to set_table_name in AR
-  property :id, Serial
+
+  property :id,   Serial
   property :name, String, :field => 'col2'
 end
 <% end %>
@@ -50,9 +52,10 @@ With DataMapper, these fields are treated like in-row associations by default, m
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Animal
   include DataMapper::Resource
-  property :id, Serial
-  property :name, String
-  property :notes, Text        # lazy-loads by default
+
+  property :id,    Serial
+  property :name,  String
+  property :notes, Text    # lazy-loads by default
 end
 <% end %>
 
@@ -99,7 +102,7 @@ It's just a little thing, but it's so much nicer than writing @Zoo.find(:all, :c
 What if you need other comparisons though? Try these:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-Zoo.first(:name.eql => 'Galveston')
+Zoo.first(:name => 'Galveston')
 
 # 'gt' means greater-than. 'lt' is less-than.
 Person.all(:age.gt => 30)
@@ -110,20 +113,20 @@ Person.all(:age.gte => 30)
 Person.all(:name.not => 'bob')
 
 # If the value of a pair is an Array, we do an IN-clause for you.
-Person.all(:name.like => 'S%', :id => [1, 2, 3, 4, 5])
+Person.all(:name.like => 'S%', :id => [ 1, 2, 3, 4, 5 ])
 
 # Does a NOT IN () clause for you.
-Person.all(:name.not => ['bob','rick','steve'])
+Person.all(:name.not => [ 'bob', 'rick', 'steve' ])
 
 # Ordering
-Person.all(:order => [:age.desc])
+Person.all(:order => [ :age.desc ])
 # .asc is the default
 <% end %>
 
 To query a model by it's associations, you can use a QueryPath:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-  Person.all(:links => [:pets], Person.pets.name => 'Pixel')
+  Person.all(:links => [ :pets ], Person.pets.name => 'Pixel')
 <% end %>
 
 You can even chain calls to @all@ or @first@ to continue refining your query or search within a scope. See "Finders":/docs/find.html for more information.

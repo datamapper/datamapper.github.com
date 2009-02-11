@@ -14,11 +14,12 @@ To illustrate the various methods used in manipulating records, we'll create, sa
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Zoo
   include DataMapper::Resource
-  property :id,           Integer,  :serial => true
-  property :name,         String
-  property :description,  Text
-  property :inception,    DateTime
-  property :open,         Boolean,  :default => false
+
+  property :id,          Serial
+  property :name,        String
+  property :description, Text
+  property :inception,   DateTime
+  property :open,        Boolean,  :default => false
 end
 <% end %>
 
@@ -45,7 +46,6 @@ You can also update a model's properties and save it with one method call. @#upd
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 zoo.update_attributes(:name => 'Funky Town Municipal Zoo')
 <% end %>
-
 
 h2. Destroy
 

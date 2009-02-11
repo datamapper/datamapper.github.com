@@ -17,7 +17,7 @@ Much like a certain other Ruby ORM we can call validation methods directly by pa
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
   validates_length :name
-  validates_length [:name, :description]
+  validates_length [ :name, :description ]
 <% end %>
 
 These are the currently available manual validations available. Please refer to the <a href="http://datamapper.rubyforge.org/DataMapper/Validate/ClassMethods.html">API</a> for more detailed information.
@@ -138,6 +138,7 @@ The method or block performs the validation tests and then should return @true@ 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
   class WikiPage
     include DataMapper::Resource
+
     # properties ...
 
     validates_with_method :check_citations
@@ -174,11 +175,11 @@ Validations don't always have to be run.  For example, an issue tracking system 
   class Ticket
     include DataMapper::Resource
 
-    property :id, Serial
-    property :title, String, :nullable => false
+    property :id,          Serial
+    property :title,       String, :nullable => false
     property :description, Text
-    property :commit, String
-    property :status, Enum[:new, :open, :invalid, :complete]
+    property :commit,      String
+    property :status,      Enum[ :new, :open, :invalid, :complete ]
 
     validates_present :commit, :if => Proc.new {|t| t.status == :complete }
   end
@@ -204,18 +205,18 @@ To set a context on a validation, we use the @:when@ option.  It might also be d
   class Article
     include DataMapper::Resource
 
-    property :id, Serial
-    property :title, String
+    property :id,                  Serial
+    property :title,               String
     property :sidebar_picture_url, String
-    property :body, Text
-    property :published, Boolean
+    property :body,                Text
+    property :published,           Boolean
 
     # validations
-    validates_present :title, :when => [:draft, :publish]
-    validates_present :sidebar_picture_url, :when => [:publish]
-    validates_present :body, :when => [:draft, :publish]
-    validates_length :body, :minimum => 1000, :when => [:publish]
-    validates_absent :published, :when => [:draft]
+    validates_present :title,               :when => [ :draft, :publish ]
+    validates_present :sidebar_picture_url, :when => [ :publish ]
+    validates_present :body,                :when => [ :draft, :publish ]
+    validates_length  :body,                :minimum => 1000, :when => [ :publish ]
+    validates_absent  :published,           :when => [ :draft ]
   end
 
   # and now some results
@@ -274,8 +275,8 @@ It is sometimes necessary to set properties before a resource is saved or valida
   class Article
     include DataMapper::Resource
 
-    property :id, Serial
-    property :title, String, :nullable => false
+    property :id,        Serial
+    property :title,     String, :nullable => false
     property :permalink, String, :nullable => false
 
     before :valid?, :set_permalink

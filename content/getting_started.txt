@@ -48,7 +48,8 @@ The Post model is going to need to be persistent, so we'll include <%= doc('Data
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
-  property :id,         Integer, :serial => true
+
+  property :id,         Serial
   property :title,      String
   property :body,       Text
   property :created_at, DateTime
@@ -56,8 +57,8 @@ end
 
 class Comment
   include DataMapper::Resource
-  property :id,         Integer, :serial => true
 
+  property :id,         Serial
   property :posted_by,  String
   property :email,      String
   property :url,        String
@@ -66,7 +67,8 @@ end
 
 class Category
   include DataMapper::Resource
-  property :id,         Integer, :serial => true
+
+  property :id,         Serial
   property :name,       String
 end
 
@@ -97,8 +99,8 @@ Categories can have many Posts and Posts can have many Categories, so we'll need
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Categorization
   include DataMapper::Resource
-  property :id,         Integer, :serial => true
 
+  property :id,         Serial
   property :created_at, DateTime
 
   belongs_to :category

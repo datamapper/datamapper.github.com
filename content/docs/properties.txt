@@ -24,9 +24,10 @@ Inside your class, call the property method for each property you want to add. T
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
-  property :id,         Serial                         # primary serial key
-  property :title,      String,     :nullable => false # Cannot be null
-  property :published,  Boolean,    :default  => false # Default value for new records is false
+
+  property :id,        Serial                       # primary serial key
+  property :title,     String,  :nullable => false  # Cannot be null
+  property :published, Boolean, :default  => false  # Default value for new records is false
 end
 <% end %>
 
@@ -45,8 +46,7 @@ h3. Natural Keys
 Anything can be a key. Just pass @:key => true@ as an option during the property definition.  Most commonly, you'll see String as a natural key:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-  property :slug,  String, :key => true
-                   # any Type is available here
+  property :slug, String, :key => true  # any Type is available here
 <% end %>
 
 Natural Keys are protected against mass-assignment, so their @setter=@ will need to be called individually if your looking to set them.
@@ -60,6 +60,7 @@ You can even have more than one key:
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
+
   property :old_id, Integer, :key => true
   property :new_id, Integer, :key => true
 end
@@ -72,10 +73,10 @@ Defaults can be set via the @:default@ key for a property.  They can be static v
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Image
   include DataMapper::Resource
-  property :id, Serial
-  property :path, FilePath, :nullable => false
-  property :md5sum, String, :length => 32,
-                   :default => Proc.new { |r, p| Digest::MD5.hexdigest(r.path.read) if r.path }
+
+  property :id,     Serial
+  property :path,   FilePath, :nullable => false
+  property :md5sum, String,   :length => 32, :default => lambda { |r, p| Digest::MD5.hexdigest(r.path.read) if r.path }
 end
 <% end %>
 
@@ -90,10 +91,11 @@ Properties can be configured to be lazy loaded. A lazily loaded property is not 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
-  property :id,     Integer,  :serial => true
-  property :title,  String
-  property :body,   Text                        # Is lazily loaded by default
-  property :notes,  Text,     :lazy => false    # Isn't lazy, will load by default
+
+  property :id,    Serial
+  property :title, String
+  property :body,  Text                    # Is lazily loaded by default
+  property :notes, Text,   :lazy => false  # Isn't lazy, will load by default
 end
 <% end %>
 
@@ -102,12 +104,13 @@ Lazy Loading can also be done via contexts, which let you group lazily loaded pr
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
-  property :id,         Integer,  :serial => true
-  property :title,      String
-  property :subtitle,   String  :lazy => [:show]
-  property :body,       Text      :lazy => [:show]
-  property :views,      Integer, :lazy => [:show]
-  property :summary,    Text
+
+  property :id,       Serial
+  property :title,    String
+  property :subtitle, String   :lazy => [ :show ]
+  property :body,     Text     :lazy => [ :show ]
+  property :views,    Integer, :lazy => [ :show ]
+  property :summary,  Text
 end
 <% end %>
 
@@ -117,11 +120,11 @@ h2. Available Types
 
 DM-Core supports the following 'primitive' data-types.
 
-* TrueClass, Boolean
+* Boolean
 * String
 * Text
 * Float
-* Fixnum, Integer
+* Integer
 * BigDecimal,
 * DateTime, Date, Time
 * Object, (marshalled)
@@ -147,8 +150,8 @@ Access for properties is defined using the same semantics as Ruby. Accessors are
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
-  property :title,  :string, :accessor => :private   # Both reader and writer are private
-  property :body,   :text,   :accessor => :protected # Both reader and writer are protected
+  property :title, String, :accessor => :private    # Both reader and writer are private
+  property :body,  Text,   :accessor => :protected  # Both reader and writer are protected
 end
 <% end %>
 
@@ -167,7 +170,7 @@ When a property has declared accessors for getting and setting, it's values are 
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
-  property :slug,  String
+  property :slug, String
 
   def slug=(new_slug)
     raise ArgumentError if new_slug != 'DataMapper is Awesome'

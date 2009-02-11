@@ -23,7 +23,8 @@ The Enum type uses an Integer create a property which can take one of a number o
 <% coderay(:lang => 'ruby', :line_numbers => 'inline') do -%>
 class Issue
   include DataMapper::Resource
-  property :status, Enum[:new, :open, :closed, :invalid], :default => :new
+
+  property :status, Enum[ :new, :open, :closed, :invalid ], :default => :new
   # other properties ...
 end
 
@@ -41,12 +42,14 @@ A Flag is similar to an Enum, though the property that is created can hold multi
 <% coderay(:lang => 'ruby', :line_numbers => 'inline') do -%>
 class Widget
   include DataMapper::Resource
-  property :colours, Flag[:red, :green, :blue, :heliotrope]
+
+  property :colours, Flag[ :red, :green, :blue, :heliotrope ]
+
   # other properties ...
 end
 
 @w = Widget.new
-@w.colours = [:red, :heliotrope]
+@w.colours = [ :red, :heliotrope ]
 <% end %>
 
 h3. Object Mappings

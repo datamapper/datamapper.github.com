@@ -28,21 +28,19 @@ Since we're changing up the terminology, model definitions are going to change u
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Planet
-
   include DataMapper::Resource
 
-  resource_names[:legacy] = "dying_planets"
+  resource_names[:legacy] = 'dying_planets'
 
   property :name, String
-  property :age, Fixnum
-  property :core, String, :private => true
-
+  property :age,  Integer
+  property :core, String,  :private => true
 end
 <% end %>
 
 A couple of things are going on here.  First, DataMapper::Base and DataMapper::Persistence are gone and replaced with <%= doc('DataMapper::Resource') %>.  Next @set_table_name@ has been replaced with @resource_names@ hash where you specify which arena play occurs in. After that we have a couple of Property definitions that look a little different.
 
-First off, Properties will no longer take @:symbols@ for their types and instead take real constants like String, Fixnum, DateTime.  Also on the docket are the ability to define your own custom types.
+First off, Properties will no longer take @:symbols@ for their types and instead take real constants like String, Integer, DateTime.  Also on the docket are the ability to define your own custom types.
 
 Think about that for a minute.  If developers are able to define their own custom types with their own materialization and serialization methods, DataMapper will be able to support all kinds of wild data-types like GIS information, network information, marshaled objects, JSON...pretty much anything a developer might need, or want.
 

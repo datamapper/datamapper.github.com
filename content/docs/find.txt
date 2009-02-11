@@ -83,7 +83,7 @@ h2. Order
 To specify the order in which your results are to be sorted, use:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-@zoos_by_tiger_count = Zoo.all(:order => [:tiger_count.desc])
+@zoos_by_tiger_count = Zoo.all(:order => [ :tiger_count.desc ])
 # in SQL =>  select * from zoos ORDER BY tiger_count DESC
 <% end %>
 

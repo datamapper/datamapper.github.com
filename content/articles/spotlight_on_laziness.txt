@@ -33,9 +33,10 @@ You likely already know that DataMapper supports lazy properties.
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
-  property :id,      Fixnum,   :serial => true  # auto_incrementing primary key
-  property :title,   String,   :lazy   => true  # intentionally lazy
-  property :body,    Text                       # lazy by default
+
+  property :id,    Serial                  # auto_incrementing primary key
+  property :title, String, :lazy => true   # intentionally lazy
+  property :body,  Text                    # lazy by default
 end
 <% end %>
 
@@ -75,9 +76,9 @@ DataMapper now does this!
 class Post
   include DataMapper::Resource
 
-  property :id,     Fixnum,   :serial => true
-  property :title,  String,   :lazy => [:summary, :brief]
-  property :body,   Text,     :lazy => [:summary]
+  property :id,    Serial
+  property :title, String, :lazy => [ :summary, :brief ]
+  property :body,  Text,   :lazy => [ :summary ]
 end
 <% end %>
 
@@ -111,9 +112,9 @@ For example, this is a severe "no no" in ActiveRecord:
   end
 <% end %>
 
-This is a very bad idea because the ORM must query the "animals" table over and over again to load the association for each iteration.  It's far better to use @Zoo.find(:all, :include => [:animals]).each {}@ because a JOIN occurs and everything is retrieved in 1 query.
+This is a very bad idea because the ORM must query the "animals" table over and over again to load the association for each iteration.  It's far better to use @Zoo.find(:all, :include => [ :animals ]).each {}@ because a JOIN occurs and everything is retrieved in 1 query.
 
-But the same issue doesn't exist in DataMapper. Each instance is aware of the other instances it was retrieved with.  The same iterator example from above only fires off 2 queries as you're iterating and calling the association inside the @each@.  If you forget to @:include => [:association]@ in the initial query, DataMapper only ever fires off one more query to get what it needs.
+But the same issue doesn't exist in DataMapper. Each instance is aware of the other instances it was retrieved with.  The same iterator example from above only fires off 2 queries as you're iterating and calling the association inside the @each@.  If you forget to @:include => [ :association ]@ in the initial query, DataMapper only ever fires off one more query to get what it needs.
 
 "Yehuda Katz":http://www.yehudakatz.com/ has aptly named this 'Strategic Eager Loading'.
 

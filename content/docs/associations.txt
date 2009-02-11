@@ -147,7 +147,8 @@ The association declarations make certain assumptions about which classes are be
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
   include DataMapper::Resource
-  belongs_to :author, :class_name => 'User', :child_key => [:post_id]
+
+  belongs_to :author, :class_name => 'User', :child_key => [ :post_id ]
 end
 <% end %>
 
@@ -159,8 +160,8 @@ If you want to order the association, or supply a scope, you can just pass in th
 class Post
   include DataMapper::Resource
 
-  has n, :comments, :order => [:published_on.desc], :rating.gte => 5
-  # post#comments will now be ordered by published_on, and filtered by rating > 5.
+  has n, :comments, :order => [ :published_on.desc ], :rating.gte => 5
+  # Post#comments will now be ordered by published_on, and filtered by rating > 5.
 end
 <% end %>
 
@@ -173,6 +174,6 @@ In a way, it acts like a database view in that respect.
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 @post = Post.first
 @post.categories # returns the full association
-@post.categories.all(:limit => 10, :order => [:name.asc]) # return the first 10 categories ordered by name
-@post.categories(:limit => 10, :order => [:name.asc]) # alias for #all, you can pass in the options directly
+@post.categories.all(:limit => 10, :order => [ :name.asc ]) # return the first 10 categories ordered by name
+@post.categories(:limit => 10, :order => [ :name.asc ]) # alias for #all, you can pass in the options directly
 <% end %>

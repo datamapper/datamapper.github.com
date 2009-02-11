@@ -16,8 +16,9 @@ Many ORMs support Single Table Inheritance and DataMapper is no different.  In o
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Person
   include DataMapper::Resource
+
   property :name, String
-  property :job, String, :length => 255
+  property :job,  String,        :length => 255
   property :type, Discriminator
   ...
 end

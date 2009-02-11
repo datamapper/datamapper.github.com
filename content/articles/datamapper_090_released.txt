@@ -67,14 +67,14 @@ property :slug, :string, :key => true
       <td>
 <% coderay(:lang => "ruby") do -%>
 # keys are now mandatory
-property :id, Integer,  :serial => true
+property :id,   Serial
 #
 # Natural Key
-property :slug, String, :key => true
+property :slug, String,  :key => true
 #
 # Composite Key
-property :id, Integer,  :key => true
-property :slug, String, :key => true
+property :id,   Integer, :key => true
+property :slug, String,  :key => true
 <% end %>
       </td>
     </tr>
@@ -82,18 +82,18 @@ property :slug, String, :key => true
       <th>Properties</th>
       <td>
 <% coderay(:lang => "ruby") do -%>
-property :title,      :string
-property :body,       :text
-property :posted_on,  :datetime
-property :active,     :boolean
+property :title,     :string
+property :body,      :text
+property :posted_on, :datetime
+property :active,    :boolean
 <% end %>
       </td>
       <td>
 <% coderay(:lang => "ruby") do -%>
-property :title,      String
-property :body,       Text
-property :posted_on,  DateTime
-property :active,     Boolean
+property :title,     String
+property :body,      Text
+property :posted_on, DateTime
+property :active,    Boolean
 <% end %>
       </td>
     </tr>
@@ -122,7 +122,7 @@ has 1, :author
         <% coderay(:lang => "ruby") do -%>
 Post.first :order => 'created_at DESC'
 Post.all
-  :conditions => ['active = ?', true]
+  :conditions => [ 'active = ?', true ]
 
 database.query %Q{SELECT 1}
 database.execute %Q{UPDATE posts...}
@@ -130,9 +130,9 @@ database.execute %Q{UPDATE posts...}
       </td>
       <td>
         <% coderay(:lang => "ruby") do -%>
-Post.first :order => [:created_at.desc]
+Post.first :order => [ :created_at.desc ]
 Post.all
-  :conditions => ['active = ?', true]
+  :conditions => [ 'active = ?', true ]
 
 repository(:default).adapter.query %Q{SELECT 1}
 repository(:default).adapter.execute %Q{UPDATE posts...}
@@ -145,22 +145,18 @@ repository(:default).adapter.execute %Q{UPDATE posts...}
         <% coderay(:lang => "ruby") do -%>
 validates_presence_of     :title
 validates_numericality_of :rating
-validates_format_of       :email,
-  :with => :email_address
-validates_length_of       :summary,
-  :within => (1..100)
+validates_format_of       :email,   :with => :email_address
+validates_length_of       :summary, :within => (1..100)
 validates_uniqueness_of   :slug
         <% end %>
       </td>
       <td>
         <% coderay(:lang => "ruby") do -%>
-validates_present     :title
-validates_is_number   :rating
-validates_format      :email,
-  :as => :email_address
-validates_length      :summary,
-  :in => (1..100)
-validates_is_unique   :slug
+validates_present   :title
+validates_is_number :rating
+validates_format    :email,   :as => :email_address
+validates_length    :summary, :in => (1..100)
+validates_is_unique :slug
         <% end %>
       </td>
     </tr>
