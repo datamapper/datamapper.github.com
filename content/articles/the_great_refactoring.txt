@@ -12,7 +12,7 @@ filter:
 
 h1. <%= @page.title %>
 
-"Tip" DataMapper (hosted on "github":http://github.com/sam/dm-core) is going through a dramatic re-factor.  Here's a quick summary of the anticipated NEW public API.
+"Tip" DataMapper (hosted on "github":http://github.com/datamapper/dm-core) is going through a dramatic re-factor.  Here's a quick summary of the anticipated NEW public API.
 
 h2. Not Just for Databases Anymore
 
@@ -69,4 +69,4 @@ Alright, so it's not _that_ big of a deal, but we're confident that all of this 
 
 So close....so very very close...
 
-Stay tuned in to the "mailing list":http://groups.google.com/group/datamapper, check up on the "wiki":http://wiki.datamapper.org/doku.php, chat it up in "#datamapper":irc://irc.freenode.net/#datamapper and watch "github commit messages":http://github.com/sam/dm-core/commits/master for updates.
+Stay tuned in to the "mailing list":http://groups.google.com/group/datamapper, check up on the "wiki":http://wiki.datamapper.org/doku.php, chat it up in "#datamapper":irc://irc.freenode.net/#datamapper and watch "github commit messages":http://github.com/datamapper/dm-core/commits/master for updates.

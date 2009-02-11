@@ -25,7 +25,7 @@ h2. Git - Edge DataMapper
 DataMapper development has switched to the "Git":http://git.or.cz SCM. Please see "using git":using-git.html to learn how to contribute.
 
 <div class="CodeRay">
-  <pre>$ git clone git://github.com/sam/dm-core.git</pre>
+  <pre>$ git clone git://github.com/datamapper/dm-core.git</pre>
 </div>
 
 

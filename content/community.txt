@@ -16,7 +16,7 @@ h2. Links, Blogs, Wiki's, and Stuff
   <dd>Official News and other contributed articles</dd>
   <dt><a href="http://wiki.datamapper.org/">Wiki</a></dt>
   <dd>Official Wiki</dd>
-  <dt><a href="http://github.com/sam/dm-core/tree/master">DM on GitHub</a></dt>
+  <dt><a href="http://github.com/datamapper/dm-core/tree/master">DM on GitHub</a></dt>
   <dd>Source Repository</dd>
   <dt><a href="http://datamapper.rubyforge.org/">API on RubyForge</a></dt>
   <dd>Documentation</dd>

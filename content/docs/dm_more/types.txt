@@ -109,4 +109,4 @@ Typecasting is provided by the types @self.typecast(value, property)@ method, wh
 
 h3. Examples
 
-For examples of the types, the best place to look is <a href="http://github.com/sam/dm-more/tree/master/dm-types">dm-types</a> on github.
+For examples of the types, the best place to look is <a href="http://github.com/datamapper/dm-more/tree/master/dm-types">dm-types</a> on github.
