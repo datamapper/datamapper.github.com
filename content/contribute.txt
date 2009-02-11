@@ -7,7 +7,7 @@ filter:
 ---
 h1. <%= @page.title %>
 
-DataMapper is always looking for more contributers.  When you've got an itch to scratch, jump in and contribute!  Write a few specs showing us how your code works, create a patch and "submit it":http://wm.lighthouseapp.com/projects/4819-datamapper/overview as a new ticket or a fix for an existing one.  After a few patches and many thanks, you'll get commit access.
+DataMapper is always looking for more contributers.  When you've got an itch to scratch, jump in and contribute!  Write a few specs showing us how your code works, create a patch and "submit it":http://datamapper.lighthouseapp.com/projects/20609-datamapper/ as a new ticket or a fix for an existing one.  After a few patches and many thanks, you'll get commit access.
 
 We benchmark all but the most trivial of patches, because we care about performance and you should too!
 
@@ -15,7 +15,7 @@ h2. What we need
 
 Currently DataMapper needs help in a few particular areas:
 
-* API Documentation (using the "YARD documentation style":http://github.com/lsegal/yard/tree/master)
+* API Documentation (using the "YARD documentation style":http://github.com/lsegal/yard/)
 * Tutorials
 * Code contributions
 * Bug Reports
@@ -36,4 +36,4 @@ When contributing any code to DataMapper, please follow these guidelines.
 # Spec first. Spec thoroughly. (DataMapper is written with "Rspec":http://rspec.info/)
 # Parentheses around parameter lists for methods
 # Two space indent - not tabs!
-# Documentation is required (use the "YARD documentation style":http://github.com/lsegal/yard/tree/master)
+# Documentation is required (use the "YARD documentation style":http://github.com/lsegal/yard/)

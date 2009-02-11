@@ -64,10 +64,10 @@ Once you're done, you should be able to see sake in your path by executing @whic
 
 h3. Step 2 - Install the Tasks
 
-Now that you're all setup with sake and the @src@ directory, it's time to install the sake tasks.  They can be found at "http://github.com/dkubb/dm-dev/":http://github.com/dkubb/dm-dev/tree/master and are very easily installed by doing:
+Now that you're all setup with sake and the @src@ directory, it's time to install the sake tasks.  They can be found at "http://github.com/dkubb/dm-dev/":http://github.com/dkubb/dm-dev/ and are very easily installed by doing:
 
 <% coderay(:lang => "bash", :line_numbers => "inline") do -%>
-sake -i http://datamapper.org/dm-dev.sake
+sake -i http://github.com/dkubb/dm-dev/raw/master/dm-dev.sake
 <% end %>
 
 The tasks that get installed are available for perusal by issuing @sake -T@
@@ -104,7 +104,7 @@ When executed together, these 3 steps amount to 7 lines at the command line.  Ta
 mkdir -p ~/src
 cd ~/src
 sudo gem install sake
-sake -i http://datamapper.org/dm-dev.sake
+sake -i http://github.com/dkubb/dm-dev/raw/master/dm-dev.sake
 sake dm:clone
 cd dm
 sake dm:install

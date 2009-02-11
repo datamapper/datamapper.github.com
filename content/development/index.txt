@@ -19,7 +19,7 @@ git clone git://github.com/datamapper/dm-more.git
 
 Or visit the "edge guide":/articles/stunningly_easy_way_to_live_on_the_edge.html.
 
-If you have a "github":http://www.github.com account, log in, and _fork_ "the repo":http://github.com/datamapper/dm-core/tree/master.  When you think you're ready, send dkubb a "pull request".
+If you have a "github":http://www.github.com account, log in, and _fork_ "the repo":http://github.com/datamapper/dm-core/.  When you think you're ready, send dkubb a "pull request".
 
 h2. Coding Conventions and Considerations
 
