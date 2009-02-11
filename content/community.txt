@@ -40,7 +40,7 @@ h2. The People Behind DataMapper
   </li>
   <li>
     <img src="http://www.gravatar.com/avatar/41c597a48c80e37ba68d1adc7095ea0e?s=80" title="Sam Smoot" alt="Sam Smoot" />
-    <p>Sam Smoot</p>
+    <p>Sam Smoot (Founder)</p>
   </li>
   <li>
     <img src="/images/people/yehuda.jpg" title="Yehuda Katz" alt="Yehuda Katz" />
