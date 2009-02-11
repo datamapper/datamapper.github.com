@@ -5,7 +5,7 @@
   <subtitle>Ruby Object Relational Mapper</subtitle>
   <link href="http://www.datamapper.org/news.rss" rel="self"/>
   <link href="http://www.datamapper.org/"/>
-  <updated>2009-02-11T01:36:00+00:00</updated>
+  <updated>2009-02-10T21:07:47-08:00</updated>
   <author>
     <name>Maintained By the Community</name>
     <email>datamapper@googlegroups.com</email>
@@ -16,7 +16,7 @@
     <title>DataMapper Sponsor Looking for Developer</title>
     <link href="/articles/wieck_hire.html"/>
     <id>tag:datamapper.org,2008-08-05:1217969640</id>
-    <updated>2008-08-05T21:54:00+01:00</updated>
+    <updated>2008-08-05T13:54:00-07:00</updated>
     <content type="html">&lt;h1&gt;DataMapper Sponsor Looking for Developer&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&quot;http://wieck.com&quot;&gt;Wieck Media&lt;/a&gt;, sponsors of the DataMapper project are looking for a local, on-site, full-time developer in Dallas, TX to join the team. The work includes client projects for Honda, The New York Times and FIA among others as well as developing our own products and supporting open source efforts including DataMapper.&lt;/p&gt;
 &lt;p&gt;If this sounds like your cup of tea, get in touch with &amp;#8220;sam&amp;#8221; at  &amp;#8220;wieck.com&amp;#8221; with the subject &amp;#8220;DataMapper Developer&amp;#8221; with your resume, a little note about yourself, and your contact information. Points awarded if you&amp;#8217;re awesome.&lt;/p&gt;</content>
@@ -26,7 +26,7 @@
     <title>DataMapper Presented at RailsConf 2008</title>
     <link href="/articles/datamapper_presented_at_railsconf08.html"/>
     <id>tag:datamapper.org,2008-06-10:1213119016</id>
-    <updated>2008-06-10T18:30:16+01:00</updated>
+    <updated>2008-06-10T10:30:16-07:00</updated>
     <content type="html">&lt;h1&gt;DataMapper Presented at RailsConf 2008&lt;/h1&gt;
 &lt;p&gt;Yehuda Katz (wycats) gave an updated version of his &amp;#8220;DataMapper &amp;#8211; The Persistence Framework&amp;#8221; presentation at Rails Conf 2008.  Though video isn&amp;#8217;t available for the talk, he was nice enough to share his slides.&lt;/p&gt;
 &lt;div style=&quot;width:425px;text-align:left; margin:0 auto;&quot; id=&quot;__ss_445593&quot;&gt;&lt;object style=&quot;margin:0px&quot; width=&quot;425&quot; height=&quot;355&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://static.slideshare.net/swf/ssplayer2.swf?doc=datamapper-1212540345128334-9&quot;/&gt;&lt;param name=&quot;allowFullScreen&quot; value=&quot;true&quot;/&gt;&lt;param name=&quot;allowScriptAccess&quot; value=&quot;always&quot;/&gt;&lt;embed src=&quot;http://static.slideshare.net/swf/ssplayer2.swf?doc=datamapper-1212540345128334-9&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; allowfullscreen=&quot;true&quot; width=&quot;425&quot; height=&quot;355&quot;&gt;&lt;/embed&gt;&lt;/object&gt;&lt;div style=&quot;font-size:11px;font-family:tahoma,arial;height:26px;padding-top:2px;&quot;&gt;&lt;a href=&quot;http://www.slideshare.net/?src=embed&quot;&gt;&lt;img src=&quot;http://static.slideshare.net/swf/logo_embd.png&quot; style=&quot;border:0px none;margin-bottom:-5px&quot; alt=&quot;SlideShare&quot;/&gt;&lt;/a&gt; | &lt;a href=&quot;http://www.slideshare.net/wycats/datamapper?src=embed&quot; title=&quot;View DataMapper on SlideShare&quot;&gt;View&lt;/a&gt; | &lt;a href=&quot;http://www.slideshare.net/upload?src=embed&quot;&gt;Upload your own&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;
@@ -38,7 +38,7 @@
     <title>DataMapper 0.9 is Released</title>
     <link href="/articles/datamapper_090_released.html"/>
     <id>tag:datamapper.org,2008-05-27:1211875644</id>
-    <updated>2008-05-27T09:07:24+01:00</updated>
+    <updated>2008-05-27T01:07:24-07:00</updated>
     <content type="html">&lt;h1&gt;DataMapper 0.9 is Released&lt;/h1&gt;
 &lt;p&gt;DataMapper 0.9 is ready for the world.  It brings with it a massive overhaul of the internals of DataMapper, a shift in terminology, a dramatic bump in speed, improved code-base organization, and support for more than just database data-stores.&lt;/p&gt;
 &lt;p&gt;To install it:&lt;/p&gt;
@@ -196,8 +196,8 @@ before &lt;span class=&quot;sy&quot;&gt;:create&lt;/span&gt; &lt;span class=&quo
   <entry>
     <title>The Stunningly Easy Way to Live On The Edge Of DataMapper</title>
     <link href="/articles/stunningly_easy_way_to_live_on_the_edge.html"/>
-    <id>tag:datamapper.org,2008-05-08:1210205074</id>
-    <updated>2008-05-08T01:04:34+01:00</updated>
+    <id>tag:datamapper.org,2008-05-07:1210205074</id>
+    <updated>2008-05-07T17:04:34-07:00</updated>
     <content type="html">&lt;h1&gt;The Stunningly Easy Way to Live On The Edge Of DataMapper&lt;/h1&gt;
 &lt;p&gt;DataMapper is organized into sub-projects, much like &lt;a href=&quot;http://www.merbivore.com&quot;&gt;Merb&lt;/a&gt;, and that tends to confuse even the people working on it&amp;#8230;.until recently.  Michael Ivey, an active contributer to the Merb project, and our very own Dan Kubb have collaborated on a set of Sake tasks to help automate and streamline checking out, packaging, installing, uninstalling, updating, repackaging, and reinstalling the DataMapper and Merb projects.&lt;/p&gt;
 &lt;p&gt;If you like to live life on the edge, this is the happiest way to do it.&lt;/p&gt;
@@ -224,8 +224,8 @@ before &lt;span class=&quot;sy&quot;&gt;:create&lt;/span&gt; &lt;span class=&quo
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;no&quot;&gt;1&lt;/span&gt; sudo gem install sake
 &lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once you&amp;#8217;re done, you should be able to see sake in your path by executing &lt;code&gt;which sake&lt;/code&gt; and see where &lt;code&gt;gem&lt;/code&gt; installed it.&lt;/p&gt;
 &lt;h3&gt;Step 2 &amp;#8211; Install the Tasks&lt;/h3&gt;
-&lt;p&gt;Now that you&amp;#8217;re all setup with sake and the &lt;code&gt;src&lt;/code&gt; directory, it&amp;#8217;s time to install the sake tasks.  They can be found at &lt;a href=&quot;http://github.com/dkubb/dm-dev/tree/master&quot;&gt;http://github.com/dkubb/dm-dev/&lt;/a&gt; and are very easily installed by doing:&lt;/p&gt;
-&lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;no&quot;&gt;1&lt;/span&gt; sake -i http://datamapper.org/dm-dev.sake
+&lt;p&gt;Now that you&amp;#8217;re all setup with sake and the &lt;code&gt;src&lt;/code&gt; directory, it&amp;#8217;s time to install the sake tasks.  They can be found at &lt;a href=&quot;http://github.com/dkubb/dm-dev/&quot;&gt;http://github.com/dkubb/dm-dev/&lt;/a&gt; and are very easily installed by doing:&lt;/p&gt;
+&lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;no&quot;&gt;1&lt;/span&gt; sake -i http://github.com/dkubb/dm-dev/raw/master/dm-dev.sake
 &lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The tasks that get installed are available for perusal by issuing &lt;code&gt;sake -T&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;er&quot;&gt;$&lt;/span&gt; sake -&lt;span class=&quot;co&quot;&gt;T&lt;/span&gt;
 sake dm&lt;span class=&quot;sy&quot;&gt;:clone&lt;/span&gt;                          &lt;span class=&quot;c&quot;&gt;# Clone a copy of the DataMapper repository and dependencies&lt;/span&gt;
@@ -250,7 +250,7 @@ sake dm&lt;span class=&quot;sy&quot;&gt;:update&lt;/span&gt;                    
 &lt;div class=&quot;CodeRay&quot;&gt;&lt;pre&gt;&lt;span class=&quot;no&quot;&gt;1&lt;/span&gt; mkdir -p ~/src
 &lt;span class=&quot;no&quot;&gt;2&lt;/span&gt; cd ~/src
 &lt;span class=&quot;no&quot;&gt;3&lt;/span&gt; sudo gem install sake
-&lt;span class=&quot;no&quot;&gt;4&lt;/span&gt; sake -i http://datamapper.org/dm-dev.sake
+&lt;span class=&quot;no&quot;&gt;4&lt;/span&gt; sake -i http://github.com/dkubb/dm-dev/raw/master/dm-dev.sake
 &lt;span class=&quot;no&quot;&gt;5&lt;/span&gt; sake dm:clone
 &lt;span class=&quot;no&quot;&gt;6&lt;/span&gt; cd dm
 &lt;span class=&quot;no&quot;&gt;7&lt;/span&gt; sake dm:install
@@ -263,8 +263,8 @@ sake dm&lt;span class=&quot;sy&quot;&gt;:update&lt;/span&gt;                    
   <entry>
     <title>DataMapper Presented at MWRC 2008</title>
     <link href="/articles/datamapper_talk_atmwrc08.html"/>
-    <id>tag:datamapper.org,2008-04-11:1207886859</id>
-    <updated>2008-04-11T05:07:39+01:00</updated>
+    <id>tag:datamapper.org,2008-04-10:1207886859</id>
+    <updated>2008-04-10T21:07:39-07:00</updated>
     <content type="html">&lt;h1&gt;DataMapper Presented at MWRC 2008&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&quot;http://mwrc2008.confreaks.com/04katz.html&quot; style=&quot;border:10px; color:#FFF; text-decoration:none;&quot;&gt;&lt;img src=&quot;/images/wykatz_at_mwrc2008.png&quot; title=&quot;Yehuda Katz&amp;#39; presentation entitled &amp;#39;Faster, Better ORM With DataMapper&quot; alt=&quot;Yehuda Katz&amp;#39; presentation entitled &amp;#39;Faster, Better ORM With DataMapper&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;At this year&amp;#8217;s &lt;a href=&quot;http://mtnwestrubyconf.org/&quot;&gt;Mountain West Ruby Conference 2008&lt;/a&gt;, DataMapper&amp;#8217;s own Yehuda Katz gave a presentation entitled &amp;#8220;Faster, Better ORM With DataMapper.&amp;#8221;&lt;/p&gt;
@@ -274,8 +274,8 @@ sake dm&lt;span class=&quot;sy&quot;&gt;:update&lt;/span&gt;                    
   <entry>
     <title>Spotlight on... Laziness</title>
     <link href="/articles/spotlight_on_laziness.html"/>
-    <id>tag:datamapper.org,2008-04-04:1207282092</id>
-    <updated>2008-04-04T05:08:12+01:00</updated>
+    <id>tag:datamapper.org,2008-04-03:1207282092</id>
+    <updated>2008-04-03T21:08:12-07:00</updated>
     <content type="html">&lt;h1&gt;Spotlight on&amp;#8230; Laziness&lt;/h1&gt;
 &lt;p&gt;Laziness.  It means &amp;#8220;an unwillingness to work or use energy&amp;#8221; and typically indicates that the dishes don&amp;#8217;t get washed after lunch, the bath tub doesn&amp;#8217;t get cleaned, and the trash sits around an extra few days and stinks up the place.&lt;/p&gt;
 &lt;p&gt;But that very same definition in software takes on a whole new meaning: To avoid doing work you don&amp;#8217;t have to do for as long as you can avoid it; sometimes never doing it at all.  It&amp;#8217;s a good thing. It means that expensive and slow tasks can be put off until the very last cycle possible and thus only incur their cost when it really is worth it. Maybe you never execute the code at all.&lt;/p&gt;
@@ -348,8 +348,8 @@ contribution and we&amp;#8217;ll post it here.&lt;/p&gt;
   <entry>
     <title>Spotlight on... Composite Keys</title>
     <link href="/articles/spotlight_on_cpk.html"/>
-    <id>tag:datamapper.org,2008-03-30:1206835747</id>
-    <updated>2008-03-30T00:09:07+00:00</updated>
+    <id>tag:datamapper.org,2008-03-29:1206835747</id>
+    <updated>2008-03-29T17:09:07-07:00</updated>
     <content type="html">&lt;h1&gt;Spotlight on&amp;#8230; Composite Keys&lt;/h1&gt;
 &lt;p&gt;For those of us who have taken a course on database design in college or university, you may have run across a concept called &amp;#8216;Composite Primary Keys&amp;#8217; (or sometimes &amp;#8216;Compound Keys&amp;#8217; or &amp;#8216;Concatenated Keys&amp;#8217;, and abbreviated &lt;acronym title=&quot;Composite Primary Keys&quot;&gt;CPK&lt;/acronym&gt;s).  It&amp;#8217;s usually right before you tackle JOINs and right after you fight with the &amp;#8220;surrogate key&amp;#8221; or &amp;#8220;primary key&amp;#8221; concept.&lt;/p&gt;
 &lt;p&gt;Boiling &lt;acronym title=&quot;Composite Primary Keys&quot;&gt;CPK&lt;/acronym&gt;s down, they&amp;#8217;re just a way of identifying a row by multiple keys rather than one.  So instead of an auto_incrementing &amp;#8220;serial&amp;#8221; primary key (as in &lt;code&gt;id&lt;/code&gt;), you&amp;#8217;d have a combination of &lt;code&gt;some_column&lt;/code&gt; and &lt;code&gt;some_other_column&lt;/code&gt; that would uniquely identify a row.&lt;/p&gt;
@@ -395,7 +395,7 @@ contribution and we&amp;#8217;ll post it here.&lt;/p&gt;</content>
     <title>The Great Refactoring</title>
     <link href="/articles/the_great_refactoring.html"/>
     <id>tag:datamapper.org,2008-03-22:1206219350</id>
-    <updated>2008-03-22T20:55:50+00:00</updated>
+    <updated>2008-03-22T13:55:50-07:00</updated>
     <content type="html">&lt;h1&gt;The Great Refactoring&lt;/h1&gt;
 &lt;p&gt;&amp;#8220;Tip&amp;#8221; DataMapper (hosted on &lt;a href=&quot;http://github.com/datamapper/dm-core&quot;&gt;github&lt;/a&gt;) is going through a dramatic re-factor.  Here&amp;#8217;s a quick summary of the anticipated NEW public API.&lt;/p&gt;
 &lt;h2&gt;Not Just for Databases Anymore&lt;/h2&gt;
@@ -427,14 +427,14 @@ contribution and we&amp;#8217;ll post it here.&lt;/p&gt;</content>
 &lt;p&gt;This is the coolest new feature of DataMapper: we&amp;#8217;re skipping all the way from 0.3.0 to 0.9! Get excited, contact the press, fire up the blogosphere!  Its a huge jump and we&amp;#8217;re honestly concerned that people may not be able to handle it.&lt;/p&gt;
 &lt;p&gt;Alright, so it&amp;#8217;s not &lt;em&gt;that&lt;/em&gt; big of a deal, but we&amp;#8217;re confident that all of this will get DataMapper so close to going 1.0 that we&amp;#8217;ll be able to taste it.  To get there, DataMapper&amp;#8217;s more advanced features like single table inheritance, paranoia, and chained associations will be re-implimented to use all this new stuff, and then we&amp;#8217;re sure 0.9 will need a touch up or two.&lt;/p&gt;
 &lt;p&gt;So close&amp;#8230;.so very very close&amp;#8230;&lt;/p&gt;
-&lt;p&gt;Stay tuned in to the &lt;a href=&quot;http://groups.google.com/group/datamapper&quot;&gt;mailing list&lt;/a&gt;, check up on the &lt;a href=&quot;http://wiki.datamapper.org/doku.php&quot;&gt;wiki&lt;/a&gt;, chat it up in &lt;a href=&quot;irc://irc.freenode.net/#datamapper&quot;&gt;#datamapper&lt;/a&gt; and watch &lt;a href=&quot;http://github.com/datamapper/dm-core/commits/master&quot;&gt;github commit messages&lt;/a&gt; for updates.&lt;/p&gt;</content>
+&lt;p&gt;Stay tuned in to the &lt;a href=&quot;http://groups.google.com/group/datamapper&quot;&gt;mailing list&lt;/a&gt;, check up on the &lt;a href=&quot;http://datamapper.org/&quot;&gt;wiki&lt;/a&gt;, chat it up in &lt;a href=&quot;irc://irc.freenode.net/#datamapper&quot;&gt;#datamapper&lt;/a&gt; and watch &lt;a href=&quot;http://github.com/datamapper/dm-core/commits/master&quot;&gt;github commit messages&lt;/a&gt; for updates.&lt;/p&gt;</content>
   </entry>
   
   <entry>
     <title>0.3.0 Gem Released!</title>
     <link href="/articles/gem_030_released.html"/>
     <id>tag:datamapper.org,2008-03-18:1205873750</id>
-    <updated>2008-03-18T20:55:50+00:00</updated>
+    <updated>2008-03-18T13:55:50-07:00</updated>
     <content type="html">&lt;h1&gt;0.3.0 Gem Released!&lt;/h1&gt;
 &lt;p&gt;0.3.0 is a maintenance release, bringing minor bug-fixes and minimal new features to DataMapper 0.2.5. This is the latest stable gem using database terminology and metaphors.&lt;/p&gt;
 &lt;p&gt;This changeset includes:&lt;/p&gt;

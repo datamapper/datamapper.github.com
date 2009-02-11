@@ -21,7 +21,7 @@
           <li><a href="/community.html">Community</a></li>
           <li><a href="/docs">Documentation</a></li>
           <li><a href="/development">Development</a></li>
-          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="http://datamapper.org/">Wiki</a></li>
           <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
         </ul>
       </div>
@@ -52,8 +52,8 @@
 <div class="CodeRay"><pre><span class="no">1</span> sudo gem install sake
 </pre></div><p>Once you&#8217;re done, you should be able to see sake in your path by executing <code>which sake</code> and see where <code>gem</code> installed it.</p>
 <h3>Step 2 &#8211; Install the Tasks</h3>
-<p>Now that you&#8217;re all setup with sake and the <code>src</code> directory, it&#8217;s time to install the sake tasks.  They can be found at <a href="http://github.com/dkubb/dm-dev/tree/master">http://github.com/dkubb/dm-dev/</a> and are very easily installed by doing:</p>
-<div class="CodeRay"><pre><span class="no">1</span> sake -i http://datamapper.org/dm-dev.sake
+<p>Now that you&#8217;re all setup with sake and the <code>src</code> directory, it&#8217;s time to install the sake tasks.  They can be found at <a href="http://github.com/dkubb/dm-dev/">http://github.com/dkubb/dm-dev/</a> and are very easily installed by doing:</p>
+<div class="CodeRay"><pre><span class="no">1</span> sake -i http://github.com/dkubb/dm-dev/raw/master/dm-dev.sake
 </pre></div><p>The tasks that get installed are available for perusal by issuing <code>sake -T</code></p>
 <div class="CodeRay"><pre><span class="er">$</span> sake -<span class="co">T</span>
 sake dm<span class="sy">:clone</span>                          <span class="c"># Clone a copy of the DataMapper repository and dependencies</span>
@@ -78,7 +78,7 @@ sake dm<span class="sy">:update</span>                         <span class="c">#
 <div class="CodeRay"><pre><span class="no">1</span> mkdir -p ~/src
 <span class="no">2</span> cd ~/src
 <span class="no">3</span> sudo gem install sake
-<span class="no">4</span> sake -i http://datamapper.org/dm-dev.sake
+<span class="no">4</span> sake -i http://github.com/dkubb/dm-dev/raw/master/dm-dev.sake
 <span class="no">5</span> sake dm:clone
 <span class="no">6</span> cd dm
 <span class="no">7</span> sake dm:install
