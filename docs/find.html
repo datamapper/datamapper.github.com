@@ -82,11 +82,11 @@
 <span class="no">2</span> <span class="c"># in SQL =&gt;  select * from zoos ORDER BY tiger_count ASC</span>
 </pre></div><h3>Compatibility</h3>
 <p>DataMapper supports other conditions syntaxes as well:</p>
-<div class="CodeRay"><pre><span class="no">1</span> zoos = <span class="co">Zoo</span>.all(<span class="sy">:conditions</span> =&gt; {<span class="sy">:id</span> =&gt; <span class="i">34</span>})
-<span class="no">2</span> zoos = <span class="co">Zoo</span>.all(<span class="sy">:conditions</span> =&gt; [<span class="s"><span class="dl">&quot;</span><span class="k">id = ?</span><span class="dl">&quot;</span></span>, <span class="i">34</span>])
+<div class="CodeRay"><pre><span class="no">1</span> zoos = <span class="co">Zoo</span>.all(<span class="sy">:conditions</span> =&gt; { <span class="sy">:id</span> =&gt; <span class="i">34</span> })
+<span class="no">2</span> zoos = <span class="co">Zoo</span>.all(<span class="sy">:conditions</span> =&gt; [ <span class="s"><span class="dl">&quot;</span><span class="k">id = ?</span><span class="dl">&quot;</span></span>, <span class="i">34</span> ])
 <span class="no">3</span> 
 <span class="no">4</span> <span class="c"># even mix and match</span>
-<span class="no">5</span> zoos = <span class="co">Zoo</span>.all(<span class="sy">:conditions</span> =&gt; {<span class="sy">:id</span> =&gt; <span class="i">34</span>}, <span class="sy">:name</span>.like =&gt; <span class="s"><span class="dl">'</span><span class="k">%foo%</span><span class="dl">'</span></span>)
+<span class="no">5</span> zoos = <span class="co">Zoo</span>.all(<span class="sy">:conditions</span> =&gt; { <span class="sy">:id</span> =&gt; <span class="i">34</span> }, <span class="sy">:name</span>.like =&gt; <span class="s"><span class="dl">'</span><span class="k">%foo%</span><span class="dl">'</span></span>)
 </pre></div><h2>Talking directly to your data-store</h2>
 <p>Sometimes you may find that you need to tweak a query manually.</p>
 <div class="CodeRay"><pre><span class="no">1</span> zoos = repository(<span class="sy">:default</span>).adapter.query(<span class="s"><span class="dl">'</span><span class="k">SELECT name, open FROM zoos WHERE open = 1</span><span class="dl">'</span></span>)

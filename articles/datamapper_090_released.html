@@ -115,8 +115,8 @@ has <span class="i">1</span>, <span class="sy">:author</span>
 <span class="co">Post</span>.all<br />
   <span class="sy">:conditions</span> =&gt; [ <span class="s"><span class="dl">&#8216;</span><span class="k">active = ?</span><span class="dl">&#8217;</span></span>, <span class="pc">true</span> ]<br />
 <br />
-database.query <span class="s"><span class="dl">%Q{</span><span class="k">SELECT 1</span><span class="dl">}</span></span><br />
-database.execute <span class="s"><span class="dl">%Q{</span><span class="k">UPDATE posts&#8230;</span><span class="dl">}</span></span><br />
+database.query <span class="s"><span class="dl">&#8216;</span><span class="k">SELECT 1</span><span class="dl">&#8217;</span></span><br />
+database.execute <span class="s"><span class="dl">&#8216;</span><span class="k">UPDATE posts&#8230;</span><span class="dl">&#8217;</span></span><br />
         </pre></div>
 <p></notextile></p>
 </td>
@@ -126,8 +126,8 @@ database.execute <span class="s"><span class="dl">%Q{</span><span class="k">UPDA
 <span class="co">Post</span>.all<br />
   <span class="sy">:conditions</span> =&gt; [ <span class="s"><span class="dl">&#8216;</span><span class="k">active = ?</span><span class="dl">&#8217;</span></span>, <span class="pc">true</span> ]<br />
 <br />
-repository(<span class="sy">:default</span>).adapter.query <span class="s"><span class="dl">%Q{</span><span class="k">SELECT 1</span><span class="dl">}</span></span><br />
-repository(<span class="sy">:default</span>).adapter.execute <span class="s"><span class="dl">%Q{</span><span class="k">UPDATE posts&#8230;</span><span class="dl">}</span></span><br />
+repository(<span class="sy">:default</span>).adapter.query <span class="s"><span class="dl">&#8216;</span><span class="k">SELECT 1</span><span class="dl">&#8217;</span></span><br />
+repository(<span class="sy">:default</span>).adapter.execute <span class="s"><span class="dl">&#8216;</span><span class="k">UPDATE posts&#8230;</span><span class="dl">&#8217;</span></span><br />
         </pre></div>
 <p></notextile></p>
 </td>

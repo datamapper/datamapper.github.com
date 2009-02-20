@@ -30,7 +30,7 @@
 <p>DataMapper differentiates itself from other Ruby Object/Relational Mappers in a number of ways:</p>
 <h2>Identity Map</h2>
 <p>One row in the database should equal one object reference. Pretty simple idea. Pretty profound impact. If you run the following code in ActiveRecord you&#8217;ll see all <code>false</code> results. Do the same in DataMapper and it&#8217;s <code>true</code> all the way down.</p>
-<div class="CodeRay"><pre><span class="no">1</span> <span class="iv">@parent</span> = <span class="co">Tree</span>.find(<span class="sy">:first</span>, <span class="sy">:conditions</span> =&gt; [<span class="s"><span class="dl">'</span><span class="k">name = ?</span><span class="dl">'</span></span>, <span class="s"><span class="dl">'</span><span class="k">bob</span><span class="dl">'</span></span>])
+<div class="CodeRay"><pre><span class="no">1</span> <span class="iv">@parent</span> = <span class="co">Tree</span>.find(<span class="sy">:first</span>, <span class="sy">:conditions</span> =&gt; [ <span class="s"><span class="dl">'</span><span class="k">name = ?</span><span class="dl">'</span></span>, <span class="s"><span class="dl">'</span><span class="k">bob</span><span class="dl">'</span></span> ])
 <span class="no">2</span> 
 <span class="no">3</span> <span class="iv">@parent</span>.children.each <span class="r">do</span> |child|
 <span class="no">4</span>   puts <span class="iv">@parent</span>.object_id == child.parent.object_id
@@ -81,7 +81,7 @@
 <h2>All Ruby, All The Time</h2>
 <p>DataMapper goes further than most Ruby ORMs in letting you avoid writing raw query fragments yourself.  It provides more helpers and a unique hash-based conditions syntax to cover more of the use-cases where issuing your own SQL would have been the only way to go.</p>
 <p>For example, any finder option that are non-standard is considered a condition. So you can write <code>Zoo.all(:name =&gt; 'Dallas')</code> and DataMapper will look for zoos with the name of &#8216;Dallas&#8217;.</p>
-<p>It&#8217;s just a little thing, but it&#8217;s so much nicer than writing <code>Zoo.find(:all, :conditions =&gt; ['name = ?', 'Dallas'])</code> and won&#8217;t incur the Ruby overhead of <code>Zoo.find_by_name('Dallas')</code>.</p>
+<p>It&#8217;s just a little thing, but it&#8217;s so much nicer than writing <code>Zoo.find(:all, :conditions =&gt; [ 'name = ?', 'Dallas' ])</code> and won&#8217;t incur the Ruby overhead of <code>Zoo.find_by_name('Dallas')</code>.</p>
 <p>What if you need other comparisons though? Try these:</p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="co">Zoo</span>.first(<span class="sy">:name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">Galveston</span><span class="dl">'</span></span>)
 <span class="no"> 2</span> 

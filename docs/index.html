@@ -60,22 +60,24 @@
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="c">##</span>
 <span class="no"> 2</span> <span class="c"># Setups up a connection to a data-store</span>
 <span class="no"> 3</span> <span class="c">#</span>
-<span class="no"> 4</span> <span class="c"># @param name&lt;Symbol&gt; a name for the context, defaults to :default</span>
-<span class="no"> 5</span> <span class="c"># @param uri_or_options&lt;Hash{Symbol =&gt; String}, Addressable::URI, String&gt;</span>
-<span class="no"> 6</span> <span class="c">#   connection information</span>
-<span class="no"> 7</span> <span class="c">#</span>
-<span class="no"> 8</span> <span class="c"># @return &lt;Repository&gt; the resulting setup repository</span>
-<span class="no"> 9</span> <span class="c">#</span>
-<span class="no"><strong>10</strong></span> <span class="c"># @raise &lt;ArgumentError&gt; &quot;+name+ must be a Symbol, but was...&quot; indicates that</span>
-<span class="no">11</span> <span class="c">#   an invalid argument was passed for name&lt;Symbol&gt;</span>
-<span class="no">12</span> <span class="c"># @raise &lt;ArgumentError&gt; &quot;+uri_or_options+ must be a Hash, URI or String, but was...&quot;</span>
-<span class="no">13</span> <span class="c">#   indicates that connection information could not be gleaned from the given</span>
-<span class="no">14</span> <span class="c">#   uri_or_options&lt;Hash, Addressable::URI, String&gt;</span>
-<span class="no">15</span> <span class="c"># -</span>
-<span class="no">16</span> <span class="c"># @api public</span>
-<span class="no">17</span> <span class="r">def</span> <span class="pc">self</span>.setup(name, uri_or_options)
-<span class="no">18</span>   raise <span class="co">ArgumentError</span>, <span class="s"><span class="dl">&quot;</span><span class="k">+name+ must be a Symbol, but was </span><span class="il"><span class="idl">#{</span>name.class<span class="idl">}</span></span><span class="dl">&quot;</span></span>, caller <span class="r">unless</span> <span class="co">Symbol</span> === name
-<span class="no">19</span>   ...
+<span class="no"> 4</span> <span class="c"># @param [Symbol] name</span>
+<span class="no"> 5</span> <span class="c">#   a name for the context, defaults to :default</span>
+<span class="no"> 6</span> <span class="c"># @param [Hash(Symbol =&gt; String), Addressable::URI, String] uri_or_options</span>
+<span class="no"> 7</span> <span class="c">#   connection information</span>
+<span class="no"> 8</span> <span class="c">#</span>
+<span class="no"> 9</span> <span class="c"># @return Repository</span>
+<span class="no"><strong>10</strong></span> <span class="c">#   the resulting setup repository</span>
+<span class="no">11</span> <span class="c">#</span>
+<span class="no">12</span> <span class="c"># @raise ArgumentError &quot;+name+ must be a Symbol, but was...&quot;</span>
+<span class="no">13</span> <span class="c">#   indicates that an invalid argument was passed for name[Symbol]</span>
+<span class="no">14</span> <span class="c"># @raise [ArgumentError] &quot;+uri_or_options+ must be a Hash, URI or String, but was...&quot;</span>
+<span class="no">15</span> <span class="c">#   indicates that connection information could not be gleaned from</span>
+<span class="no">16</span> <span class="c">#   the given uri_or_options[Hash, Addressable::URI, String]</span>
+<span class="no">17</span> <span class="c">#</span>
+<span class="no">18</span> <span class="c"># @api public</span>
+<span class="no">19</span> <span class="r">def</span> <span class="pc">self</span>.setup(name, uri_or_options)
+<span class="no"><strong>20</strong></span>   raise <span class="co">ArgumentError</span>, <span class="s"><span class="dl">&quot;</span><span class="k">+name+ must be a Symbol, but was </span><span class="il"><span class="idl">#{</span>name.class<span class="idl">}</span></span><span class="dl">&quot;</span></span>, caller <span class="r">unless</span> <span class="co">Symbol</span> === name
+<span class="no">21</span>   ...
 </pre></div><p>For more information about the YARD documentation style, see <a href="http://github.com/lsegal/yard/">lsegal&#8217;s YARD repo on github.com</a>.</p>
 
       <div id="footer">

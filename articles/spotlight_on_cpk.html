@@ -39,8 +39,8 @@
 <span class="no">2</span>   set_primary_key [ <span class="sy">:category</span>, <span class="sy">:title</span> ]
 <span class="no">3</span> <span class="r">end</span>
 <span class="no">4</span> 
-<span class="no">5</span> post = <span class="co">Post</span>[<span class="s"><span class="dl">'</span><span class="k">ruby</span><span class="dl">'</span></span>, <span class="s"><span class="dl">'</span><span class="k">hello world</span><span class="dl">'</span></span>]
-<span class="no">6</span> post.pk <span class="c"># =&gt; ['ruby', 'hello world']</span>
+<span class="no">5</span> post = <span class="co">Post</span>.get(<span class="s"><span class="dl">'</span><span class="k">ruby</span><span class="dl">'</span></span>, <span class="s"><span class="dl">'</span><span class="k">hello world</span><span class="dl">'</span></span>)
+<span class="no">6</span> post.key <span class="c"># =&gt; [ 'ruby', 'hello world' ]</span>
 </pre></div><p class="attribution">example compiled from <a href="http://code.google.com/p/ruby-sequel/wiki/SequelModels">http://code.google.com/p/ruby-sequel/wiki/SequelModels</a></p>
 <h2>DataMapper</h2>
 <p>The latest DataMapper was designed from the ground up to support <acronym title="Composite Primary Keys">CPK</acronym>s:</p>
@@ -54,7 +54,7 @@
 <span class="no"> 8</span> 
 <span class="no"> 9</span> pig = <span class="co">Pig</span>.get(<span class="i">1</span>, <span class="s"><span class="dl">'</span><span class="k">Porky</span><span class="dl">'</span></span>)
 <span class="no"><strong>10</strong></span> 
-<span class="no">11</span> pig.key <span class="c"># =&gt; [1, 'Wilbur']</span>
+<span class="no">11</span> pig.key <span class="c"># =&gt; [ 1, 'Wilbur' ]</span>
 </pre></div><p>We declared our keys by adding the <code>:key =&gt; true</code> to the appropriate properties. The order is important as it will determine the order keys are addressed throughout the system.</p>
 <p>Next, we mixed and matched the keys&#8217; types.  <code>:id</code> is a Integer, but <code>:slug</code> is a String. DataMapper didn&#8217;t flinch when we defined a key column as a String because it supports <a href="http://en.wikipedia.org/wiki/Natural_key">Natural Keys</a> as well.</p>
 <p>Lastly, when retrieving rows via <code>get</code> and <code>[]</code> with a <acronym title="Composite Primary Keys">CPK</acronym>, we supplied the keys in the order they were defined within our model.  For example, we defined <code>:id</code> first, then <code>:slug</code> second; later, we retrieved Porky by specifying his <code>:id</code> and <code>:slug</code> in the same order.  Additionally, when we asked Wilbur for his keys, he handed us an array in the order the keys were defined.</p>

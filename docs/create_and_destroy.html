@@ -40,17 +40,17 @@
 </pre></div><h2>Creating</h2>
 <p>Let&#8217;s create a new instance of the model, update its properties and save it to the data store. Save will return true if the save succeeds, or false when something went wrong.</p>
 <div class="CodeRay"><pre><span class="no">1</span> zoo = <span class="co">Zoo</span>.new
-<span class="no">2</span> zoo.attributes = {<span class="sy">:name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">The Glue Factory</span><span class="dl">'</span></span>, <span class="sy">:inception</span> =&gt; <span class="co">Time</span>.now}
+<span class="no">2</span> zoo.attributes = { <span class="sy">:name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">The Glue Factory</span><span class="dl">'</span></span>, <span class="sy">:inception</span> =&gt; <span class="co">Time</span>.now }
 <span class="no">3</span> zoo.save
 </pre></div><p>Pretty straight forward. In this example we&#8217;ve updated the attributes using the <code>#attributes=</code> method, but there are multiple ways of setting the values of a model&#8217;s properties.</p>
-<div class="CodeRay"><pre><span class="no">1</span> zoo = <span class="co">Zoo</span>.new(<span class="sy">:name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">Awesome Town Zoo</span><span class="dl">'</span></span>)                <span class="c"># Pass in a hash to the new method</span>
-<span class="no">2</span> zoo.name = <span class="s"><span class="dl">'</span><span class="k">Dodgy Town Zoo</span><span class="dl">'</span></span>                               <span class="c"># Set individual property</span>
-<span class="no">3</span> zoo.attributes = {<span class="sy">:name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">No Fun Zoo</span><span class="dl">'</span></span>, <span class="sy">:open</span> =&gt; <span class="pc">false</span>}  <span class="c"># Set multiple properties at once</span>
+<div class="CodeRay"><pre><span class="no">1</span> zoo = <span class="co">Zoo</span>.new(<span class="sy">:name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">Awesome Town Zoo</span><span class="dl">'</span></span>)                  <span class="c"># Pass in a hash to the new method</span>
+<span class="no">2</span> zoo.name = <span class="s"><span class="dl">'</span><span class="k">Dodgy Town Zoo</span><span class="dl">'</span></span>                                 <span class="c"># Set individual property</span>
+<span class="no">3</span> zoo.attributes = { <span class="sy">:name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">No Fun Zoo</span><span class="dl">'</span></span>, <span class="sy">:open</span> =&gt; <span class="pc">false</span> }  <span class="c"># Set multiple properties at once</span>
 </pre></div><p>You can also update a model&#8217;s properties and save it with one method call. <code>#update_attributes</code> will return true if the record saves, false if the save fails, exactly like the <code>#save</code> method.</p>
 <div class="CodeRay"><pre><span class="no">1</span> zoo.update_attributes(<span class="sy">:name</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">Funky Town Municipal Zoo</span><span class="dl">'</span></span>)
 </pre></div><h2>Destroy</h2>
 <p>To destroy a record, you simply call it&#8217;s <code>#destroy!</code> method. It will return true or false depending if the record is successfully deleted. Here is an example of finding an existing record then destroying it.</p>
-<div class="CodeRay"><pre><span class="no">1</span> zoo = <span class="co">Zoo</span>[<span class="i">5</span>]
+<div class="CodeRay"><pre><span class="no">1</span> zoo = <span class="co">Zoo</span>.get(<span class="i">5</span>)
 <span class="no">2</span> zoo.destroy! <span class="c">#=&gt; true</span>
 </pre></div>
 

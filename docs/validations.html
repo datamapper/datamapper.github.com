@@ -108,7 +108,7 @@
 </pre></div><p>This is probably of most use in custom validations, so &#8230;</p>
 <h2>Custom Validations</h2>
 <p>DataMapper provides a number of validations for various common situations such as checking for the length or presence of strings, or that a number falls in a particular range.  Often this is enough, especially when validations are combined together to check a field for a number of properties.  For the situations where it isn&#8217;t, DataMapper provides a couple of methods: <code>validates_with_block</code> and <code>validates_with_method</code>.  They&#8217;re very similar in operation, with one accepting a block as the argument and the other taking a symbol representing a method name.</p>
-<p>The method or block performs the validation tests and then should return <code>true</code> if the resource is valid or <code>false</code> if it is invalid.  If the resource isn&#8217;t valid instead of just returning <code>false</code>, an array containing <code>false</code> and an error message, such as <code>[false, "FAIL!"]</code> can be returned.  This will add the message to the <code>errors</code> on the resource.</p>
+<p>The method or block performs the validation tests and then should return <code>true</code> if the resource is valid or <code>false</code> if it is invalid.  If the resource isn&#8217;t valid instead of just returning <code>false</code>, an array containing <code>false</code> and an error message, such as <code>[ false, "FAIL!" ]</code> can be returned.  This will add the message to the <code>errors</code> on the resource.</p>
 <div class="CodeRay"><pre><span class="no"> 1</span>   <span class="r">class</span> <span class="cl">WikiPage</span>
 <span class="no"> 2</span>     include <span class="co">DataMapper</span>::<span class="co">Resource</span>
 <span class="no"> 3</span> 
@@ -124,7 +124,7 @@
 <span class="no">13</span>       <span class="r">if</span> num &gt; <span class="i">4</span>
 <span class="no">14</span>         <span class="r">return</span> <span class="pc">true</span>
 <span class="no">15</span>       <span class="r">else</span>
-<span class="no">16</span>         [<span class="pc">false</span>, <span class="s"><span class="dl">&quot;</span><span class="k">You must have at least </span><span class="il"><span class="idl">#{</span><span class="i">5</span> - num<span class="idl">}</span></span><span class="k"> more citations for this article</span><span class="dl">&quot;</span></span>]
+<span class="no">16</span>         [ <span class="pc">false</span>, <span class="s"><span class="dl">&quot;</span><span class="k">You must have at least </span><span class="il"><span class="idl">#{</span><span class="i">5</span> - num<span class="idl">}</span></span><span class="k"> more citations for this article</span><span class="dl">&quot;</span></span> ]
 <span class="no">17</span>       <span class="r">end</span>
 <span class="no">18</span>     <span class="r">end</span>
 <span class="no">19</span>   <span class="r">end</span>

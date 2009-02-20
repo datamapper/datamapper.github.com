@@ -5,7 +5,7 @@
   <subtitle>Ruby Object Relational Mapper</subtitle>
   <link href="http://www.datamapper.org/news.rss" rel="self"/>
   <link href="http://www.datamapper.org/"/>
-  <updated>2009-02-10T21:07:47-08:00</updated>
+  <updated>2009-02-20T09:48:02-08:00</updated>
   <author>
     <name>Maintained By the Community</name>
     <email>datamapper@googlegroups.com</email>
@@ -128,8 +128,8 @@ has &lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;sy&quot
 &lt;span class=&quot;co&quot;&gt;Post&lt;/span&gt;.all&lt;br /&gt;
   &lt;span class=&quot;sy&quot;&gt;:conditions&lt;/span&gt; =&amp;gt; [ &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8216;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;active = ?&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8217;&lt;/span&gt;&lt;/span&gt;, &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt; ]&lt;br /&gt;
 &lt;br /&gt;
-database.query &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;%Q{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SELECT 1&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
-database.execute &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;%Q{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;UPDATE posts&amp;#8230;&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
+database.query &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8216;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SELECT 1&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8217;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
+database.execute &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8216;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;UPDATE posts&amp;#8230;&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8217;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
         &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;/notextile&gt;&lt;/p&gt;
 &lt;/td&gt;
@@ -139,8 +139,8 @@ database.execute &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&g
 &lt;span class=&quot;co&quot;&gt;Post&lt;/span&gt;.all&lt;br /&gt;
   &lt;span class=&quot;sy&quot;&gt;:conditions&lt;/span&gt; =&amp;gt; [ &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8216;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;active = ?&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8217;&lt;/span&gt;&lt;/span&gt;, &lt;span class=&quot;pc&quot;&gt;true&lt;/span&gt; ]&lt;br /&gt;
 &lt;br /&gt;
-repository(&lt;span class=&quot;sy&quot;&gt;:default&lt;/span&gt;).adapter.query &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;%Q{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SELECT 1&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
-repository(&lt;span class=&quot;sy&quot;&gt;:default&lt;/span&gt;).adapter.execute &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;%Q{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;UPDATE posts&amp;#8230;&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
+repository(&lt;span class=&quot;sy&quot;&gt;:default&lt;/span&gt;).adapter.query &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8216;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SELECT 1&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8217;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
+repository(&lt;span class=&quot;sy&quot;&gt;:default&lt;/span&gt;).adapter.execute &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8216;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;UPDATE posts&amp;#8230;&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&amp;#8217;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;
         &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;/notextile&gt;&lt;/p&gt;
 &lt;/td&gt;
@@ -363,8 +363,8 @@ contribution and we&amp;#8217;ll post it here.&lt;/p&gt;
 &lt;span class=&quot;no&quot;&gt;2&lt;/span&gt;   set_primary_key [ &lt;span class=&quot;sy&quot;&gt;:category&lt;/span&gt;, &lt;span class=&quot;sy&quot;&gt;:title&lt;/span&gt; ]
 &lt;span class=&quot;no&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;no&quot;&gt;4&lt;/span&gt; 
-&lt;span class=&quot;no&quot;&gt;5&lt;/span&gt; post = &lt;span class=&quot;co&quot;&gt;Post&lt;/span&gt;[&lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ruby&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;/span&gt;, &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;hello world&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;/span&gt;]
-&lt;span class=&quot;no&quot;&gt;6&lt;/span&gt; post.pk &lt;span class=&quot;c&quot;&gt;# =&amp;gt; ['ruby', 'hello world']&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;5&lt;/span&gt; post = &lt;span class=&quot;co&quot;&gt;Post&lt;/span&gt;.get(&lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ruby&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;/span&gt;, &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;hello world&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;/span&gt;)
+&lt;span class=&quot;no&quot;&gt;6&lt;/span&gt; post.key &lt;span class=&quot;c&quot;&gt;# =&amp;gt; [ 'ruby', 'hello world' ]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;p class=&quot;attribution&quot;&gt;example compiled from &lt;a href=&quot;http://code.google.com/p/ruby-sequel/wiki/SequelModels&quot;&gt;http://code.google.com/p/ruby-sequel/wiki/SequelModels&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;DataMapper&lt;/h2&gt;
 &lt;p&gt;The latest DataMapper was designed from the ground up to support &lt;acronym title=&quot;Composite Primary Keys&quot;&gt;CPK&lt;/acronym&gt;s:&lt;/p&gt;
@@ -378,7 +378,7 @@ contribution and we&amp;#8217;ll post it here.&lt;/p&gt;
 &lt;span class=&quot;no&quot;&gt; 8&lt;/span&gt; 
 &lt;span class=&quot;no&quot;&gt; 9&lt;/span&gt; pig = &lt;span class=&quot;co&quot;&gt;Pig&lt;/span&gt;.get(&lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Porky&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;/span&gt;)
 &lt;span class=&quot;no&quot;&gt;&lt;strong&gt;10&lt;/strong&gt;&lt;/span&gt; 
-&lt;span class=&quot;no&quot;&gt;11&lt;/span&gt; pig.key &lt;span class=&quot;c&quot;&gt;# =&amp;gt; [1, 'Wilbur']&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;11&lt;/span&gt; pig.key &lt;span class=&quot;c&quot;&gt;# =&amp;gt; [ 1, 'Wilbur' ]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We declared our keys by adding the &lt;code&gt;:key =&amp;gt; true&lt;/code&gt; to the appropriate properties. The order is important as it will determine the order keys are addressed throughout the system.&lt;/p&gt;
 &lt;p&gt;Next, we mixed and matched the keys&amp;#8217; types.  &lt;code&gt;:id&lt;/code&gt; is a Integer, but &lt;code&gt;:slug&lt;/code&gt; is a String. DataMapper didn&amp;#8217;t flinch when we defined a key column as a String because it supports &lt;a href=&quot;http://en.wikipedia.org/wiki/Natural_key&quot;&gt;Natural Keys&lt;/a&gt; as well.&lt;/p&gt;
 &lt;p&gt;Lastly, when retrieving rows via &lt;code&gt;get&lt;/code&gt; and &lt;code&gt;[]&lt;/code&gt; with a &lt;acronym title=&quot;Composite Primary Keys&quot;&gt;CPK&lt;/acronym&gt;, we supplied the keys in the order they were defined within our model.  For example, we defined &lt;code&gt;:id&lt;/code&gt; first, then &lt;code&gt;:slug&lt;/code&gt; second; later, we retrieved Porky by specifying his &lt;code&gt;:id&lt;/code&gt; and &lt;code&gt;:slug&lt;/code&gt; in the same order.  Additionally, when we asked Wilbur for his keys, he handed us an array in the order the keys were defined.&lt;/p&gt;
