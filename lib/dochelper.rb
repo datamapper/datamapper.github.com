@@ -23,7 +23,7 @@ module DocHelper
     # TODO: make this recognize DM:: as well
     # TODO: make this ALOT smarter...perhaps dynamically store the whole DM namespace, if that's possible?
     #
-    raise ArgumentError, 'method_level must be :instance or :class' unless [:instance, :class].include?(method_level)
+    raise ArgumentError, 'method_level must be :instance or :class' unless [ :instance, :class ].include?(method_level)
 
     link = %Q{http://datamapper.rubyforge.org/}
 

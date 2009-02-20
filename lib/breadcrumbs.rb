@@ -8,7 +8,7 @@ module BreadcrumbsHelper
   # <ul></ul> object.
   #
   def breadcrumbs( page )
-    list = ["<li>#{h(page.title)}</li>"]
+    list = [ "<li>#{h(page.title)}</li>" ]
     loop do
       page = @pages.parent_of(page)
       break if page.nil?

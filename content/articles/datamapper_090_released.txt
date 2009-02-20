@@ -124,8 +124,8 @@ Post.first :order => 'created_at DESC'
 Post.all
   :conditions => [ 'active = ?', true ]
 
-database.query %Q{SELECT 1}
-database.execute %Q{UPDATE posts...}
+database.query 'SELECT 1'
+database.execute 'UPDATE posts...'
         <% end %>
       </td>
       <td>
@@ -134,8 +134,8 @@ Post.first :order => [ :created_at.desc ]
 Post.all
   :conditions => [ 'active = ?', true ]
 
-repository(:default).adapter.query %Q{SELECT 1}
-repository(:default).adapter.execute %Q{UPDATE posts...}
+repository(:default).adapter.query 'SELECT 1'
+repository(:default).adapter.execute 'UPDATE posts...'
         <% end %>
       </td>
     </tr>

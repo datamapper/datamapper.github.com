@@ -29,16 +29,16 @@ Let's create a new instance of the model, update its properties and save it to t
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 zoo = Zoo.new
-zoo.attributes = {:name => 'The Glue Factory', :inception => Time.now}
+zoo.attributes = { :name => 'The Glue Factory', :inception => Time.now }
 zoo.save
 <% end %>
 
 Pretty straight forward. In this example we've updated the attributes using the @#attributes=@ method, but there are multiple ways of setting the values of a model's properties.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-zoo = Zoo.new(:name => 'Awesome Town Zoo')                # Pass in a hash to the new method
-zoo.name = 'Dodgy Town Zoo'                               # Set individual property
-zoo.attributes = {:name => 'No Fun Zoo', :open => false}  # Set multiple properties at once
+zoo = Zoo.new(:name => 'Awesome Town Zoo')                  # Pass in a hash to the new method
+zoo.name = 'Dodgy Town Zoo'                                 # Set individual property
+zoo.attributes = { :name => 'No Fun Zoo', :open => false }  # Set multiple properties at once
 <% end %>
 
 You can also update a model's properties and save it with one method call. @#update_attributes@ will return true if the record saves, false if the save fails, exactly like the @#save@ method.
@@ -52,6 +52,6 @@ h2. Destroy
 To destroy a record, you simply call it's @#destroy!@ method. It will return true or false depending if the record is successfully deleted. Here is an example of finding an existing record then destroying it.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-zoo = Zoo[5]
+zoo = Zoo.get(5)
 zoo.destroy! #=> true
 <% end %>

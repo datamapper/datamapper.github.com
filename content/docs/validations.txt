@@ -133,7 +133,7 @@ h2. Custom Validations
 
 DataMapper provides a number of validations for various common situations such as checking for the length or presence of strings, or that a number falls in a particular range.  Often this is enough, especially when validations are combined together to check a field for a number of properties.  For the situations where it isn't, DataMapper provides a couple of methods: @validates_with_block@ and @validates_with_method@.  They're very similar in operation, with one accepting a block as the argument and the other taking a symbol representing a method name.
 
-The method or block performs the validation tests and then should return @true@ if the resource is valid or @false@ if it is invalid.  If the resource isn't valid instead of just returning @false@, an array containing @false@ and an error message, such as @[false, "FAIL!"]@ can be returned.  This will add the message to the @errors@ on the resource.
+The method or block performs the validation tests and then should return @true@ if the resource is valid or @false@ if it is invalid.  If the resource isn't valid instead of just returning @false@, an array containing @false@ and an error message, such as @[ false, "FAIL!" ]@ can be returned.  This will add the message to the @errors@ on the resource.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
   class WikiPage
@@ -151,7 +151,7 @@ The method or block performs the validation tests and then should return @true@ 
       if num > 4
         return true
       else
-        [false, "You must have at least #{5 - num} more citations for this article"]
+        [ false, "You must have at least #{5 - num} more citations for this article" ]
       end
     end
   end

@@ -33,8 +33,8 @@ class Post < Sequel::Model
   set_primary_key [ :category, :title ]
 end
 
-post = Post['ruby', 'hello world']
-post.pk # => ['ruby', 'hello world']
+post = Post.get('ruby', 'hello world')
+post.key # => [ 'ruby', 'hello world' ]
 <% end %>
 
 p(attribution). example compiled from "http://code.google.com/p/ruby-sequel/wiki/SequelModels":http://code.google.com/p/ruby-sequel/wiki/SequelModels
@@ -54,7 +54,7 @@ end
 
 pig = Pig.get(1, 'Porky')
 
-pig.key # => [1, 'Wilbur']
+pig.key # => [ 1, 'Wilbur' ]
 <% end %>
 
 We declared our keys by adding the @:key => true@ to the appropriate properties. The order is important as it will determine the order keys are addressed throughout the system.

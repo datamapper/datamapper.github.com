@@ -106,11 +106,11 @@ h3. Compatibility
 DataMapper supports other conditions syntaxes as well:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
-zoos = Zoo.all(:conditions => {:id => 34})
-zoos = Zoo.all(:conditions => ["id = ?", 34])
+zoos = Zoo.all(:conditions => { :id => 34 })
+zoos = Zoo.all(:conditions => [ "id = ?", 34 ])
 
 # even mix and match
-zoos = Zoo.all(:conditions => {:id => 34}, :name.like => '%foo%')
+zoos = Zoo.all(:conditions => { :id => 34 }, :name.like => '%foo%')
 <% end %>
 
 h2. Talking directly to your data-store

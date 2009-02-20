@@ -10,9 +10,9 @@ h1. <%= @page.title %>
 
 <dl>
 <%
-  articles = @pages.find(:limit => :all, :in_directory => 'articles') {|a| a.release_type != 'draft'}.sort{|a, b| b.created_at <=> a.created_at}
+  articles = @pages.find(:limit => :all, :in_directory => 'articles') { |a| a.release_type != 'draft' }.sort { |a, b| b.created_at <=> a.created_at }
 
-   paginate(articles, 20) do |page|
+  paginate(articles, 20) do |page|
 %>
 
   <dt><a href="<%= page.url %>"> <%= page.title %></a></dt>
