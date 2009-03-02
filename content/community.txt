@@ -146,6 +146,10 @@ h2. The People Behind DataMapper
     <img src="http://en.gravatar.com/userimage/3961329/ab869cf398cb79a0310627c8f6a76e0d.jpg" title="Wesley Beary" alt="Wesley Beary" />
     <p><a href="http://monki.geemus.com/">Wesley Beary</a></p>
   </li>
+  <li>
+    <img src="http://s3.amazonaws.com/twitter_production/profile_images/27610142/dirkjan_icon_bigger.jpg" title="Dirkjan Bussink" alt="Dirkjan Bussink" />
+    <p>Dirkjan Bussink</p>
+  </li>
 
   <li>
     <img src="/images/martini.gif" title="you" alt="you could be here" />
