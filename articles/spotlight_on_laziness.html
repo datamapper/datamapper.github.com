@@ -8,7 +8,6 @@
      <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
      <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
      <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
-     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
      <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
   </head>
 
@@ -22,7 +21,7 @@
           <li><a href="/docs">Documentation</a></li>
           <li><a href="/development">Development</a></li>
           <li><a href="http://datamapper.org/">Wiki</a></li>
-          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+          <li><a href="/getting-started.html" id="getStarted">Get Started</a></li>
         </ul>
       </div>
 
@@ -36,50 +35,71 @@
 <p>This brings us to DataMapper.</p>
 <h2>Lazy-loading attributes</h2>
 <p>You likely already know that DataMapper supports lazy properties.</p>
-<div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
+<div class="CodeRay">
+<pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
 <span class="no">3</span> 
 <span class="no">4</span>   property <span class="sy">:id</span>,    <span class="co">Serial</span>                  <span class="c"># auto_incrementing primary key</span>
 <span class="no">5</span>   property <span class="sy">:title</span>, <span class="co">String</span>, <span class="sy">:lazy</span> =&gt; <span class="pc">true</span>   <span class="c"># intentionally lazy</span>
 <span class="no">6</span>   property <span class="sy">:body</span>,  <span class="co">Text</span>                    <span class="c"># lazy by default</span>
 <span class="no">7</span> <span class="r">end</span>
-</pre></div><p>In this case, we&#8217;re intentionally marking this Post&#8217;s <code>:title</code> property as lazy, as well as letting the <code>:body</code> be lazy by default.  If we go and inspect our query log for the retrieval of a post with the ID of 1, we see</p>
-<div class="CodeRay"><pre><span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span> <span class="r">WHERE</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> = <span class="i">1</span>
-</pre></div><p>DataMapper didn&#8217;t request the two lazy columns.  But when we call <code>.title</code> off of our post, we suddenly see</p>
-<div class="CodeRay"><pre><span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">title</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span> <span class="r">WHERE</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> = <span class="i">1</span>
-</pre></div><p>This is the very definition of a lazy-loaded property;  The lazy column didn&#8217;t get requested from our data store until we actually needed it, and no sooner.</p>
+</pre>
+</div>
+<p>In this case, we&#8217;re intentionally marking this Post&#8217;s <code>:title</code> property as lazy, as well as letting the <code>:body</code> be lazy by default.  If we go and inspect our query log for the retrieval of a post with the ID of 1, we see</p>
+<div class="CodeRay">
+<pre><span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span> <span class="r">WHERE</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> = <span class="i">1</span>
+</pre>
+</div>
+<p>DataMapper didn&#8217;t request the two lazy columns.  But when we call <code>.title</code> off of our post, we suddenly see</p>
+<div class="CodeRay">
+<pre><span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">title</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span> <span class="r">WHERE</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> = <span class="i">1</span>
+</pre>
+</div>
+<p>This is the very definition of a lazy-loaded property;  The lazy column didn&#8217;t get requested from our data store until we actually needed it, and no sooner.</p>
 <p>But this is just for one individual instance of a post.  How does this behave when we have a collection of posts and iteratively call the <code>.title</code> method?</p>
-<div class="CodeRay"><pre><span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">title</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span> <span class="r">WHERE</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> <span class="">IN</span> (<span class="i">1</span>, <span class="i">2</span>, <span class="i">3</span>, <span class="i">4</span>, <span class="i">5</span>)
-</pre></div><p>DataMapper loaded up the title for all of the posts in our collection in one query.  It didn&#8217;t issue the lazy-load retrieval from above over and over for each individual post, nor did it chicken out and issue the lazy-load retrieval for ALL of the posts in the data store.</p>
+<div class="CodeRay">
+<pre><span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">title</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span> <span class="r">WHERE</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> <span class="">IN</span> (<span class="i">1</span>, <span class="i">2</span>, <span class="i">3</span>, <span class="i">4</span>, <span class="i">5</span>)
+</pre>
+</div>
+<p>DataMapper loaded up the title for all of the posts in our collection in one query.  It didn&#8217;t issue the lazy-load retrieval from above over and over for each individual post, nor did it chicken out and issue the lazy-load retrieval for ALL of the posts in the data store.</p>
 <p>When you retrieve a set of results using DataMapper&#8217;s <code>.all</code>, each instance it returns knows about the others in the result set, which makes it brutally simple to issue just one lazy-load retrieval of <code>:title</code>, and thus solving the n+1 query problem without having to do anything special in the initial retrieval.</p>
 <h2>Contextual Lazy-loading</h2>
 <p>With a recent commit by <a href="http://www.guyvdb.info/ruby/lazy-loading-properties-in-datamapper/">Guy van den Berg</a>, DataMapper just got a whole lot more flexible.</p>
 <p>Most applications have only a few main views of a resource: a brief summary view used in listing results, a complete representation that might appear on a show page and a comprehensive view for when someone is editing something and needs access to metadata.  Wouldn&#8217;t it be nice to lump all of the lazy-load retrieval queries into one query which loads up multiple lazy properties, rather than query after query for each lazy property as you call them?</p>
 <p>DataMapper now does this!</p>
-<div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
+<div class="CodeRay">
+<pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
 <span class="no">3</span> 
 <span class="no">4</span>   property <span class="sy">:id</span>,    <span class="co">Serial</span>
 <span class="no">5</span>   property <span class="sy">:title</span>, <span class="co">String</span>, <span class="sy">:lazy</span> =&gt; [ <span class="sy">:summary</span>, <span class="sy">:brief</span> ]
 <span class="no">6</span>   property <span class="sy">:body</span>,  <span class="co">Text</span>,   <span class="sy">:lazy</span> =&gt; [ <span class="sy">:summary</span> ]
 <span class="no">7</span> <span class="r">end</span>
-</pre></div><p>So now, when you load an attribute with the <code>:summary</code> context, DataMapper will load up all of the other lazy-loaded properties marked <code>:summary</code> in one query to the data store.</p>
+</pre>
+</div>
+<p>So now, when you load an attribute with the <code>:summary</code> context, DataMapper will load up all of the other lazy-loaded properties marked <code>:summary</code> in one query to the data store.</p>
 <p>In your query log, you&#8217;ll see:</p>
-<div class="CodeRay"><pre><span class="no">1</span> <span class="c">-- initial load</span>
+<div class="CodeRay">
+<pre><span class="no">1</span> <span class="c">-- initial load</span>
 <span class="no">2</span> <span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span>
 <span class="no">3</span> 
 <span class="no">4</span> <span class="c">-- lazy-loading of multiple properties in a given context in one query</span>
 <span class="no">5</span> <span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span>, <span class="s"><span class="dl">`</span><span class="k">title</span><span class="dl">`</span></span>, <span class="s"><span class="dl">`</span><span class="k">body</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span>
-</pre></div><p>If you use this wisely, it would mean that DataMapper will never load more than it needs nor will it ever fire off more than the absolutely necessary amount of queries to get the job done.</p>
+</pre>
+</div>
+<p>If you use this wisely, it would mean that DataMapper will never load more than it needs nor will it ever fire off more than the absolutely necessary amount of queries to get the job done.</p>
 <p>It&#8217;s lazy ;-)</p>
 <h2>Strategic Eager Loading</h2>
 <p>Well, not for everything.</p>
 <p>Returning for a little bit to our &#8220;loaded set&#8221; discussion from above, every item you pull out of the data store is aware of any other item that got pulled along with it.  This is a very powerful feature which lets DataMapper defeat n+1 query problems when dealing with associations as well as lazy-loading of properties.</p>
 <p>For example, this is a severe &#8220;no no&#8221; in ActiveRecord:</p>
-<div class="CodeRay"><pre><span class="no">1</span>   <span class="co">Zoo</span>.find(<span class="sy">:all</span>).each <span class="r">do</span> |zoo|
+<div class="CodeRay">
+<pre><span class="no">1</span>   <span class="co">Zoo</span>.find(<span class="sy">:all</span>).each <span class="r">do</span> |zoo|
 <span class="no">2</span>     zoo.animals
 <span class="no">3</span>   <span class="r">end</span>
-</pre></div><p>This is a very bad idea because the ORM must query the &#8220;animals&#8221; table over and over again to load the association for each iteration.  It&#8217;s far better to use <code>Zoo.find(:all, :include =&gt; [ :animals ]).each {}</code> because a JOIN occurs and everything is retrieved in 1 query.</p>
+</pre>
+</div>
+<p>This is a very bad idea because the ORM must query the &#8220;animals&#8221; table over and over again to load the association for each iteration.  It&#8217;s far better to use <code>Zoo.find(:all, :include =&gt; [ :animals ]).each {}</code> because a JOIN occurs and everything is retrieved in 1 query.</p>
 <p>But the same issue doesn&#8217;t exist in DataMapper. Each instance is aware of the other instances it was retrieved with.  The same iterator example from above only fires off 2 queries as you&#8217;re iterating and calling the association inside the <code>each</code>.  If you forget to <code>:include =&gt; [ :association ]</code> in the initial query, DataMapper only ever fires off one more query to get what it needs.</p>
 <p><a href="http://www.yehudakatz.com/">Yehuda Katz</a> has aptly named this &#8216;Strategic Eager Loading&#8217;.</p>
 <h2>Getting Around to It</h2>
@@ -88,9 +108,9 @@
 <p>And, most importantly, you can avoid doing work you don&#8217;t have to do for as long as you can avoid it.</p>
 <div class="puff">
 <h2>Contribute a &#8220;Spotlight On&#8230;&#8221; Article</h2>
-<p>Got something important to say?  Want something explained a little<br><br />
+<p>Got something important to say?  Want something explained a little<br>
 better or demonstrated? Contribute or request a &#8220;Spotlight On&#8230;&#8221; <br> article!<br />
-Email the <a href="http://groups.google.com/group/datamapper">DataMapper Mailing List</a> with the request or <br><br />
+Email the <a href="http://groups.google.com/group/datamapper">DataMapper Mailing List</a> with the request or <br>
 contribution and we&#8217;ll post it here.</p>
 </div>
 
@@ -100,15 +120,9 @@ contribution and we&#8217;ll post it here.</p>
       </div>
     </div>
 
-    <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-    var pageTracker = _gat._getTracker("UA-569671-2");
-    pageTracker._initData();
-    pageTracker._trackPageview();
-    </script>
-
+<!--
+    DK: from what I can tell we're not using JS on the site anywhere (yet)
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+-->
   </body>
 </html>

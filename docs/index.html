@@ -8,7 +8,6 @@
      <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
      <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
      <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
-     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
      <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
   </head>
 
@@ -22,7 +21,7 @@
           <li><a href="/docs">Documentation</a></li>
           <li><a href="/development">Development</a></li>
           <li><a href="http://datamapper.org/">Wiki</a></li>
-          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+          <li><a href="/getting-started.html" id="getStarted">Get Started</a></li>
         </ul>
       </div>
 
@@ -32,7 +31,7 @@
   <dd>The API for the current gem release.</dd>
   <dt><a href="/why.html">Why DataMapper?</a></dt>
   <dd>If you haven&#8217;t read this yet, you should, right now!</dd>
-  <dt><a href="/getting_started.html">Getting Started</a></dt>
+  <dt><a href="/getting-started.html">Getting Started</a></dt>
   <dd>A whirlwind tour of DM. This is the place to start if you haven&#8217;t used the library before.</dd>
   <dt><a href="/docs/install.html">Common installation issues</a></dt>
   <dd>Troubleshooting installation, with instructions for specific platforms.</dd>
@@ -57,7 +56,8 @@
 <p>Want to help DataMapper, but don&#8217;t know where to start?  A great way to contribute is to help out in the documentation effort.</p>
 <h2>Documentation Style</h2>
 <p>DataMapper uses the YARD standard for RDoc documentation.  Here&#8217;s a brief sample from the internals of DM-Core:</p>
-<div class="CodeRay"><pre><span class="no"> 1</span> <span class="c">##</span>
+<div class="CodeRay">
+<pre><span class="no"> 1</span> <span class="c">##</span>
 <span class="no"> 2</span> <span class="c"># Setups up a connection to a data-store</span>
 <span class="no"> 3</span> <span class="c">#</span>
 <span class="no"> 4</span> <span class="c"># @param [Symbol] name</span>
@@ -78,7 +78,9 @@
 <span class="no">19</span> <span class="r">def</span> <span class="pc">self</span>.setup(name, uri_or_options)
 <span class="no"><strong>20</strong></span>   raise <span class="co">ArgumentError</span>, <span class="s"><span class="dl">&quot;</span><span class="k">+name+ must be a Symbol, but was </span><span class="il"><span class="idl">#{</span>name.class<span class="idl">}</span></span><span class="dl">&quot;</span></span>, caller <span class="r">unless</span> <span class="co">Symbol</span> === name
 <span class="no">21</span>   ...
-</pre></div><p>For more information about the YARD documentation style, see <a href="http://github.com/lsegal/yard/">lsegal&#8217;s YARD repo on github.com</a>.</p>
+</pre>
+</div>
+<p>For more information about the YARD documentation style, see <a href="http://github.com/lsegal/yard/">lsegal&#8217;s YARD repo on github.com</a>.</p>
 
       <div id="footer">
         <p>Copyright Dan Kubb, Sam Smoot 2009</p>
@@ -86,15 +88,9 @@
       </div>
     </div>
 
-    <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-    var pageTracker = _gat._getTracker("UA-569671-2");
-    pageTracker._initData();
-    pageTracker._trackPageview();
-    </script>
-
+<!--
+    DK: from what I can tell we're not using JS on the site anywhere (yet)
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+-->
   </body>
 </html>

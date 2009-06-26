@@ -8,7 +8,6 @@
      <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
      <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
      <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
-     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
      <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
   </head>
 
@@ -22,17 +21,20 @@
           <li><a href="/docs">Documentation</a></li>
           <li><a href="/development">Development</a></li>
           <li><a href="http://datamapper.org/">Wiki</a></li>
-          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+          <li><a href="/getting-started.html" id="getStarted">Get Started</a></li>
         </ul>
       </div>
 
       <h1>DataMapper 0.9 is Released</h1>
 <p>DataMapper 0.9 is ready for the world.  It brings with it a massive overhaul of the internals of DataMapper, a shift in terminology, a dramatic bump in speed, improved code-base organization, and support for more than just database data-stores.</p>
 <p>To install it:</p>
-<div class="CodeRay"><pre>sudo gem install addressable english rspec
+<div class="CodeRay">
+<pre>sudo gem install addressable english rspec
 sudo gem install data_objects do_mysql do_postgres do_sqlite3
 sudo gem install dm-core dm-more
-</pre></div><p>This is NOT a backwards compatible release. Code written for DataMapper 0.3 will not function with DataMapper 0.9.* due to syntactical changes and library improvements.</p>
+</pre>
+</div>
+<p>This is NOT a backwards compatible release. Code written for DataMapper 0.3 will not function with DataMapper 0.9.* due to syntactical changes and library improvements.</p>
 <p>REPEAT: This is NOT a backwards compatible release.</p>
 <table class="changeSummary" cellspacing="0" cellpadding="0">
 <thead>
@@ -44,18 +46,25 @@ sudo gem install dm-core dm-more
 <tr>
       <th>Creating a class</th>
 <td>
-<div class="CodeRay"><pre><span class="r">class</span> <span class="cl">Post</span> &lt; <span class="co">DataMapper</span>::<span class="co">Base</span>
+<div class="CodeRay">
+<pre><span class="r">class</span> <span class="cl">Post</span> &lt; <span class="co">DataMapper</span>::<span class="co">Base</span>
 <span class="r">end</span>
-</pre></div></td>
+</pre>
+</div>
+</td>
 <td>
-<div class="CodeRay"><pre><span class="r">class</span> <span class="cl">Post</span>
+<div class="CodeRay">
+<pre><span class="r">class</span> <span class="cl">Post</span>
   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="r">end</span></pre></div></td>
+<span class="r">end</span></pre>
+</div>
+</td>
 </tr>
 <tr>
       <th>Keys</th>
 <td>
-<div class="CodeRay"><pre><span class="c"># Key was not mandatory</span>
+<div class="CodeRay">
+<pre><span class="c"># Key was not mandatory</span>
 <span class="c"># Automatically added +id+ if missing</span>
 <span class="c">#</span>
 <span class="c"># Natural Key</span>
@@ -64,9 +73,12 @@ property <span class="sy">:name</span>, <span class="sy">:string</span>, <span c
 <span class="c"># Composite Key</span>
 property <span class="sy">:id</span>, <span class="sy">:integer</span>,  <span class="sy">:key</span> =&gt; <span class="pc">true</span>
 property <span class="sy">:slug</span>, <span class="sy">:string</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
-</pre></div></td>
+</pre>
+</div>
+</td>
 <td>
-<div class="CodeRay"><pre><span class="c"># keys are now mandatory</span>
+<div class="CodeRay">
+<pre><span class="c"># keys are now mandatory</span>
 property <span class="sy">:id</span>,   <span class="co">Serial</span>
 <span class="c">#</span>
 <span class="c"># Natural Key</span>
@@ -75,60 +87,78 @@ property <span class="sy">:slug</span>, <span class="co">String</span>,  <span c
 <span class="c"># Composite Key</span>
 property <span class="sy">:id</span>,   <span class="co">Integer</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
 property <span class="sy">:slug</span>, <span class="co">String</span>,  <span class="sy">:key</span> =&gt; <span class="pc">true</span>
-</pre></div></td>
+</pre>
+</div>
+</td>
 </tr>
 <tr>
       <th>Properties</th>
 <td>
-<div class="CodeRay"><pre>property <span class="sy">:title</span>,     <span class="sy">:string</span>
+<div class="CodeRay">
+<pre>property <span class="sy">:title</span>,     <span class="sy">:string</span>
 property <span class="sy">:body</span>,      <span class="sy">:text</span>
 property <span class="sy">:posted_on</span>, <span class="sy">:datetime</span>
 property <span class="sy">:active</span>,    <span class="sy">:boolean</span>
-</pre></div></td>
+</pre>
+</div>
+</td>
 <td>
-<div class="CodeRay"><pre>property <span class="sy">:title</span>,     <span class="co">String</span>
+<div class="CodeRay">
+<pre>property <span class="sy">:title</span>,     <span class="co">String</span>
 property <span class="sy">:body</span>,      <span class="co">Text</span>
 property <span class="sy">:posted_on</span>, <span class="co">DateTime</span>
 property <span class="sy">:active</span>,    <span class="co">Boolean</span>
-</pre></div></td>
+</pre>
+</div>
+</td>
 </tr>
 <tr>
       <th>Associations</th>
 <td>
-<div class="CodeRay"><pre>has_many <span class="sy">:comments</span>
+<div class="CodeRay">
+<pre>has_many <span class="sy">:comments</span>
 belongs_to <span class="sy">:blog</span>
 has_and_belongs_to_many <span class="sy">:categories</span>
 has_one <span class="sy">:author</span>
-</pre></div></td>
+</pre>
+</div>
+</td>
 <td>
-<div class="CodeRay"><pre>has n, <span class="sy">:comments</span>
+<div class="CodeRay">
+<pre>has n, <span class="sy">:comments</span>
 belongs_to <span class="sy">:blog</span>
 has n, <span class="sy">:categories</span> =&gt; <span class="co">Resource</span>
 has <span class="i">1</span>, <span class="sy">:author</span>
-</pre></div></td>
+</pre>
+</div>
+</td>
 </tr>
 <tr>
       <th>Finders</th>
 <td>
 <notextile>
-<div class="CodeRay"><pre><span class="co">Post</span>.first <span class="sy">:order</span> =&gt; <span class="s"><span class="dl">&#8216;</span><span class="k">created_at DESC</span><span class="dl">&#8217;</span></span><br />
-<span class="co">Post</span>.all<br />
-  <span class="sy">:conditions</span> =&gt; [ <span class="s"><span class="dl">&#8216;</span><span class="k">active = ?</span><span class="dl">&#8217;</span></span>, <span class="pc">true</span> ]<br />
-<br />
-database.query <span class="s"><span class="dl">&#8216;</span><span class="k">SELECT 1</span><span class="dl">&#8217;</span></span><br />
-database.execute <span class="s"><span class="dl">&#8216;</span><span class="k">UPDATE posts&#8230;</span><span class="dl">&#8217;</span></span><br />
-        </pre></div>
+<div class="CodeRay">
+<pre>&lt;span class="co"&gt;Post&lt;/span&gt;.first &lt;span class="sy"&gt;:order&lt;/span&gt; =&amp;gt; &lt;span class="s"&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;span class="k"&gt;created_at DESC&lt;/span&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;/span&gt;
+&lt;span class="co"&gt;Post&lt;/span&gt;.all
+  &lt;span class="sy"&gt;:conditions&lt;/span&gt; =&amp;gt; [ &lt;span class="s"&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;span class="k"&gt;active = ?&lt;/span&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;/span&gt;, &lt;span class="pc"&gt;true&lt;/span&gt; ]
+
+database.query &lt;span class="s"&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;span class="k"&gt;SELECT 1&lt;/span&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;/span&gt;
+database.execute &lt;span class="s"&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;span class="k"&gt;UPDATE posts...&lt;/span&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;/span&gt;
+        </pre>
+</div>
 <p></notextile></p>
 </td>
 <td>
 <notextile>
-<div class="CodeRay"><pre><span class="co">Post</span>.first <span class="sy">:order</span> =&gt; [ <span class="sy">:created_at</span>.desc ]<br />
-<span class="co">Post</span>.all<br />
-  <span class="sy">:conditions</span> =&gt; [ <span class="s"><span class="dl">&#8216;</span><span class="k">active = ?</span><span class="dl">&#8217;</span></span>, <span class="pc">true</span> ]<br />
-<br />
-repository(<span class="sy">:default</span>).adapter.query <span class="s"><span class="dl">&#8216;</span><span class="k">SELECT 1</span><span class="dl">&#8217;</span></span><br />
-repository(<span class="sy">:default</span>).adapter.execute <span class="s"><span class="dl">&#8216;</span><span class="k">UPDATE posts&#8230;</span><span class="dl">&#8217;</span></span><br />
-        </pre></div>
+<div class="CodeRay">
+<pre>&lt;span class="co"&gt;Post&lt;/span&gt;.first &lt;span class="sy"&gt;:order&lt;/span&gt; =&amp;gt; [ &lt;span class="sy"&gt;:created_at&lt;/span&gt;.desc ]
+&lt;span class="co"&gt;Post&lt;/span&gt;.all
+  &lt;span class="sy"&gt;:conditions&lt;/span&gt; =&amp;gt; [ &lt;span class="s"&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;span class="k"&gt;active = ?&lt;/span&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;/span&gt;, &lt;span class="pc"&gt;true&lt;/span&gt; ]
+
+repository(&lt;span class="sy"&gt;:default&lt;/span&gt;).adapter.query &lt;span class="s"&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;span class="k"&gt;SELECT 1&lt;/span&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;/span&gt;
+repository(&lt;span class="sy"&gt;:default&lt;/span&gt;).adapter.execute &lt;span class="s"&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;span class="k"&gt;UPDATE posts...&lt;/span&gt;&lt;span class="dl"&gt;'&lt;/span&gt;&lt;/span&gt;
+        </pre>
+</div>
 <p></notextile></p>
 </td>
 </tr>
@@ -136,45 +166,55 @@ repository(<span class="sy">:default</span>).adapter.execute <span class="s"><sp
       <th>Validations</th>
 <td>
 <notextile>
-<div class="CodeRay"><pre>validates_presence_of     <span class="sy">:title</span><br />
-validates_numericality_of <span class="sy">:rating</span><br />
-validates_format_of       <span class="sy">:email</span>,   <span class="sy">:with</span> =&gt; <span class="sy">:email_address</span><br />
-validates_length_of       <span class="sy">:summary</span>, <span class="sy">:within</span> =&gt; (<span class="i">1</span>..<span class="i">100</span>)<br />
-validates_uniqueness_of   <span class="sy">:slug</span><br />
-        </pre></div>
+<div class="CodeRay">
+<pre>validates_presence_of     &lt;span class="sy"&gt;:title&lt;/span&gt;
+validates_numericality_of &lt;span class="sy"&gt;:rating&lt;/span&gt;
+validates_format_of       &lt;span class="sy"&gt;:email&lt;/span&gt;,   &lt;span class="sy"&gt;:with&lt;/span&gt; =&amp;gt; &lt;span class="sy"&gt;:email_address&lt;/span&gt;
+validates_length_of       &lt;span class="sy"&gt;:summary&lt;/span&gt;, &lt;span class="sy"&gt;:within&lt;/span&gt; =&amp;gt; (&lt;span class="i"&gt;1&lt;/span&gt;..&lt;span class="i"&gt;100&lt;/span&gt;)
+validates_uniqueness_of   &lt;span class="sy"&gt;:slug&lt;/span&gt;
+        </pre>
+</div>
 <p></notextile></p>
 </td>
 <td>
 <notextile>
-<div class="CodeRay"><pre>validates_present   <span class="sy">:title</span><br />
-validates_is_number <span class="sy">:rating</span><br />
-validates_format    <span class="sy">:email</span>,   <span class="sy">:as</span> =&gt; <span class="sy">:email_address</span><br />
-validates_length    <span class="sy">:summary</span>, <span class="sy">:in</span> =&gt; (<span class="i">1</span>..<span class="i">100</span>)<br />
-validates_is_unique <span class="sy">:slug</span><br />
-        </pre></div>
+<div class="CodeRay">
+<pre>validates_present   &lt;span class="sy"&gt;:title&lt;/span&gt;
+validates_is_number &lt;span class="sy"&gt;:rating&lt;/span&gt;
+validates_format    &lt;span class="sy"&gt;:email&lt;/span&gt;,   &lt;span class="sy"&gt;:as&lt;/span&gt; =&amp;gt; &lt;span class="sy"&gt;:email_address&lt;/span&gt;
+validates_length    &lt;span class="sy"&gt;:summary&lt;/span&gt;, &lt;span class="sy"&gt;:in&lt;/span&gt; =&amp;gt; (&lt;span class="i"&gt;1&lt;/span&gt;..&lt;span class="i"&gt;100&lt;/span&gt;)
+validates_is_unique &lt;span class="sy"&gt;:slug&lt;/span&gt;
+        </pre>
+</div>
 <p></notextile></p>
 </td>
 </tr>
 <tr>
       <th>Callbacks</th>
 <td>
-<div class="CodeRay"><pre>before_save <span class="sy">:categorize</span>
+<div class="CodeRay">
+<pre>before_save <span class="sy">:categorize</span>
 
 before_create <span class="r">do</span> |post|
   <span class="c"># do stuff with post</span>
 <span class="r">end</span>
 
 <span class="c"># return false to abort</span>
-</pre></div></td>
+</pre>
+</div>
+</td>
 <td>
-<div class="CodeRay"><pre>before <span class="sy">:save</span>, <span class="sy">:categorize</span>
+<div class="CodeRay">
+<pre>before <span class="sy">:save</span>, <span class="sy">:categorize</span>
 
 before <span class="sy">:create</span> <span class="r">do</span>
   <span class="c"># do stuff with self</span>
 <span class="r">end</span>
 
 <span class="c"># throw :halt to abort</span>
-</pre></div></td>
+</pre>
+</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -185,15 +225,9 @@ before <span class="sy">:create</span> <span class="r">do</span>
       </div>
     </div>
 
-    <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-    var pageTracker = _gat._getTracker("UA-569671-2");
-    pageTracker._initData();
-    pageTracker._trackPageview();
-    </script>
-
+<!--
+    DK: from what I can tell we're not using JS on the site anywhere (yet)
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+-->
   </body>
 </html>

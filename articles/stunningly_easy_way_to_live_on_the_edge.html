@@ -8,7 +8,6 @@
      <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
      <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
      <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
-     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
      <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
   </head>
 
@@ -22,7 +21,7 @@
           <li><a href="/docs">Documentation</a></li>
           <li><a href="/development">Development</a></li>
           <li><a href="http://datamapper.org/">Wiki</a></li>
-          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+          <li><a href="/getting-started.html" id="getStarted">Get Started</a></li>
         </ul>
       </div>
 
@@ -31,10 +30,16 @@
 <p>If you like to live life on the edge, this is the happiest way to do it.</p>
 <h3>Step 0 &#8211; The Setup</h3>
 <p>A couple of very basic requirements before we begin.  First, you&#8217;ll need to have an up-to-date installation of <a href="http://www.rubygems.org/">Rubygems</a>, the Ruby package management system.  To check what version you have do:</p>
-<div class="CodeRay"><pre><span class="no">1</span> gem --version
-</pre></div><p>If you aren&#8217;t on 1.2.x, update by running</p>
-<div class="CodeRay"><pre><span class="no">1</span> sudo gem update --system
-</pre></div><p>Next, you&#8217;ll need <code>git</code>.  It&#8217;s the source code management tool DataMapper uses.  Its installation is left up to the reader, but here&#8217;s a few good resources to go to for help:</p>
+<div class="CodeRay">
+<pre><span class="no">1</span> gem --version
+</pre>
+</div>
+<p>If you aren&#8217;t on 1.2.x, update by running</p>
+<div class="CodeRay">
+<pre><span class="no">1</span> sudo gem update --system
+</pre>
+</div>
+<p>Next, you&#8217;ll need <code>git</code>.  It&#8217;s the source code management tool DataMapper uses.  Its installation is left up to the reader, but here&#8217;s a few good resources to go to for help:</p>
 <ul>
 	<li><a href="http://git.or.cz/">Git &#8211; Fast Version Control System</a> &#8211; Homepage</li>
 	<li><a href="http://dysinger.net/2007/12/30/installing-git-on-mac-os-x-105-leopard/">Installing GIT on MAC OSX 10.5 Leopard</a></li>
@@ -43,19 +48,32 @@
 </ul>
 <p>After that, you&#8217;ll need to <code>gem uninstall</code> any of the &#8220;dm-*&#8221; projects you already have installed.  This includes &#8216;data_objects&#8217; and its associated adapters.</p>
 <p>Next, you&#8217;ll need a few of the base dependencies.  To install them, run</p>
-<div class="CodeRay"><pre>sudo gem install addressable english rspec
-</pre></div><p>Once that&#8217;s done, do the following:</p>
-<div class="CodeRay"><pre><span class="no">1</span> mkdir -p ~/src
+<div class="CodeRay">
+<pre>sudo gem install addressable english rspec
+</pre>
+</div>
+<p>Once that&#8217;s done, do the following:</p>
+<div class="CodeRay">
+<pre><span class="no">1</span> mkdir -p ~/src
 <span class="no">2</span> cd ~/src
-</pre></div><h3>Step 1 &#8211; Have Some Sake</h3>
+</pre>
+</div>
+<h3>Step 1 &#8211; Have Some Sake</h3>
 <p>No, not the wonderful alcoholic beverage, the <a href="http://errtheblog.com/posts/60-sake-bomb">system-wide rake tasks library</a> by <a href="http://errtheblog.com/">PJ Hyett and Chris Wanstrath of Err. The Blog</a>.  Ivey&#8217;s and dkubb&#8217;s automated installation and reinstallation scripts are written as sake tasks, so you&#8217;ll need it installed on your machine.</p>
-<div class="CodeRay"><pre><span class="no">1</span> sudo gem install sake
-</pre></div><p>Once you&#8217;re done, you should be able to see sake in your path by executing <code>which sake</code> and see where <code>gem</code> installed it.</p>
+<div class="CodeRay">
+<pre><span class="no">1</span> sudo gem install sake
+</pre>
+</div>
+<p>Once you&#8217;re done, you should be able to see sake in your path by executing <code>which sake</code> and see where <code>gem</code> installed it.</p>
 <h3>Step 2 &#8211; Install the Tasks</h3>
 <p>Now that you&#8217;re all setup with sake and the <code>src</code> directory, it&#8217;s time to install the sake tasks.  They can be found at <a href="http://github.com/dkubb/dm-dev/">http://github.com/dkubb/dm-dev/</a> and are very easily installed by doing:</p>
-<div class="CodeRay"><pre><span class="no">1</span> sake -i http://github.com/dkubb/dm-dev/raw/master/dm-dev.sake
-</pre></div><p>The tasks that get installed are available for perusal by issuing <code>sake -T</code></p>
-<div class="CodeRay"><pre><span class="er">$</span> sake -<span class="co">T</span>
+<div class="CodeRay">
+<pre><span class="no">1</span> sake -i http://github.com/dkubb/dm-dev/raw/master/dm-dev.sake
+</pre>
+</div>
+<p>The tasks that get installed are available for perusal by issuing <code>sake -T</code></p>
+<div class="CodeRay">
+<pre><span class="er">$</span> sake -<span class="co">T</span>
 sake dm<span class="sy">:clone</span>                          <span class="c"># Clone a copy of the DataMapper repository and dependencies</span>
 sake dm<span class="sy">:gems</span><span class="sy">:refresh</span>                   <span class="c"># Pull fresh copies of DataMapper and refresh all the gems</span>
 sake dm<span class="sy">:gems</span><span class="sy">:wipe</span>                      <span class="c"># Uninstall all RubyGems related to DataMapper</span>
@@ -70,21 +88,29 @@ sake dm<span class="sy">:install</span><span class="sy">:more</span>            
 sake dm<span class="sy">:install</span><span class="sy">:more</span><span class="sy">:merb_datamapper</span>   <span class="c"># Install merb_datamapper</span>
 sake dm<span class="sy">:sake</span><span class="sy">:refresh</span>                   <span class="c"># Remove and reinstall DataMapper sake recipes</span>
 sake dm<span class="sy">:update</span>                         <span class="c"># Update your local DataMapper.  Run from inside the top-level dm dir</span>
-</pre></div><h3>Step 3 &#8211; Live a little</h3>
+</pre>
+</div>
+<h3>Step 3 &#8211; Live a little</h3>
 <p>Change directories into the <code>src</code> directory and run <code>sake dm:clone</code>.  You&#8217;ll see git cloning DataMapper Core, DataMapper More, and DataObjects from their respective repositories on GitHub.  When that&#8217;s done, <code>cd dm</code> and have a look around.</p>
 <p>When your ready, return to <code>~/src/dm</code> and issue <code>sake dm:install</code>.</p>
 <h3>All Together Now</h3>
 <p>When executed together, these 3 steps amount to 7 lines at the command line.  Talk about stunningly easy.</p>
-<div class="CodeRay"><pre><span class="no">1</span> mkdir -p ~/src
+<div class="CodeRay">
+<pre><span class="no">1</span> mkdir -p ~/src
 <span class="no">2</span> cd ~/src
 <span class="no">3</span> sudo gem install sake
 <span class="no">4</span> sake -i http://github.com/dkubb/dm-dev/raw/master/dm-dev.sake
 <span class="no">5</span> sake dm:clone
 <span class="no">6</span> cd dm
 <span class="no">7</span> sake dm:install
-</pre></div><p>Changes happen to DataMapper and it&#8217;s buddies all the time.  To refresh your installation of DataMapper and DataObjects, return to <code>~/src/dm</code> and issue:</p>
-<div class="CodeRay"><pre><span class="no">1</span> sake dm:gems:refresh
-</pre></div><p>It will uninstall your local gems, pull down fresh changes from github, and reinstall the gems again.</p>
+</pre>
+</div>
+<p>Changes happen to DataMapper and it&#8217;s buddies all the time.  To refresh your installation of DataMapper and DataObjects, return to <code>~/src/dm</code> and issue:</p>
+<div class="CodeRay">
+<pre><span class="no">1</span> sake dm:gems:refresh
+</pre>
+</div>
+<p>It will uninstall your local gems, pull down fresh changes from github, and reinstall the gems again.</p>
 <p>On a side note, checkout <a href="http://merbivore.com/merb-dev.sake">http://merbivore.com/merb-dev.sake</a> for the original merb related sake tasks by Michael Ivey wrote that these came from.</p>
 
       <div id="footer">
@@ -93,15 +119,9 @@ sake dm<span class="sy">:update</span>                         <span class="c">#
       </div>
     </div>
 
-    <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-    var pageTracker = _gat._getTracker("UA-569671-2");
-    pageTracker._initData();
-    pageTracker._trackPageview();
-    </script>
-
+<!--
+    DK: from what I can tell we're not using JS on the site anywhere (yet)
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+-->
   </body>
 </html>

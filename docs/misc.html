@@ -8,7 +8,6 @@
      <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
      <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
      <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
-     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
      <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
   </head>
 
@@ -22,7 +21,7 @@
           <li><a href="/docs">Documentation</a></li>
           <li><a href="/development">Development</a></li>
           <li><a href="http://datamapper.org/">Wiki</a></li>
-          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+          <li><a href="/getting-started.html" id="getStarted">Get Started</a></li>
         </ul>
       </div>
 
@@ -30,7 +29,8 @@
 <p>DataMapper comes loaded features, many of which other ORMs require external libraries for.</p>
 <h2>Single Table Inheritance</h2>
 <p>Many ORMs support Single Table Inheritance and DataMapper is no different.  In order to declare a model for Single Table Inheritance, define a property with the data-type of <a href="http://datamapper.rubyforge.org/DataMapper/Types/Discriminator.html">Types::Discriminator</a></p>
-<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Person</span>
+<div class="CodeRay">
+<pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Person</span>
 <span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
 <span class="no"> 3</span> 
 <span class="no"> 4</span>   property <span class="sy">:name</span>, <span class="co">String</span>
@@ -47,25 +47,42 @@
 <span class="no">15</span> <span class="r">class</span> <span class="cl">Mother</span> &lt; <span class="co">Woman</span>;   <span class="r">end</span>
 <span class="no">16</span> <span class="r">class</span> <span class="cl">Daughter</span> &lt; <span class="co">Woman</span>; <span class="r">end</span>
 <span class="no">17</span> 
-</pre></div><p>When DataMapper sees your <code>type</code> column declared as type <a href="http://datamapper.rubyforge.org/DataMapper/Types/Discriminator.html">Types::Discriminator</a>, it will automatically insert the class name of the object you&#8217;ve created and later instantiate that row as that class. It also supports deep inheritance, so doing Woman.all will select all women, mothers, and daughters (and deeper inherited classes if they exist).</p>
+</pre>
+</div>
+<p>When DataMapper sees your <code>type</code> column declared as type <a href="http://datamapper.rubyforge.org/DataMapper/Types/Discriminator.html">Types::Discriminator</a>, it will automatically insert the class name of the object you&#8217;ve created and later instantiate that row as that class. It also supports deep inheritance, so doing Woman.all will select all women, mothers, and daughters (and deeper inherited classes if they exist).</p>
 <h2>Paranoia</h2>
 <p>Sometimes&#8230;most times&#8230;you don&#8217;t <em>really</em> want to destroy a row in the database, you just want to mark it as deleted so that you can restore it later if need be.  This is aptly-named Paranoia and DataMapper has basic support for this baked right in.  Just declare a property and assign it a type of <a href="http://datamapper.rubyforge.org/DataMapper/Types/ParanoidDateTime.html">Types::ParanoidDateTime</a> or <a href="http://datamapper.rubyforge.org/DataMapper/Types/ParanoidBoolean.html">Types::ParanoidBoolean</a>:</p>
-<div class="CodeRay"><pre><span class="no">1</span> property <span class="sy">:deleted_at</span>, <span class="co">ParanoidDateTime</span>
-</pre></div><h2>Multiple Data-Store Connections</h2>
-<p>DataMapper sports a concept called a context which encapsulates the data-store context in which you want operations to occur.  For example, when you setup a  connection in <a href="/getting_started.html">getting_started</a>, you were defining a context known as <code>:default</code></p>
-<div class="CodeRay"><pre><span class="no">1</span>   <span class="co">DataMapper</span>.setup(<span class="sy">:default</span>, <span class="s"><span class="dl">'</span><span class="k">mysql://localhost/dm_core_test</span><span class="dl">'</span></span>)
-</pre></div><p>But if you supply a context name, you will now have 2 database contexts with their own unique loggers, connection pool, identity map&#8230;.one default context and one named context.</p>
-<div class="CodeRay"><pre><span class="no">1</span> <span class="co">DataMapper</span>.setup(<span class="sy">:external</span>, <span class="s"><span class="dl">'</span><span class="k">mysql://someother_host/dm_core_test</span><span class="dl">'</span></span>)
-</pre></div><p>To use one context rather than another, simply wrap your code block inside a <code>database</code> call. It will return whatever your block of code returns.</p>
-<div class="CodeRay"><pre><span class="no">1</span> repository(<span class="sy">:external</span>) { <span class="co">Person</span>.first }
+<div class="CodeRay">
+<pre><span class="no">1</span> property <span class="sy">:deleted_at</span>, <span class="co">ParanoidDateTime</span>
+</pre>
+</div>
+<h2>Multiple Data-Store Connections</h2>
+<p>DataMapper sports a concept called a context which encapsulates the data-store context in which you want operations to occur.  For example, when you setup a  connection in <a href="/getting-started.html">getting-started</a>, you were defining a context known as <code>:default</code></p>
+<div class="CodeRay">
+<pre><span class="no">1</span>   <span class="co">DataMapper</span>.setup(<span class="sy">:default</span>, <span class="s"><span class="dl">'</span><span class="k">mysql://localhost/dm_core_test</span><span class="dl">'</span></span>)
+</pre>
+</div>
+<p>But if you supply a context name, you will now have 2 database contexts with their own unique loggers, connection pool, identity map&#8230;.one default context and one named context.</p>
+<div class="CodeRay">
+<pre><span class="no">1</span> <span class="co">DataMapper</span>.setup(<span class="sy">:external</span>, <span class="s"><span class="dl">'</span><span class="k">mysql://someother_host/dm_core_test</span><span class="dl">'</span></span>)
+</pre>
+</div>
+<p>To use one context rather than another, simply wrap your code block inside a <code>database</code> call. It will return whatever your block of code returns.</p>
+<div class="CodeRay">
+<pre><span class="no">1</span> repository(<span class="sy">:external</span>) { <span class="co">Person</span>.first }
 <span class="no">2</span> <span class="c"># hits up your :external database and retrieves the first Person</span>
-</pre></div><p>This will use your connection to the <code>:external</code> data-store and the first Person it finds.  Later, when you call <code>.save</code> on that person, it&#8217;ll get saved back to the <code>:external</code> data-store; An object is aware of what context it came from and should be saved back to.</p>
+</pre>
+</div>
+<p>This will use your connection to the <code>:external</code> data-store and the first Person it finds.  Later, when you call <code>.save</code> on that person, it&#8217;ll get saved back to the <code>:external</code> data-store; An object is aware of what context it came from and should be saved back to.</p>
 <h2>Chained Associations</h2>
 <p>Say you want to find all of the animals in a zoo, but Animal belongs to Exhibit which belongs to Zoo.  Other ORMs solve this problem by providing a means to describe the double JOINs into the retrieval call for Animals. ActiveRecord specifically will let you specify JOINs in a hash-of-hashes syntax which will make most developers throw up a little in their mouths.</p>
 <p>DataMapper&#8217;s solution is to let you chain association calls:</p>
-<div class="CodeRay"><pre><span class="no">1</span> zoo = <span class="co">Zoo</span>.first
+<div class="CodeRay">
+<pre><span class="no">1</span> zoo = <span class="co">Zoo</span>.first
 <span class="no">2</span> zoo.exhibits.animals <span class="c"># retrieves all animals for all exhibits for that zoo</span>
-</pre></div><p>This has great potential for browsing collections of content, like browsing all blog posts&#8217; comments by category or tag.  At present, chaining beyond 2 associations is still experimental.</p>
+</pre>
+</div>
+<p>This has great potential for browsing collections of content, like browsing all blog posts&#8217; comments by category or tag.  At present, chaining beyond 2 associations is still experimental.</p>
 
       <div id="footer">
         <p>Copyright Dan Kubb, Sam Smoot 2009</p>
@@ -73,15 +90,9 @@
       </div>
     </div>
 
-    <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-    var pageTracker = _gat._getTracker("UA-569671-2");
-    pageTracker._initData();
-    pageTracker._trackPageview();
-    </script>
-
+<!--
+    DK: from what I can tell we're not using JS on the site anywhere (yet)
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+-->
   </body>
 </html>

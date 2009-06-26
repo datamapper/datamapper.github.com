@@ -8,7 +8,6 @@
      <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
      <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
      <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
-     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
      <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
   </head>
 
@@ -22,7 +21,7 @@
           <li><a href="/docs">Documentation</a></li>
           <li><a href="/development">Development</a></li>
           <li><a href="http://datamapper.org/">Wiki</a></li>
-          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+          <li><a href="/getting-started.html" id="getStarted">Get Started</a></li>
         </ul>
       </div>
 
@@ -35,16 +34,20 @@
 <p>In short, ActiveRecord doesn&#8217;t support <acronym title="Composite Primary Keys">CPK</acronym>s without the help of an external library.  <a href="http://drnicwilliams.com/about/">Dr. Nic Williams</a> <a href="http://compositekeys.rubyforge.org/">Composite Keys</a> is an effort to overcome this limitation.</p>
 <h2>Sequel</h2>
 <p>Unlike ActiveRecord, Sequel supports <acronym title="Composite Primary Keys">CPK</acronym>s natively:</p>
-<div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span> &lt; <span class="co">Sequel</span>::<span class="co">Model</span>
+<div class="CodeRay">
+<pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span> &lt; <span class="co">Sequel</span>::<span class="co">Model</span>
 <span class="no">2</span>   set_primary_key [ <span class="sy">:category</span>, <span class="sy">:title</span> ]
 <span class="no">3</span> <span class="r">end</span>
 <span class="no">4</span> 
 <span class="no">5</span> post = <span class="co">Post</span>.get(<span class="s"><span class="dl">'</span><span class="k">ruby</span><span class="dl">'</span></span>, <span class="s"><span class="dl">'</span><span class="k">hello world</span><span class="dl">'</span></span>)
 <span class="no">6</span> post.key <span class="c"># =&gt; [ 'ruby', 'hello world' ]</span>
-</pre></div><p class="attribution">example compiled from <a href="http://code.google.com/p/ruby-sequel/wiki/SequelModels">http://code.google.com/p/ruby-sequel/wiki/SequelModels</a></p>
+</pre>
+</div>
+<p class="attribution">example compiled from <a href="http://code.google.com/p/ruby-sequel/wiki/SequelModels">http://code.google.com/p/ruby-sequel/wiki/SequelModels</a></p>
 <h2>DataMapper</h2>
 <p>The latest DataMapper was designed from the ground up to support <acronym title="Composite Primary Keys">CPK</acronym>s:</p>
-<div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Pig</span>
+<div class="CodeRay">
+<pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Pig</span>
 <span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
 <span class="no"> 3</span> 
 <span class="no"> 4</span>   property <span class="sy">:id</span>,   <span class="co">Integer</span>, <span class="sy">:key</span> =&gt; <span class="pc">true</span>
@@ -55,15 +58,17 @@
 <span class="no"> 9</span> pig = <span class="co">Pig</span>.get(<span class="i">1</span>, <span class="s"><span class="dl">'</span><span class="k">Porky</span><span class="dl">'</span></span>)
 <span class="no"><strong>10</strong></span> 
 <span class="no">11</span> pig.key <span class="c"># =&gt; [ 1, 'Wilbur' ]</span>
-</pre></div><p>We declared our keys by adding the <code>:key =&gt; true</code> to the appropriate properties. The order is important as it will determine the order keys are addressed throughout the system.</p>
+</pre>
+</div>
+<p>We declared our keys by adding the <code>:key =&gt; true</code> to the appropriate properties. The order is important as it will determine the order keys are addressed throughout the system.</p>
 <p>Next, we mixed and matched the keys&#8217; types.  <code>:id</code> is a Integer, but <code>:slug</code> is a String. DataMapper didn&#8217;t flinch when we defined a key column as a String because it supports <a href="http://en.wikipedia.org/wiki/Natural_key">Natural Keys</a> as well.</p>
 <p>Lastly, when retrieving rows via <code>get</code> and <code>[]</code> with a <acronym title="Composite Primary Keys">CPK</acronym>, we supplied the keys in the order they were defined within our model.  For example, we defined <code>:id</code> first, then <code>:slug</code> second; later, we retrieved Porky by specifying his <code>:id</code> and <code>:slug</code> in the same order.  Additionally, when we asked Wilbur for his keys, he handed us an array in the order the keys were defined.</p>
 <p>We didn&#8217;t need to mix in an external library to get support for <acronym title="Composite Primary Keys">CPK</acronym>s, nor did we need to call a <code>set_primary_key</code> method and then supply more than one key to it. DataMapper supports Composite Primary Keys intuitively and without compromise!</p>
 <p>In later &#8220;Spotlight On&#8230;&#8221; articles, we&#8217;ll examine and demonstrate other DataMapper features or persistence concepts as well as compare similar features with other ORMs or libraries.</p>
-<h2 class="newRelease">Contribute a &#8220;Spotlight On&#8230;&#8221; Article</h2>
-<p class="newRelease">Got something important to say?  Want something explained a little<br><br />
+<p>h2(newRelease). Contribute a &#8220;Spotlight On&#8230;&#8221; Article</p>
+<p>p(newRelease).  Got something important to say?  Want something explained a little<br>
 better or demonstrated? Contribute or request a &#8220;Spotlight On&#8230;&#8221; <br> article!<br />
-Email the <a href="http://groups.google.com/group/datamapper">DataMapper Mailing List</a> with the request or <br><br />
+Email the <a href="http://groups.google.com/group/datamapper">DataMapper Mailing List</a> with the request or <br>
 contribution and we&#8217;ll post it here.</p>
 
       <div id="footer">
@@ -72,15 +77,9 @@ contribution and we&#8217;ll post it here.</p>
       </div>
     </div>
 
-    <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-    var pageTracker = _gat._getTracker("UA-569671-2");
-    pageTracker._initData();
-    pageTracker._trackPageview();
-    </script>
-
+<!--
+    DK: from what I can tell we're not using JS on the site anywhere (yet)
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+-->
   </body>
 </html>

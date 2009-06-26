@@ -8,7 +8,6 @@
      <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
      <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
      <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
-     <script src="/js/jquery-1.2.3.pack.js" type="text/javascript" charset="utf-8"></script>
      <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
   </head>
 
@@ -22,14 +21,14 @@
           <li><a href="/docs">Documentation</a></li>
           <li><a href="/development">Development</a></li>
           <li><a href="http://datamapper.org/">Wiki</a></li>
-          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
+          <li><a href="/getting-started.html" id="getStarted">Get Started</a></li>
         </ul>
       </div>
 
       <h1>Installation Issues</h1>
-<p>If you&#8217;ve followed the <a href="/getting_started.html">install instructions</a> but run into problems, you can find some tips below.</p>
-<h2 class="newRelease">Windows Users</h2>
-<p class="newRelease">At present, <a href="https://rubyforge.org/projects/dorb/">DataObjects</a> does not run well on Windows natively <br>and will require you to install cygwin or another linux-like <br>environment.  People have been able to get it installed and running <br>on Windows but with severe drops in performance.  This is a known <br>issue and we&#8217;re working on it.</p>
+<p>If you&#8217;ve followed the <a href="/getting-started.html">install instructions</a> but run into problems, you can find some tips below.</p>
+<p>h2(newRelease). Windows Users</p>
+<p>p(newRelease). At present, <a href="https://rubyforge.org/projects/dorb/">DataObjects</a> does not run well on Windows natively <br>and will require you to install cygwin or another linux-like <br>environment.  People have been able to get it installed and running <br>on Windows but with severe drops in performance.  This is a known <br>issue and we&#8217;re working on it.</p>
 <h2>Dependencies</h2>
 <p>First port of call if you&#8217;re having issues with an installation is to make sure you have all the dependencies installed. Rubygems should take care of this for you, but just in case, make sure you have the following gems as well:</p>
 <ul>
@@ -39,9 +38,12 @@
 </ul>
 <h2 id="trunk">Using Trunk</h2>
 <p>You will also need to install the DataObject gem and the adaptor for your platform</p>
-<div class="CodeRay"><pre><span class="no">1</span> sudo gem install data_objects
+<div class="CodeRay">
+<pre><span class="no">1</span> sudo gem install data_objects
 <span class="no">2</span> sudo gem install do_mysql
-</pre></div><p>The current database adaptors are:</p>
+</pre>
+</div>
+<p>The current database adaptors are:</p>
 <ul>
 	<li>do_mysql</li>
 	<li>do_sqlite3</li>
@@ -56,15 +58,9 @@
       </div>
     </div>
 
-    <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-    var pageTracker = _gat._getTracker("UA-569671-2");
-    pageTracker._initData();
-    pageTracker._trackPageview();
-    </script>
-
+<!--
+    DK: from what I can tell we're not using JS on the site anywhere (yet)
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+-->
   </body>
 </html>
