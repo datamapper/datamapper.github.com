@@ -14,7 +14,7 @@ h1. <%= @page.title %>
   <dd>The API for the current gem release.</dd>
   <dt><a href="/why.html">Why DataMapper?</a></dt>
   <dd>If you haven't read this yet, you should, right now!</dd>
-  <dt><a href="/getting_started.html">Getting Started</a></dt>
+  <dt><a href="/getting-started.html">Getting Started</a></dt>
   <dd>A whirlwind tour of DM. This is the place to start if you haven't used the library before.</dd>
   <dt><a href="/docs/install.html">Common installation issues</a></dt>
   <dd>Troubleshooting installation, with instructions for specific platforms.</dd>

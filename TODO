@@ -19,7 +19,7 @@ New site structure'll probably look something like this:
     |       `-- properties.txt
     |-- css/
     |-- js/
-    |-- getting_started.txt
+    |-- getting-started.txt
     |-- images/
     |-- index.txt
     `-- why.txt

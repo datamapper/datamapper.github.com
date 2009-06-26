@@ -9,7 +9,7 @@ filter:
 
 h1. <%= @page.title %>
 
-If you've followed the "install instructions":/getting_started.html but run into problems, you can find some tips below.
+If you've followed the "install instructions":/getting-started.html but run into problems, you can find some tips below.
 
 h2(newRelease). Windows Users
 
