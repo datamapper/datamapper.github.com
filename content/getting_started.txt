@@ -15,10 +15,16 @@ So lets imagine we're setting up some models for a blogging app. We'll keep it n
 
 h2. Install DataMapper
 
-If you have RubyGems installed, pop open your console and install a few things. (Substitute @do_mysql@ with @do_postgres@ if you're into Postgres)
+If you have RubyGems installed, pop open your console and install a few things.
 
 <% coderay(:lang => "bash", :line_numbers => "inline") do -%>
-gem install extlib data_objects do_sqlite3 do_mysql dm-core
+gem install dm-core
+<% end %>
+
+If you are planning on using DataMapper with a database, install a database driver from the DataObjects project: (Substitute @do_sqlite3@ with @do_postgres@ or @do_sqlite3@ depending on your preferences)
+
+<% coderay(:lang => "bash", :line_numbers => "inline") do -%>
+gem install do_sqlite3
 <% end %>
 
 h2. Require it in your application
@@ -35,10 +41,12 @@ You need make sure this is set before you define your models.
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
   # An in-memory Sqlite3 connection:
   DataMapper.setup(:default, 'sqlite3::memory:')
-  # A MySQL 4.x+ connection:
-  DataMapper.setup(:default, 'mysql://localhost/dm_core_test')
-  # A Postgres 8.2+ connection:
-  DataMapper.setup(:default, 'postgres://localhost/dm_core_test')
+
+  # A MySQL connection:
+  DataMapper.setup(:default, 'mysql://localhost/the_database_name')
+
+  # A Postgres connection:
+  DataMapper.setup(:default, 'postgres://localhost/the_database_name')
 <% end %>
 
 h2. Define your models
@@ -71,8 +79,9 @@ class Category
   property :id,         Serial
   property :name,       String
 end
-
 <% end %>
+
+The above example is simplified, but you can also specify more options such as constraints for your properties.
 
 h2. Associations
 
@@ -94,7 +103,7 @@ end
 
 h3. Has and belongs to many
 
-Categories can have many Posts and Posts can have many Categories, so we'll need a 1:N:1 relationships commonly referred to "has and belongs to many".  We'll setup a quick model to wrap our join table between the two so that we can record a little bit of meta-data about when the post was categorized into a category.
+Categories can have many Posts and Posts can have many Categories, so we'll need a many to many relationships commonly referred to "has and belongs to many".  We'll setup a quick model to wrap our join table between the two so that we can record a little bit of meta-data about when the post was categorized into a category.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Categorization

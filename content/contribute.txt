@@ -22,7 +22,7 @@ Currently DataMapper needs help in a few particular areas:
 
 h2. Git - Edge DataMapper
 
-DataMapper development has switched to the "Git":http://git.or.cz SCM. Please see "using git":using-git.html to learn how to contribute.
+DataMapper development uses "Git":http://git.or.cz SCM. Please see "using git":using-git.html to learn how to contribute.
 
 <div class="CodeRay">
   <pre>$ git clone git://github.com/datamapper/dm-core.git</pre>
