@@ -55,7 +55,7 @@ Natural Keys are protected against mass-assignment, so their @setter=@ will need
 
 h3. Composite Keys
 
-You can even have more than one key:
+You can have more than one property in the primary key:
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Post
