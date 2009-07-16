@@ -58,7 +58,7 @@
 <p>Natural Keys are protected against mass-assignment, so their <code>setter=</code> will need to be called individually if your looking to set them.</p>
 <p><strong>Fair warning:</strong>  Using Boolean, Discriminator, and the time related types as keys may cause your DBA to hunt you down and &#8220;educate&#8221; you. DM will not be held responsible for any injuries or death that may result.</p>
 <h3>Composite Keys</h3>
-<p>You can even have more than one key:</p>
+<p>You can have more than one property in the primary key:</p>
 <div class="CodeRay">
 <pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
