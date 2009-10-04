@@ -20,7 +20,7 @@ Much like a certain other Ruby ORM we can call validation methods directly by pa
   validates_length [ :name, :description ]
 <% end %>
 
-These are the currently available manual validations available. Please refer to the <a href="http://datamapper.rubyforge.org/DataMapper/Validate/ClassMethods.html">API</a> for more detailed information.
+These are the currently available manual validations available. Please refer to the <a href="http://datamapper.rubyforge.org/dm-more/DataMapper/Validate/ClassMethods.html">API</a> for more detailed information.
 
 * validates_present
 * validates_absent
