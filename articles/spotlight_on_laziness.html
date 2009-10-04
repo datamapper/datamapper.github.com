@@ -47,18 +47,18 @@
 </div>
 <p>In this case, we&#8217;re intentionally marking this Post&#8217;s <code>:title</code> property as lazy, as well as letting the <code>:body</code> be lazy by default.  If we go and inspect our query log for the retrieval of a post with the ID of 1, we see</p>
 <div class="CodeRay">
-<pre><span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span> <span class="r">WHERE</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> = <span class="i">1</span>
+<pre>SELECT `id` FROM `posts` WHERE `id` = 1
 </pre>
 </div>
 <p>DataMapper didn&#8217;t request the two lazy columns.  But when we call <code>.title</code> off of our post, we suddenly see</p>
 <div class="CodeRay">
-<pre><span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">title</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span> <span class="r">WHERE</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> = <span class="i">1</span>
+<pre>SELECT `title` FROM `posts` WHERE `id` = 1
 </pre>
 </div>
 <p>This is the very definition of a lazy-loaded property;  The lazy column didn&#8217;t get requested from our data store until we actually needed it, and no sooner.</p>
 <p>But this is just for one individual instance of a post.  How does this behave when we have a collection of posts and iteratively call the <code>.title</code> method?</p>
 <div class="CodeRay">
-<pre><span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">title</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span> <span class="r">WHERE</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> <span class="">IN</span> (<span class="i">1</span>, <span class="i">2</span>, <span class="i">3</span>, <span class="i">4</span>, <span class="i">5</span>)
+<pre>SELECT `title` FROM `posts` WHERE `id` IN (1, 2, 3, 4, 5)
 </pre>
 </div>
 <p>DataMapper loaded up the title for all of the posts in our collection in one query.  It didn&#8217;t issue the lazy-load retrieval from above over and over for each individual post, nor did it chicken out and issue the lazy-load retrieval for ALL of the posts in the data store.</p>
@@ -80,11 +80,11 @@
 <p>So now, when you load an attribute with the <code>:summary</code> context, DataMapper will load up all of the other lazy-loaded properties marked <code>:summary</code> in one query to the data store.</p>
 <p>In your query log, you&#8217;ll see:</p>
 <div class="CodeRay">
-<pre><span class="no">1</span> <span class="c">-- initial load</span>
-<span class="no">2</span> <span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span>
+<pre><span class="no">1</span> -- initial load
+<span class="no">2</span> SELECT `id` FROM `posts`
 <span class="no">3</span> 
-<span class="no">4</span> <span class="c">-- lazy-loading of multiple properties in a given context in one query</span>
-<span class="no">5</span> <span class="r">SELECT</span> <span class="s"><span class="dl">`</span><span class="k">id</span><span class="dl">`</span></span>, <span class="s"><span class="dl">`</span><span class="k">title</span><span class="dl">`</span></span>, <span class="s"><span class="dl">`</span><span class="k">body</span><span class="dl">`</span></span> <span class="r">FROM</span> <span class="s"><span class="dl">`</span><span class="k">posts</span><span class="dl">`</span></span>
+<span class="no">4</span> -- lazy-loading of multiple properties in a given context in one query
+<span class="no">5</span> SELECT `id`, `title`, `body` FROM `posts`
 </pre>
 </div>
 <p>If you use this wisely, it would mean that DataMapper will never load more than it needs nor will it ever fire off more than the absolutely necessary amount of queries to get the job done.</p>

@@ -5,7 +5,7 @@
   <subtitle>Ruby Object Relational Mapper</subtitle>
   <link href="http://www.datamapper.org/news.rss" rel="self"/>
   <link href="http://www.datamapper.org/"/>
-  <updated>2009-07-15T23:18:23-07:00</updated>
+  <updated>2009-10-03T22:43:26-07:00</updated>
   <author>
     <name>Maintained By the Community</name>
     <email>datamapper@googlegroups.com</email>
@@ -13,13 +13,12 @@
   <id>http://www.datamapper.org</id>
   
   <entry>
-    <title>DataMapper Sponsor Looking for Developer</title>
-    <link href="/articles/wieck_hire.html"/>
-    <id>tag:datamapper.org,2008-08-05:1217969640</id>
-    <updated>2008-08-05T13:54:00-07:00</updated>
-    <content type="html">&lt;h1&gt;DataMapper Sponsor Looking for Developer&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;http://wieck.com&quot;&gt;Wieck Media&lt;/a&gt;, sponsors of the DataMapper project are looking for a local, on-site, full-time developer in Dallas, TX to join the team. The work includes client projects for Honda, The New York Times and FIA among others as well as developing our own products and supporting open source efforts including DataMapper.&lt;/p&gt;
-&lt;p&gt;If this sounds like your cup of tea, get in touch with &amp;#8220;sam&amp;#8221; at  &amp;#8220;wieck.com&amp;#8221; with the subject &amp;#8220;DataMapper Developer&amp;#8221; with your resume, a little note about yourself, and your contact information. Points awarded if you&amp;#8217;re awesome.&lt;/p&gt;</content>
+    <title>DataMapper 0.10 is Released</title>
+    <link href="/articles/datamapper_010_released.html"/>
+    <id>tag:datamapper.org,2009-09-15:1253028719</id>
+    <updated>2009-09-15T08:31:59-07:00</updated>
+    <content type="html">&lt;h1&gt;DataMapper 0.10 is Released&lt;/h1&gt;
+&lt;p&gt;DataMapper 0.10 is ready for release.  We&amp;#8217;ve worked on it for the past 11 months, pushed 1250 commits, written 3000+ specs, and fixed 140 tickets in the process.&lt;/p&gt;</content>
   </entry>
   
   <entry>
@@ -366,18 +365,18 @@ sake dm&lt;span class=&quot;sy&quot;&gt;:update&lt;/span&gt;                    
 &lt;/div&gt;
 &lt;p&gt;In this case, we&amp;#8217;re intentionally marking this Post&amp;#8217;s &lt;code&gt;:title&lt;/code&gt; property as lazy, as well as letting the &lt;code&gt;:body&lt;/code&gt; be lazy by default.  If we go and inspect our query log for the retrieval of a post with the ID of 1, we see&lt;/p&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;
-&lt;pre&gt;&lt;span class=&quot;r&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;posts&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; = &lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;
+&lt;pre&gt;SELECT `id` FROM `posts` WHERE `id` = 1
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;DataMapper didn&amp;#8217;t request the two lazy columns.  But when we call &lt;code&gt;.title&lt;/code&gt; off of our post, we suddenly see&lt;/p&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;
-&lt;pre&gt;&lt;span class=&quot;r&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;posts&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; = &lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;
+&lt;pre&gt;SELECT `title` FROM `posts` WHERE `id` = 1
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;This is the very definition of a lazy-loaded property;  The lazy column didn&amp;#8217;t get requested from our data store until we actually needed it, and no sooner.&lt;/p&gt;
 &lt;p&gt;But this is just for one individual instance of a post.  How does this behave when we have a collection of posts and iteratively call the &lt;code&gt;.title&lt;/code&gt; method?&lt;/p&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;
-&lt;pre&gt;&lt;span class=&quot;r&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;posts&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;&quot;&gt;IN&lt;/span&gt; (&lt;span class=&quot;i&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;i&quot;&gt;2&lt;/span&gt;, &lt;span class=&quot;i&quot;&gt;3&lt;/span&gt;, &lt;span class=&quot;i&quot;&gt;4&lt;/span&gt;, &lt;span class=&quot;i&quot;&gt;5&lt;/span&gt;)
+&lt;pre&gt;SELECT `title` FROM `posts` WHERE `id` IN (1, 2, 3, 4, 5)
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;DataMapper loaded up the title for all of the posts in our collection in one query.  It didn&amp;#8217;t issue the lazy-load retrieval from above over and over for each individual post, nor did it chicken out and issue the lazy-load retrieval for ALL of the posts in the data store.&lt;/p&gt;
@@ -399,11 +398,11 @@ sake dm&lt;span class=&quot;sy&quot;&gt;:update&lt;/span&gt;                    
 &lt;p&gt;So now, when you load an attribute with the &lt;code&gt;:summary&lt;/code&gt; context, DataMapper will load up all of the other lazy-loaded properties marked &lt;code&gt;:summary&lt;/code&gt; in one query to the data store.&lt;/p&gt;
 &lt;p&gt;In your query log, you&amp;#8217;ll see:&lt;/p&gt;
 &lt;div class=&quot;CodeRay&quot;&gt;
-&lt;pre&gt;&lt;span class=&quot;no&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;-- initial load&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;posts&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
+&lt;pre&gt;&lt;span class=&quot;no&quot;&gt;1&lt;/span&gt; -- initial load
+&lt;span class=&quot;no&quot;&gt;2&lt;/span&gt; SELECT `id` FROM `posts`
 &lt;span class=&quot;no&quot;&gt;3&lt;/span&gt; 
-&lt;span class=&quot;no&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;-- lazy-loading of multiple properties in a given context in one query&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt;, &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt;, &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;r&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;posts&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;4&lt;/span&gt; -- lazy-loading of multiple properties in a given context in one query
+&lt;span class=&quot;no&quot;&gt;5&lt;/span&gt; SELECT `id`, `title`, `body` FROM `posts`
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;If you use this wisely, it would mean that DataMapper will never load more than it needs nor will it ever fire off more than the absolutely necessary amount of queries to get the job done.&lt;/p&gt;
@@ -532,22 +531,6 @@ contribution and we&amp;#8217;ll post it here.&lt;/p&gt;</content>
 &lt;p&gt;Alright, so it&amp;#8217;s not &lt;em&gt;that&lt;/em&gt; big of a deal, but we&amp;#8217;re confident that all of this will get DataMapper so close to going 1.0 that we&amp;#8217;ll be able to taste it.  To get there, DataMapper&amp;#8217;s more advanced features like single table inheritance, paranoia, and chained associations will be re-implimented to use all this new stuff, and then we&amp;#8217;re sure 0.9 will need a touch up or two.&lt;/p&gt;
 &lt;p&gt;So close&amp;#8230;.so very very close&amp;#8230;&lt;/p&gt;
 &lt;p&gt;Stay tuned in to the &lt;a href=&quot;http://groups.google.com/group/datamapper&quot;&gt;mailing list&lt;/a&gt;, check up on the &lt;a href=&quot;http://datamapper.org/&quot;&gt;wiki&lt;/a&gt;, chat it up in &lt;a href=&quot;irc://irc.freenode.net/#datamapper&quot;&gt;#datamapper&lt;/a&gt; and watch &lt;a href=&quot;http://github.com/datamapper/dm-core/commits/master&quot;&gt;github commit messages&lt;/a&gt; for updates.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>0.3.0 Gem Released!</title>
-    <link href="/articles/gem_030_released.html"/>
-    <id>tag:datamapper.org,2008-03-18:1205873750</id>
-    <updated>2008-03-18T13:55:50-07:00</updated>
-    <content type="html">&lt;h1&gt;0.3.0 Gem Released!&lt;/h1&gt;
-&lt;p&gt;0.3.0 is a maintenance release, bringing minor bug-fixes and minimal new features to DataMapper 0.2.5. This is the latest stable gem using database terminology and metaphors.&lt;/p&gt;
-&lt;p&gt;This changeset includes:&lt;/p&gt;
-&lt;ul&gt;
-	&lt;li&gt;Updated documentation, now with quick links to commonly used sections and FAQs&lt;/li&gt;
-	&lt;li&gt;Fixed bugs related to &lt;code&gt;loaded_associations&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;Improved support for &lt;code&gt;:dependant =&amp;gt; :destroy&lt;/code&gt; and &lt;code&gt;:dependent =&amp;gt; :protect&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;Other updates, fixes, and patches from bugs reports&lt;/li&gt;
-&lt;/ul&gt;</content>
   </entry>
   
 </feed>
