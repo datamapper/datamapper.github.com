@@ -15,7 +15,7 @@ h2. Links, Blogs, Wiki's, and Stuff
   <dt><a href="/news.html">News and Notes</a></dt>
   <dd>Official News and other contributed articles</dd>
 
-  <dt><a href="http://wiki.datamapper.org/">Wiki</a></dt>
+  <dt><a href="http://wiki.github.com/datamapper/dm-core">Wiki</a></dt>
   <dd>Official Wiki</dd>
 
   <dt><a href="http://github.com/datamapper/">DM on GitHub</a></dt>
