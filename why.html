@@ -55,7 +55,7 @@
 <p>DataMapper only issues updates or creates for the properties it knows about. So it plays well with others. You can use it in an Integration Database without worrying that your application will be a bad actor causing trouble for all of your other processes.</p>
 <h2>Laziness Can Be A Virtue</h2>
 <p>Columns of potentially infinite length, like Text columns, are expensive in data-stores. They&#8217;re generally stored in a different place from the rest of your data. So instead of a fast sequential read from your hard-drive, your data-store has to hop around all over the place to get what it needs.</p>
-<p>With DataMapper, these fields are treated like in-row associations by default, meaning they if and only if you load. If you want more control you can enable or disable this feature for any column (not just text-fields) by passing a <code>lazy</code> option to your column mapping with a value of <code>true</code> or <code>false</code>.</p>
+<p>With DataMapper, these fields are treated like in-row associations by default, meaning they are loaded if and only if you access them. If you want more control you can enable or disable this feature for any column (not just text-fields) by passing a <code>lazy</code> option to your column mapping with a value of <code>true</code> or <code>false</code>.</p>
 <div class="CodeRay">
 <pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Animal</span>
 <span class="no">2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
