@@ -47,7 +47,7 @@ h2. Laziness Can Be A Virtue
 
 Columns of potentially infinite length, like Text columns, are expensive in data-stores. They're generally stored in a different place from the rest of your data. So instead of a fast sequential read from your hard-drive, your data-store has to hop around all over the place to get what it needs.
 
-With DataMapper, these fields are treated like in-row associations by default, meaning they if and only if you load. If you want more control you can enable or disable this feature for any column (not just text-fields) by passing a @lazy@ option to your column mapping with a value of @true@ or @false@.
+With DataMapper, these fields are treated like in-row associations by default, meaning they are loaded if and only if you access them. If you want more control you can enable or disable this feature for any column (not just text-fields) by passing a @lazy@ option to your column mapping with a value of @true@ or @false@.
 
 <% coderay(:lang => "ruby", :line_numbers => "inline") do -%>
 class Animal
