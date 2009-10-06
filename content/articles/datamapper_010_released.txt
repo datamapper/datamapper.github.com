@@ -12,5 +12,4 @@ filter:
 
 h1. <%= @page.title %>
 
-DataMapper 0.10 is ready for release.  We've worked on it for the past 11 months, pushed 1250 commits, written 3000+ specs, and fixed 140 tickets in the process.  
-
+DataMapper 0.10 is ready for release.  We've worked on it for the past 11 months, pushed 1250 commits, written 3000+ specs, and fixed 140 tickets in the process.
