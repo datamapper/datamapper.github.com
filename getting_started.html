@@ -21,8 +21,8 @@
           <li><a href="/community.html">Community</a></li>
           <li><a href="/docs">Documentation</a></li>
           <li><a href="/development">Development</a></li>
-          <li><a href="http://datamapper.org/">Wiki</a></li>
-          <li><a href="/getting-started.html" id="getStarted">Get Started</a></li>
+          <li><a href="http://wiki.datamapper.org/doku.php">Wiki</a></li>
+          <li><a href="/getting_started.html" id="getStarted">Get Started</a></li>
         </ul>
       </div>
 
@@ -47,30 +47,30 @@
 <p>The Post model is going to need to be persistent, so we&#8217;ll include <a href="http://datamapper.rubyforge.org/DataMapper/Resource.html">DataMapper::Resource</a>. The convention with model names is to use the singular, not plural version&#8230;but that&#8217;s just the convention, you can do whatever you want.</p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no"> 3</span>
+<span class="no"> 3</span> 
 <span class="no"> 4</span>   property <span class="sy">:id</span>,         <span class="co">Serial</span>
 <span class="no"> 5</span>   property <span class="sy">:title</span>,      <span class="co">String</span>
 <span class="no"> 6</span>   property <span class="sy">:body</span>,       <span class="co">Text</span>
 <span class="no"> 7</span>   property <span class="sy">:created_at</span>, <span class="co">DateTime</span>
 <span class="no"> 8</span> <span class="r">end</span>
-<span class="no"> 9</span>
+<span class="no"> 9</span> 
 <span class="no"><strong>10</strong></span> <span class="r">class</span> <span class="cl">Comment</span>
 <span class="no">11</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no">12</span>
+<span class="no">12</span> 
 <span class="no">13</span>   property <span class="sy">:id</span>,         <span class="co">Serial</span>
 <span class="no">14</span>   property <span class="sy">:posted_by</span>,  <span class="co">String</span>
 <span class="no">15</span>   property <span class="sy">:email</span>,      <span class="co">String</span>
 <span class="no">16</span>   property <span class="sy">:url</span>,        <span class="co">String</span>
 <span class="no">17</span>   property <span class="sy">:body</span>,       <span class="co">Text</span>
 <span class="no">18</span> <span class="r">end</span>
-<span class="no">19</span>
+<span class="no">19</span> 
 <span class="no"><strong>20</strong></span> <span class="r">class</span> <span class="cl">Category</span>
 <span class="no">21</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no">22</span>
+<span class="no">22</span> 
 <span class="no">23</span>   property <span class="sy">:id</span>,         <span class="co">Serial</span>
 <span class="no">24</span>   property <span class="sy">:name</span>,       <span class="co">String</span>
 <span class="no">25</span> <span class="r">end</span>
-<span class="no">26</span>
+<span class="no">26</span> 
 </pre></div><h2>Associations</h2>
 <p>Ideally, these declarations should be done inside your class definition with the properties and things, but for demonstration purposes, we&#8217;re just going to crack open the classes.</p>
 <h3>One To Many</h3>
@@ -78,7 +78,7 @@
 <div class="CodeRay"><pre><span class="no">1</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no">2</span>   has n, <span class="sy">:comments</span>
 <span class="no">3</span> <span class="r">end</span>
-<span class="no">4</span>
+<span class="no">4</span> 
 <span class="no">5</span> <span class="r">class</span> <span class="cl">Comment</span>
 <span class="no">6</span>   belongs_to <span class="sy">:post</span>
 <span class="no">7</span> <span class="r">end</span>
@@ -86,25 +86,25 @@
 <p>Categories can have many Posts and Posts can have many Categories, so we&#8217;ll need a 1:N:1 relationships commonly referred to &#8220;has and belongs to many&#8221;.  We&#8217;ll setup a quick model to wrap our join table between the two so that we can record a little bit of meta-data about when the post was categorized into a category.</p>
 <div class="CodeRay"><pre><span class="no"> 1</span> <span class="r">class</span> <span class="cl">Categorization</span>
 <span class="no"> 2</span>   include <span class="co">DataMapper</span>::<span class="co">Resource</span>
-<span class="no"> 3</span>
+<span class="no"> 3</span> 
 <span class="no"> 4</span>   property <span class="sy">:id</span>,         <span class="co">Serial</span>
 <span class="no"> 5</span>   property <span class="sy">:created_at</span>, <span class="co">DateTime</span>
-<span class="no"> 6</span>
+<span class="no"> 6</span> 
 <span class="no"> 7</span>   belongs_to <span class="sy">:category</span>
 <span class="no"> 8</span>   belongs_to <span class="sy">:post</span>
 <span class="no"> 9</span> <span class="r">end</span>
-<span class="no"><strong>10</strong></span>
+<span class="no"><strong>10</strong></span> 
 <span class="no">11</span> <span class="c"># Now we re-open our Post and Categories classes to define associations</span>
 <span class="no">12</span> <span class="r">class</span> <span class="cl">Post</span>
 <span class="no">13</span>   has n, <span class="sy">:categorizations</span>
 <span class="no">14</span>   has n, <span class="sy">:categories</span>, <span class="sy">:through</span> =&gt; <span class="sy">:categorizations</span>
 <span class="no">15</span> <span class="r">end</span>
-<span class="no">16</span>
+<span class="no">16</span> 
 <span class="no">17</span> <span class="r">class</span> <span class="cl">Category</span>
 <span class="no">18</span>   has n, <span class="sy">:categorizations</span>
 <span class="no">19</span>   has n, <span class="sy">:posts</span>,      <span class="sy">:through</span> =&gt; <span class="sy">:categorizations</span>
 <span class="no"><strong>20</strong></span> <span class="r">end</span>
-<span class="no">21</span>
+<span class="no">21</span> 
 </pre></div><h2>Set up your database tables</h2>
 <div class="CodeRay"><pre><span class="no">1</span> <span class="co">Post</span>.auto_migrate!
 <span class="no">2</span> <span class="co">Category</span>.auto_migrate!

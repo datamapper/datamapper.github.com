@@ -217,17 +217,17 @@ div.puff h2 {
 }
 
 /* LATEST RELEASE */
-h2.latestRelease,
-p.latestRelease {
+h2.latest-release,
+p.latest-release {
   background-color:#11233D;
   padding-left:30px;
   padding-right:30px;
 }
-h2.latestRelease {
+h2.latest-release {
   color:#ffffff;
   padding-top:20px;
 }
-p.latestRelease {
+p.latest-release {
   padding-bottom:20px;
   margin-bottom:1px;
 }
