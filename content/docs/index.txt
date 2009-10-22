@@ -68,5 +68,4 @@ def self.setup(name, uri_or_options)
   ...
 <% end %>
 
-For more information about the YARD documentation style, see the YARD
-"Getting Started":http://yard.soen.ca/getting_started document.
+For more information about the YARD documentation style, see the YARD "Getting Started":http://yard.soen.ca/getting_started document.
