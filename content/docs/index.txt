@@ -68,4 +68,5 @@ def self.setup(name, uri_or_options)
   ...
 <% end %>
 
-For more information about the YARD documentation style, see "lsegal's YARD repo on github.com":http://github.com/lsegal/yard/.
+For more information about the YARD documentation style, see the YARD
+"Getting Started":http://yard.soen.ca/getting_started document.
