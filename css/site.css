@@ -81,7 +81,7 @@ h1,
 h2,
 h3,
 p,
-.CodeRay,
+.highlight,
 .puff,
 ul,
 dl,
@@ -113,7 +113,7 @@ a:link {
 a:visited {
   color:#cccccc;
 }
-.CodeRay {
+.highlight {
   background:#0C182A;
   border:1px solid #26518A;
   padding:1em 15px;
@@ -144,7 +144,7 @@ blockquote {
 #home h2,
 #home h3,
 #home p,
-#home .CodeRay,
+#home .highlight,
 #home .puff {
   margin-right:240px;
 }
@@ -483,7 +483,7 @@ table tr td.pointer {
   width: 358px;
   padding-top: 1em;
 }
-.changeSummary .CodeRay {
+.changeSummary .highlight {
   width: 298px;
   margin: 0 30px 0 0;
 }
