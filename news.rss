@@ -1,35 +1,28 @@
 ---
-extension: rss
 layout: nil
-dirty: true
-filter:
-- erb
-dirty: true
 ---
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
- 
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
   <title>Datamapper.org News and Notes</title>
   <subtitle>Ruby Object Relational Mapper</subtitle>
+  <id>http://www.datamapper.org</id>
+  <generator uri="http://jekyllrb.com/" version="0.5">Jekyll</generator>
   <link href="http://www.datamapper.org/news.rss" rel="self"/>
   <link href="http://www.datamapper.org/"/>
-  <updated><%= Time.now.xmlschema %></updated>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
   <author>
     <name>Maintained By the Community</name>
     <email>datamapper@googlegroups.com</email>
   </author>
-  <id>http://www.datamapper.org</id>
-  <% @pages.find(:limit => 10,
-                 :in_directory => 'articles',
-                 :recursive => true,
-                 :sort_by => 'created_at',
-                 :reverse => true).each do |article| %>
+
+  {% for post in site.posts %}
   <entry>
-    <title><%= h(article.title) %></title>
-    <link href="<%= article.url %>"/>
-    <id>tag:datamapper.org,<%= article.created_at.strftime('%Y-%m-%d') %>:<%= article.created_at.to_i %></id>
-    <updated><%= article.created_at.xmlschema %></updated>
-    <content type="html"><%= h(render(article)) %></content>
+    <title>{{ post.title }}</title>
+    <link href="http://datamapper.org{{ post.url }}"/>
+    <updated>{{ post.date | date_to_xmlschema }}</updated>
+    <id>tag:datamapper.org,{{ post.date | date: "%Y-%m-%d" }}</id>
+    <content type="html">{{ post.content | xml_escape }}</content>
   </entry>
-  <% end %>
+  {% endfor %}
+
 </feed>
