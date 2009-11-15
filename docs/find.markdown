@@ -8,8 +8,8 @@ created_at: Tue Dec 04 14:46:32 +1030 2007
 {{ page.title }}
 ================
 
-The finder methods for DataMapper objects are defined in <%=
-doc('DataMapper::Repository') %>. They include `get()`, `all()`, `first()`
+The finder methods for DataMapper objects are defined in
+[DataMapper::Repository][DataMapper_Repository]. They include `get()`, `all()`, `first()`
 
 Finder Methods
 --------------
@@ -150,3 +150,5 @@ an integer of the number of records matching the every condition you pass in.
 {% highlight ruby linenos %}
 count = Zoo.count(:age.gt => 200) #=> 2
 {% endhighlight %}
+
+[DataMapper_Repository]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Repository

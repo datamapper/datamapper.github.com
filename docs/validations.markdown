@@ -102,9 +102,9 @@ a comprehensive true/false result for the entire walk. If anything returns
 Working with Validation Errors
 ------------------------------
 
-If your validators find errors in your model, they will populate the <%=
-doc('Validate::ValidationErrors') %> object that is available through each of
-your models via calls to your model's `errors` method.
+If your validators find errors in your model, they will populate the
+[Validate::ValidationErrors][Validate_ValidationErrors] object that is available
+through each of your models via calls to your model's `errors` method.
 
 {% highlight ruby linenos %}
   my_account = Account.new(:name => "Jose")
@@ -368,3 +368,5 @@ properties or derived from the environment. To set these properties, a `before :
 Be careful not to `save` your resource in these kinds of methods, or your
 application will spin off into infinite trying to save your object while saving
 your object.
+
+[Validate_ValidationErrors]:http://datamapper.rubyforge.org/dm-more/

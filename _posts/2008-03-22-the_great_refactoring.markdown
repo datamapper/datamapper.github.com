@@ -52,8 +52,8 @@ end
 {% endhighlight %}
 
 A couple of things are going on here. First, DataMapper::Base and
-DataMapper::Persistence are gone and replaced with <%=
-doc('DataMapper::Resource') %>. Next `set_table_name` has been replaced with
+DataMapper::Persistence are gone and replaced with [DataMapper::Resource][DataMapper_Resource].
+Next `set_table_name` has been replaced with
 `resource_names` hash where you specify which arena play occurs in. After that
 we have a couple of Property definitions that look a little different.
 
@@ -109,3 +109,5 @@ Stay tuned in to the [mailing list](http://groups.google.com/group/datamapper),
 check up on the [wiki](http://datamapper.org/), chat it up in
 [#datamapper](irc://irc.freenode.net/#datamapper) and watch
 [github commit messages](http://github.com/datamapper/dm-core/commits/master) for updates.
+
+[DataMapper_Resource]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Resource

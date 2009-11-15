@@ -61,8 +61,8 @@ You need make sure this is set before you define your models.
 Define your models
 ------------------
 
-The Post model is going to need to be persistent, so we'll include <%=
-doc('DataMapper::Resource') %>. The convention with model names is to use the
+The Post model is going to need to be persistent, so we'll include
+[DataMapper::Resource][DataMapper_Resource]. The convention with model names is to use the
 singular, not plural version...but that's just the convention, you can do
 whatever you want.
 
@@ -170,3 +170,5 @@ You could also do:
 {% highlight ruby %}
 DataMapper.auto_migrate!
 {% endhighlight %}
+
+[DataMapper_Resource]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Resource

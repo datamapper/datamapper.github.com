@@ -15,7 +15,7 @@ Single Table Inheritance
 
 Many ORMs support Single Table Inheritance and DataMapper is no different. In
 order to declare a model for Single Table Inheritance, define a property with
-the data-type of <%= doc('Types::Discriminator') %>
+the data-type of [Types::Discriminator][Types_Discriminator].
 
 {% highlight ruby linenos %}
 class Person
@@ -37,8 +37,8 @@ class Daughter < Woman; end
 
 {% endhighlight %}
 
-When DataMapper sees your `type` column declared as type <%=
-doc('Types::Discriminator') %>, it will automatically insert the class name of
+When DataMapper sees your `type` column declared as type
+[Types::Discriminator][Types_Discriminator], it will automatically insert the class name of
 the object you've created and later instantiate that row as that class. It also
 supports deep inheritance, so doing Woman.all will select all women, mothers,
 and daughters (and deeper inherited classes if they exist).
@@ -49,8 +49,8 @@ Paranoia
 Sometimes...most times...you don't _really_ want to destroy a row in the
 database, you just want to mark it as deleted so that you can restore it later
 if need be. This is aptly-named Paranoia and DataMapper has basic support for
-this baked right in. Just declare a property and assign it a type of <%=
-doc('Types::ParanoidDateTime') %> or <%= doc('Types::ParanoidBoolean') %>:
+this baked right in. Just declare a property and assign it a type of
+[Types::ParanoidDateTime][Types_ParanoidDateTime] or [Types::ParanoidBoolean][Types_ParanoidBoolean]:
 
 {% highlight ruby linenos %}
 property :deleted_at, ParanoidDateTime
@@ -108,3 +108,7 @@ zoo.exhibits.animals # retrieves all animals for all exhibits for that zoo
 This has great potential for browsing collections of content, like browsing all
 blog posts' comments by category or tag. At present, chaining beyond 2
 associations is still experimental.
+
+[Types_Discriminator]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Types/Discriminator
+[Types_ParanoidDateTime]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Types/ParanoidDateTime
+[Types_ParanoidBoolean]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Types/ParanoidBoolean
