@@ -100,7 +100,7 @@ huge jump and we're honestly concerned that people may not be able to handle it.
 Alright, so it's not _that_ big of a deal, but we're confident that all of this
 will get DataMapper so close to going 1.0 that we'll be able to taste it. To get
 there, DataMapper's more advanced features like single table inheritance,
-paranoia, and chained associations will be re-implimented to use all this new
+paranoia, and chained associations will be re-implemented to use all this new
 stuff, and then we're sure 0.9 will need a touch up or two.
 
 So close....so very very close...

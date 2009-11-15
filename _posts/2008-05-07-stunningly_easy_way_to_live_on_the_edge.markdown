@@ -12,7 +12,7 @@ author:       afrench
 
 DataMapper is organized into sub-projects, much like
 [Merb](http://www.merbivore.com), and that tends to confuse even the people
-working on it....until recently. Michael Ivey, an active contributer to the Merb
+working on it....until recently. Michael Ivey, an active contributor to the Merb
 project, and our very own Dan Kubb have collaborated on a set of Sake tasks to
 help automate and streamline checking out, packaging, installing, uninstalling,
 updating, repackaging, and reinstalling the DataMapper and Merb projects.

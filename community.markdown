@@ -63,8 +63,8 @@ The People Behind DataMapper
     <p><a href="http://adam.speaksoutofturn.com/">Adam French</a></p>
   </li>
   <li>
-    <img src="/images/people/ben_burket.png" title="Ben Burket" alt="Ben Burket" />
-    <p><a href="http://benburkert.com/">Ben Burket</a></p>
+    <img src="/images/people/ben_burket.png" title="Ben Burket" alt="Ben Burkert" />
+    <p><a href="http://benburkert.com/">Ben Burkert</a></p>
   </li>
   <li>
     <img src="http://www.gravatar.com/avatar.php?gravatar_id=9d1f5d2d9de70bd9a934f557dc95a406" title="Daniel Neighman" alt="Daniel Neighman" />
@@ -108,7 +108,7 @@ The People Behind DataMapper
   </li>
   <li markdown="true">
     ![Luis Lavena](http://www.gravatar.com/avatar/e7cff3cfd41c495e1012227d7dc24202 "Luis Lavena")
-    <p><a href="http://blog.mmediasys.com/">Luis Lavana</a></p>
+    <p><a href="http://blog.mmediasys.com/">Luis Lavena</a></p>
   </li>
   <li markdown="true">
     ![Bernerd Schaefer](http://en.gravatar.com/avatar/c6e7bc52e950b434362d337bcfa01993 "Bernerd Schaefer")
@@ -119,8 +119,8 @@ The People Behind DataMapper
     <p><a href="http://alexcolesportfolio.com/">Alex Coles</a></p>
   </li>
   <li markdown="true">
-    ![Sindre Aarsaether](http://en.gravatar.com/avatar/7f75c16b039cd5946fdee1e0771e4f09?s=80&r=any "Sindre Aarsaether")
-    <p><a href="http://blog.somebee.com/">Sindre Aarsaether</a></p>
+    ![Sindre Aarsæther](http://en.gravatar.com/avatar/7f75c16b039cd5946fdee1e0771e4f09?s=80&r=any "Sindre Aarsæther")
+    <p><a href="http://blog.somebee.com/">Sindre Aarsæther</a></p>
   </li>
   <li markdown="true">
     ![Tony Pitale](http://en.gravatar.com/avatar/cc371b26b5881c44cde17f7885ccd608?s=80&r=any "Tony Pitale")
@@ -139,8 +139,8 @@ The People Behind DataMapper
     <p><a href="http://evan.tiggerpalace.com/">Evan Light</a></p>
   </li>
   <li markdown="true">
-    ![Carl Lereche](http://img.skitch.com/20080901-m66fgxbr395p92q9bati3ijjf9.jpg "Carl Lereche")
-    <p>Carl Lereche</p>
+    ![Carl Lerche](http://img.skitch.com/20080901-m66fgxbr395p92q9bati3ijjf9.jpg "Carl Lerche")
+    <p>Carl Lerche</p>
   </li>
   <li markdown="true">
     ![Martin Gamsjaeger](http://www.gravatar.com/avatar/5e518814b76962fdd1ad0e74dfac5ea7 "Martin Gamsjaeger")

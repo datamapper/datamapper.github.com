@@ -31,7 +31,8 @@ zoos  = Zoo.all(:opened_on => (s..e))     # all zoos that opened on a date in th
 Scopes and Chaining
 -------------------
 
-A call to `all()` or `first()` can be chained together to further build a query to the data-store:
+A call to `all()` or `first()` can be chained together to further build a query
+to the data-store:
 
 {% highlight ruby linenos %}
 all_zoos = Zoo.all
