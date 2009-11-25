@@ -61,13 +61,22 @@ related model's name.
 class Post
   include DataMapper::Resource
 
+  property :id, Serial
+
   has n, :comments
 end
 
 class Comment
   include DataMapper::Resource
 
+  property :id,     Serial
+  property :rating, Integer
+
   belongs_to :post
+
+  def self.popular
+    all(:rating.gt => 3)
+  end
 end
 
 {% endhighlight %}
@@ -134,7 +143,7 @@ saved.
 
 # Add the comment
 # (also #create can be used - it acts as Comment.create would)
-@comment = @post.comments.build(:subject => 'DataMapper ...', ...)
+@comment = @post.comments.new(:subject => 'DataMapper ...', ...)
 
 # and save it
 @comment.save
@@ -162,7 +171,7 @@ need
 class Post
   include DataMapper::Resource
 
-  belongs_to :author, :class_name => 'User', :child_key => [ :post_id ]
+  belongs_to :author, :model => 'User', :child_key => [ :post_id ]
 end
 {% endhighlight %}
 
@@ -195,7 +204,8 @@ In a way, it acts like a database view in that respect.
 
 {% highlight ruby linenos %}
 @post = Post.first
-@post.categories # returns the full association
-@post.categories.all(:limit => 10, :order => [ :name.asc ]) # return the first 10 categories ordered by name
-@post.categories(:limit => 10, :order => [ :name.asc ]) # alias for #all, you can pass in the options directly
+@post.comments # returns the full association
+@post.comments.all(:limit => 10, :order => [ :created_at.desc ]) # return the first 10 comments, newest first
+@post.comments(:limit => 10, :order => [ :created_at.desc ]) # alias for #all, you can pass in the options directly
+@post.comments.popular # Uses the 'popular' finder method/scope to return only highly rated comments
 {% endhighlight %}
