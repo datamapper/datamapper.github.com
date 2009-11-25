@@ -20,7 +20,7 @@ The types of associations currently in DataMapper are:
   <thead>
     <tr>
       <td>ActiveRecord Terminology</td>
-      <td>DataMapper 0.9 Terminology</td>
+      <td>DataMapper Terminology</td>
     </tr>
   </thead>
   <tbody>
@@ -34,7 +34,7 @@ The types of associations currently in DataMapper are:
     </tr>
     <tr>
       <td>belongs_to</td>
-      <td>belongs_to, many_to_one</td>
+      <td>belongs_to</td>
     </tr>
     <tr>
       <td>has_and_belongs_to_many</td>
