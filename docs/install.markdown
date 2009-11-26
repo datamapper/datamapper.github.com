@@ -13,7 +13,7 @@ problems, you can find some tips below.
 
 <h2 class="newRelease">Windows Users</h2>
 
-<p class="newRelease" markdown="true">At present, [DataObjects](http://rubyforge.org/projects/dorb/)
+<p class="newRelease" markdown="true">At present, [DataObjects](http://rdoc.info/projects/datamapper/do)
 does not run well on Windows natively <br>and will require you to install cygwin
 or another linux-like <br>environment. People have been able to get it installed
 and running <br>on Windows but with severe drops in performance. This is a known
