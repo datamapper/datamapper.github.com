@@ -33,7 +33,7 @@ you, but just in case, make sure you have the following gems as well:
 Using Trunk
 -----------
 
-You will also need to install the DataObject gem and the adaptor for your
+You will also need to install the DataObject gem and the adapter for your
 platform
 
 {% highlight bash linenos %}
@@ -41,7 +41,7 @@ sudo gem install data_objects
 sudo gem install do_mysql
 {% endhighlight %}
 
-The current database adaptors are:
+The current database adapters are:
 
 * do_mysql
 * do_sqlite3
