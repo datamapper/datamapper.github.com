@@ -119,7 +119,7 @@ The People Behind DataMapper
     <p><a href="http://alexcolesportfolio.com/">Alex Coles</a></p>
   </li>
   <li markdown="true">
-    ![Sindre Aarsæther](http://en.gravatar.com/avatar/7f75c16b039cd5946fdee1e0771e4f09?s=80&r=any "Sindre Aarsæther")
+    ![Sindre Aarsæther](http://en.gravatar.com/avatar/7f75c16b039cd5946fdee1e0771e4f09?s=80&r=any "Sindre Aarsaether")
     <p><a href="http://blog.somebee.com/">Sindre Aarsæther</a></p>
   </li>
   <li markdown="true">
@@ -131,7 +131,7 @@ The People Behind DataMapper
     <p>Jonathan Stott</p>
   </li>
   <li markdown="true">
-    ![Matt Aimonetti](http://railsontherun.com/matt_aimonetti.jpg "Matt Aimonetti")
+    ![Matt Aimonetti](http://railsontherun.com/matt_aimonetti.jpg)
     <p><a href="http://www.merbist.com/">Matt Aimonetti</a></p>
   </li>
   <li markdown="true">
