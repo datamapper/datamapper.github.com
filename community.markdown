@@ -106,48 +106,48 @@ The People Behind DataMapper
     <img src="http://en.gravatar.com/avatar/949106533af33ece50adda643c34bc08?s=80" title="Robert Evans" />
     <p><a href="http://robertrevans.com/">Robert Evans</a></p>
   </li>
-  <li markdown="true">
-    ![Luis Lavena](http://www.gravatar.com/avatar/e7cff3cfd41c495e1012227d7dc24202 "Luis Lavena")
+  <li>
+    <img src="http://www.gravatar.com/avatar/e7cff3cfd41c495e1012227d7dc24202" title="Luis Lavena"/>
     <p><a href="http://blog.mmediasys.com/">Luis Lavena</a></p>
   </li>
-  <li markdown="true">
-    ![Bernerd Schaefer](http://en.gravatar.com/avatar/c6e7bc52e950b434362d337bcfa01993 "Bernerd Schaefer")
+  <li>
+    <img src="http://en.gravatar.com/avatar/c6e7bc52e950b434362d337bcfa01993" title="Bernerd Schaefer"/>
     <p>Bernerd Schaefer</p>
   </li>
-  <li markdown="true">
-    ![Alex Coles](/images/people/alex_coles.jpg "Alex Coles")
+  <li>
+    <img src="/images/people/alex_coles.jpg" title="Alex Coles"/>
     <p><a href="http://alexcolesportfolio.com/">Alex Coles</a></p>
   </li>
-  <li markdown="true">
-    ![Sindre Aarsæther](http://en.gravatar.com/avatar/7f75c16b039cd5946fdee1e0771e4f09?s=80&r=any "Sindre Aarsaether")
+  <li>
+    <img src="http://en.gravatar.com/avatar/7f75c16b039cd5946fdee1e0771e4f09?s=80&r=any" title="Sindre Aarsaether"/>
     <p><a href="http://blog.somebee.com/">Sindre Aarsæther</a></p>
   </li>
-  <li markdown="true">
-    ![Tony Pitale](http://en.gravatar.com/avatar/cc371b26b5881c44cde17f7885ccd608?s=80&r=any "Tony Pitale")
+  <li>
+    <img src="http://en.gravatar.com/avatar/cc371b26b5881c44cde17f7885ccd608?s=80&r=any" title="Tony Pitale"/>
     <p><a href="http://t.pitale.com/">Tony Pitale</a></p>
   </li>
-  <li markdown="true">
-    ![Jonathan Stott](http://en.gravatar.com/avatar/476d2a42689da3bd46375955fda053df?s=80&r=any "Jonathan Stott")
+  <li>
+    <img src="http://en.gravatar.com/avatar/476d2a42689da3bd46375955fda053df?s=80&r=any" title="Jonathan Stott"/>
     <p>Jonathan Stott</p>
   </li>
-  <li markdown="true">
-    ![Matt Aimonetti](http://railsontherun.com/matt_aimonetti.jpg)
+  <li>
+    <img src="http://railsontherun.com/matt_aimonetti.jpg" title="Matt Aimonetti"/>
     <p><a href="http://www.merbist.com/">Matt Aimonetti</a></p>
   </li>
-  <li markdown="true">
-    ![Evan Light](http://en.gravatar.com/userimage/3495582/149a1aaf5921e34fbcb1ba6a975ed2d4.jpeg "Evan Light")
+  <li>
+    <img src="http://en.gravatar.com/userimage/3495582/149a1aaf5921e34fbcb1ba6a975ed2d4.jpeg" title="Evan Light"/>
     <p><a href="http://evan.tiggerpalace.com/">Evan Light</a></p>
   </li>
-  <li markdown="true">
-    ![Carl Lerche](http://img.skitch.com/20080901-m66fgxbr395p92q9bati3ijjf9.jpg "Carl Lerche")
+  <li>
+    <img src="http://img.skitch.com/20080901-m66fgxbr395p92q9bati3ijjf9.jpg" title="Carl Lerche"/>
     <p>Carl Lerche</p>
   </li>
-  <li markdown="true">
-    ![Martin Gamsjaeger](http://www.gravatar.com/avatar/5e518814b76962fdd1ad0e74dfac5ea7 "Martin Gamsjaeger")
+  <li>
+    <img src="http://www.gravatar.com/avatar/5e518814b76962fdd1ad0e74dfac5ea7" title="Martin Gamsjaeger"/>
     <p><a href="http://sick.snusnu.info/">Martin Gamsjaeger</a></p>
   </li>
-  <li markdown="true">
-    ![Bryan Ray](http://farm4.static.flickr.com/3119/2818724949_c9eaaf3ae3_o.jpg "Bryan Ray")
+  <li>
+    <img src="http://farm4.static.flickr.com/3119/2818724949_c9eaaf3ae3_o.jpg" title="Bryan Ray"/>
     <p><a href="http://bryanray.net/">Bryan Ray</a></p>
   </li>
   <li>
