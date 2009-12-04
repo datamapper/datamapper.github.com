@@ -12,7 +12,7 @@ why you should be interested,<br> read the [Why Datamapper?](/why.html) page.</p
 
 <h2 class="latest-release">Recent News</h2>
 
-{% for post in site.categories.important limit:1 %}
+{% for post in site.tags.important limit:1 %}
 <p class="latest-release"> {{ post.title }}<br/>
   {{ post.summary }}<br/>
   <a href="{{ post.url }}" class="read_more">Read more</a>

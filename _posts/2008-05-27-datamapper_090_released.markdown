@@ -1,6 +1,7 @@
 ---
 layout:       articles
-categories:   [important, articles]
+categories:   articles
+tags:         important
 title:        DataMapper 0.9 is Released
 created_at:   2008-05-27T03:07:24-05:00
 summary:      And you thought that The Great Refactoring was for naught
