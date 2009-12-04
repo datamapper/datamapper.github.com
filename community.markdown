@@ -52,7 +52,7 @@ The People Behind DataMapper
   </li>
   <li>
     <img src="/images/people/yehuda.jpg" title="Yehuda Katz" alt="Yehuda Katz" />
-    <p><a href="http://www.yehudakatz.com/">Yehuda Katz</a></p>
+    <p><a href="http://yehudakatz.com/">Yehuda Katz</a></p>
   </li>
   <li>
     <img src="/images/people/rando.jpg" title="Paul Sadauskas" alt="Paul Sadauskas" />
@@ -84,7 +84,7 @@ The People Behind DataMapper
   </li>
   <li>
     <img src="http://www.gravatar.com/avatar/ee5c1f36549c4ddca2189f9c4cf36f2c" title="Scott Bauer" alt="Scott Bauer" />
-    <p><a href="http://railsaddict.com/">Scott Bauer</a></p>
+    <p>Scott Bauer</p>
   </li>
   <li>
     <img src="/images/people/guy_v.png" title="Guy van den Berg" alt="Guy van den Berg"/>
@@ -116,11 +116,11 @@ The People Behind DataMapper
   </li>
   <li>
     <img src="/images/people/alex_coles.jpg" title="Alex Coles"/>
-    <p><a href="http://alexcolesportfolio.com/">Alex Coles</a></p>
+    <p><a href="http://alexbcoles.com/">Alex Coles</a></p>
   </li>
   <li>
     <img src="http://www.gravatar.com/avatar/7f75c16b039cd5946fdee1e0771e4f09" title="Sindre Aarsaether"/>
-    <p><a href="http://blog.somebee.com/">Sindre Aarsæther</a></p>
+    <p>Sindre Aarsæther</p>
   </li>
   <li>
     <img src="http://www.gravatar.com/avatar/cc371b26b5881c44cde17f7885ccd608" title="Tony Pitale"/>
@@ -132,7 +132,7 @@ The People Behind DataMapper
   </li>
   <li>
     <img src="http://www.gravatar.com/avatar/c69521d6e22fc0bbd69337ec8b1698df" title="Matt Aimonetti"/>
-    <p><a href="http://www.merbist.com/">Matt Aimonetti</a></p>
+    <p><a href="http://merbist.com/">Matt Aimonetti</a></p>
   </li>
   <li>
     <img src="http://www.gravatar.com/avatar/149a1aaf5921e34fbcb1ba6a975ed2d4" title="Evan Light"/>
@@ -152,7 +152,7 @@ The People Behind DataMapper
   </li>
   <li>
     <img src="http://www.gravatar.com/userimage/3961329/ab869cf398cb79a0310627c8f6a76e0d.jpg" title="Wesley Beary" alt="Wesley Beary" />
-    <p><a href="http://monki.geemus.com/">Wesley Beary</a></p>
+    <p><a href="http://geemus.com/">Wesley Beary</a></p>
   </li>
   <li>
     <img src="http://www.gravatar.com/avatar/b012094b37ab6946c44eaa41d7828478" title="Dirkjan Bussink" alt="Dirkjan Bussink" />
