@@ -71,4 +71,6 @@ def self.setup(name, uri_or_options)
 {% endhighlight %}
 
 For more information about the YARD documentation style, see the YARD
-[Getting Started](http://yard.soen.ca/getting_started) document.
+[Getting Started](http://yardoc.org/docs/yard/file:docs/GettingStarted.md) document.
+
+*[YARD]: Yet Another Ruby Documentation (tool)
