@@ -1,5 +1,5 @@
 ---
-layout:       articles
+layout:       spotlight
 categories:   articles
 title:        Spotlight on... Composite Keys
 created_at:   2008-03-29T19:09:07-05:00
@@ -97,11 +97,3 @@ intuitively and without compromise!
 In later "Spotlight On..." articles, we'll examine and demonstrate other
 DataMapper features or persistence concepts as well as compare similar features
 with other ORMs or libraries.
-
-Contribute a "Spotlight On..." Article
---------------------------------------
-
-p(newRelease).  Got something important to say?  Want something explained a little<br>
-better or demonstrated? Contribute or request a "Spotlight On..." <br> article!
-Email the [DataMapper Mailing List](http://groups.google.com/group/datamapper) with the request or <br>
-contribution and we'll post it here.
