@@ -171,7 +171,7 @@ need
 class Post
   include DataMapper::Resource
 
-  belongs_to :author, :class_name => 'User', :child_key => [ :post_id ]
+  belongs_to :author, :model => 'User', :child_key => [ :post_id ]
 end
 {% endhighlight %}
 
