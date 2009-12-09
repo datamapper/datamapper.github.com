@@ -131,7 +131,7 @@ Adding To Associations
 ----------------------
 
 Adding to associations, to add a comment to a post for example, is quite simple.
-`build` or `create` can be called directly on the association, or an already
+`new` or `create` can be called directly on the association, or an already
 existing item can be appended to the association with `<<` and then the item
 saved.
 
@@ -165,15 +165,25 @@ The association declarations make certain assumptions about which classes are
 being related and the names of foreign keys based on some simple conventions. In
 some situations you may need to tweak them a little. The association
 declarations accept additional options to allow you to customize them as you
-need
+need.  By default, the child key property is created such that a parent object is
+required and there will be an index in appropriate data-stores.  If the child
+key already exists, that is used instead.
 
 {% highlight ruby linenos %}
 class Post
   include DataMapper::Resource
 
   belongs_to :author, :model => 'User', :child_key => [ :post_id ]
+  # or simply ...
+  belongs_to :author, 'User'
+
+
+  # sometimes, a parent object is not required.
+  belongs_to :series, :nullable => true
 end
 {% endhighlight %}
+
+
 
 Adding Conditions to Associations
 ---------------------------------
