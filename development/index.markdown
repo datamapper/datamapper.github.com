@@ -28,7 +28,7 @@ Coding Conventions and Considerations
 
 When contributing any code to DataMapper, please follow these guidelines.
 
-* Spec first. Spec thoroughly. (DataMapper is written with [Rspec](http://rspec.info/))
+* Spec first. Spec thoroughly. (DataMapper is written with [RSpec](http://rspec.info/))
 * Parentheses around parameter lists for methods
 * Two space indent - not tabs!
 * Write optimal code, not magic code

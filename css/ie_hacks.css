@@ -1,7 +1,3 @@
-#header ul {
-  left:-30px;
-}
-/* Margin doubling on floated elements */
-p#download {
-  display:inline;
-}
+#header ul { left: -30px; }
+
+p#download { display: inline; }

@@ -1,5 +1,5 @@
 ---
-layout:       articles
+layout:       spotlight
 categories:   articles
 title:        Spotlight on... Laziness
 created_at:   2008-04-03T23:08:12-05:00
@@ -179,15 +179,3 @@ one-by-one basis.
 
 And, most importantly, you can avoid doing work you don't have to do for as long
 as you can avoid it.
-
-<div class="puff" markdown="true">
-
-Contribute a "Spotlight On..." Article
---------------------------------------
-
-Got something important to say?  Want something explained a little<br>
-better or demonstrated? Contribute or request a "Spotlight On..." <br> article!
-Email the [DataMapper Mailing List](http://groups.google.com/group/datamapper) with the request or <br>
-contribution and we'll post it here.
-
-</div>

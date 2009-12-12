@@ -48,7 +48,6 @@ DataMapper uses the YARD standard for RDoc documentation. Here's a brief sample
 from the internals of DM-Core:
 
 {% highlight ruby linenos %}
-##
 # Setups up a connection to a data-store
 #
 # @param [Symbol] name
@@ -56,10 +55,10 @@ from the internals of DM-Core:
 # @param [Hash(Symbol => String), Addressable::URI, String] uri_or_options
 #   connection information
 #
-# @return Repository
-#   the resulting setup repository
+# @return [DataMapper::Adapters::AbstractAdapter]
+#   the resulting setup adapter
 #
-# @raise ArgumentError "+name+ must be a Symbol, but was..."
+# @raise [ArgumentError] "+name+ must be a Symbol, but was..."
 #   indicates that an invalid argument was passed for name[Symbol]
 # @raise [ArgumentError] "+uri_or_options+ must be a Hash, URI or String, but was..."
 #   indicates that connection information could not be gleaned from
@@ -72,4 +71,6 @@ def self.setup(name, uri_or_options)
 {% endhighlight %}
 
 For more information about the YARD documentation style, see the YARD
-[Getting Started](http://yard.soen.ca/getting_started) document.
+[Getting Started](http://yardoc.org/docs/yard/file:docs/GettingStarted.md) document.
+
+*[YARD]: Yet Another Ruby Documentation (tool)

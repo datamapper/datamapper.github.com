@@ -10,7 +10,8 @@ author:       afrench
 {{ page.title }}
 ================
 
-<a href="http://mwrc2008.confreaks.com/04katz.html" style="border:10px; color:#FFF; text-decoration:none;">!/images/wykatz_at_mwrc2008.png(Yehuda Katz' presentation entitled 'Faster, Better ORM With DataMapper)!</a>
+<a href="http://mwrc2008.confreaks.com/04katz.html" style="border:10px; color:#FFF; text-decoration:none;">
+<img src="/images/wykatz_at_mwrc2008.png" title="Yehuda Katz' presentation entitled 'Faster, Better ORM With DataMapper"/></a>
 
 At this year's [Mountain West Ruby Conference 2008](http://mtnwestrubyconf.org/),
 DataMapper's own Yehuda Katz gave a presentation entitled "Faster, Better ORM

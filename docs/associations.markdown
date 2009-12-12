@@ -20,7 +20,7 @@ The types of associations currently in DataMapper are:
   <thead>
     <tr>
       <td>ActiveRecord Terminology</td>
-      <td>DataMapper 0.9 Terminology</td>
+      <td>DataMapper Terminology</td>
     </tr>
   </thead>
   <tbody>
@@ -34,7 +34,7 @@ The types of associations currently in DataMapper are:
     </tr>
     <tr>
       <td>belongs_to</td>
-      <td>belongs_to, many_to_one</td>
+      <td>belongs_to</td>
     </tr>
     <tr>
       <td>has_and_belongs_to_many</td>
@@ -61,13 +61,22 @@ related model's name.
 class Post
   include DataMapper::Resource
 
+  property :id, Serial
+
   has n, :comments
 end
 
 class Comment
   include DataMapper::Resource
 
+  property :id,     Serial
+  property :rating, Integer
+
   belongs_to :post
+
+  def self.popular
+    all(:rating.gt => 3)
+  end
 end
 
 {% endhighlight %}
@@ -122,7 +131,7 @@ Adding To Associations
 ----------------------
 
 Adding to associations, to add a comment to a post for example, is quite simple.
-`build` or `create` can be called directly on the association, or an already
+`new` or `create` can be called directly on the association, or an already
 existing item can be appended to the association with `<<` and then the item
 saved.
 
@@ -134,7 +143,7 @@ saved.
 
 # Add the comment
 # (also #create can be used - it acts as Comment.create would)
-@comment = @post.comments.build(:subject => 'DataMapper ...', ...)
+@comment = @post.comments.new(:subject => 'DataMapper ...', ...)
 
 # and save it
 @comment.save
@@ -156,15 +165,25 @@ The association declarations make certain assumptions about which classes are
 being related and the names of foreign keys based on some simple conventions. In
 some situations you may need to tweak them a little. The association
 declarations accept additional options to allow you to customize them as you
-need
+need.  By default, the child key property is created such that a parent object is
+required and there will be an index in appropriate data-stores.  If the child
+key already exists, that is used instead.
 
 {% highlight ruby linenos %}
 class Post
   include DataMapper::Resource
 
-  belongs_to :author, :class_name => 'User', :child_key => [ :post_id ]
+  belongs_to :author, :model => 'User', :child_key => [ :post_id ]
+  # or simply ...
+  belongs_to :author, 'User'
+
+
+  # sometimes, a parent object is not required.
+  belongs_to :series, :nullable => true
 end
 {% endhighlight %}
+
+
 
 Adding Conditions to Associations
 ---------------------------------
@@ -195,7 +214,8 @@ In a way, it acts like a database view in that respect.
 
 {% highlight ruby linenos %}
 @post = Post.first
-@post.categories # returns the full association
-@post.categories.all(:limit => 10, :order => [ :name.asc ]) # return the first 10 categories ordered by name
-@post.categories(:limit => 10, :order => [ :name.asc ]) # alias for #all, you can pass in the options directly
+@post.comments # returns the full association
+@post.comments.all(:limit => 10, :order => [ :created_at.desc ]) # return the first 10 comments, newest first
+@post.comments(:limit => 10, :order => [ :created_at.desc ]) # alias for #all, you can pass in the options directly
+@post.comments.popular # Uses the 'popular' finder method/scope to return only highly rated comments
 {% endhighlight %}

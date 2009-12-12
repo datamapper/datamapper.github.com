@@ -1,37 +1,37 @@
 ---
 layout:       articles
 categories:   articles
-title:        The Stunningly Easy Way to Live On The Edge Of DataMapper
-created_at:   2008-05-07T19:04:34-05:00
-summary:      A little sake goes a long way
-author:       afrench
+title:        Living On The Edge Of DataMapper
+created_at:   2009-11-27T19:04:34-05:00
+summary:      rubygems, git and github will get you going
+author:       snusnu
 ---
 
 {{ page.title }}
 ================
 
-DataMapper is organized into sub-projects, much like
-[Merb](http://www.merbivore.com), and that tends to confuse even the people
-working on it....until recently. Michael Ivey, an active contributor to the Merb
-project, and our very own Dan Kubb have collaborated on a set of Sake tasks to
-help automate and streamline checking out, packaging, installing, uninstalling,
-updating, repackaging, and reinstalling the DataMapper and Merb projects.
+DataMapper is organized into multiple gems that reside within 3 `git` repositories.
+At the very least you will need to clone the [extlib](http://github.com/datamapper/extlib)
+and [dm-core](http://github.com/datamapper/dm-core) gems. If you plan to develop with a
+relational database, you will also need to install [do](http://github.com/datamapper/do).
+The [dm-more](http://github.com/datamapper/dm-more) project contains further optional
+gems that will make developing applications with DataMapper even easier.
 
-If you like to live life on the edge, this is the happiest way to do it.
 
-### Step 0 - The Setup
+### Step 0 - Prerequisites
 
-A couple of very basic requirements before we begin. First, you'll need to have
-an up-to-date installation of [Rubygems](http://www.rubygems.org/), the Ruby
-package management system. To check what version you have do:
+First, a couple of basic requirements before we begin. You will need to have
+an up-to-date installation of [rubygems](http://www.rubygems.org/), the [ruby](http://www.ruby-lang.org)
+package management system. To check what version you have, issue the following command:
 
-{% highlight bash linenos %}
+{% highlight bash %}
 gem --version
 {% endhighlight %}
 
-If you aren't on 1.2.x, update by running
+If that doesn't give at least version 1.3.5, update your [rubygems](http://www.rubygems.org/)
+installation by running:
 
-{% highlight bash linenos %}
+{% highlight bash %}
 sudo gem update --system
 {% endhighlight %}
 
@@ -44,102 +44,108 @@ to for help:
 * [Git On Windows](http://ropiku.wordpress.com/2007/12/28/git-on-windows/)
 * [Installing Git on Ubuntu](http://chrisolsen.org/2008/03/10/installing-git-on-ubuntu/)
 
-After that, you'll need to `gem uninstall` any of the "dm-\*" projects you
-already have installed. This includes 'data_objects' and its associated
-adapters.
 
-Next, you'll need a few of the base dependencies.  To install them, run
+### Step 1 - Gem dependencies
 
-{% highlight bash %}
-sudo gem install addressable english rspec
-{% endhighlight %}
-
-Once that's done, do the following:
-
-{% highlight bash linenos %}
-mkdir -p ~/src
-cd ~/src
-{% endhighlight %}
-
-### Step 1 - Have Some Sake
-
-No, not the wonderful alcoholic beverage, the
-[system-wide rake tasks library](http://errtheblog.com/posts/60-sake-bomb) by
-[PJ Hyett and Chris Wanstrath of Err. The Blog](http://errtheblog.com/).
-Ivey's and dkubb's automated
-installation and reinstallation scripts are written as sake tasks, so you'll
-need it installed on your machine.
-
-{% highlight bash linenos %}
-sudo gem install sake
-{% endhighlight %}
-
-Once you're done, you should be able to see sake in your path by executing
-`which sake` and see where `gem` installed it.
-
-### Step 2 - Install the Tasks
-
-Now that you're all setup with sake and the `src` directory, it's time to
-install the sake tasks. They can be found at <http://github.com/dkubb/dm-dev/>
-and are very easily installed by doing:
-
-{% highlight bash linenos %}
-sake -i http://github.com/dkubb/dm-dev/raw/master/dm-dev.sake
-{% endhighlight %}
-
-The tasks that get installed are available for perusal by issuing `sake -T`
+Once you have `rubygems` and `git` installed, you'll need a few gems that `datamapper` depends on.
+To install them, run the following commands. Note that depending on your setup, you will possibly have
+to prepend `sudo` to some of the following commands (this applies to all the commands in this article).
 
 {% highlight bash %}
-$ sake -T
-sake dm:clone                          # Clone a copy of the DataMapper repository and dependencies
-sake dm:gems:refresh                   # Pull fresh copies of DataMapper and refresh all the gems
-sake dm:gems:wipe                      # Uninstall all RubyGems related to DataMapper
-sake dm:install                        # Install dm-core, dm-more and do
-sake dm:install:core                   # Install dm-core
-sake dm:install:do                     # Install do drivers
-sake dm:install:do:data_objects        # Install data_objects
-sake dm:install:do:mysql               # Install do_mysql
-sake dm:install:do:postgres            # Install do_postgres
-sake dm:install:do:sqlite3             # Install do_sqlite3
-sake dm:install:more                   # Install dm-more
-sake dm:install:more:merb_datamapper   # Install merb_datamapper
-sake dm:sake:refresh                   # Remove and reinstall DataMapper sake recipes
-sake dm:update                         # Update your local DataMapper.  Run from inside the top-level dm dir
+gem install gemcutter
+gem tumble
+gem install rake rspec jeweler addressable
 {% endhighlight %}
 
-### Step 3 - Live a little
 
-Change directories into the `src` directory and run `sake dm:clone`. You'll see
-git cloning DataMapper Core, DataMapper More, and DataObjects from their
-respective repositories on GitHub. When that's done, `cd dm` and have a look
-around.
+### Step 2 - Install dm-core
 
-When your ready, return to `~/src/dm` and issue `sake dm:install`.
+Now that you have everything you need in place, it's time to install the
+[extlib](http://github.com/datamapper/extlib) and [dm-core](http://github.com/datamapper/dm-core)
+gems. To do that, prepare a directory where you will keep the sources, clone
+the `git` repositories, and install the contained gems with the provided `rake` tasks.
 
-### All Together Now
+Prepare a directory where you will keep the `git` clones
 
-When executed together, these 3 steps amount to 7 lines at the command line.
-Talk about stunningly easy.
-
-{% highlight bash linenos %}
-mkdir -p ~/src
-cd ~/src
-sudo gem install sake
-sake -i http://github.com/dkubb/dm-dev/raw/master/dm-dev.sake
-sake dm:clone
-cd dm
-sake dm:install
+{% highlight bash %}
+mkdir -p ~/src/github/vendor
 {% endhighlight %}
+
+Change into that directory, clone the repositories and install the gems
+with the provided rake task.
+
+{% highlight bash %}
+cd ~/src/github/vendor
+git clone git://github.com/datamapper/extlib.git
+git clone git://github.com/datamapper/dm-core.git
+cd extlib/
+rake install
+cd ..
+cd dm-core/
+rake install
+{% endhighlight %}
+
+### Step 3 - Install do and dm-more (Optional)
+
+With [dm-core](http://github.com/datamapper/dm-core) properly installed, you're ready
+to install [do](http://github.com/datamapper/do) and [dm-more](http://github.com/datamapper/dm-more).
+The `do` project provides support for various relational databases and `dm-more` contains various gems
+that help you with common tasks you will face when developing database backed applications.
+
+Installing a `do` adapter requires you to install `data_objects` as a minimum requirement.
+Additionally, you will need to install one or more specific database adapters that are provided within
+the project. The following shows you how to install `data_objects` and the `do_mysql` adapter. Replace
+`do_mysql` with whatever provided database adapter you need to work with.
+
+{% highlight bash %}
+cd ~/src/github/vendor
+git clone git://github.com/datamapper/do.git
+cd do/data_objects
+rake install
+cd ..
+cd do_mysql
+rake install
+{% endhighlight %}
+
+The [dm-more](http://github.com/datamapper/dm-more) project provides various gems that help you with
+common database development tasks. Clone the `git` repository, `cd` into the subdirectories that contain
+the gems you want to use, and `rake install` them from there. There is also a `rake install` task at the
+`dm-more` root directory which installs all of `dm-more's` gems. Unless you help with developing `dm-more`
+itself, you probably shouldn't need to install all the gems that `dm-more` provides. The following
+instructions show how to clone the `dm-more` project and install the `dm-validations` gem.
+
+{% highlight bash %}
+cd ~/src/github/vendor
+git clone git://github.com/datamapper/dm-more.git
+cd dm-more/dm-validations
+rake install
+{% endhighlight %}
+
+### Keeping up with changes
 
 Changes happen to DataMapper and it's buddies all the time. To refresh your
-installation of DataMapper and DataObjects, return to `~/src/dm` and issue:
+installation issue the following commands:
 
-{% highlight bash linenos %}
-sake dm:gems:refresh
+{% highlight bash %}
+cd ~/src/github/vendor
+cd extlib
+git pull origin master
+rake install
+cd ../dm-core
+git pull origin master
+rake install
+cd ../do
+git pull origin master
+cd data_objects
+rake install
+# cd into the desired adapter subdirectory and rake install from there
+cd ../dm-more
+git pull origin master
+# cd into the desired gem subdirectory and rake install from there
 {% endhighlight %}
 
-It will uninstall your local gems, pull down fresh changes from github, and
-reinstall the gems again.
+### Uninstall dm-core and friends
 
-On a side note, checkout <http://merbivore.com/merb-dev.sake> for the original
-merb related sake tasks by Michael Ivey wrote that these came from.
+Should you ever have the need to uninstall datamapper completely, Dan Kubb has prepared a
+bash command that does the trick. Have a look at [this gist](http://gist.github.com/31187)
+for a oneliner that gets rid of datamapper completely.

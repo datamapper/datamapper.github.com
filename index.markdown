@@ -12,8 +12,8 @@ why you should be interested,<br> read the [Why Datamapper?](/why.html) page.</p
 
 <h2 class="latest-release">Recent News</h2>
 
-{% for post in site.categories.important limit:1 %}
-<p class="latest-release"> {{ post.title }}<br/>
+{% for post in site.tags.important limit:1 %}
+<p class="latest-release">{{ post.title }}<br/>
   {{ post.summary }}<br/>
   <a href="{{ post.url }}" class="read_more">Read more</a>
 </p>
@@ -24,7 +24,8 @@ Help
 ----
 
 If you're having trouble, don't forget to check the documentation, which has
-both references and step by step tutorials.<br/>
+both references and step by step tutorials.
+
 [Read documentation](/docs)
 </div>
 
@@ -33,7 +34,8 @@ Issues
 ------
 
 If you're still having trouble, or you think you came across something you think
-might be a bug, let us know.<br/>
+might be a bug, let us know.
+
 [Log a ticket](http://datamapper.lighthouseapp.com/projects/20609-datamapper/overview)
 </div>
 
@@ -43,7 +45,7 @@ News
 <dl>
 {% for post in site.posts limit:20 %}
 
-  <dt><a href="{{ post.url }}"> {{ post.title }}</a></dt>
+  <dt><a href="{{ post.url }}">{{ post.title }}</a></dt>
   <dd>
     <p>{{ post.summary }}</p>
     <p class="meta">{{ post.date | date_to_long_string }} by {{ post.author }}</p>
