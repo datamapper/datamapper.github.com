@@ -12,7 +12,7 @@ need to use git to commit their code directly to the main repository.
 This page contains information on getting Git installed, getting source code
 with Git, and steps for working with Git.
 
-Also, see these references: <a href="http://git.or.cz/course/svn.html">Git
+Also, see these references: <a href="http://git-scm.com/course/svn.html">Git
 &#8211; <span class="caps">SVN</span> Crash Course</a> and <a
 href="http://www.kernel.org/pub/software/scm/git/docs/everyday.html">Everyday
 <span class="caps">GIT</span> With 20 Commands Or So</a>
@@ -24,7 +24,7 @@ You can use an earlier version, but 1.5.x is definitely recommended.
 
 * MacPorts has `git-core`
 * Debian has `git-core`; (If you're using Etch, you can get a recent Git version from Backports <a href="http://backports.org/dokuwiki/doku.php?id=instructions">http://backports.org/dokuwiki/do&#8230;</a>)
-* Get the source at <a href="http://git.or.cz/">http://git.or.cz/</a>.
+* Get the source at <a href="http://git-scm.com/">http://git-scm.com/</a>.
 
 Setup
 -----

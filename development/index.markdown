@@ -7,7 +7,7 @@ created_at: Mon Mar 17 01:37:12 -0500 2008
 Development
 ===========
 
-DataMapper development has switched to the [Git](http://git.or.cz) SCM. Please
+DataMapper development has switched to the [Git](http://git-scm.com) SCM. Please
 see [using git](/using-git.html) to learn how to contribute.
 To check out "tip" DataMapper anonymously:
 
