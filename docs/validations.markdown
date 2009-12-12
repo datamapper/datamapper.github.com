@@ -51,7 +51,7 @@ Triggers that generate validator creation:
 
 {% highlight ruby %}
   # implicitly creates a validates_present
-  :nullable => false
+  :required => true
   :length => (1..n)
 
   # implicitly creates a validates_length
@@ -68,7 +68,7 @@ Triggers that generate validator creation:
 {% endhighlight %}
 
 
-Here we see an example of a class with both a manual and and auto-validation declared:
+Here we see an example of a class with both a manual and auto-validation declared:
 
 {% highlight ruby linenos %}
   require 'dm-validations'
@@ -138,7 +138,7 @@ Something similar can be done for auto-validations, too, via setting `:messages`
 in the property options.
 
 {% highlight ruby %}
-  property :email, String, :nullable => false, :unique => true, :format => :email_address,
+  property :email, String, :required => true, :unique => true, :format => :email_address,
                            :messages => {
                              :presence => "We need your email address.",
                              :is_unique => "We already have that email.",
@@ -227,7 +227,7 @@ being validated.
     include DataMapper::Resource
 
     property :id,          Serial
-    property :title,       String, :nullable => false
+    property :title,       String, :required => true
     property :description, Text
     property :commit,      String
     property :status,      Enum[ :new, :open, :invalid, :complete ]
@@ -352,8 +352,8 @@ properties or derived from the environment. To set these properties, a `before :
     include DataMapper::Resource
 
     property :id,        Serial
-    property :title,     String, :nullable => false
-    property :permalink, String, :nullable => false
+    property :title,     String, :required => true
+    property :permalink, String, :required => true
 
     before :valid?, :set_permalink
 

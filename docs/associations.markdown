@@ -179,7 +179,7 @@ class Post
 
 
   # sometimes, a parent object is not required.
-  belongs_to :series, :nullable => true
+  belongs_to :series, :required => false
 end
 {% endhighlight %}
 

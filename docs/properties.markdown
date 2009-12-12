@@ -38,7 +38,7 @@ class Post
   include DataMapper::Resource
 
   property :id,        Serial                       # primary serial key
-  property :title,     String,  :nullable => false  # Cannot be null
+  property :title,     String,  :required => true   # Cannot be nil
   property :published, Boolean, :default  => false  # Default value for new records is false
 end
 {% endhighlight %}
@@ -101,7 +101,7 @@ class Image
   include DataMapper::Resource
 
   property :id,     Serial
-  property :path,   FilePath, :nullable => false
+  property :path,   FilePath, :required => true
   property :md5sum, String,   :length => 32, :default => lambda { |r, p| Digest::MD5.hexdigest(r.path.read) if r.path }
 end
 {% endhighlight %}
