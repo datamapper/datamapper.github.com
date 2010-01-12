@@ -28,7 +28,7 @@ gem install dm-core
 
 If you are planning on using DataMapper with a database, install a database
 driver from the DataObjects project: (Substitute `do_sqlite3` with `do_postgres`
-or `do_sqlite3` depending on your preferences)
+or `do_mysql` depending on your preferences)
 
 {% highlight ruby %}
 gem install do_sqlite3
