@@ -47,11 +47,11 @@ zoo.attributes = { :name => 'No Fun Zoo', :open => false }  # Set multiple prope
 {% endhighlight %}
 
 You can also update a model's properties and save it with one method call.
-`#update_attributes` will return true if the record saves, false if the save
-fails, exactly like the `#save` method.
+`#update` will return true if the record saves, false if the save fails, exactly
+like the `#save` method.
 
 {% highlight ruby linenos %}
-zoo.update_attributes(:name => 'Funky Town Municipal Zoo')
+zoo.update(:name => 'Funky Town Municipal Zoo')
 {% endhighlight %}
 
 Destroy
