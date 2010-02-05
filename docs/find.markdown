@@ -111,6 +111,38 @@ Once you have the query, the order can be modified too.  Just call reverse:
 # in SQL =>  select * from zoos ORDER BY tiger_count ASC
 {% endhighlight %}
 
+Combining Queries
+-----------------
+
+Sometimes, the simple queries DataMapper allows you to specify with the hash
+interface to `all()` just won't cut it.  This might be because you want to
+specify an `OR` condition, though that's just one possibility.  To accomplish
+more complex queries, DataMapper allows queries (or more accurately,
+Collections) to be combined using set operators.
+
+{% highlight ruby linenos %}
+# Find all Zoos in Illinois, or those with five or more tigers
+Zoo.all(:state => 'IL') + Zoo.all(:tiger_count.gte => 5)
+# in SQL => SELECT * FROM "zoos" WHERE ("state" = 'IL' OR "tiger_count" >= 5)
+
+# It also works with the union operator
+Zoo.all(:state => 'IL') | Zoo.all(:tiger_count.gte => 5)
+# in SQL => SELECT * FROM "zoos" WHERE ("state" = 'IL' OR "tiger_count" >= 5)
+
+# Intersection produces an AND query
+Zoo.all(:state => 'IL') & Zoo.all(:tiger_count.gte => 5)
+# in SQL => SELECT * FROM "zoos" WHERE ("state" = 'IL' AND "tiger_count" >= 5)
+
+# Subtraction produces a NOT query
+Zoo.all(:state => 'IL') - Zoo.all(:tiger_count.gte => 5)
+# in SQL => SELECT * FROM "zoos" WHERE ("state" = 'IL' AND NOT("tiger_count" >= 5))
+{% endhighlight %}
+
+Of course, the latter two queries could be achieved using the standard symbol
+operators.  Set operators work on any Collection though, and so `Zoo.all(:state => 'IL')`
+could just as easily be replaced with `Zoo.open.big` or any other method which
+returns a collection.
+
 Compatibility
 -------------
 
