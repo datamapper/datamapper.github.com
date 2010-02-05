@@ -219,3 +219,30 @@ In a way, it acts like a database view in that respect.
 @post.comments(:limit => 10, :order => [ :created_at.desc ]) # alias for #all, you can pass in the options directly
 @post.comments.popular # Uses the 'popular' finder method/scope to return only highly rated comments
 {% endhighlight %}
+
+Querying via Relationships
+--------------------------
+
+Sometimes it's desirable to query based on relationships.  DataMapper makes this
+as easy as passing a hash into the query conditions:
+
+{% highlight ruby linenos %}
+# find all Posts with a Comment by the user
+Post.all(:comments => { :user => @user })
+# in SQL => SELECT * FROM "posts" WHERE "id" IN
+#     (SELECT "post_id" FROM "comments" WHERE "user_id" = 1)
+
+# This also works (which you can use to build complex queries easily)
+Post.all(:comments => Comment.all(:user => @user))
+# in SQL => SELECT * FROM "posts" WHERE "id" IN
+#     (SELECT "post_id" FROM "comments" WHERE "user_id" = 1)
+
+# Of course, it works the other way, too
+# find all Comments on posts with DataMapper in the title
+Comment.all(:post => { :title.like => '%DataMapper%' })
+# in SQL => SELECT * from "comments" WHERE "post_id" IN
+#     (SELECT "id" FROM "posts" WHERE "title" LIKE '%DataMapper%')
+{% endhighlight %}
+
+DataMapper accomplishes this (in sql data-stores, anyway) by turning the queries
+across relationships into sub-queries.
