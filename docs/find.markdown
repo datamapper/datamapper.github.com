@@ -111,7 +111,8 @@ Once you have the query, the order can be modified too.  Just call reverse:
 # in SQL =>  select * from zoos ORDER BY tiger_count ASC
 {% endhighlight %}
 
-### Compatibility
+Compatibility
+-------------
 
 DataMapper supports other conditions syntaxes as well:
 
