@@ -48,6 +48,9 @@ Specify your database connection
 You need make sure this is set before you define your models.
 
 {% highlight ruby %}
+  # If you want the logs displayed you have to do this before the call to setup
+  DataMapper::Logger.new($stdout, :debug)
+
   # An in-memory Sqlite3 connection:
   DataMapper.setup(:default, 'sqlite3::memory:')
 
