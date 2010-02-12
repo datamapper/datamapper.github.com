@@ -162,7 +162,7 @@ Talking directly to your data-store
 Sometimes you may find that you need to tweak a query manually.
 
 {% highlight ruby linenos %}
-zoos = repository(:default).adapter.query('SELECT name, open FROM zoos WHERE open = 1')
+zoos = repository(:default).adapter.select('SELECT name, open FROM zoos WHERE open = 1')
 #      Note that this will not return Zoo objects, rather the raw data straight from the database
 {% endhighlight %}
 
