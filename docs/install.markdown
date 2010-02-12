@@ -51,5 +51,3 @@ There are friendly people there to help you out.
 [json_pure]:http://gemcutter.org/gems/json_pure
 [rspec]:http://gemcutter.org/gems/rspec
 [yard]:http://gemcutter.org/gems/yard
-
-
