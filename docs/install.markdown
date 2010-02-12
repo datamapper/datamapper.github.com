@@ -8,7 +8,7 @@ created_at: Tue Dec 04 13:20:00 +1030 2007
 {{ page.title }}
 ================
 
-If you've followed the [install instructions](/getting-started.html) but run
+If you've followed the [install instructions](/getting-started) but run
 into problems, you can find some tips below.
 
 Dependencies

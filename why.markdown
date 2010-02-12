@@ -170,7 +170,7 @@ To query a model by it's associations, you can use a QueryPath:
 {% endhighlight %}
 
 You can even chain calls to `all` or `first` to continue refining your query or
-search within a scope. See [Finders](/docs/find.html) for more information.
+search within a scope. See [Finders](/docs/find) for more information.
 
 Open Development
 ----------------

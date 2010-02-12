@@ -25,8 +25,7 @@ passing them a property name (or multiple property names) to validate against.
 {% endhighlight %}
 
 These are the currently available manual validations available. Please refer to
-the <a
-href="http://datamapper.rubyforge.org/dm-more/DataMapper/Validate/ClassMethods.html">API</a>
+the <a href="http://datamapper.rubyforge.org/dm-more/DataMapper/Validate/ClassMethods.html">API</a>
 for more detailed information.
 
 * validates_present
@@ -345,7 +344,7 @@ Setting Properties Before Validation
 It is sometimes necessary to set properties before a resource is saved or
 validated. Perhaps a required property can have a default value set from other
 properties or derived from the environment. To set these properties, a `before :valid?`
-<a href="/docs/callbacks.html">hook</a> should be used.
+<a href="/docs/callbacks">hook</a> should be used.
 
 {% highlight ruby linenos %}
   class Article

@@ -8,7 +8,7 @@ title:        DataMapper
 The goal is to create an ORM which is fast, thread-safe and feature rich.</p>
 
 <p class="blurb" markdown="true">To learn a little more about this project and
-why you should be interested,<br> read the [Why Datamapper?](/why.html) page.</p>
+why you should be interested,<br> read the [Why Datamapper?](/why) page.</p>
 
 <h2 class="latest-release">Recent News</h2>
 

@@ -61,7 +61,7 @@ Multiple Data-Store Connections
 
 DataMapper sports a concept called a context which encapsulates the data-store
 context in which you want operations to occur. For example, when you setup a
-connection in [getting-started](/getting-started.html), you were defining a
+connection in [getting-started](/getting-started), you were defining a
 context known as `:default`
 
 {% highlight ruby linenos %}
