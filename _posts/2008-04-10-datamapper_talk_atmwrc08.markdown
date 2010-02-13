@@ -18,5 +18,5 @@ DataMapper's own Yehuda Katz gave a presentation entitled "Faster, Better ORM
 With DataMapper."
 
 The video of the talk is available for viewing and downloading at
-<http://mwrc2008.confreaks.com/04katz.html>
-and is brought to you by the good people at [confreaks.com](http://confreaks.com).
+<http://mwrc2008.confreaks.com/04katz.html> and is brought to you by the
+good people at [confreaks.com](http://confreaks.com/).

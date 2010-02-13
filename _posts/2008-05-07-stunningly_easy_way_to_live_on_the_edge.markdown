@@ -21,7 +21,7 @@ gems that will make developing applications with DataMapper even easier.
 ### Step 0 - Prerequisites
 
 First, a couple of basic requirements before we begin. You will need to have
-an up-to-date installation of [rubygems](http://www.rubygems.org/), the [ruby](http://www.ruby-lang.org)
+an up-to-date installation of [rubygems](http://www.rubygems.org/), the [ruby](http://www.ruby-lang.org/)
 package management system. To check what version you have, issue the following command:
 
 {% highlight bash %}

@@ -29,7 +29,7 @@ Currently DataMapper needs help in a few particular areas:
 Git - Edge DataMapper
 ---------------------
 
-DataMapper development uses [Git](http://git-scm.com) SCM. Please see [using git](/using-git)
+DataMapper development uses [Git](http://git-scm.com/) SCM. Please see [using git](/using-git)
 to learn how to contribute.
 
 {% highlight bash %}

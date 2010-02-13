@@ -7,7 +7,7 @@ created_at: Mon Mar 17 01:37:12 -0500 2008
 Development
 ===========
 
-DataMapper development has switched to the [Git](http://git-scm.com) SCM. Please
+DataMapper development has switched to the [Git](http://git-scm.com/) SCM. Please
 see [using git](/using-git) to learn how to contribute.
 To check out "tip" DataMapper anonymously:
 
@@ -19,7 +19,7 @@ git clone git://github.com/datamapper/dm-more.git
 
 Or visit the [edge guide](/articles/stunningly_easy_way_to_live_on_the_edge).
 
-If you have a [github](http://www.github.com) account, log in, and _fork_
+If you have a [github](http://www.github.com/) account, log in, and _fork_
 [the repo](http://github.com/datamapper/dm-core/).
 When you think you're ready, send dkubb a "pull request".
 
