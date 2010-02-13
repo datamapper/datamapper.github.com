@@ -41,9 +41,8 @@ Code Style Guidelines
 
 When contributing any code to DataMapper, please follow these guidelines.
 
-1. Spec first. Spec thoroughly. (DataMapper is written with [RSpec](http://rspec.info/))
-2. Parentheses around parameter lists for methods
-3. Two space indent - not tabs!
-4. Documentation is required (use the [YARD documentation style](http://www.yardoc.org/more))
+1. Code should match the [style guide](http://github.com/dkubb/styleguide).
+2. Specs are required
+3. Documentation is required (use the [YARD documentation style](http://www.yardoc.org/more))
 
 *[YARD]: Yet Another Ruby Documentation (tool)
