@@ -39,9 +39,9 @@ $ git clone git://github.com/datamapper/dm-core.git
 Code Style Guidelines
 ---------------------
 
-When contributing any code to DataMapper, please follow these guidelines.
+When contributing any code to DataMapper, please follow these guidelines:
 
-1. Code should match the [style guide](http://github.com/dkubb/styleguide).
+1. Code should match the [style guide](http://github.com/dkubb/styleguide)
 2. Specs are required
 3. Documentation is required (use the [YARD documentation style](http://www.yardoc.org/more))
 
