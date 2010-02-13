@@ -30,11 +30,8 @@ Git - Edge DataMapper
 ---------------------
 
 DataMapper development uses [Git](http://git-scm.com/) SCM. Please see [using git](/using-git)
-to learn how to contribute.
-
-{% highlight bash %}
-$ git clone git://github.com/datamapper/dm-core.git
-{% endhighlight %}
+to learn how to contribute. For detailed instructions how to get a proper development setup for datamapper
+up and running, have a look at the [edge guide](/articles/stunningly_easy_way_to_live_on_the_edge).
 
 Code Style Guidelines
 ---------------------
