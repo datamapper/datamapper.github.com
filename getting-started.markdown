@@ -159,19 +159,23 @@ Set up your database tables
 ---------------------------
 
 {% highlight ruby %}
-Post.auto_migrate!
-Category.auto_migrate!
-Comment.auto_migrate!
-Categorization.auto_migrate!
-{% endhighlight %}
-
-This will issue the necessary `CREATE` statements to define each storage according
-to their properties.
-
-You could also do:
-
-{% highlight ruby %}
 DataMapper.auto_migrate!
 {% endhighlight %}
+
+This will issue the necessary `CREATE` statements (`DROP`ing the table first, if
+it exists) to define each storage according to their properties. After
+`auto_migrate!` has been run, the database should be in a pristine state, reset
+back to the starting state.
+
+This can be too extreme, so you could also do:
+
+{% highlight ruby %}
+DataMapper.auto_upgrade!
+{% endhighlight %}
+
+This tries to make the schema match the model.  It will `CREATE` new tables, and
+add columns to existing tables.  It won't change any existing columns though
+(say, to add a NOT NULL constraint) and it doesn't drop any columns.  Both these commands
+also can be used on an individual model (e.g. `Post.auto_migrate!`)
 
 [DataMapper_Resource]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Resource
