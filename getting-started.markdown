@@ -162,7 +162,8 @@ end
 Set up your database tables
 ---------------------------
 
-To create the tables in the underlying storage, run:
+Relational Databases work with pre-defined tables.  To create the tables in the
+underlying storage, run:
 
 {% highlight ruby %}
 DataMapper.auto_migrate!
@@ -170,10 +171,10 @@ DataMapper.auto_migrate!
 
 This will issue the necessary `CREATE` statements (`DROP`ing the table first, if
 it exists) to define each storage according to their properties. After
-`auto_migrate!` has been run, the database should be in a pristine state, reset
-back to the starting state.
+`auto_migrate!` has been run, the database should be in a pristine state.  All
+the tables will be empty and match the model definitions.
 
-This can be too extreme, wiping out existing data, so you could also do:
+This wipes out existing data, so you could also do:
 
 {% highlight ruby %}
 DataMapper.auto_upgrade!
