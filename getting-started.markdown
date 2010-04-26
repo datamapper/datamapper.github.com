@@ -185,4 +185,31 @@ add columns to existing tables.  It won't change any existing columns though
 (say, to add a NOT NULL constraint) and it doesn't drop any columns.  Both these commands
 also can be used on an individual model (e.g. `Post.auto_migrate!`)
 
+Create your first resource
+--------------------------
+
+Using DataMapper to [create](/docs/create_and_destroy#creating)) a resource (A
+resource is an instance of a model) is simple
+
+{% highlight ruby %}
+# create makes the resource immediately
+@post = Post.create(
+  :title      => "My first DataMapper post",
+  :body       => "A lot of text ...",
+  :created_at => Time.now
+)
+
+# Or new gives you it back unsaved, for more operations
+@post = Post.new(:title => ..., ...)
+@post.save                           # persist the resource
+{% endhighlight %}
+
+Both are equivalent.  The first thing to notice is we didn't specify the
+auto-increment key.  This is because the data-store will provide that value for
+us, and should make sure it's unique, too.  Also, note that while the property
+is a `DateTime`, we can pass it a `Time` instance, and it will convert (or
+typecast) the value for us, before it saves it to the data-store.  Any
+properties which are not specified in the hash will take their default values in
+the data-store.
+
 [DataMapper_Resource]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Resource
