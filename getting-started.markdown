@@ -98,7 +98,9 @@ end
 {% endhighlight %}
 
 The above example is simplified, but you can also specify more options such as
-constraints for your properties.
+constraints for your properties.  DataMapper supports a lot of different
+[property](/docs/properties) types natively, and more through
+[dm-types](/docs/dm_more/types).
 
 Associations
 ------------
@@ -109,7 +111,8 @@ open the classes.
 
 ### One To Many
 
-Posts can have comments, so we’ll need to setup a simple one-to-many association
+Posts can have comments, so we’ll need to setup a simple
+[one-to-many](/docs/associations#has_n_and_belongs_to_or_onetomany) association
 between then:
 
 {% highlight ruby %}
@@ -125,10 +128,11 @@ end
 ### Has and belongs to many
 
 Has and belongs to many Categories can have many Posts and Posts can have many
-Categories, so we’ll need a many to many relationships commonly referred to “has
-and belongs to many”. We’ll setup a quick model to wrap our join table between
-the two so that we can record a little bit of meta-data about when the post was
-categorized into a category.
+Categories, so we’ll need a
+[many to many](/docs/associations#has_n_through_or_onetomanythrough) relationships
+commonly referred to “has and belongs to many”. We’ll setup a quick model to
+wrap our join table between the two so that we can record a little bit of
+meta-data about when the post was categorized into a category.
 
 {% highlight ruby %}
 
