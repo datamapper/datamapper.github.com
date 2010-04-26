@@ -158,6 +158,8 @@ end
 Set up your database tables
 ---------------------------
 
+To create the tables in the underlying storage, run:
+
 {% highlight ruby %}
 DataMapper.auto_migrate!
 {% endhighlight %}
@@ -167,7 +169,7 @@ it exists) to define each storage according to their properties. After
 `auto_migrate!` has been run, the database should be in a pristine state, reset
 back to the starting state.
 
-This can be too extreme, so you could also do:
+This can be too extreme, wiping out existing data, so you could also do:
 
 {% highlight ruby %}
 DataMapper.auto_upgrade!
