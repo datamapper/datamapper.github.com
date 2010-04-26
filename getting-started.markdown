@@ -188,7 +188,7 @@ also can be used on an individual model (e.g. `Post.auto_migrate!`)
 Create your first resource
 --------------------------
 
-Using DataMapper to [create](/docs/create_and_destroy#creating)) a resource (A
+Using DataMapper to [create](/docs/create_and_destroy#creating) a resource (A
 resource is an instance of a model) is simple
 
 {% highlight ruby %}
