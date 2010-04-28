@@ -164,21 +164,25 @@ Customizing Associations
 The association declarations make certain assumptions about which classes are
 being related and the names of foreign keys based on some simple conventions. In
 some situations you may need to tweak them a little. The association
-declarations accept additional options to allow you to customize them as you
-need.  By default, the child key property is created such that a parent object is
-required and there will be an index in appropriate data-stores.  If the child
-key already exists, that is used instead.
+declarations accept additional options to allow you to customize them as needed.
+The `belongs_to` method creates a child key property if it does not already
+exist.  This property is `:required` and has an index created, if the data-store
+supports such a concept.  If the child key property has already been declared,
+that property is used instead.
 
 {% highlight ruby linenos %}
 class Post
   include DataMapper::Resource
 
-  belongs_to :author, :model => 'User', :child_key => [ :author_id ]
-  # or simply ...
+  # Uses the `bid` property, not `blog_id`
+  belongs_to :blog, :child_key => [:bid]
+
+  # To make a relationship which uses a different class
   belongs_to :author, 'User'
+  # or belongs_to :author, :model => 'User'
 
 
-  # sometimes, a parent object is not required.
+  # To make an association which is not required
   belongs_to :series, :required => false
 end
 {% endhighlight %}
