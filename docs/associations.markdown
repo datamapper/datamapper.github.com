@@ -173,7 +173,7 @@ key already exists, that is used instead.
 class Post
   include DataMapper::Resource
 
-  belongs_to :author, :model => 'User', :child_key => [ :post_id ]
+  belongs_to :author, :model => 'User', :child_key => [ :author_id ]
   # or simply ...
   belongs_to :author, 'User'
 
