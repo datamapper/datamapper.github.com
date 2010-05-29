@@ -1,52 +1,55 @@
 ---
-layout:       default
-body_id:      home
-title:        DataMapper
+title: A fast, feature rich ORM for Ruby
+created_at: 2008-08-02 14:06:40.000000 -06:00
+filter: haml
 ---
-%p.blurb
-  :markdown
-    DataMapper is a [Object Relational Mapper](http://en.wikipedia.org/wiki/Object-relational_mapping) written in [Ruby](http://ruby-lang.org/).
-    The goal is to create an ORM which is fast, thread-safe and feature rich.
-%p.blurb
-  :markdown
-    To learn a little more about this project and
-    why you should be interested,
-    read the [Why Datamapper?](/why) page.
+/ %div#twitter-feed
+/   %p#tweet
+/     I got mentioned on the RailsEnvy podcast jump to 18:43
+/   %p#tweet-time
+/     From Twitter 2:06 AM yesterday
 
-%h2.latest-release Recent News
-- latest_article = items_with_tag('important').first
-%p.latest-release
-  = latest_article[:title]
-  %br/
-  = latest_article[:summary]
-  %br/
-  %a.read_more{:href => latest_article.identifier} Read more
+%p#blurb
+  DataMapper is an Object Relational Mapper written in Ruby. The goal of this 
+  project is to make an ORM that is fast, consistent, extensible and well 
+  organised.
 
-#help
-  :markdown
-    Help
-    ----
+%p#more-info
+  To learn a little more, have a look at Why DataMapper?
 
-    If you're having trouble, don't forget to check the documentation, which has
-    both references and step by step tutorials.
+%div#panel.block
+  %div#latest-updates
+    %h2 Latest Updates
+    
+    %h3 News Title
+    %p
+      We’ve just updated the getting started documentation to be a little more 
+      clearer about the various issues that might crop up with installation, 
+      particularly when installing dependencies on Windows.
+    
+  %div#learning-help
+    %h2 Learning & Help
+    %ul
+      %li#learning-documentation
+        %h3 Documentation
+        %p
+          This should be your first port of call for help. This includes both 
+          API docs, references and step by step tutorials.
+        %p.link
+          %a{:href => "/documentation", :title => "View the documentation page."} 
+            View the documentation
+      %li#learning-bugs
+        %h3 Reporting Bugs
+        %p
+          If you find anything that looks like a bug in DataMapper, please 
+          don’t hesitate to report it. We love it when people do that!
+        %p.link
+          %a{:href => "/development#bugs", :title => "The details for reporting bugs"} 
+            Visit our bug-tracker            
+      %li#learning-getting-help
+        %h3 Getting Help
+        %p
+          If you’re really stuck, DataMapper has an active community of people 
+          willing to help. Get yourself onto the mailing list, or join the IRC 
+          channel.
 
-    [Read documentation](/docs)
-
-#bugs
-  :markdown
-    Issues
-    ------
-
-    If you're still having trouble, or you think you came across something you think
-    might be a bug, let us know.
-
-    [Log a ticket](http://datamapper.lighthouseapp.com/projects/20609-datamapper/overview)
-
-%h1 News
-%dl
-  - sorted_articles.each do |article|
-    %dt
-      %a{:href => article.identifier}= article[:title]
-    %dd
-      %p= article[:summary]
-      %p.meta #{article[:published_at]} by #{article[:author]}
