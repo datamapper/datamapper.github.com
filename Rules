@@ -15,7 +15,7 @@ compile '*' do
   when 'markdown'
     filter :erb
     filter :colorize_syntax, :colorizers => { :ruby => :pygmentize }
-    filter :maruku
+    filter :kramdown
   when 'haml'
     filter :haml
   end
