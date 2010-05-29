@@ -19,18 +19,12 @@
         %h1
           %a{:href => "/"} DataMapper
         %ul
-          %li
-            %a{:href => "/community"} Community
-          %li
-            %a{:href => "/docs"} Documentation
-          %li
-            %a{:href => "/development"} Development
-          %li
-            %a{:href => "/contribute"} Contribute
-          %li
-            %a{:href => "http://wiki.github.com/datamapper/dm-core"} Wiki
-          %li
-            %a#getStarted{:href => "/getting-started"} Get Started
+          %li= link_to('Community', '/community/')
+          %li= link_to('Documentation', '/docs/')
+          %li= link_to('Development', '/development/')
+          %li= link_to('Contribute', '/contribute/')
+          %li= link_to('Wiki', 'http://wiki.github.com/datamapper/dm-core')
+          %li= link_to('Get Started', '/getting-started/', :id => 'getStarted')
       = yield
       #footer
         %p Copyright Dan Kubb, Sam Smoot 2009
