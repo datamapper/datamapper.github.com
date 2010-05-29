@@ -11,9 +11,14 @@ route '/stylesheets/*/' do
 end
 
 compile '*' do
-  filter :erb
-  filter :colorize_syntax, :colorizers => { :ruby => :pygmentize }
-  filter :maruku
+  case item[:extension]
+  when 'markdown'
+    filter :erb
+    filter :colorize_syntax, :colorizers => { :ruby => :pygmentize }
+    filter :maruku
+  when 'haml'
+    filter :haml
+  end
   layout 'default'
 end
 
@@ -21,4 +26,4 @@ route '*' do
   item.identifier + 'index.html'
 end
 
-layout '*', :erb
+layout '*', :haml

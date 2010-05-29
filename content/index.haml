@@ -1,0 +1,52 @@
+---
+layout:       default
+body_id:      home
+title:        DataMapper
+---
+%p.blurb
+  :markdown
+    DataMapper is a [Object Relational Mapper](http://en.wikipedia.org/wiki/Object-relational_mapping) written in [Ruby](http://ruby-lang.org/).
+    The goal is to create an ORM which is fast, thread-safe and feature rich.
+%p.blurb
+  :markdown
+    To learn a little more about this project and
+    why you should be interested,
+    read the [Why Datamapper?](/why) page.
+
+%h2.latest-release Recent News
+- latest_article = items_with_tag('important').first
+%p.latest-release
+  = latest_article[:title]
+  %br/
+  = latest_article[:summary]
+  %br/
+  %a.read_more{:href => latest_article.identifier} Read more
+
+#help
+  :markdown
+    Help
+    ----
+
+    If you're having trouble, don't forget to check the documentation, which has
+    both references and step by step tutorials.
+
+    [Read documentation](/docs)
+
+#bugs
+  :markdown
+    Issues
+    ------
+
+    If you're still having trouble, or you think you came across something you think
+    might be a bug, let us know.
+
+    [Log a ticket](http://datamapper.lighthouseapp.com/projects/20609-datamapper/overview)
+
+%h1 News
+%dl
+  - sorted_articles.each do |article|
+    %dt
+      %a{:href => article.identifier}= article[:title]
+    %dd
+      %p= article[:summary]
+      %p.meta #{article[:published_at]} by #{article[:author]}

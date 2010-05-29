@@ -1,0 +1,15 @@
+---
+layout:     default
+body_id: news
+title: DataMapper News and Notes
+---
+
+%h1= @item[:title]
+
+%dl
+  - sorted_articles.each do |article|
+    %dt
+      %a{:href => article.identifier}= article[:title]
+    %dd
+      %p= article[:summary]
+      %p.meta #{article[:published_at]} by #{article[:author]}
