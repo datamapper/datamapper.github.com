@@ -23,73 +23,73 @@ filter:    haml
         %li= nav_entry("Development", "/development", "If you feel like contributing, have a look here.")
         %li= nav_entry("Documentation", "/documentation", "Your first port of call for help. Includes API documentation and the wiki.")
 
-        %h1#page-title= @item[:title]
+      %h1#page-title= @item[:title]
 
-        = yield
+      = yield
 
-        %div#footer
-          %h1 Site-map & Copyright
+      %div#footer
+        %h1 Site-map & Copyright
 
-          %p
-            All contents copyright 2008
-            %br/
-            HTML 5 & CSS 2.1
+        %p
+          All contents copyright 2008
+          %br/
+          XHTML 1.1 & CSS 2.1
 
-          %div
-            %h2 Getting Help
-            %ul
-              %li
-                %a{:href => "/", :title => "A quickstart guide, with install instructions"}
-                  Getting Started
-              %li
-                %a{:href => "/", :title => "The API docs for DM-Core"}
-                  API Documentation
-              %li
-                %a{:href => "/", :title => "A series of tutorials on the wiki"}
-                  Tutorials
+        %div
+          %h2 Getting Help
+          %ul
+            %li
+              %a{:href => "/", :title => "A quickstart guide, with install instructions"}
+                Getting Started
+            %li
+              %a{:href => "/", :title => "The API docs for DM-Core"}
+                API Documentation
+            %li
+              %a{:href => "/", :title => "A series of tutorials on the wiki"}
+                Tutorials
 
-          %div
-            %h2 Source Code
-            %ul
-              %li
-                %a{:href => "http://github.com/sam/dm-core/tree/master", :title => "The Git repository for DM-Core."}
-                  DM-Core
-              %li
-                %a{:href => "http://github.com/sam/dm-more/tree/master", :title => "The Git repository for DM-More."}
-                  DM-More
-              %li
-                %a{:href => "http://github.com/sam/do/tree/master", :title => "The Git repository for DataObjects, a unified set of DB drivers used in DataMapper."}
-                  DataObjects
+        %div
+          %h2 Source Code
+          %ul
+            %li
+              %a{:href => "http://github.com/sam/dm-core/tree/master", :title => "The Git repository for DM-Core."}
+                DM-Core
+            %li
+              %a{:href => "http://github.com/sam/dm-more/tree/master", :title => "The Git repository for DM-More."}
+                DM-More
+            %li
+              %a{:href => "http://github.com/sam/do/tree/master", :title => "The Git repository for DataObjects, a unified set of DB drivers used in DataMapper."}
+                DataObjects
 
-          %div
-            %h2 Community
-            %ul
-              %li
-                %a{:href => "/", :title => "Hosted on Google Groups and open to all subscribers."}
-                  Official mailing list
-              %li
-                %a{:href => "irc://irc.freenode.net/#datamapper", :title => "If you have an IRC client installed, click the link and come have a chat with us."}
-                  \#datamapper on Freenode
+        %div
+          %h2 Community
+          %ul
+            %li
+              %a{:href => "/", :title => "Hosted on Google Groups and open to all subscribers."}
+                Official mailing list
+            %li
+              %a{:href => "irc://irc.freenode.net/#datamapper", :title => "If you have an IRC client installed, click the link and come have a chat with us."}
+                \#datamapper on Freenode
 
-          %div
-            %h2 About the Project
-            %ul
-              %li
-                %a{:href => "/why", :title => "An introduction and overview of what DataMapper is and why you should care. Because you really should!"}
-                  Why DataMapper?
-              %li
-                %a{:href => "/community#people", :title => "Get to know the nice people that contribute to DataMapper."}
-                  The people involved
+        %div
+          %h2 About the Project
+          %ul
+            %li
+              %a{:href => "/why", :title => "An introduction and overview of what DataMapper is and why you should care. Because you really should!"}
+                Why DataMapper?
+            %li
+              %a{:href => "/community#people", :title => "Get to know the nice people that contribute to DataMapper."}
+                The people involved
 
-          %div
-            %h2 Badges & Graphics
-            %ul
-              %li
-                %a{:href => "/assets/datamapper-graphics.zip", :title => "The logo and various graphical elements in PDF format."}
-                  Logo and Graphics
-              %li
-                %a{:href => "/assets/datamapper-badges.zip", :title => "Badges in various sizes and formats."}
-                  Badges
-              %li
-                %a{:href => "/assets/datamapper-presskit.zip", :title => "A condensed explanation of DataMapper and graphics ready for print."}
-                  Presskit
+        %div
+          %h2 Badges & Graphics
+          %ul
+            %li
+              %a{:href => "/assets/datamapper-graphics.zip", :title => "The logo and various graphical elements in PDF format."}
+                Logo and Graphics
+            %li
+              %a{:href => "/assets/datamapper-badges.zip", :title => "Badges in various sizes and formats."}
+                Badges
+            %li
+              %a{:href => "/assets/datamapper-presskit.zip", :title => "A condensed explanation of DataMapper and graphics ready for print."}
+                Presskit
