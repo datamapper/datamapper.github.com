@@ -12,7 +12,7 @@ RAILS_VERSION = '~> 3.0.0.beta3'
 
 DM_VERSION    = '~> 1.0.0.rc3'
 
-RSPEC_VERSION = '~> 2.0.0.beta.9'
+RSPEC_VERSION = '~> 2.0.0.beta.10'
 
 gem 'activesupport',      RAILS_VERSION, :require => 'active_support'
 gem 'actionpack',         RAILS_VERSION, :require => 'action_pack'
@@ -51,7 +51,7 @@ group(:test) do
   gem 'rspec-core',         RSPEC_VERSION, :require => 'rspec/core'
   gem 'rspec-expectations', RSPEC_VERSION, :require => 'rspec/expectations'
   gem 'rspec-mocks',        RSPEC_VERSION, :require => 'rspec/mocks'
-  gem 'rspec-rails',        '~> 2.0.0.beta.9.1'
+  gem 'rspec-rails',        RSPEC_VERSION
 
 end
 
