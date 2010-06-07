@@ -1,20 +1,27 @@
 # TODO think about a better way
 db_name = app_path.split('/').last
 
+database = options[:database]
+database = 'postgres' if database == 'postgresql'
+database = 'sqlite'   if database == 'sqlite3'
+
+postfix = ''
+postfix = '.db' if database == 'sqlite'
+
 remove_file 'config/database.yml'
 create_file 'config/database.yml' do
 <<-YAML
 defaults: &defaults
-  adapter: sqlite3
+  adapter: #{database}
 
 development:
-  database: #{db_name}_development.db
+  database: #{db_name}_development#{postfix}
   <<: *defaults
 
   # Add more repositories
   # repositories:
   #   repo1:
-  #     adapter:  postgresql
+  #     adapter:  postgres
   #     database: sample_development
   #     username: the_user
   #     password: secrets
@@ -23,10 +30,10 @@ development:
   #     ...
 
 test:
-  database: #{db_name}_app_test.db
+  database: #{db_name}_test#{postfix}
   <<: *defaults
 production:
-  database: #{db_name}_app_production.db
+  database: #{db_name}_production#{postfix}
   <<: *defaults
 YAML
 end

@@ -3,6 +3,10 @@
 DATAMAPPER = '#{DATAMAPPER}'
 RSPEC      = '#{RSPEC}'
 
+database = options[:database]
+database = 'postgres' if database == 'postgresql'
+database = 'sqlite'   if database == 'sqlite3'
+
 remove_file 'Gemfile'
 create_file 'Gemfile' do
 <<-GEMFILE
@@ -19,8 +23,8 @@ gem 'actionpack',         RAILS_VERSION, :require => 'action_pack'
 gem 'actionmailer',       RAILS_VERSION, :require => 'action_mailer'
 gem 'railties',           RAILS_VERSION, :require => 'rails'
 
-gem 'dm-rails',             DM_VERSION
-gem 'dm-sqlite-adapter',    DM_VERSION
+gem 'dm-rails',               DM_VERSION
+gem 'dm-#{database}-adapter', DM_VERSION
 
 # You can use any of the other available database adapters.
 # This is only a small excerpt of the list of all available adapters
@@ -31,6 +35,7 @@ gem 'dm-sqlite-adapter',    DM_VERSION
 #
 # for a rather complete list of available datamapper adapters and plugins
 
+# gem 'dm-sqlite-adapter',    DM_VERSION
 # gem 'dm-mysql-adapter',     DM_VERSION
 # gem 'dm-postgres-adapter',  DM_VERSION
 # gem 'dm-oracle-adapter',    DM_VERSION
