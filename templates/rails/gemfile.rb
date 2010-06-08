@@ -12,9 +12,9 @@ create_file 'Gemfile' do
 <<-GEMFILE
 source 'http://rubygems.org'
 
-RAILS_VERSION = '~> 3.0.0.beta3'
+RAILS_VERSION = '~> 3.0.0.beta4'
 
-DM_VERSION    = '~> 1.0.0.rc3'
+DM_VERSION    = '~> 1.0.0'
 
 RSPEC_VERSION = '~> 2.0.0.beta.11'
 
