@@ -27,11 +27,10 @@ gem install dm-core
 {% endhighlight %}
 
 If you are planning on using DataMapper with a database, install a database
-driver from the DataObjects project: (Substitute `do_sqlite3` with `do_postgres`
-or `do_mysql` depending on your preferences)
+driver from the DataObjects project: (Substitute `dm-sqlite-adapter` with `dm-postgres-adapter` or `dm-mysql-adapter` depending on your preferences)
 
 {% highlight ruby %}
-gem install do_sqlite3
+gem install dm-sqlite-adapter
 {% endhighlight %}
 
 Require it in your application
@@ -52,7 +51,7 @@ You need make sure this is set before you define your models.
   DataMapper::Logger.new($stdout, :debug)
 
   # An in-memory Sqlite3 connection:
-  DataMapper.setup(:default, 'sqlite3::memory:')
+  DataMapper.setup(:default, 'sqlite::memory:')
 
   # A MySQL connection:
   DataMapper.setup(:default, 'mysql://localhost/the_database_name')
@@ -162,8 +161,14 @@ end
 Set up your database tables
 ---------------------------
 
-Relational Databases work with pre-defined tables.  To create the tables in the
-underlying storage, run:
+Relational Databases work with pre-defined tables. To be able to create the tables in the
+underlying storage, you need to require `dm-migrations` first.
+
+{% highlight ruby %}
+require  'dm-migrations'
+{% endhighlight %}
+
+Once you made sure that `dm-migrations` is available, you can create the tables by issuing the following command.
 
 {% highlight ruby %}
 DataMapper.auto_migrate!
