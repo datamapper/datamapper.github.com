@@ -77,7 +77,7 @@ gem 'dm-active_model',      DM_VERSION
 # In the future this will hopefully be merged into the mainly gem. We refer to
 # this gem now so you can easily add it to your project
 
-# gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/snusnu/rails_metrics', :branch => 'datamapper-compatibility'
+# gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'
 
 GEMFILE
 end
