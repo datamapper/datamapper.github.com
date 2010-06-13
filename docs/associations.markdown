@@ -184,6 +184,9 @@ class Post
 
   # To make an association which is not required
   belongs_to :series, :required => false
+
+  # To make an association part of the model's primary key
+  belongs_to :topic, :key => true
 end
 {% endhighlight %}
 
