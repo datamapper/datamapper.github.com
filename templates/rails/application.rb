@@ -3,6 +3,10 @@
 apply 'http://datamapper.org/templates/rails/config.rb'
 apply 'http://datamapper.org/templates/rails/database.yml.rb'
 
+inject_into_class 'app/controllers/application_controller.rb', 'ApplicationController' do
+  "  use Rails::DataMapper::Middleware::IdentityMap\n"
+end
+
 initializer 'jruby_monkey_patch.rb', <<-CODE
 if RUBY_PLATFORM =~ /java/
   # ignore the anchor to allow this to work with jruby:
