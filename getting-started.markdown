@@ -158,6 +158,28 @@ end
 
 {% endhighlight %}
 
+Finalize Models
+---------------
+
+After declaring all of the models, you should finalize them:
+
+{% highlight ruby %}
+DataMapper.finalize
+{% endhighlight %}
+
+This checks the models for validity and initializes all properties associated
+with relationships.  It is likely if you use a web-framework such as merb or
+rails, this will already be done for you. In case you do not, be sure to call it
+at an appropriate time.
+
+DataMapper allows the use of natural primary keys, composite primary keys and
+other complexities.  Because of this, when a model is declared with a
+`belongs_to` relationship the property to hold the foreign key cannot be
+initialized immediately.  It can only be initialized when the parent model has
+also been declared.  This is hard for DataMapper to determine, due to the
+dynamic nature of ruby, so it is left up to developers to determine the
+appropriate time.
+
 Set up your database tables
 ---------------------------
 
