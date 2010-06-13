@@ -47,7 +47,7 @@ If you still have issues, we suggest getting onto the [mailing list](http://grou
 or the [IRC channel](irc://irc.freenode.net/#datamapper) and asking around.
 There are friendly people there to help you out.
 
-[addressable]:http://gemcutter.org/gems/addressable
-[json_pure]:http://gemcutter.org/gems/json_pure
-[rspec]:http://gemcutter.org/gems/rspec
-[yard]:http://gemcutter.org/gems/yard
+[addressable]:http://rubygems.org/gems/addressable
+[json_pure]:http://rubygems.org/gems/json_pure
+[rspec]:http://rubygems.org/gems/rspec
+[yard]:http://rubygems.org/gems/yard
