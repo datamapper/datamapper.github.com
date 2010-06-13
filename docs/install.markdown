@@ -26,19 +26,19 @@ you, but just in case, make sure you have the following gems as well:
 Using Master
 ------------
 
-You will also need to install the DataObject gem and the adapter for your
-platform:
+You will also need to install the adapter for your platform:
 
 {% highlight bash linenos %}
-sudo gem install data_objects
-sudo gem install do_mysql
+gem install dm-mysql-adapter
 {% endhighlight %}
 
 The current database adapters are:
 
-* do_mysql
-* do_sqlite3
-* do_postgres
+* dm-mysql-adapter
+* dm-sqlite-adapter
+* dm-postgres-adapter
+
+There are also many more database, and non-database, adapters.
 
 Getting Help
 ------------
