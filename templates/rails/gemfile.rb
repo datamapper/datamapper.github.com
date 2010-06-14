@@ -16,7 +16,7 @@ RAILS_VERSION = '~> 3.0.0.beta4'
 
 DM_VERSION    = '~> 1.0.0'
 
-RSPEC_VERSION = '~> 2.0.0.beta.11'
+RSPEC_VERSION = '~> 2.0.0.beta.12'
 
 gem 'activesupport',      RAILS_VERSION, :require => 'active_support'
 gem 'actionpack',         RAILS_VERSION, :require => 'action_pack'
