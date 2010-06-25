@@ -54,6 +54,17 @@ like the `#save` method.
 zoo.update(:name => 'Funky Town Municipal Zoo')
 {% endhighlight %}
 
+If you want to create a new resource with some given attributes, and save it in one go,
+you can use the `#create` method.
+
+{% highlight ruby linenos %}
+zoo = Zoo.create(:name => 'The Glue Factory', :inception => Time.now)
+{% endhighlight %}
+
+Internally it will call `#new` and then `#save` just like we did before.
+If the creation was successful, `#create` will return the newly created
+`#DataMapper::Resource`. If it failed, it will return `nil` instead.
+
 Destroy
 -------
 
