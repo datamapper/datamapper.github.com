@@ -72,14 +72,21 @@ class Comment
   property :id,     Serial
   property :rating, Integer
 
-  belongs_to :post
+  belongs_to :post # defaults to :required => true
 
   def self.popular
     all(:rating.gt => 3)
   end
 end
-
 {% endhighlight %}
+
+The `belongs_to` method accepts a few options. As we already saw in the example
+above, `belongs_to` relationships will be required by default (the parent resource
+must exist in order for the child to be valid). You can make the parent resource
+optional by passing `:required => false` as an option to `belongs_to`.
+
+If the relationship makes up (part of) the key of a model, you can tell DM to
+include it as part of the primary key by adding the `:key => true` option.
 
 ### has n, :through (or One-To-Many-Through)
 
