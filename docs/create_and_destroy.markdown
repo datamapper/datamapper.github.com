@@ -106,6 +106,12 @@ criteria. Apart from that, `#first_or_new` behaves just like `#first_or_create` 
 accepts the same parameters. For a detailed explanation of the arguments these two methods
 accept, have a look at the explanation of `#first_or_create` in the above section on _Create_.
 
+It is important to note that `#save` will save the complete _loaded_ object graph when called.
+This means that calling `#save` on a resource that has relationships of any kind (established
+via `belongs_to` or `has`) will also save those related resources, _if_ they are _loaded_ at the
+time `#save` is being called. Related resources are _loaded_ if they've been accessed either
+for _read_ or for _write_ purposes, prior to `#save` being called.
+
 Update
 ------
 
