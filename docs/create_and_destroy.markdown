@@ -34,7 +34,15 @@ zoo = Zoo.create(:name => 'The Glue Factory', :inception => Time.now)
 {% endhighlight %}
 
 If the creation was successful, `#create` will return the newly created
-`DataMapper::Resource`. If it failed, it will return `nil` instead.
+`DataMapper::Resource`. If it failed, it will return a new resource that
+is initialized with the given attributes and possible default values declared
+for that resource, but that's not yet saved. To find out wether the creation
+was successful or not, you can call `#saved?` on the returned resource. It will
+return `true` if the resource was successfully persisted, or `false` otherwise.
+
+{% highlight ruby linenos %}
+zoo = Zoo.create(:name => 'The Glue Factory', :inception => Time.now)
+{% endhighlight %}
 
 Save
 ----
