@@ -8,21 +8,11 @@ created_at: Tue Dec 04 14:46:32 +1030 2007
 {{ page.title }}
 ================
 
-To illustrate the various methods used in manipulating records, we'll create,
-save, update and destroy a record.
-
-{% highlight ruby linenos %}
-class Zoo
-  include DataMapper::Resource
-
-  property :id,          Serial
-  property :name,        String
-  property :description, Text
-  property :inception,   DateTime
-  property :open,        Boolean,  :default => false
-end
-{% endhighlight %}
-
+This page describes the basic methods to use when creating, saving, updating and destroying
+resources with DataMapper. Some of DataMapper's concepts might be confusing to users coming
+from ActiveRecord for example. For this reason, we start with a little background on the usage
+of bang vs. no-bang methods in DataMapper, followed by ways of manipulating the rules DataMapper
+abides when it comes to raising exceptions in case some persistence operation went wrong.
 
 Bang(!) or no bang methods
 -----------------------------
@@ -59,7 +49,41 @@ memory because it won't execute any resource level callbacks or validations.
 While the above examples mostly used `#save` and `#save!` to explain the different behavior,
 the same rules apply for `#create!`, `#save!`, `#update!` and `#destroy!`. The _safe_ non-bang
 methods will _always execute all callbacks and validations_, and the _unsafe_ bang(!) methods
-never will.
+_never will_.
+
+Raising an exception when save fails
+------------------------------------
+
+By default, datamapper returns `true` or `false` for all operations manipulating
+the persisted state of a resource (`#create`, `#save`, `#update` and `#destroy`).
+
+If you want it to raise exceptions instead, you can instruct datamapper to do so
+either globally, on a per-model, or on a per-instance basis.
+
+{% highlight ruby linenos %}
+DataMapper::Model.raise_on_save_failure = true # globally
+Zoo.raise_on_save_failure = true               # per-model
+zoo.raise_on_save_failure = true               # per-instance
+{% endhighlight %}
+
+
+The example Zoo
+---------------
+
+To illustrate the various methods used in manipulating records, we'll create,
+save, update and destroy a record.
+
+{% highlight ruby linenos %}
+class Zoo
+  include DataMapper::Resource
+
+  property :id,          Serial
+  property :name,        String
+  property :description, Text
+  property :inception,   DateTime
+  property :open,        Boolean,  :default => false
+end
+{% endhighlight %}
 
 Create
 ------
@@ -222,18 +246,3 @@ This shows that actually, `#destroy` is also available on any `DataMapper::Colle
 and performs a mass delete on that collection when being called. You typically retrieve
 a `DataMapper::Collection` from either a call to `SomeModel.all` or a call to a
 relationship accessor for any `1:n` or `m:n` relationship.
-
-Raising an exception when save fails
-------------------------------------
-
-By default, datamapper returns `true` or `false` for all operations manipulating
-the persisted state of a resource (`#create`, `#save`, `#update` and `#destroy`).
-
-If you want it to raise exceptions instead, you can instruct datamapper to do so
-either globally, on a per-model, or on a per-instance basis.
-
-{% highlight ruby linenos %}
-DataMapper::Model.raise_on_save_failure = true # globally
-Zoo.raise_on_save_failure = true               # per-model
-zoo.raise_on_save_failure = true               # per-instance
-{% endhighlight %}
