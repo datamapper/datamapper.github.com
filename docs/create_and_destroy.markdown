@@ -69,6 +69,15 @@ exactly like the `#save` method.
 zoo.update(:name => 'Funky Town Municipal Zoo')
 {% endhighlight %}
 
+One thing to note is that the `#update` method refuses to update a resource
+in case the resource itself is `#dirty?` at this time.
+
+{% highlight ruby linenos %}
+zoo.name = 'Brooklyn Zoo'
+zoo.update(:name => 'Funky Town Municipal Zoo')
+# => DataMapper::UpdateConflictError: Zoo#update cannot be called on a dirty resource
+{% endhighlight %}
+
 Destroy
 -------
 
