@@ -40,10 +40,6 @@ for that resource, but that's not yet saved. To find out wether the creation
 was successful or not, you can call `#saved?` on the returned resource. It will
 return `true` if the resource was successfully persisted, or `false` otherwise.
 
-{% highlight ruby linenos %}
-zoo = Zoo.create(:name => 'The Glue Factory', :inception => Time.now)
-{% endhighlight %}
-
 Save
 ----
 
