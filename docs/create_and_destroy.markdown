@@ -23,6 +23,44 @@ class Zoo
 end
 {% endhighlight %}
 
+
+Bang(!) or no bang methods
+-----------------------------
+
+This page is about creating, saving, updating and destroying resources with
+DataMapper. The main methods to achieve these tasks are `#create`, `#save`,
+`#update` and `#destroy`. All of these methods have _bang method equivalents_
+which operate in a slightly different manner. DataMapper follows the general
+ruby idiom when it comes to using bang or non-bang methods. A detailed explanation
+of this idiom can be found at
+
+[David A. Black's weblog](http://dablog.rubypal.com/2007/8/15/bang-methods-or-danger-will-rubyist)
+
+When you call a non-bang method like `#save`, DataMapper will _invoke all callbacks_
+defined for resources of the model. This means that it will have to _load all affected
+resources into memory_ in order to be able to execute the callbacks on each one of them.
+This can be considered the _safe_ version, without the bang(!). While it sometimes may
+not be the best way to achieve a particular goal (bad performance), it's as safe as it
+gets. In fact, if `dm-validations` are required and active, calling the non-bang version
+of any of these methods, will make sure that all validations are being run too.
+
+Sometimes though, you either don't need the extra safety you get from `dm-validations`,
+or you don't want any callbacks to be invoked at all. In situations like this, you can use
+the _bang(!)_ versions of the respective methods. You will probably find yourself using these
+_unsafe_ methods when performing internal manipulation of resources as opposed to, say,
+persisting attribute values entered by users (in which case you'd most likely use the _safe_
+versions). If you call `#save!` instead of `#save`, _no callbacks_ and _no validations_ will
+be run. DataMapper just assumes that you know what you do. This can also have severe impact
+on the performance of some operations. If you're calling `#save!`, `#update!` or `#destroy!`
+on a (large) `DataMapper::Collection`, this will result in much better performance than calling
+the _safe_ non-bang counterparts. This is because DataMapper won't load the collection into
+memory because it won't execute any resource level callbacks or validations.
+
+While the above examples mostly used `#save` and `#save!` to explain the different behavior,
+the same rules apply for `#create!`, `#save!`, `#update!` and `#destroy!`. The _safe_ non-bang
+methods will _always execute all callbacks and validations_, and the _unsafe_ bang(!) methods
+never will.
+
 Create
 ------
 
