@@ -80,3 +80,18 @@ is an example of finding an existing record then destroying it.
 zoo = Zoo.get(5)
 zoo.destroy! #=> true
 {% endhighlight %}
+
+Raising an exception when save fails
+------------------------------------
+
+By default, datamapper returns `true` or `false` for all operations manipulating
+the persisted state of a resource (`#create`, `#save`, `#update` and `#destroy`).
+
+If you want it to raise exceptions instead, you can instruct datamapper to do so
+either globally, on a per-model, or on a per-instance basis.
+
+{% highlight ruby linenos %}
+DataMapper::Model.raise_on_save_failure = true # globally
+Zoo.raise_on_save_failure = true               # per-model
+zoo.raise_on_save_failure = true               # per-instance
+{% endhighlight %}
