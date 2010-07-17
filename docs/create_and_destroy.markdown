@@ -156,14 +156,34 @@ relationship accessor for any `1:n` or `m:n` relationship.
 Destroy
 -------
 
-To destroy a record, you simply call it's `#destroy!` method. It will return
+To destroy a record, you simply call it's `#destroy` method. It will return
 `true` or `false` depending if the record is successfully deleted or not. Here
 is an example of finding an existing record then destroying it.
 
 {% highlight ruby linenos %}
 zoo = Zoo.get(5)
-zoo.destroy! #=> true
+zoo.destroy #=> true
 {% endhighlight %}
+
+You can also use `#destroy` to do mass deletes on a model. In the previous examples
+we've used `DataMapper::Resource#destroy` to destroy a single resource. We can also
+use `DataMapper::Model#destroy` which is available as a class method on our models.
+Calling it will remove all instances of that model from the repository.
+
+{% highlight ruby linenos %}
+Zoo.destroy
+{% endhighlight %}
+
+This will delete all Zoo instances from the repository. Internally it does the equivalent of:
+
+{% highlight ruby linenos %}
+Zoo.all.destroy
+{% endhighlight %}
+
+This shows that actually, `#destroy` is also available on any `DataMapper::Collection`
+and performs a mass delete on that collection when being called. You typically retrieve
+a `DataMapper::Collection` from either a call to `SomeModel.all` or a call to a
+relationship accessor for any `1:n` or `m:n` relationship.
 
 Raising an exception when save fails
 ------------------------------------
