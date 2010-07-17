@@ -40,6 +40,43 @@ for that resource, but that's not yet saved. To find out wether the creation
 was successful or not, you can call `#saved?` on the returned resource. It will
 return `true` if the resource was successfully persisted, or `false` otherwise.
 
+If you want to either find the first resource matching some given criteria or
+just create that resource if it can't be found, you can use `#first_or_create`.
+
+{% highlight ruby linenos %}
+zoo = Zoo.first_or_create(:name => 'The Glue Factory')
+{% endhighlight %}
+
+This will first try to find a Zoo instance with the given name, and if it fails
+to do so, it will return a newly created Zoo with that name.
+
+If the criteria you want to use to query for the resource differ from the attributes
+you need for creating a new resource, you can pass the attributes for creating a new
+resource as the second parameter to `#first_or_create`, also in the form of a `#Hash`.
+
+{% highlight ruby linenos %}
+zoo = Zoo.first_or_create({ :name => 'The Glue Factory' }, { :inception => Time.now })
+{% endhighlight %}
+
+This will search for a Zoo named 'The Glue Factory' and if it can't find one, it will
+return a new Zoo instance with it's name set to 'The Glue Factory' and the inception
+set to what has been Time.now at the time of execution. You can see that for creating
+a new resource, both hash arguments will be merged so you don't need to specify the
+query criteria again in the second argument `Hash` that lists the attributes for creating
+a new resource. However, if you really need to create the new resource with different values
+from those used to query for it, the second `Hash` argument will overwrite the first one.
+
+{% highlight ruby linenos %}
+zoo = Zoo.first_or_create({ :name => 'The Glue Factory' }, {
+  :name      => 'Brooklyn Zoo',
+  :inception => Time.now
+})
+{% endhighlight %}
+
+This will search for a Zoo named 'The Glue Factory' but if it fails to find one, it will
+return a Zoo instance with its name set to 'Brooklyn Zoo' and its inception set to the
+value of Time.now at execution time.
+
 Save
 ----
 
@@ -61,6 +98,13 @@ zoo = Zoo.new(:name => 'Awesome Town Zoo')                  # Pass in a hash to 
 zoo.name = 'Dodgy Town Zoo'                                 # Set individual property
 zoo.attributes = { :name => 'No Fun Zoo', :open => false }  # Set multiple properties at once
 {% endhighlight %}
+
+Just like `#create` has an accompanying `#first_or_create` method, `#new` has its
+`#first_or_new` counterpart as well. The only difference with `#first_or_new` is that
+it returns a new _unsaved_ resource in case it couldn't find one for the given query
+criteria. Apart from that, `#first_or_new` behaves just like `#first_or_create` and
+accepts the same parameters. For a detailed explanation of the arguments these two methods
+accept, have a look at the explanation of `#first_or_create` in the above section on _Create_.
 
 Update
 ------
