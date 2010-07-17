@@ -126,6 +126,27 @@ zoo.update(:name => 'Funky Town Municipal Zoo')
 # => DataMapper::UpdateConflictError: Zoo#update cannot be called on a dirty resource
 {% endhighlight %}
 
+You can also use `#update` to do mass updates on a model. In the previous examples
+we've used `DataMapper::Resource#update` to update a single resource. We can also
+use `DataMapper::Model#update` which is available as a class method on our models.
+Calling it will update all instances of the model with the same values.
+
+{% highlight ruby linenos %}
+Zoo.update(:name => 'Funky Town Municipal Zoo')
+{% endhighlight %}
+
+This will set all Zoo instances' name property to 'Funky Town Municipal Zoo'. Internally
+it does the equivalent of:
+
+{% highlight ruby linenos %}
+Zoo.all.update(:name => 'Funky Town Municipal Zoo')
+{% endhighlight %}
+
+This shows that actually, `#update` is also available on any `DataMapper::Collection`
+and performs a mass update on that collection when being called. You typically retrieve
+a `DataMapper::Collection` from either a call to `SomeModel.all` or a call to a
+relationship accessor for any `1:n` or `m:n` relationship.
+
 Destroy
 -------
 
