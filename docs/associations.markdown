@@ -117,6 +117,34 @@ end
 ### Has, and belongs to, many (Or Many-To-Many)
 
 {% highlight ruby linenos %}
+# When auto_migrate! is being called, the following model
+# definitions will create an
+#
+#  ArticleCategory
+#
+# model that will be automigrated and that will act as the join
+# model. DataMapper just picks both model names, sorts them
+# alphabetically and then joins them together. The resulting
+# storage name follows the same conventions it would if the
+# model had been declared traditionally.
+#
+# The resulting model is no different from any traditionally
+# declared model. It contains two belongs_to relationships
+# pointing to both Article and Category, and both underlying
+# child key properties form the composite primary key (CPK)
+# of that model. DataMapper uses consistent naming conventions
+# to infer the names of the child key properties. Since it's
+# told to link together an Article and a Category model, it'll
+# establish the following relationships.
+#
+#  ArticleCategory.belongs_to :article,  'Article',  :key => true
+#  ArticleCategory.belongs_to :category, 'Category', :key => true
+#
+# This also means that you can access the join model just like
+# any other DataMapper model since there's really no difference
+# at all. All you need to know is the inferred name, then you can
+# treat it just like any other DataMapper model.
+
 class Article
   include DataMapper::Resource
 
@@ -128,7 +156,6 @@ class Category
 
   has n, :articles, :through => Resource
 end
-
 {% endhighlight %}
 
 The use of Resource in place of a class name tells DataMapper to use an
