@@ -134,6 +134,86 @@ end
 The use of Resource in place of a class name tells DataMapper to use an
 anonymous resource to link the two models up.
 
+Self referential many to many relationships
+-------------------------------------------
+
+Sometimes you need to establish self referential relationships where both sides of the
+relationship are of the same model. The canonical example seems to be the declaration of
+a _Friendship_ relationship between two people. Here's how you would do that with DataMapper.
+
+{% highlight ruby linenos %}
+class Person
+  include DataMapper::Resource
+  property :id,    Serial
+  property :name , String, :required => true
+  has n, :friendships, :child_key => [:source_id]
+  has n, :friends, self, :through => :friendships, :via => :target
+end
+
+class Friendship
+  include DataMapper::Resource
+  belongs_to :source, 'Person', :key => true
+  belongs_to :target, 'Person', :key => true
+end
+{% endhighlight %}
+
+
+The `Person` and `Friendship` model definitions look pretty straightforward at a first glance.
+Every `Person` has an _id_ and a _name_, and a `Friendship` points to two instances of `Person`.
+
+The interesting part are the relationship definitions in the `Person` model. Since we're modelling
+friendships, we want to be able to get at one person's friends with one single method call. First,
+we need to establish a _one to many_ relationship to the `Friendship` model.
+
+{% highlight ruby linenos %}
+class Person
+
+  # ...
+
+  # Since the foreign key pointing to Person isn't named 'person_id',
+  # we need to override it by specifying the :child_key option. If the
+  # Person model's key would be something different from 'id', we would
+  # also need to specify the :parent_key option.
+
+  has n, :friendships, :child_key => [:source_id]
+
+end
+
+This only gets us half the way though. We can now reach associated `Friendship` instances by traversing
+`person.friendships`. However, we want to get at the actual _friends_, the instances of `Person`. We already
+know that we can _go through_ other relationships in order to be able to construct _many to many_ relationships.
+
+So what we need to do is to _go through_ the friendship relationship to get at the actual friends. To
+achieve that, we have to tweak various options of that _many to many_ relationship definition.
+
+{% highlight ruby linenos %}
+class Person
+
+  # ...
+
+  has n, :friendships, :child_key => [:source_id]
+
+  # We name the relationship `:friends` cause that's the original intention
+  #
+  # The target model of this relationship will be the Person model as well,
+  # so we can just pass 'self' where DataMapper expects the target model
+  # You can also use Person or 'Person' in place of self here. If you're
+  # constructing the options programmatically, you might even want to pass
+  # the target model using the `:model` option instead of the 3rd parameter.
+  #
+  # We "go through" the friendship relationship in order to get at the actual
+  # friends. Since we named our relationship `:friends`, DataMapper assumes
+  # that the `Friendship` model contains a `:friend` relationship. Since this
+  # is not the case in our example, because we've decided to name the relationship
+  # pointing to the actual friend person `:target`, we have to tell DataMapper
+  # to use that relationship instead, when looking for the relationship to
+  # piggy back on. We do so by passing the `:via` option with our `:target`
+
+  has n, :friends, self, :through => :friendships, :via => :target
+
+end
+{% endhighlight %}
+
 Adding To Associations
 ----------------------
 
