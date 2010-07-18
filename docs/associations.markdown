@@ -116,6 +116,9 @@ end
 
 ### Has, and belongs to, many (Or Many-To-Many)
 
+The use of Resource in place of a class name tells DataMapper to use an
+anonymous resource to link the two models up.
+
 {% highlight ruby linenos %}
 # When auto_migrate! is being called, the following model
 # definitions will create an
@@ -157,9 +160,6 @@ class Category
   has n, :articles, :through => Resource
 end
 {% endhighlight %}
-
-The use of Resource in place of a class name tells DataMapper to use an
-anonymous resource to link the two models up.
 
 Self referential many to many relationships
 -------------------------------------------
