@@ -266,7 +266,7 @@ class Blog
 
   # The rules described below apply equally to definitions
   # of one-to-one relationships. The only difference being
-  # that those would obvioulsy only point to a single resource.
+  # that those would obviously only point to a single resource.
 
   # - This relationship points to multiple resources
   # - The target resources will be instances of the 'Post' model
