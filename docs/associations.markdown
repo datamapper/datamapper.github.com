@@ -268,6 +268,14 @@ class Blog
   # of one-to-one relationships. The only difference being
   # that those would obviously only point to a single resource.
 
+  # However, many-to-many relationships don't accept all the
+  # options described below. They do support specifying the
+  # target model, like we will see below, but they do not support
+  # the :parent_key and the :child_key options. Instead, they
+  # support another option that's available to many-to-many
+  # relationships exclusively. This option is called :via, and
+  # will be explained in more detail in its own paragraph below.
+
   # - This relationship points to multiple resources
   # - The target resources will be instances of the 'Post' model
   # - The local parent_key is assumed to be 'id'
@@ -341,6 +349,8 @@ relationship is marked with `:key => true`, it will either form the complete
 primary key for that model, or it will be part of the primary key. The latter
 will be the case if other properties or `belongs_to` definitions have been
 marked with `:key => true` too, to form a composite primary key (_CPK_).
+Marking a `belongs_to` relationship or any `property` with `:key => true`,
+automatically makes it `:required => true` as well.
 
 {% highlight ruby linenos %}
 class Post
@@ -348,16 +358,67 @@ class Post
   belongs_to :blog, :key => true # 'blog_id' is the primary key
 end
 
+class Person
+  include DataMapper::Resource
+  property id, Serial
+end
+
 class Authorship
 
   include DataMapper::Resource
 
-  belongs_to :post,   :key => true # 'blog_id' is part of the CPK
+  belongs_to :post,   :key => true # 'post_id'   is part of the CPK
   belongs_to :person, :key => true # 'person_id' is part of the CPK
 
 end
 {% endhighlight %}
 
+When defining _many to many_ relationships you may find that you need to
+customize the relationship that is used to "go through". This can be particularly
+handy when defining self referential many-to-many relationships like we saw above.
+In order to change the relationship used to "go through", DataMapper allows us to
+specifiy the `:via` option on _many to many_ relationships.
+
+The following example shows a scenario where we don't use `:via` for defining
+_self referential many to many_ relationships. Instead, we will use `:via` to be
+able to provide "better" names for use in our domain models.
+
+{% highlight ruby linenos %}
+class Post
+
+  include DataMapper::Resource
+
+  property :id, Serial
+
+  has n, :authorships
+
+  # Without the use of :via here, DataMapper would
+  # search for an :author relationship in Authorship.
+  # Since there is no such relationship, that would
+  # fail. By using :via => :person, we can instruct
+  # DataMapper to use that relationship instead of
+  # the :author default.
+
+  has n, :authors, 'Person',
+    :through => :authorships,
+    :via     => :person
+
+end
+
+class Person
+  include DataMapper::Resource
+  property id, Serial
+end
+
+class Authorship
+
+  include DataMapper::Resource
+
+  belongs_to :post,   :key => true # 'post_id'   is part of the CPK
+  belongs_to :person, :key => true # 'person_id' is part of the CPK
+
+end
+{% endhighlight %}
 
 Adding Conditions to Associations
 ---------------------------------
