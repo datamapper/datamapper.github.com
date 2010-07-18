@@ -19,7 +19,7 @@ created_at: Fri Nov 30 15:29:01 +1030 2007
   <dd>Troubleshooting installation, with instructions for specific platforms.</dd>
   <dt><a href="/docs/properties">Properties</a></dt>
   <dd>Properties declared in your model map to the fields in the database.</dd>
-  <dt><a href="/docs/create_and_destroy">Creating, Saving and Destroying Records</a></dt>
+  <dt><a href="/docs/create_and_destroy">Creating, Saving, Updating and Destroying Records</a></dt>
   <dd>Obviously you're going to be doing a lot of this :)</dd>
   <dt><a href="/docs/validations">Validations</a></dt>
   <dd>Auto-validations, manual validations, contextual validations</dd>
