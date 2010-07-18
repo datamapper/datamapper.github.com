@@ -194,7 +194,7 @@ class Person
 
   has n, :friendships, :child_key => [:source_id]
 
-  # We name the relationship `:friends` cause that's the original intention
+  # We name the relationship :friends cause that's the original intention
   #
   # The target model of this relationship will be the Person model as well,
   # so we can just pass self where DataMapper expects the target model
