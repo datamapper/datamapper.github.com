@@ -178,6 +178,7 @@ class Person
   has n, :friendships, :child_key => [:source_id]
 
 end
+{% endhighlight %}
 
 This only gets us half the way though. We can now reach associated `Friendship` instances by traversing
 `person.friendships`. However, we want to get at the actual _friends_, the instances of `Person`. We already
