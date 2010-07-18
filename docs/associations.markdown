@@ -218,32 +218,64 @@ end
 Adding To Associations
 ----------------------
 
-Adding to associations, to add a comment to a post for example, is quite simple.
-`new` or `create` can be called directly on the association, or an already
-existing item can be appended to the association with `<<` and then the item
-saved.
+Adding resources to _many to one_ or _one to one_ relationships is as simple as
+assigning them to their respective writer methods. The following example shows how
+to assign a target resource to both a _many to one_ and a _one to one_ relationship.
 
 {% highlight ruby linenos %}
-# Assume we set up comments and posts as before, as actual models.
+class Person
+  include DataMapper::Resource
+  has 1, :profile
+end
 
-# find a post to add a comment to
-@post = Post.get(1)
+class Profile
+  include DataMapper::Resource
+  belongs_to :person
+end
 
-# Add the comment
-# (also #create can be used - it acts as Comment.create would)
-@comment = @post.comments.new(:subject => 'DataMapper ...', ...)
+# Assigning a resource to a one-to-one relationship
 
-# and save it
-@comment.save
+person  = Person.create
+person.profile = Profile.new
+person.save
+
+# Assigning a resource to a many-to-one relationship
+
+profile = Profile.new
+profile.person = Person.create
+profile.save
+{% endhighlight %}
 
 
-# Or if we already have a comment ...
+Adding resources to any _one to many_ or _many to many_ relationship, can basically
+be done in two different ways. If you don't have the resource already, but only have
+a hash of attributes, you can either call the `new` or the `create` method directly
+on the association, passing it the attributes in form of a hash.
 
-# append it to the comments
-@post.comments << @comment
+{% highlight ruby linenos %}
+post = Post.get(1) # find a post to add a comment to
 
-# and save.
-@post.save
+# This will add a new but not yet saved comment to the collection
+comment = post.comments.new(:subject => 'DataMapper ...')
+
+# Both of the following calls will actually save the comment
+post.save    # This will save the post along with the newly added comment
+comment.save # This will only save the comment
+
+# This will create a comment, save it, and add it to the collection
+comment = post.comments.create(:subject => 'DataMapper ...')
+{% endhighlight %}
+
+If you already have an existing `Comment` instance handy, you can just append that
+to the association using the `<<` method. You still need to manually save the parent
+resource to persist the comment as part of the related collection.
+
+{% highlight ruby linenos %}
+post.comments << comment # append an already existing comment
+
+# Both of the following calls will actually save the comment
+post.save          # This will save the post along with the newly added comment
+post.comments.save # This will only save the comments collection
 {% endhighlight %}
 
 Customizing Associations
