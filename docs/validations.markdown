@@ -25,19 +25,20 @@ passing them a property name (or multiple property names) to validate against.
 {% endhighlight %}
 
 These are the currently available manual validations available. Please refer to
-the <a href="http://datamapper.rubyforge.org/dm-more/DataMapper/Validate/ClassMethods.html">API</a>
-for more detailed information.
+the [API docs](http://rdoc.info/projects/datamapper/dm-validations) for more detailed
+information.
 
-* validates_present
-* validates_absent
-* validates_is_accepted
-* validates_is_confirmed
-* validates_format
-* validates_length
-* validates_with_method
+* validates_absence_of
+* validates_acceptance_of
 * validates_with_block
-* validates_is_number
-* validates_is_unique
+* validates_confirmation_of
+* validates_format_of
+* validates_length_of
+* validates_with_method
+* validates_numericality_of
+* validates_primitive_type_of
+* validates_presence_of
+* validates_uniqueness_of
 * validates_within
 
 Auto-Validations
@@ -78,7 +79,7 @@ Here we see an example of a class with both a manual and auto-validation declare
     property :name, String
 
     # good old fashioned manual validation
-    validates_length :name, :max => 20
+    validates_length_of :name, :max => 20
 
     property :content, Text, :length => (100..500)
   end
@@ -125,7 +126,7 @@ they can be changed. This is done via providing a `:message` in the options
 hash, for example:
 
 {% highlight ruby %}
-  validates_is_unique :title, :scope => :section_id,
+  validates_uniqueness_of_ :title, :scope => :section_id,
     :message => "There's already a page of that title in this section"
 {% endhighlight %}
 
@@ -231,7 +232,7 @@ being validated.
     property :commit,      String
     property :status,      Enum[ :new, :open, :invalid, :complete ]
 
-    validates_present :commit, :if => Proc.new {|t| t.status == :complete }
+    validates_presence_of :commit, :if => Proc.new {|t| t.status == :complete }
   end
 {% endhighlight %}
 
@@ -242,7 +243,7 @@ the resource is already there--'initial commit' is hardly an enlightening
 message.
 
 {% highlight ruby %}
-  validates_length :change_summary, :min => 10, :unless => :new_record?
+  validates_length_of :change_summary, :min => 10, :unless => :new_record?
 {% endhighlight %}
 
 Sometimes a simple on and off switch is not enough, and so ...
@@ -279,11 +280,11 @@ especially if we're messing with default validations.
     property :published,           Boolean
 
     # validations
-    validates_present :title,               :when => [ :draft, :publish ]
-    validates_present :sidebar_picture_url, :when => [ :publish ]
-    validates_present :body,                :when => [ :draft, :publish ]
-    validates_length  :body,                :minimum => 1000, :when => [ :publish ]
-    validates_absent  :published,           :when => [ :draft ]
+    validates_presence_of :title,               :when => [ :draft, :publish ]
+    validates_presence_of :sidebar_picture_url, :when => [ :publish ]
+    validates_presence_of :body,                :when => [ :draft, :publish ]
+    validates_length_of   :body,                :minimum => 1000, :when => [ :publish ]
+    validates_absence_of  :published,           :when => [ :draft ]
   end
 
   # and now some results
@@ -367,5 +368,3 @@ properties or derived from the environment. To set these properties, a `before :
 Be careful not to `save` your resource in these kinds of methods, or your
 application will spin off into infinite trying to save your object while saving
 your object.
-
-[Validate_ValidationErrors]:http://datamapper.rubyforge.org/dm-more/
