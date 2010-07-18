@@ -165,24 +165,29 @@ DM-Core supports the following 'primitive' data-types.
 * Text
 * Float
 * Integer
-* BigDecimal,
+* Decimal
 * DateTime, Date, Time
 * Object, (marshalled)
 * Discriminator
 
 If you include DM-Types, the following data-types are supported:
 
+* BCryptHash
+* CommaSeparatedList
 * Csv
 * Enum
 * EpochTime
 * FilePath
 * Flag
 * IPAddress
-* URI
-* Yaml
 * Json
-* BCryptHash
-* Regex
+* ParanoidBoolean
+* ParanoidDateTme
+* Regexp
+* Slug
+* URI
+* UUID
+* Yaml
 
 Limiting Access
 ---------------
