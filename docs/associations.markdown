@@ -249,35 +249,114 @@ saved.
 Customizing Associations
 ------------------------
 
-The association declarations make certain assumptions about which classes are
-being related and the names of foreign keys based on some simple conventions. In
-some situations you may need to tweak them a little. The association
-declarations accept additional options to allow you to customize them as needed.
-The `belongs_to` method creates a child key property if it does not already
-exist.  This property is `:required` and has an index created, if the data-store
-supports such a concept.  If the child key property has already been declared,
-that property is used instead.
+The association declarations make certain assumptions about the names of foreign keys
+and about which classes are being related. They do so based on some simple conventions.
+
+The following two simple models will explain these default conventions in detail, showing
+relationship definitions that solely rely on those conventions. Then the same relationship
+definitions will be presented again, this time using all the available options explicitly.
+These additional versions of the respective relationship definitions will have the exact same
+effect as their simpler counterparts. They are only presented to show which options can be
+used to customize various aspects when defining relationships.
+
+{% highlight ruby linenos %}
+class Blog
+
+  include DataMapper::Resource
+
+  # The rules described below apply equally to definitions
+  # of one-to-one relationships. The only difference being
+  # that those would obvioulsy only point to a single resource.
+
+  # - This relationship points to multiple resources
+  # - The target resources will be instances of the 'Post' model
+  # - The local parent_key is assumed to be 'id'
+  # - The remote child_key is assumed to be 'blog_id'
+  #   - If the child model (Post) doesn't define the 'blog_id'
+  #     child key property either explicitly, or implicitly by
+  #     defining it using a belongs_to relationship, it will be
+  #     established automatically, using the defaults described
+  #     here ('blog_id').
+
+  has n, :posts
+
+  # The following relationship definition has the exact same
+  # effect as the version above. It's only here to show which
+  # options control the default behavior outlined above.
+
+  has n, :posts, 'Post',
+    :parent_key => [:id],      # local to this model (Blog)
+    :child_key  => [:blog_id]  # in the remote model (Post)
+
+end
+
+class Post
+
+  include DataMapper::Resource
+
+  # - This relationship points to a single resource
+  # - The target resource will be an instance of the 'Blog' model
+  # - The locally established child key will be named 'blog_id'
+  #   - If a child key property named 'blog_id' is already defined
+  #     for this model, then that will be used.
+  #   - If no child key property named 'blog_id' is already defined
+  #     for this model, then it gets defined automatically.
+  # - The remote parent_key is assumed to be 'id'
+  #   - The parent key must be (part of) the remote model's key
+  # - The child key is required to be present
+  #   - A parent resource must exist and be assigned, in order
+  #     for this resource to be considered complete / valid
+
+  belongs_to :blog
+
+  # The following relationship definition has the exact same
+  # effect as the version above. It's only here to show which
+  # options control the default behavior outlined above.
+  #
+  # When providing customized :parent_key and :child_key options,
+  # it is not necessary to specify both :parent_key and :child_key
+  # if only one of them differs from the default conventions.
+  #
+  # The :parent_key and :child_key options both accept arrays
+  # of property name symbols. These should be the names of
+  # properties being (at least part of) a key in either the
+  # remote (:parent_key) or the local (:child_key) model.
+  #
+  # If the parent resource need not be present in order for this
+  # model to be considered complete, :required => false can be
+  # passed to stop DataMapper from establishing checks for the
+  # presence of the attribute value.
+
+  belongs_to :blog, 'Blog',
+    :parent_key => [:id],      # in the remote model (Blog)
+    :child_key  => [:blog_id], # local to this model (Post)
+    :required   => true        # the blog_id must be present
+
+end
+{% endhighlight %}
+
+In addition to the `:parent_key` and `:child_key` options that we just saw,
+the `belongs_to` method also accepts the `:key` option. If a `belongs_to`
+relationship is marked with `:key => true`, it will either form the complete
+primary key for that model, or it will be part of the primary key. The latter
+will be the case if other properties or `belongs_to` definitions have been
+marked with `:key => true` too, to form a composite primary key (_CPK_).
 
 {% highlight ruby linenos %}
 class Post
   include DataMapper::Resource
+  belongs_to :blog, :key => true # 'blog_id' is the primary key
+end
 
-  # Uses the `bid` property, not `blog_id`
-  belongs_to :blog, :child_key => [:bid]
+class Authorship
 
-  # To make a relationship which uses a different class
-  belongs_to :author, 'User'
-  # or belongs_to :author, :model => 'User'
+  include DataMapper::Resource
 
+  belongs_to :post,   :key => true # 'blog_id' is part of the CPK
+  belongs_to :person, :key => true # 'person_id' is part of the CPK
 
-  # To make an association which is not required
-  belongs_to :series, :required => false
-
-  # To make an association part of the model's primary key
-  belongs_to :topic, :key => true
 end
 {% endhighlight %}
-
 
 
 Adding Conditions to Associations
