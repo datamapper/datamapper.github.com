@@ -20,8 +20,8 @@ Much like a certain other Ruby ORM we can call validation methods directly by
 passing them a property name (or multiple property names) to validate against.
 
 {% highlight ruby linenos %}
-  validates_length :name
-  validates_length :name, :description
+  validates_length_of :name
+  validates_length_of :name, :description
 {% endhighlight %}
 
 These are the currently available manual validations available. Please refer to
