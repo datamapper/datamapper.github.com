@@ -150,6 +150,8 @@ DataMapper supports other conditions syntaxes as well:
 
 {% highlight ruby linenos %}
 zoos = Zoo.all(:conditions => { :id => 34 })
+
+# You can use this syntax to call native storage engine functions
 zoos = Zoo.all(:conditions => [ "id = ?", 34 ])
 
 # even mix and match
