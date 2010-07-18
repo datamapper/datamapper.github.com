@@ -69,7 +69,7 @@ zoo.raise_on_save_failure = true               # per-instance
 If DataMapper is told to `raise_on_save_failure` it will raise the following when
 any `save` operation failed:
 
-{% highlight %}
+{% highlight ruby %}
 DataMapper::SaveFailureError: Zoo#save returned false, Zoo was not saved
 {% endhighlight %}
 
