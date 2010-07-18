@@ -197,18 +197,18 @@ class Person
   # We name the relationship `:friends` cause that's the original intention
   #
   # The target model of this relationship will be the Person model as well,
-  # so we can just pass 'self' where DataMapper expects the target model
+  # so we can just pass self where DataMapper expects the target model
   # You can also use Person or 'Person' in place of self here. If you're
   # constructing the options programmatically, you might even want to pass
-  # the target model using the `:model` option instead of the 3rd parameter.
+  # the target model using the :model option instead of the 3rd parameter.
   #
-  # We "go through" the friendship relationship in order to get at the actual
-  # friends. Since we named our relationship `:friends`, DataMapper assumes
-  # that the `Friendship` model contains a `:friend` relationship. Since this
-  # is not the case in our example, because we've decided to name the relationship
-  # pointing to the actual friend person `:target`, we have to tell DataMapper
+  # We "go through" the :friendship relationship in order to get at the actual
+  # friends. Since we named our relationship :friends, DataMapper assumes
+  # that the Friendship model contains a :friend relationship. Since this
+  # is not the case in our example, because we've named the relationship
+  # pointing to the actual friend person :target, we have to tell DataMapper
   # to use that relationship instead, when looking for the relationship to
-  # piggy back on. We do so by passing the `:via` option with our `:target`
+  # piggy back on. We do so by passing the :via option with our :target
 
   has n, :friends, self, :through => :friendships, :via => :target
 
