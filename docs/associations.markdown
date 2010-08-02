@@ -93,6 +93,7 @@ include it as part of the primary key by adding the `:key => true` option.
 {% highlight ruby linenos %}
 class Photo
   include DataMapper::Resource
+  property :id, Serial
 
   has n, :taggings
   has n, :tags, :through => :taggings
@@ -100,6 +101,7 @@ end
 
 class Tag
   include DataMapper::Resource
+  property :id, Serial
 
   has n, :taggings
   has n, :photos, :through => :taggings
@@ -151,12 +153,16 @@ anonymous resource to link the two models up.
 class Article
   include DataMapper::Resource
 
+  property :id, Serial
+
   has n, :categories, :through => Resource
 end
 
 class Category
   include DataMapper::Resource
 
+  property :id, Serial
+ 
   has n, :articles, :through => Resource
 end
 {% endhighlight %}
