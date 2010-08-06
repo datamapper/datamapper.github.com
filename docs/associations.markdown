@@ -140,10 +140,20 @@ anonymous resource to link the two models up.
 # of that model. DataMapper uses consistent naming conventions
 # to infer the names of the child key properties. Since it's
 # told to link together an Article and a Category model, it'll
-# establish the following relationships.
+# establish the following relationships in the join model.
 #
 #  ArticleCategory.belongs_to :article,  'Article',  :key => true
 #  ArticleCategory.belongs_to :category, 'Category', :key => true
+#
+# Since every many to many relationship needs a one to many
+# relationship to "go through", these also get set up for us.
+#
+#  Article.has n, :article_categories
+#  Category.has n, article_categories
+#
+# Essentially, you can think of ":through => Resource" being
+# replaced with ":through => :article_categories" when DM
+# processes the relationship definition.
 #
 # This also means that you can access the join model just like
 # any other DataMapper model since there's really no difference
@@ -165,6 +175,18 @@ class Category
  
   has n, :articles, :through => Resource
 end
+
+# create two resources
+article  = Article.create
+category = Category.create
+
+# link them together
+article.categories << category
+article.save
+
+# unlink them by destroying the join resource
+link = article.article_categories.first(:category => category)
+link.destroy
 {% endhighlight %}
 
 Self referential many to many relationships
