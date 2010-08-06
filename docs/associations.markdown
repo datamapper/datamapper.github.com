@@ -184,8 +184,12 @@ category = Category.create
 article.categories << category
 article.save
 
-# unlink them by destroying the join resource
+# unlink them by destroying the related join resource
 link = article.article_categories.first(:category => category)
+link.destroy
+
+# unlink them by destroying the join resource directly
+link = ArticleCategory.get(article.id, category.id)
 link.destroy
 {% endhighlight %}
 
