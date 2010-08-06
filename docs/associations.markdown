@@ -180,9 +180,12 @@ end
 article  = Article.create
 category = Category.create
 
-# link them together
+# link them by adding to the relationship
 article.categories << category
 article.save
+
+# link them by creating the join resource directly
+ArticleCategory.create(:article => article, :category => category)
 
 # unlink them by destroying the related join resource
 link = article.article_categories.first(:category => category)
