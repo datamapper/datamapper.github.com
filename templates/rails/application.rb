@@ -28,12 +28,23 @@ end
 CODE
 
 say ''
-say '--------------------------------------------------------------------------'
-say "Edit your Gemfile (don't forget to run 'bundle install' after doing that)"
-say 'Generate a scaffold: rails generate scaffold Person name:string'
-say 'Automigrate the DB:  rake db:automigrate'
-say 'Start the server:    rails server'
-say '--------------------------------------------------------------------------'
+say '---------------------------------------------------------------------------'
+say "Edit your Gemfile (do not forget to run 'bundle install' after doing that)"
+say "Some of the following commands assume that you passed the --binstubs option"
+say "to bundle install. If you haven't done so, use 'bundle exec rake' where the"
+say "examples below use './bin/rake'"
+say '---------------------------------------------------------------------------'
+say "NOTE: If 'rake db:setup' doesn't work, you have two options for now "
+say "      1) Call 'rake db:create' and then 'rake db:automigrate' explicitly"
+say "      2) Pin dm-rails to git in your Gemfile"
+say "         Once dm-rails-1.0.2 is released, that won't be necessary anymore."
+say "      => gem 'dm-rails', :git => 'git://github.com/datamapper/dm-rails'"
+say '---------------------------------------------------------------------------'
+say 'Have a look at available rake tasks:  ./bin/rake -T'
+say 'Generate a simple scaffold:           rails g scaffold Person name:string'
+say 'Create, automigrate and seed the DB:  ./bin/rake db:setup'
+say 'Start the server:                     rails server'
+say '---------------------------------------------------------------------------'
 say 'After the sever booted, point your browser at http://localhost:3000/people'
-say '--------------------------------------------------------------------------'
+say '---------------------------------------------------------------------------'
 say ''
