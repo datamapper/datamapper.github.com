@@ -60,24 +60,21 @@ group(:test) do
 
 end
 
-# ------------------------------------------------------------------------------
+# To get a detailed overview about what queries get issued and how long they take
+# have a look at rails_metrics. Once you bundled it, you can run
+#
+#   rails g rails_metrics Metric
+#   rake db:automigrate
+#
+# to generate a model that stores the metrics. You can access them by visiting
+#
+#   /rails_metrics
+#
+# in your rails application.
 
-# These gems are only listed here in the Gemfile because we want to pin them
-# to the github repositories for as long as no stable version has been released.
-# The dm-core gem is a hard dependency for dm-rails so it would get pulled in by
-# simply adding dm-rails. The dm-do-adapter gem is a hard dependency for any of
-# the available dm-xxx-adapters. Once we have stable gems available, pinning these
-# gems to github will be optional.
-
-gem 'dm-core',              DM_VERSION
-gem 'dm-do-adapter',        DM_VERSION
-gem 'dm-active_model',      DM_VERSION
-
-# This is a datamapper compatibility branch for EngineYard's Rails metrics gem.
-# In the future this will hopefully be merged into the mainly gem. We refer to
-# this gem now so you can easily add it to your project
-
-# gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'
+# group :development do
+#   gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'
+# end
 
 GEMFILE
 end
