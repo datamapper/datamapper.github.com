@@ -48,7 +48,7 @@ gem 'dm-aggregates',        DM_VERSION
 gem 'dm-timestamps',        DM_VERSION
 gem 'dm-observer',          DM_VERSION
 
-group(:test) do
+group(:development) do
 
   gem 'rspec',              RSPEC_VERSION
   gem 'rspec-core',         RSPEC_VERSION, :require => 'rspec/core'
@@ -56,23 +56,22 @@ group(:test) do
   gem 'rspec-mocks',        RSPEC_VERSION, :require => 'rspec/mocks'
   gem 'rspec-rails',        RSPEC_VERSION
 
+  # To get a detailed overview about what queries get issued and how long they take
+  # have a look at rails_metrics. Once you bundled it, you can run
+  #
+  #   rails g rails_metrics Metric
+  #   rake db:automigrate
+  #
+  # to generate a model that stores the metrics. You can access them by visiting
+  #
+  #   /rails_metrics
+  #
+  # in your rails application.
+
+  # gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'
+
 end
 
-# To get a detailed overview about what queries get issued and how long they take
-# have a look at rails_metrics. Once you bundled it, you can run
-#
-#   rails g rails_metrics Metric
-#   rake db:automigrate
-#
-# to generate a model that stores the metrics. You can access them by visiting
-#
-#   /rails_metrics
-#
-# in your rails application.
-
-# group :development do
-#   gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'
-# end
 
 GEMFILE
 end
