@@ -21,7 +21,7 @@ gem 'actionpack',         RAILS_VERSION, :require => 'action_pack'
 gem 'actionmailer',       RAILS_VERSION, :require => 'action_mailer'
 gem 'railties',           RAILS_VERSION, :require => 'rails'
 
-gem 'dm-rails',               DM_VERSION
+gem 'dm-rails',          '~> 1.0.2'
 gem 'dm-#{database}-adapter', DM_VERSION
 
 # You can use any of the other available database adapters.
