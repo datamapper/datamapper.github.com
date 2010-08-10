@@ -48,7 +48,7 @@ gem 'dm-aggregates',        DM_VERSION
 gem 'dm-timestamps',        DM_VERSION
 gem 'dm-observer',          DM_VERSION
 
-group(:development) do
+group(:development, :test) do
 
   gem 'rspec-rails',        RSPEC_VERSION
 
