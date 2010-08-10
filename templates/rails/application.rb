@@ -34,12 +34,6 @@ say "Some of the following commands assume that you passed the --binstubs option
 say "to bundle install. If you haven't done so, use 'bundle exec rake' where the"
 say "examples below use './bin/rake'"
 say '---------------------------------------------------------------------------'
-say "NOTE: If 'rake db:setup' doesn't work, you have two options for now"
-say "      1) Call 'rake db:create' and then 'rake db:automigrate' explicitly"
-say "      2) Pin dm-rails to git in your Gemfile"
-say "         Once dm-rails-1.0.2 is released, that won't be necessary anymore."
-say "      => gem 'dm-rails', :git => 'git://github.com/datamapper/dm-rails'"
-say '---------------------------------------------------------------------------'
 say 'Install rspec (optional):             rails g rspec:install'
 say 'Have a look at the dm-rails README:   http://github.com/datamapper/dm-rails'
 say '---------------------------------------------------------------------------'
