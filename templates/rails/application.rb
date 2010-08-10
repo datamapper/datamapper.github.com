@@ -41,6 +41,8 @@ say "         Once dm-rails-1.0.2 is released, that won't be necessary anymore."
 say "      => gem 'dm-rails', :git => 'git://github.com/datamapper/dm-rails'"
 say '---------------------------------------------------------------------------'
 say 'Install rspec (optional):             rails g rspec:install'
+say 'Have a look at the dm-rails README:   http://github.com/datamapper/dm-rails'
+say '---------------------------------------------------------------------------'
 say 'Have a look at available rake tasks:  ./bin/rake -T'
 say 'Generate a simple scaffold:           rails g scaffold Person name:string'
 say 'Create, automigrate and seed the DB:  ./bin/rake db:setup'
