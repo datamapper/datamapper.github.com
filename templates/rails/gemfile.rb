@@ -50,10 +50,6 @@ gem 'dm-observer',          DM_VERSION
 
 group(:development) do
 
-  gem 'rspec',              RSPEC_VERSION
-  gem 'rspec-core',         RSPEC_VERSION, :require => 'rspec/core'
-  gem 'rspec-expectations', RSPEC_VERSION, :require => 'rspec/expectations'
-  gem 'rspec-mocks',        RSPEC_VERSION, :require => 'rspec/mocks'
   gem 'rspec-rails',        RSPEC_VERSION
 
   # To get a detailed overview about what queries get issued and how long they take
@@ -71,7 +67,6 @@ group(:development) do
   # gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'
 
 end
-
 
 GEMFILE
 end
