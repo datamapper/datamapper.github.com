@@ -173,7 +173,7 @@ than instances of the Zoo class. They'll also be read-only. You can still use
 the interpolated array condition syntax as well:
 
 {% highlight ruby linenos %}
-zoos = repository(:default).adapter.query('SELECT name, open FROM zoos WHERE name = ?', "Awesome Zoo")
+zoos = repository(:default).adapter.select('SELECT name, open FROM zoos WHERE name = ?', "Awesome Zoo")
 {% endhighlight %}
 
 Counting
