@@ -34,6 +34,11 @@ say "Some of the following commands assume that you passed the --binstubs option
 say "to bundle install. If you haven't done so, use 'bundle exec rake' where the"
 say "examples below use './bin/rake'"
 say '---------------------------------------------------------------------------'
+say 'If you want to use rspec for testing, you first need to uncomment the line'
+say "that declares it in the Gemfile. The you need to run 'bundle install' again"
+say "Once that's done, you need to actually install it into your app and update"
+say "your spec_helper as shown in the dm-rails README"
+say '---------------------------------------------------------------------------'
 say 'Install rspec (optional):             rails g rspec:install'
 say 'Have a look at the dm-rails README:   http://github.com/datamapper/dm-rails'
 say '---------------------------------------------------------------------------'

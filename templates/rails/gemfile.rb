@@ -14,7 +14,6 @@ source 'http://rubygems.org'
 
 RAILS_VERSION = '~> 3.0.0.rc'
 DM_VERSION    = '~> 1.0.0'
-RSPEC_VERSION = '~> 2.0.0.beta.19'
 
 gem 'activesupport',      RAILS_VERSION, :require => 'active_support'
 gem 'actionpack',         RAILS_VERSION, :require => 'action_pack'
@@ -50,7 +49,9 @@ gem 'dm-observer',          DM_VERSION
 
 group(:development, :test) do
 
-  gem 'rspec-rails',        RSPEC_VERSION
+  # Uncomment this if you want to use rspec for testing your application
+
+  # gem 'rspec-rails', '~> 2.0.0.beta.19'
 
   # To get a detailed overview about what queries get issued and how long they take
   # have a look at rails_metrics. Once you bundled it, you can run
