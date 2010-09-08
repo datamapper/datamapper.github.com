@@ -32,14 +32,14 @@ validations based on the properties specified and also allows assignment of
 manual validations. It also supports contextual validation, allowing a resource
 to be considered valid for some purposes but not others.
 
-### DM-Timestamps
+### [DM-Timestamps](/docs/dm_more/timestamps)
 
 This defines callbacks on the common timestamp properties, making them
 auto-update when the models are created or updated. The targeted properties are
 `:created_at` and `:updated_at` for DateTime properties and `:created_on` and
 `:updated_on` for Date properties.
 
-### DM-Aggregates
+### [DM-Aggregates](/docs/dm_more/dm-aggregates)
 
 This provides methods for database calls to aggregate functions such as `count`,
 `sum`, `avg`, `max` and `min`. These aggregate functions are added to both
