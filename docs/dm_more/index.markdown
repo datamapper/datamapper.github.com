@@ -45,7 +45,7 @@ This provides methods for database calls to aggregate functions such as `count`,
 `sum`, `avg`, `max` and `min`. These aggregate functions are added to both
 collections and Models.
 
-### DM-Types
+### [DM-Types](/docs/dm_more/types)
 
 This provides several more allowable property types. `Enum` and `Flag` allow a
 field to take a few set values. `URI`, `FilePath`, `Regexp`, `EpochTime` and

@@ -80,7 +80,7 @@ FilePath
 : Stored as a string in the data-store, FilePaths initialize Pathname objects,
   making it easy to perform various file operations on the file.
 
-Regex
+Regexp
 : A ruby regex, stored as a string.
 
 IPAddress
@@ -106,25 +106,31 @@ Writing Your Own
 
 Writing your own custom type isn't difficult. There are two (or perhaps three)
 methods to implement, as well as the selection of an appropriate primitive. All
-types are a class which should descend from `DataMapper::Type`.
+types are a class which should descend from `DataMapper::Property::Object`.
 
 ### The Primitive
 
 DataMapper offers several choices for a data-store primitive.
 
+* Boolean
+* Class
+* Date
+* DateTime
+* BigDecimal
+* Float
 * Integer
 * Float
 * String
-* Date
-* DateTime
+* Object
+* Time
 
 To assign a primitive to a type, either make the type descend from
-`DataMapper::Type(PrimitiveClass)` or within the class definition, use
+`DataMapper::Property::(PrimitiveClass)` or within the class definition, use
 `primitive PrimitiveClass`.
 
 ### dump
 
-A type's `self.dump(value, property)` method is called when the object is saved
+A type's `dump(value)` method is called when the object is saved
 to the data-store. It is responsible for mapping whatever is assigned to the
 property on to the primitive type. For example, the EpochTime Type saves an
 integer directly to the data-store, or calls `to_i()` if a Time object is passed
@@ -132,14 +138,14 @@ to it.
 
 ### load
 
-The `self.load(value, property)` method is called when the property is retrieved
+The `load(value)` method is called when the property is retrieved
 from the data-store. It takes the primitive value and initializes a ruby object
 from it. For example, the Json type performs `JSON.parse(value)` to convert the
 json string back into appropriate ruby.
 
-### typecast
+### typecast_to_primitive
 
-Typecasting is provided by the types `self.typecast(value, property)` method,
+Typecasting is provided by the types `typecast_to_primitive(value)` method,
 which tries to coerce whatever value the property has into an appropriate type.
 A type doesn't have to provide a typecast but it can be useful, for example to
 allow the string '2008-09-06' to be converted to a ruby Date without having to
@@ -148,5 +154,5 @@ reload the model.
 ### Examples
 
 For examples of the types, the best place to look is <a
-href="http://github.com/datamapper/dm-more/tree/master/dm-types">dm-types</a> on
+href="http://github.com/datamapper/dm-types">dm-types</a> on
 github.
