@@ -87,6 +87,87 @@ like  # like
 in    # in - will be used automatically when an array is passed in as an argument
 {% endhighlight %}
 
+Nested Conditions
+-----------------
+DataMapper allows you to create and search for any complex object graph simply by providing a nested hash of conditions.
+
+Possible keys are all properties and relationships (or simply their names as symbols or strings) established in the model the current nesting level points to. The available toplevel keys depend on the model the conditions hash is passed to. We'll see below how to change the nesting level and thus the model the property and relationship keys are scoped to.
+
+For property (name) keys, possible values typically are simple objects like strings, numbers, dates or booleans. Using properties as keys doesn't add another nesting level.
+
+For relationship (name) keys, possible values are either a hash (if the relationship points to a single resource) or an array of hashes (if the relationship points to many resources). Adding a relationship (name) as key adds another nesting level scoped to the Model the relationship is pointing to. Inside this new level, the available keys are the property and relationship (names) of the model that the relationship points to. This is what we meant by "the Model the current nesting level points to".
+
+The following example shows a typical Customer - Order domain model and illustrates how nested conditions can be used to both create and search for specific resources.
+
+{% highlight ruby linenos %}
+class Customer
+  include DataMapper::Resource
+
+  property :id,   Serial
+  property :name, String, :required => true, :length => 1..100
+
+  has n, :orders
+  has n, :items, :through => :orders
+end
+
+class Order
+  include DataMapper::Resource
+
+  property :id,        Serial
+  property :reference, String, :required => true, :length => 1..20
+
+  belongs_to :customer
+
+  has n, :order_lines
+  has n, :items, :through => :order_lines
+end
+
+class OrderLine
+  include DataMapper::Resource
+
+  property :id,         Serial
+  property :quantity,   Integer, :required => true, :default => 1, :min => 1
+  property :unit_price, Decimal, :required => true, :default => lambda { |r,p| r.item.unit_price }
+
+  belongs_to :order
+  belongs_to :item
+end
+
+class Item
+  include DataMapper::Resource
+
+  property :id,         Serial
+  property :sku,        String,  :required => true, :length => 1..20
+  property :unit_price, Decimal, :required => true, :min => 0
+
+  has n, :order_lines
+end
+
+# A hash specifying a customer with one order
+customer = {
+  :name   => 'Dan Kubb',
+  :orders => [
+    {
+      :reference   => 'TEST1234',
+      :order_lines => [
+        {
+          :item => {
+            :sku        => 'BLUEWIDGET1',
+            :unit_price => 1.00,
+          },
+        },
+      ],
+    },
+  ]
+}
+
+# Create the Customer with the nested options hash
+Customer.create(customer)
+
+# The options to create can also be used to retrieve the same object
+p Customer.all(customer)
+{% endhighlight %}
+
 Order
 -----
 
