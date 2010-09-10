@@ -38,7 +38,7 @@ class Post
                                            # child key the foreign key
 
 end
-{% end %}
+{% endhighlights %}
 
 Changing Behaviour
 ------------------
@@ -83,7 +83,7 @@ DataMapper.repository(:legacy).adapter.resource_naming_convention = ResourceNami
 Example::PostModel.storage_names[:legacy]
 #=> 'tblExample::PostModel'
 
-{% end %}
+{% endhighlight %}
 
 For field names, use the `field_naming_convention` menthod. Field naming
 conventions work in a similar manner, except the `#call` function is passed the
