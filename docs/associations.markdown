@@ -172,7 +172,7 @@ class Category
   include DataMapper::Resource
 
   property :id, Serial
- 
+
   has n, :articles, :through => Resource
 end
 
