@@ -291,10 +291,10 @@ especially if we're messing with default validations.
   @article = Article.new
 
   @article.valid?(:draft)
-  #=> false.  We have no title, for a start.
+  # => false.  We have no title, for a start.
 
   @article.valid_for_publish?
-  #=> false.  We have no title, amongst many other issues.
+  # => false.  We have no title, amongst many other issues.
   # valid_for_publish? is provided shorthand for valid?(:publish)
 
   # now set some properties
@@ -302,34 +302,34 @@ especially if we're messing with default validations.
   @article.body = "Well, where to begin ..."
 
   @article.valid?(:draft)
-  #=> true.  We have a title, and a little body
+  # => true.  We have a title, and a little body
 
   @article.valid?(:publish)
-  #=> false.  Our body isn't long enough yet.
+  # => false.  Our body isn't long enough yet.
 
   # save our article in the :draft context
   @article.save(:draft)
-  #=> true
+  # => true
 
   # set some more properties
   @article.sidebar_picture_url = "http://www.greatpictures.com/flower.jpg"
   @article.body = an_essay_about_why_datamapper_rocks
 
   @article.valid?(:draft)
-  #=> true.  Nothing wrong still
+  # => true.  Nothing wrong still
 
   @article.valid?(:publish)
-  #=> true.  We have everything we need for a full article to be published!
+  # => true.  We have everything we need for a full article to be published!
 
   @article.published = true
 
   @article.save(:draft)
-  #=> false.  We set the published to true, so we can't save this as a draft.
+  # => false.  We set the published to true, so we can't save this as a draft.
   # As long as our drafting method always saves with the :draft context, we won't ever
   # accidentally save a half finished draft that the public will see.
 
   @article.save(:publish)
-  #=> true
+  # => true
   # we can save it just fine as a published article though.
 {% endhighlight %}
 

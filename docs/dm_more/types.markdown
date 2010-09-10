@@ -39,9 +39,9 @@ end
 
 @i = Issue.new
 @i.status
-#=> :new
+# => :new
 @i.status = :open
-#=> :open
+# => :open
 {% endhighlight %}
 
 ### Flag

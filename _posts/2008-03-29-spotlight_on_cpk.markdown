@@ -49,7 +49,7 @@ class Post < Sequel::Model
 end
 
 post = Post.get('ruby', 'hello world')
-post.key # => [ 'ruby', 'hello world' ]
+post.key  # => [ 'ruby', 'hello world' ]
 {% endhighlight %}
 
 p(attribution). example compiled from <http://code.google.com/p/ruby-sequel/wiki/SequelModels>.
@@ -70,7 +70,7 @@ end
 
 pig = Pig.get(1, 'Porky')
 
-pig.key # => [ 1, 'Wilbur' ]
+pig.key  # => [ 1, 'Wilbur' ]
 {% endhighlight %}
 
 We declared our keys by adding the `:key => true` to the appropriate properties.

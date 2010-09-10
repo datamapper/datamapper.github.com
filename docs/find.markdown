@@ -264,7 +264,7 @@ With dm-aggregates included, the `count` method it adds will returns
 an integer of the number of records matching the every condition you pass in.
 
 {% highlight ruby linenos %}
-count = Zoo.count(:age.gt => 200) #=> 2
+count = Zoo.count(:age.gt => 200)  # => 2
 {% endhighlight %}
 
 [DataMapper_Repository]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Repository

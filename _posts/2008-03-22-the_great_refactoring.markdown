@@ -82,7 +82,7 @@ An IRB session boots up...
 
 {% highlight ruby %}
 >> the_king = Person.first(:name => 'elvis')
->> the_king.alive? # => maybe
+>> the_king.alive?  # => maybe
 {% endhighlight %}
 
 This is very similar to `script/console` in Rails or `merb -i` in Merb, only it

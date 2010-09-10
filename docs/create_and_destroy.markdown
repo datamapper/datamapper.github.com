@@ -232,7 +232,7 @@ is an example of finding an existing record then destroying it.
 
 {% highlight ruby linenos %}
 zoo = Zoo.get(5)
-zoo.destroy #=> true
+zoo.destroy  # => true
 {% endhighlight %}
 
 You can also use `#destroy` to do mass deletes on a model. In the previous examples
