@@ -57,29 +57,33 @@ class Example::PostModel
 end
 
 # this is the default
-DataMapper.repository(:legacy).adapter.resource_naming_convention = DataMapper::NamingConventions::Resource::UnderscoredAndPluralized
+DataMapper.repository(:legacy).adapter.resource_naming_convention =
+  DataMapper::NamingConventions::Resource::UnderscoredAndPluralized
 Example::PostModel.storage_names[:legacy]
 #=> example_post_models
 
 # underscored
-DataMapper.repository(:legacy).adapter.resource_naming_convention = DataMapper::NamingConventions::Resource::Underscored
+DataMapper.repository(:legacy).adapter.resource_naming_convention =
+  DataMapper::NamingConventions::Resource::Underscored
 Example::PostModel.storage_names[:legacy]
 #=> example/post_models
 
 # without the module name
-DataMapper.repository(:legacy).adapter.resource_naming_convention = DataMapper::NamingConventions::Resource::UnderscoredAndPluralizedWithoutModule
+DataMapper.repository(:legacy).adapter.resource_naming_convention =
+  DataMapper::NamingConventions::Resource::UnderscoredAndPluralizedWithoutModule
 Example::PostModel.storage_names[:legacy]
 #=> post_models
 
-# custom conventions can be defined using procs, or any module which responds to #call
-# They are passed the name of the model, as a string.
+# custom conventions can be defined using procs, or any module which
+# responds to #call. They are passed the name of the model, as a string.
 module ResourceNamingConvention
   def self.call(model_name)
     'tbl' + DataMapper::Inflector.classify(model_name)
   end
 end
 
-DataMapper.repository(:legacy).adapter.resource_naming_convention = ResourceNamingConvention
+DataMapper.repository(:legacy).adapter.resource_naming_convention =
+  ResourceNamingConvention
 Example::PostModel.storage_names[:legacy]
 #=> 'tblExample::PostModel'
 
