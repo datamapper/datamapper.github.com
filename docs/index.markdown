@@ -40,9 +40,9 @@ Documentarians Wanted!
 
 Want to help DataMapper, but don't know where to start? A great way to contribute is to help out in the documentation effort.
 
-If you know of some interesting and useful functionality that isn't covered on [datamapper.org]{http://datamapper.org}, just go ahead and fork [datamapper.github.com]{http://github.com/datamapper/datamapper.github.com}, send us a pull request, and we'll merge it as fast as we can. If you want to contribute more, we can give you commit access to the repository right after that.
+If you know of some interesting and useful functionality that isn't covered on [datamapper.org](http://datamapper.org), just go ahead and fork [datamapper.github.com](http://github.com/datamapper/datamapper.github.com), send us a pull request, and we'll merge it as fast as we can. If you want to contribute more, we can give you commit access to the repository right after that.
 
-If you find some undocumented piece of code inside [dm-core]{http://github.com/datamapper/dm-core} or any of the other [datamapper]{http://github.com/datamapper} repositories, we would greatly appreciate it if you take the time to read and understand that code, fork the repository, add the necessary docs and send us a pull request. Again, we'll try to merge them as fast as we can.
+If you find some undocumented piece of code inside [dm-core](http://github.com/datamapper/dm-core) or any of the other [datamapper](http://github.com/datamapper) repositories, we would greatly appreciate it if you take the time to read and understand that code, fork the repository, add the necessary docs and send us a pull request. Again, we'll try to merge them as fast as we can.
 
 Documentation Style
 -------------------
