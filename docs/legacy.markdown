@@ -38,7 +38,7 @@ class Post
                                            # child key the foreign key
 
 end
-{% endhighlights %}
+{% endhighlight %}
 
 Changing Behaviour
 ------------------
