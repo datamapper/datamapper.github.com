@@ -14,7 +14,6 @@ To check out "tip" DataMapper anonymously:
 {% highlight bash %}
 git clone git://github.com/datamapper/extlib.git
 git clone git://github.com/datamapper/dm-core.git
-git clone git://github.com/datamapper/dm-more.git
 {% endhighlight %}
 
 Or visit the [edge guide](/articles/stunningly_easy_way_to_live_on_the_edge).

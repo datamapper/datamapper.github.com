@@ -21,7 +21,7 @@ To install it:
 {% highlight bash %}
 sudo gem install addressable english rspec
 sudo gem install data_objects do_mysql do_postgres do_sqlite3
-sudo gem install dm-core dm-more
+sudo gem install dm-core
 {% endhighlight %}
 
 This is NOT a backwards compatible release. Code written for DataMapper 0.3 will
