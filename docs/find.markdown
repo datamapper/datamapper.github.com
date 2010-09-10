@@ -9,7 +9,7 @@ created_at: Tue Dec 04 14:46:32 +1030 2007
 ================
 
 The finder methods for DataMapper objects are defined in
-[DataMapper::Repository][DataMapper_Repository]. They include `#get`, `#all`, `#first`
+[DataMapper::Repository][DataMapper_Repository]. They include `#get`, `#all`, `#first`, `#last`
 
 Finder Methods
 --------------
@@ -22,7 +22,8 @@ zoo  = Zoo.get(1)                     # get the zoo with primary key of 1.
 zoo  = Zoo.get!(1)                    # Or get! if you want an ObjectNotFoundError on failure
 zoo  = Zoo.get('DFW')                 # wow, support for natural primary keys
 zoo  = Zoo.get('Metro', 'DFW')        # more wow, composite key look-up
-zoo  = Zoo.first(:name => 'Luke')     # first matching record with the name 'Luke'
+zoo  = Zoo.first(:name => 'Metro')    # first matching record with the name 'Metro'
+zoo  = Zoo.last(:name => 'Metro')     # last matching record with the name 'Metro'
 zoos = Zoo.all                        # all zoos
 zoos = Zoo.all(:open => true)         # all zoos that are open
 zoos = Zoo.all(:opened_on => (s..e))  # all zoos that opened on a date in the date-range
