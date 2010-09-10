@@ -70,7 +70,8 @@ from the internals of DM-Core:
 # @api public
 def self.setup(name, uri_or_options)
   raise ArgumentError, "+name+ must be a Symbol, but was #{name.class}", caller unless Symbol === name
-  ...
+  #...
+end
 {% endhighlight %}
 
 For more information about the YARD documentation style, see the YARD
