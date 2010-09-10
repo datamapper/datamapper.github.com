@@ -18,14 +18,14 @@ DataMapper has methods which allow you to grab a single record by key, the first
 match to a set of conditions, or a collection of records matching conditions.
 
 {% highlight ruby linenos %}
-zoo   = Zoo.get(1)                        # get the zoo with primary key of 1.
-zoo   = Zoo.get!(1)                       # Or get! if you want an ObjectNotFoundError on failure
-zoo   = Zoo.get('DFW')                    # wow, support for natural primary keys
-zoo   = Zoo.get('Metro', 'DFW')           # more wow, composite key look-up
-zoo   = Zoo.first(:name => 'Luke')        # first matching record with the name 'Luke'
-zoos  = Zoo.all                           # all zoos
-zoos  = Zoo.all(:open => true)            # all zoos that are open
-zoos  = Zoo.all(:opened_on => (s..e))     # all zoos that opened on a date in the date-range
+zoo  = Zoo.get(1)                     # get the zoo with primary key of 1.
+zoo  = Zoo.get!(1)                    # Or get! if you want an ObjectNotFoundError on failure
+zoo  = Zoo.get('DFW')                 # wow, support for natural primary keys
+zoo  = Zoo.get('Metro', 'DFW')        # more wow, composite key look-up
+zoo  = Zoo.first(:name => 'Luke')     # first matching record with the name 'Luke'
+zoos = Zoo.all                        # all zoos
+zoos = Zoo.all(:open => true)         # all zoos that are open
+zoos = Zoo.all(:opened_on => (s..e))  # all zoos that opened on a date in the date-range
 {% endhighlight %}
 
 Scopes and Chaining
@@ -35,8 +35,8 @@ A call to `all()` or `first()` can be chained together to further build a query
 to the data-store:
 
 {% highlight ruby linenos %}
-all_zoos = Zoo.all
-open_zoos = all_zoos.all(:open => true)
+all_zoos      = Zoo.all
+open_zoos     = all_zoos.all(:open => true)
 big_open_zoos = open_zoos.all(:animal_count => 1000)
 {% endhighlight %}
 
@@ -48,6 +48,7 @@ class Zoo
   def self.open
     all(:open => true)
   end
+
   def self.big
     all(:animal_count => 1000)
   end
@@ -175,21 +176,21 @@ To specify the order in which your results are to be sorted, use:
 
 {% highlight ruby linenos %}
 @zoos_by_tiger_count = Zoo.all(:order => [ :tiger_count.desc ])
-# in SQL =>  select * from zoos ORDER BY tiger_count DESC
+# in SQL =>  SELECT * FROM zoos ORDER BY tiger_count DESC
 {% endhighlight %}
 
 Available order vectors are:
 
 {% highlight ruby linenos %}
-asc  # sorting ascending
-desc # sorting descending
+asc   # sorting ascending
+desc  # sorting descending
 {% endhighlight %}
 
 Once you have the query, the order can be modified too.  Just call reverse:
 
 {% highlight ruby linenos %}
 @least_tigers_first = @zoos_by_tiger_count.reverse
-# in SQL =>  select * from zoos ORDER BY tiger_count ASC
+# in SQL =>  SELECT * FROM zoos ORDER BY tiger_count ASC
 {% endhighlight %}
 
 Combining Queries
