@@ -150,7 +150,7 @@ end
 {% endhighlight %}
 
 In this example, only the title (and the id, of course) will be loaded from the
-data-store on a `Post.all()`. But as soon as the value for subtitle, body or
+data-store on a `Post.all`. But as soon as the value for subtitle, body or
 views are called, all three will be loaded at once, since they're members of the
 `:show` group. The summary property on the other hand, will only be fetched when
 it is asked for.

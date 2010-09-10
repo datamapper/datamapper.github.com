@@ -133,7 +133,7 @@ To assign a primitive to a type, either make the type descend from
 A type's `dump(value)` method is called when the object is saved
 to the data-store. It is responsible for mapping whatever is assigned to the
 property on to the primitive type. For example, the EpochTime Type saves an
-integer directly to the data-store, or calls `to_i()` if a Time object is passed
+integer directly to the data-store, or calls `#to_i` if a Time object is passed
 to it.
 
 ### load

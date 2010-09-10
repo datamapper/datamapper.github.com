@@ -9,7 +9,7 @@ created_at: Tue Dec 04 14:46:32 +1030 2007
 ================
 
 The finder methods for DataMapper objects are defined in
-[DataMapper::Repository][DataMapper_Repository]. They include `get()`, `all()`, `first()`
+[DataMapper::Repository][DataMapper_Repository]. They include `#get`, `#all`, `#first`
 
 Finder Methods
 --------------
@@ -31,8 +31,7 @@ zoos = Zoo.all(:opened_on => (s..e))  # all zoos that opened on a date in the da
 Scopes and Chaining
 -------------------
 
-A call to `all()` or `first()` can be chained together to further build a query
-to the data-store:
+Calls to `#all can be chained together to further build a query to the data-store:
 
 {% highlight ruby linenos %}
 all_zoos      = Zoo.all
@@ -197,7 +196,7 @@ Combining Queries
 -----------------
 
 Sometimes, the simple queries DataMapper allows you to specify with the hash
-interface to `all()` just won't cut it.  This might be because you want to
+interface to `#all` just won't cut it.  This might be because you want to
 specify an `OR` condition, though that's just one possibility.  To accomplish
 more complex queries, DataMapper allows queries (or more accurately,
 Collections) to be combined using set operators.
