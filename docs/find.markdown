@@ -260,7 +260,7 @@ zoos = repository(:default).adapter.select('SELECT name, open FROM zoos WHERE na
 Counting
 --------
 
-With DM-More's DM-Aggregates included, the `count` method it adds will returns
+With dm-aggregates included, the `count` method it adds will returns
 an integer of the number of records matching the every condition you pass in.
 
 {% highlight ruby linenos %}
