@@ -95,11 +95,6 @@ process for a model.
 You may manually validate a resource using the `valid?` method, which will
 return true if the resource is valid, and false if it is invalid.
 
-In addition to the `valid?` method, there is also an `all_valid?` method that
-recursively walks both the current object and its associated objects and returns
-a comprehensive true/false result for the entire walk. If anything returns
-`false`, `all_valid?` will return `false`
-
 Working with Validation Errors
 ------------------------------
 
