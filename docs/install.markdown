@@ -23,6 +23,9 @@ you, but just in case, make sure you have the following gems as well:
 * [RSpec][rspec] - for running specs on DataMapper itself
 * [YARD][yard]   - for building documentation
 
+Installing an adapter
+---------------------
+
 You will also need to install the adapter for your platform:
 
 {% highlight bash linenos %}
