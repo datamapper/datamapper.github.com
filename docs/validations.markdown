@@ -270,18 +270,18 @@ especially if we're messing with default validations.
   class Article
     include DataMapper::Resource
 
-    property :id,                  Serial
-    property :title,               String
-    property :sidebar_picture_url, String
-    property :body,                Text
-    property :published,           Boolean
+    property :id,          Serial
+    property :title,       String
+    property :picture_url, String
+    property :body,        Text
+    property :published,   Boolean
 
     # validations
-    validates_presence_of :title,               :when => [ :draft, :publish ]
-    validates_presence_of :sidebar_picture_url, :when => [ :publish ]
-    validates_presence_of :body,                :when => [ :draft, :publish ]
-    validates_length_of   :body,                :minimum => 1000, :when => [ :publish ]
-    validates_absence_of  :published,           :when => [ :draft ]
+    validates_presence_of :title,       :when => [ :draft, :publish ]
+    validates_presence_of :picture_url, :when => [ :publish ]
+    validates_presence_of :body,        :when => [ :draft, :publish ]
+    validates_length_of   :body,        :minimum => 1000, :when => [ :publish ]
+    validates_absence_of  :published,   :when => [ :draft ]
   end
 
   # and now some results
@@ -309,7 +309,7 @@ especially if we're messing with default validations.
   # => true
 
   # set some more properties
-  @article.sidebar_picture_url = "http://www.greatpictures.com/flower.jpg"
+  @article.picture_url = "http://www.greatpictures.com/flower.jpg"
   @article.body = an_essay_about_why_datamapper_rocks
 
   @article.valid?(:draft)
