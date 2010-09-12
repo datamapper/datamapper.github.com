@@ -143,16 +143,16 @@ Integration Plugins
 These plugins are designed to ease integration with other libraries, currently
 just web frameworks.
 
-### merb_datamapper
+### [merb_datamapper](http://github.com/merb/merb_datamapper)
 
 Integration with the <a href="http://www.merbivore.com/">merb</a> web framework.
 The plugin takes care of setting up the DataMapper connection when the framework
 starts, provides several useful rake tasks as well as generators for Models,
 ResourceControllers and Migrations.
 
-### rails_datamapper
+### [rails_datamapper](http://github.com/datamapper/rails_datamapper)
 
-Integration with <a href="http://www.rubyonrails.org/">Rails</a>. It provides a
+Integration with <a href="http://www.rubyonrails.org/">Rails 2.x</a>. It provides a
 Model generator and also takes care of connecting to the data-store through
 DataMapper.
 
