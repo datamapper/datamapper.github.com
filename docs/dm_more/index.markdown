@@ -156,6 +156,12 @@ Integration with <a href="http://www.rubyonrails.org/">Rails 2.x</a>. It provide
 Model generator and also takes care of connecting to the data-store through
 DataMapper.
 
+### [dm-rails](http://github.com/datamapper/dm-rails)
+
+Integration with <a href="http://www.rubyonrails.org/">Rails 3.x</a>. It provides a
+model and migration generators, takes care of connecting to the data-store through
+DataMapper and supports <a href="http://github.com/rspec/rspec">RSpec2</a>.
+
 Utility Plugins
 ---------------
 
