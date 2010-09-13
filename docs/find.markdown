@@ -233,7 +233,7 @@ DataMapper supports other conditions syntaxes as well:
 zoos = Zoo.all(:conditions => { :id => 34 })
 
 # You can use this syntax to call native storage engine functions
-zoos = Zoo.all(:conditions => [ "id = ?", 34 ])
+zoos = Zoo.all(:conditions => [ 'id = ?', 34 ])
 
 # even mix and match
 zoos = Zoo.all(:conditions => { :id => 34 }, :name.like => '%foo%')
@@ -254,7 +254,7 @@ than instances of the Zoo class. They'll also be read-only. You can still use
 the interpolated array condition syntax as well:
 
 {% highlight ruby linenos %}
-zoos = repository(:default).adapter.select('SELECT name, open FROM zoos WHERE name = ?', "Awesome Zoo")
+zoos = repository(:default).adapter.select('SELECT name, open FROM zoos WHERE name = ?', 'Awesome Zoo')
 {% endhighlight %}
 
 Counting
