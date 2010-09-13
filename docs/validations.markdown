@@ -101,7 +101,7 @@ If your validators find errors in your model, they will populate the
 through each of your models via calls to your model's `errors` method.
 
 {% highlight ruby linenos %}
-  my_account = Account.new(:name => "Jose")
+  my_account = Account.new(:name => 'Jose')
   if my_account.save
     # my_account is valid and has been saved
   else
@@ -133,11 +133,11 @@ in the property options.
 
 {% highlight ruby %}
   property :email, String, :required => true, :unique => true,
-    :format => :email_address,
+    :format   => :email_address,
     :messages => {
-      :presence => "We need your email address.",
-      :is_unique => "We already have that email.",
-      :format => "Doesn't look like an email address to me ..."
+      :presence  => 'We need your email address.',
+      :is_unique => 'We already have that email.',
+      :format    => 'Doesn't look like an email address to me ...'
     }
 {% endhighlight %}
 
@@ -164,7 +164,7 @@ block as the argument and the other taking a symbol representing a method name.
 The method or block performs the validation tests and then should return `true`
 if the resource is valid or `false` if it is invalid. If the resource isn't
 valid instead of just returning `false`, an array containing `false` and an
-error message, such as `[ false, "FAIL!" ]` can be returned. This will add the
+error message, such as `[ false, 'FAIL!' ]` can be returned. This will add the
 message to the `errors` on the resource.
 
 {% highlight ruby linenos %}
@@ -278,7 +278,7 @@ especially if we're messing with default validations.
     validates_presence_of :title,       :when => [ :draft, :publish ]
     validates_presence_of :picture_url, :when => [ :publish ]
     validates_presence_of :body,        :when => [ :draft, :publish ]
-    validates_length_of   :body,        :minimum => 1000, :when => [ :publish ]
+    validates_length_of   :body,        :when => [ :publish ], :minimum => 1000
     validates_absence_of  :published,   :when => [ :draft ]
   end
 
@@ -293,8 +293,8 @@ especially if we're messing with default validations.
   # valid_for_publish? is provided shorthand for valid?(:publish)
 
   # now set some properties
-  @article.title = "DataMapper is awesome because ..."
-  @article.body = "Well, where to begin ..."
+  @article.title = 'DataMapper is awesome because ...'
+  @article.body  = 'Well, where to begin ...'
 
   @article.valid?(:draft)
   # => true.  We have a title, and a little body
@@ -307,8 +307,8 @@ especially if we're messing with default validations.
   # => true
 
   # set some more properties
-  @article.picture_url = "http://www.greatpictures.com/flower.jpg"
-  @article.body = an_essay_about_why_datamapper_rocks
+  @article.picture_url = 'http://www.greatpictures.com/flower.jpg'
+  @article.body        = an_essay_about_why_datamapper_rocks
 
   @article.valid?(:draft)
   # => true.  Nothing wrong still
@@ -355,7 +355,7 @@ properties or derived from the environment. To set these properties, a `before :
     # our callback needs to accept the context used in the validation,
     # even if it ignores it, as #save calls #valid? with a context.
     def set_permalink(context = :default)
-      self.permalink = title.gsub(/\s+/,'-')
+      self.permalink = title.gsub(/\s+/, '-')
     end
   end
 {% endhighlight %}

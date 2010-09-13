@@ -128,7 +128,7 @@ class OrderLine
 
   property :id,         Serial
   property :quantity,   Integer, :required => true, :default => 1, :min => 1
-  property :unit_price, Decimal, :required => true, :default => lambda { |r,p| r.item.unit_price }
+  property :unit_price, Decimal, :required => true, :default => lambda { |r, p| r.item.unit_price }
 
   belongs_to :order
   belongs_to :item
