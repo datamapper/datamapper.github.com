@@ -85,7 +85,6 @@ lte   # less than or equal
 not   # not equal
 eql   # equal
 like  # like
-in    # in - will be used automatically when an array is passed in as an argument
 {% endhighlight %}
 
 Nested Conditions
