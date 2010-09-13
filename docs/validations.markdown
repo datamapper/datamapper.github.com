@@ -51,17 +51,17 @@ Triggers that generate validator creation:
 
 {% highlight ruby %}
   # implicitly creates a validates_present
-  :required => true  # cannot be null
+  :required => true  # cannot be nil
 
   # implicitly creates a validates_length
-  :length => 0..20  # string must be between 0 and 20 characters in length
-  :length => 1..20  # string must be between 1 and 20 characters in length
+  :length => 0..20  # must be between 0 and 20 characters in length
+  :length => 1..20  # must be between 1 and 20 characters in length
 
   # implicitly creates a validates_format
   :format => :email_address  # predefined regex
   :format => :url            # predefined regex
   :format => /\w+_\w+/
-  :format => lambda {|str| str }
+  :format => lambda { |str| str }
   :format => Proc.new { |str| str }
 {% endhighlight %}
 
@@ -226,7 +226,7 @@ being validated.
     property :commit,      String
     property :status,      Enum[ :new, :open, :invalid, :complete ]
 
-    validates_presence_of :commit, :if => Proc.new {|t| t.status == :complete }
+    validates_presence_of :commit, :if => lambda { |t| t.status == :complete }
   end
 {% endhighlight %}
 
@@ -237,7 +237,7 @@ the resource is already there--'initial commit' is hardly an enlightening
 message.
 
 {% highlight ruby %}
-  validates_length_of :change_summary, :min => 10, :unless => :new_record?
+  validates_length_of :change_summary, :min => 10, :unless => :new?
 {% endhighlight %}
 
 Sometimes a simple on and off switch is not enough, and so ...
