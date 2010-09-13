@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Working with Legacy Schema
+title: Working with Legacy Schemas
 body_id: docs
 created_at: Fri Sep 10 16:37:37 GMT 2010
 ---
