@@ -61,9 +61,9 @@ If you want it to raise exceptions instead, you can instruct datamapper to do so
 either globally, on a per-model, or on a per-instance basis.
 
 {% highlight ruby linenos %}
-DataMapper::Model.raise_on_save_failure = true # globally
-Zoo.raise_on_save_failure = true               # per-model
-zoo.raise_on_save_failure = true               # per-instance
+DataMapper::Model.raise_on_save_failure = true  # globally across all models
+Zoo.raise_on_save_failure = true                # per-model
+zoo.raise_on_save_failure = true                # per-instance
 {% endhighlight %}
 
 If DataMapper is told to `raise_on_save_failure` it will raise the following when

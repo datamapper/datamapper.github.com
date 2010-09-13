@@ -61,8 +61,8 @@ Triggers that generate validator creation:
   # :size is a synonym to :length
 
   # implicitly creates a validates_format
-  :format => :email_address # predefined regex
-  :format => :url           # predefined regex
+  :format => :email_address  # predefined regex
+  :format => :url            # predefined regex
   :format => /\w+_\w+/
   :format => lambda {|str| str }
   :format => Proc.new { |str| str }

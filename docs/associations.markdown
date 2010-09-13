@@ -72,7 +72,7 @@ class Comment
   property :id,     Serial
   property :rating, Integer
 
-  belongs_to :post # defaults to :required => true
+  belongs_to :post  # defaults to :required => true
 
   def self.popular
     all(:rating.gt => 3)
@@ -315,14 +315,14 @@ a hash of attributes, you can either call the `new` or the `create` method direc
 on the association, passing it the attributes in form of a hash.
 
 {% highlight ruby linenos %}
-post = Post.get(1) # find a post to add a comment to
+post = Post.get(1)  # find a post to add a comment to
 
 # This will add a new but not yet saved comment to the collection
 comment = post.comments.new(:subject => 'DataMapper ...')
 
 # Both of the following calls will actually save the comment
-post.save    # This will save the post along with the newly added comment
-comment.save # This will only save the comment
+post.save     # This will save the post along with the newly added comment
+comment.save  # This will only save the comment
 
 # This will create a comment, save it, and add it to the collection
 comment = post.comments.create(:subject => 'DataMapper ...')
@@ -333,11 +333,11 @@ to the association using the `<<` method. You still need to manually save the pa
 resource to persist the comment as part of the related collection.
 
 {% highlight ruby linenos %}
-post.comments << comment # append an already existing comment
+post.comments << comment  # append an already existing comment
 
 # Both of the following calls will actually save the comment
-post.save          # This will save the post along with the newly added comment
-post.comments.save # This will only save the comments collection
+post.save           # This will save the post along with the newly added comment
+post.comments.save  # This will only save the comments collection
 {% endhighlight %}
 
 Customizing Associations
@@ -430,9 +430,9 @@ class Post
   # presence of the attribute value.
 
   belongs_to :blog, 'Blog',
-    :parent_key => [:id],      # in the remote model (Blog)
-    :child_key  => [:blog_id], # local to this model (Post)
-    :required   => true        # the blog_id must be present
+    :parent_key => [:id],       # in the remote model (Blog)
+    :child_key  => [:blog_id],  # local to this model (Post)
+    :required   => true         # the blog_id must be present
 
 end
 {% endhighlight %}
@@ -449,7 +449,7 @@ automatically makes it `:required => true` as well.
 {% highlight ruby linenos %}
 class Post
   include DataMapper::Resource
-  belongs_to :blog, :key => true # 'blog_id' is the primary key
+  belongs_to :blog, :key => true  # 'blog_id' is the primary key
 end
 
 class Person
@@ -461,8 +461,8 @@ class Authorship
 
   include DataMapper::Resource
 
-  belongs_to :post,   :key => true # 'post_id'   is part of the CPK
-  belongs_to :person, :key => true # 'person_id' is part of the CPK
+  belongs_to :post,   :key => true  # 'post_id'   is part of the CPK
+  belongs_to :person, :key => true  # 'person_id' is part of the CPK
 
 end
 {% endhighlight %}
@@ -508,8 +508,8 @@ class Authorship
 
   include DataMapper::Resource
 
-  belongs_to :post,   :key => true # 'post_id'   is part of the CPK
-  belongs_to :person, :key => true # 'person_id' is part of the CPK
+  belongs_to :post,   :key => true  # 'post_id'   is part of the CPK
+  belongs_to :person, :key => true  # 'person_id' is part of the CPK
 
 end
 {% endhighlight %}
@@ -543,10 +543,10 @@ In a way, it acts like a database view in that respect.
 
 {% highlight ruby linenos %}
 @post = Post.first
-@post.comments # returns the full association
-@post.comments.all(:limit => 10, :order => [ :created_at.desc ]) # return the first 10 comments, newest first
-@post.comments(:limit => 10, :order => [ :created_at.desc ]) # alias for #all, you can pass in the options directly
-@post.comments.popular # Uses the 'popular' finder method/scope to return only highly rated comments
+@post.comments                                                    # returns the full association
+@post.comments.all(:limit => 10, :order => [ :created_at.desc ])  # return the first 10 comments, newest first
+@post.comments(:limit => 10, :order => [ :created_at.desc ])      # alias for #all, you can pass in the options directly
+@post.comments.popular                                            # Uses the 'popular' finder method/scope to return only highly rated comments
 {% endhighlight %}
 
 Querying via Relationships

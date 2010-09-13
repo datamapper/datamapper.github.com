@@ -102,7 +102,7 @@ DataMapper's solution is to let you chain association calls:
 
 {% highlight ruby linenos %}
 zoo = Zoo.first
-zoo.exhibits.animals # retrieves all animals for all exhibits for that zoo
+zoo.exhibits.animals  # retrieves all animals for all exhibits for that zoo
 {% endhighlight %}
 
 This has great potential for browsing collections of content, like browsing all

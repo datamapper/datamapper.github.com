@@ -75,7 +75,7 @@ command-line so that you can browse your resources without the need to load up
 the entire environment of your application. Here's an example session:
 
 {% highlight bash linenos %}
-$ dm mysql://root@localhost/great_musicians # connecting to a repository
+$ dm mysql://root@localhost/great_musicians  # connecting to a repository
 {% endhighlight %}
 
 An IRB session boots up...

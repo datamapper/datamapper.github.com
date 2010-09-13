@@ -31,11 +31,11 @@ class Post
   # set the storage name for the :legacy repository
   storage_names[:legacy] = 'tblPost'
 
-  property :id, Serial, :field => :pid # use the 'pid' field in the data-store
+  property :id, Serial, :field => :pid  # use the 'pid' field in the data-store
                                         # for the id property.
 
-  belongs_to :user, :child_key => [ :uid ] # use a property called 'uid' as the
-                                           # child key the foreign key
+  belongs_to :user, :child_key => [ :uid ]  # use a property called 'uid' as the
+                                            # child key the foreign key
 
 end
 {% endhighlight %}
