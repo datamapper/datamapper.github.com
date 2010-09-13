@@ -269,4 +269,3 @@ adapter.execute("INSERT INTO zoos (id, name) VALUES (1, 'Lion'), (2, 'Elephant')
 # The interpolated array condition syntax works as well:
 adapter.execute('INSERT INTO zoos (id, name) VALUES (?,?), (?,?)', 1, 'Lion', 2, 'Elephant')
 {% endhighlight %}
-
