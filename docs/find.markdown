@@ -175,7 +175,7 @@ To specify the order in which your results are to be sorted, use:
 
 {% highlight ruby linenos %}
 @zoos_by_tiger_count = Zoo.all(:order => [ :tiger_count.desc ])
-# in SQL =>  SELECT * FROM zoos ORDER BY tiger_count DESC
+# in SQL => SELECT * FROM "zoos" ORDER BY "tiger_count" DESC
 {% endhighlight %}
 
 Available order vectors are:
@@ -189,7 +189,7 @@ Once you have the query, the order can be modified too.  Just call reverse:
 
 {% highlight ruby linenos %}
 @least_tigers_first = @zoos_by_tiger_count.reverse
-# in SQL =>  SELECT * FROM zoos ORDER BY tiger_count ASC
+# in SQL => SELECT * FROM "zoos" ORDER BY "tiger_count" ASC
 {% endhighlight %}
 
 Combining Queries
