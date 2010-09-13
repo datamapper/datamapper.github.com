@@ -25,7 +25,7 @@ passing them a property name (or multiple property names) to validate against.
 {% endhighlight %}
 
 These are the currently available manual validations available. Please refer to
-the [API docs](http://rdoc.info/projects/datamapper/dm-validations) for more detailed
+the [API docs](http://rubydoc.info/gems/dm-validations/1.0.2/frames) for more detailed
 information.
 
 * validates_absence_of

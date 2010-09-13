@@ -9,7 +9,7 @@ created_at: Fri Nov 30 15:29:01 +1030 2007
 ================
 
 <dl>
-  <dt><a href="http://rdoc.info/projects/datamapper/dm-core">API</a></dt>
+  <dt><a href="http://rubydoc.info/gems/dm-core/1.0.2/frames">API</a></dt>
   <dd>The API for the current gem release.</dd>
   <dt><a href="/why">Why DataMapper?</a></dt>
   <dd>If you haven't read this yet, you should, right now!</dd>
