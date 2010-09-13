@@ -27,13 +27,13 @@ class Person
   ...
 end
 
-class Male < Person; end
-class Father < Male; end
-class Son < Male;    end
+class Male   < Person; end
+class Father < Male;   end
+class Son    < Male;   end
 
-class Woman < Person;   end
-class Mother < Woman;   end
-class Daughter < Woman; end
+class Woman    < Person; end
+class Mother   < Woman;  end
+class Daughter < Woman;  end
 
 {% endhighlight %}
 

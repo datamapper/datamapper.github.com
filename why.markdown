@@ -40,7 +40,7 @@ simply a matter of telling DataMapper where to look.
 class Fruit
   include DataMapper::Resource
 
-  storage_names[:default] = 'frt' # equivalent to set_table_name in AR
+  storage_names[:default] = 'frt'  # equivalent to set_table_name in AR
 
   property :id,   Serial
   property :name, String, :field => 'col2'

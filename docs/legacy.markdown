@@ -36,7 +36,6 @@ class Post
 
   belongs_to :user, :child_key => [ :uid ]  # use a property called 'uid' as the
                                             # child key the foreign key
-
 end
 {% endhighlight %}
 

@@ -43,7 +43,6 @@ class Post
   before :save do
     # ... code here
   end
-
 end
 {% endhighlight %}
 

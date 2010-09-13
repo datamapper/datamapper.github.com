@@ -93,6 +93,7 @@ include it as part of the primary key by adding the `:key => true` option.
 {% highlight ruby linenos %}
 class Photo
   include DataMapper::Resource
+
   property :id, Serial
 
   has n, :taggings
@@ -101,6 +102,7 @@ end
 
 class Tag
   include DataMapper::Resource
+
   property :id, Serial
 
   has n, :taggings
@@ -206,14 +208,17 @@ a _Friendship_ relationship between two people. Here's how you would do that wit
 {% highlight ruby linenos %}
 class Person
   include DataMapper::Resource
+
   property :id,    Serial
   property :name , String, :required => true
-  has n, :friendships, :child_key => [:source_id]
+
+  has n, :friendships, :child_key => [ :source_id ]
   has n, :friends, self, :through => :friendships, :via => :target
 end
 
 class Friendship
   include DataMapper::Resource
+
   belongs_to :source, 'Person', :key => true
   belongs_to :target, 'Person', :key => true
 end
@@ -237,7 +242,7 @@ class Person
   # Person model's key would be something different from 'id', we would
   # also need to specify the :parent_key option.
 
-  has n, :friendships, :child_key => [:source_id]
+  has n, :friendships, :child_key => [ :source_id ]
 
 end
 {% endhighlight %}
@@ -254,7 +259,7 @@ class Person
 
   # ...
 
-  has n, :friendships, :child_key => [:source_id]
+  has n, :friendships, :child_key => [ :source_id ]
 
   # We name the relationship :friends cause that's the original intention
   #
@@ -287,11 +292,13 @@ to assign a target resource to both a _many to one_ and a _one to one_ relations
 {% highlight ruby linenos %}
 class Person
   include DataMapper::Resource
+
   has 1, :profile
 end
 
 class Profile
   include DataMapper::Resource
+
   belongs_to :person
 end
 
@@ -355,7 +362,6 @@ used to customize various aspects when defining relationships.
 
 {% highlight ruby linenos %}
 class Blog
-
   include DataMapper::Resource
 
   # The rules described below apply equally to definitions
@@ -387,13 +393,12 @@ class Blog
   # options control the default behavior outlined above.
 
   has n, :posts, 'Post',
-    :parent_key => [:id],      # local to this model (Blog)
-    :child_key  => [:blog_id]  # in the remote model (Post)
+    :parent_key => [ :id ],      # local to this model (Blog)
+    :child_key  => [ :blog_id ]  # in the remote model (Post)
 
 end
 
 class Post
-
   include DataMapper::Resource
 
   # - This relationship points to a single resource
@@ -430,9 +435,9 @@ class Post
   # presence of the attribute value.
 
   belongs_to :blog, 'Blog',
-    :parent_key => [:id],       # in the remote model (Blog)
-    :child_key  => [:blog_id],  # local to this model (Post)
-    :required   => true         # the blog_id must be present
+    :parent_key => [ :id ],       # in the remote model (Blog)
+    :child_key  => [ :blog_id ],  # local to this model (Post)
+    :required   => true           # the blog_id must be present
 
 end
 {% endhighlight %}
@@ -449,21 +454,21 @@ automatically makes it `:required => true` as well.
 {% highlight ruby linenos %}
 class Post
   include DataMapper::Resource
+
   belongs_to :blog, :key => true  # 'blog_id' is the primary key
 end
 
 class Person
   include DataMapper::Resource
+
   property id, Serial
 end
 
 class Authorship
-
   include DataMapper::Resource
 
   belongs_to :post,   :key => true  # 'post_id'   is part of the CPK
   belongs_to :person, :key => true  # 'person_id' is part of the CPK
-
 end
 {% endhighlight %}
 
@@ -479,7 +484,6 @@ able to provide "better" names for use in our domain models.
 
 {% highlight ruby linenos %}
 class Post
-
   include DataMapper::Resource
 
   property :id, Serial
@@ -493,24 +497,20 @@ class Post
   # DataMapper to use that relationship instead of
   # the :author default.
 
-  has n, :authors, 'Person',
-    :through => :authorships,
-    :via     => :person
-
+  has n, :authors, 'Person', :through => :authorships, :via => :person
 end
 
 class Person
   include DataMapper::Resource
+
   property id, Serial
 end
 
 class Authorship
-
   include DataMapper::Resource
 
   belongs_to :post,   :key => true  # 'post_id'   is part of the CPK
   belongs_to :person, :key => true  # 'person_id' is part of the CPK
-
 end
 {% endhighlight %}
 
