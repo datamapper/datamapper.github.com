@@ -62,6 +62,7 @@ Triggers that generate validator creation:
   :format => :url            # predefined regex
   :format => /\w+_\w+/
   :format => lambda { |str| str }
+  :format => proc { |str| str }
   :format => Proc.new { |str| str }
 {% endhighlight %}
 
