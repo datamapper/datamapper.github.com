@@ -22,7 +22,7 @@ class Person
   include DataMapper::Resource
 
   property :name, String
-  property :job,  String,        :length => 255
+  property :job,  String,        :length => 1..255
   property :type, Discriminator
   ...
 end

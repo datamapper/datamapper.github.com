@@ -51,14 +51,11 @@ Triggers that generate validator creation:
 
 {% highlight ruby %}
   # implicitly creates a validates_present
-  :required => true
-  :length => (1..n)
+  :required => true  # cannot be null
 
   # implicitly creates a validates_length
-  :length => 20
-  :length => (1..20) # cant be null
-  :length => (0..20) # can be null
-  # :size is a synonym to :length
+  :length => 0..20  # string must be between 0 and 20 characters in length
+  :length => 1..20  # string must be between 1 and 20 characters in length
 
   # implicitly creates a validates_format
   :format => :email_address  # predefined regex
@@ -82,7 +79,7 @@ Here we see an example of a class with both a manual and auto-validation declare
     # good old fashioned manual validation
     validates_length_of :name, :max => 20
 
-    property :content, Text, :length => (100..500)
+    property :content, Text, :length => 100..500
   end
 {% endhighlight %}
 

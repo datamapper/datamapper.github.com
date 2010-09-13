@@ -149,7 +149,7 @@ repository(:default).adapter.execute 'UPDATE posts...'
 validates_presence_of     :title
 validates_numericality_of :rating
 validates_format_of       :email,   :with => :email_address
-validates_length_of       :summary, :within => (1..100)
+validates_length_of       :summary, :within => 1..100
 validates_uniqueness_of   :slug
         {% endhighlight %}
       </td>
@@ -158,7 +158,7 @@ validates_uniqueness_of   :slug
 validates_present   :title
 validates_is_number :rating
 validates_format    :email,   :as => :email_address
-validates_length    :summary, :in => (1..100)
+validates_length    :summary, :in => 1..100
 validates_is_unique :slug
         {% endhighlight %}
       </td>
