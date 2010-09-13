@@ -229,9 +229,7 @@ class Post
 
   def slug=(new_slug)
     raise ArgumentError if new_slug != 'DataMapper is Awesome'
-    attribute_set(:slug, new_slug)    # use attribute_set instead of talking
-                                      # to the @ivars directly.
-                                      # This tracks dirtiness.
+    super  # use original method instead of accessing @ivar directly
   end
 end
 {% endhighlight %}
