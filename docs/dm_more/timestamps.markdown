@@ -23,12 +23,11 @@ DataMapper.setup(:default, 'sqlite3::memory:')
 
 class Post
   include DataMapper::Resource
-  property :id, Serial
-  property :title, String, :length => 1..255
 
+  property :id,         Serial
+  property :title,      String,   :length => 1..255
   property :created_at, DateTime
   property :created_on, Date
-
   property :updated_at, DateTime
   property :updated_on, Date
 end
