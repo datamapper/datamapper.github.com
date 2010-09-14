@@ -185,7 +185,7 @@ for _read_ or for _write_ purposes, prior to `#save` being called.
 NOTE the following behavior of `#save` when `dm-validations` are in effect!
 
 The symptom that people are seeing is that their records fail to save
-(i.e. `#save` returns `false`) while calling `#valid?` returns `true.
+(i.e. `#save` returns `false`) while calling `#valid?` returns `true`.
 This is caused when an object has a parent or child that fails validation
 and thus refuses to save, thereby also blocking the object which #save
 was called on from saving.
