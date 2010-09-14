@@ -267,4 +267,4 @@ an integer of the number of records matching the every condition you pass in.
 count = Zoo.count(:age.gt => 200)  # => 2
 {% endhighlight %}
 
-[DataMapper_Repository]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Repository
+[DataMapper_Repository]:http://rubydoc.info/github/datamapper/dm-core/master/DataMapper/Repository

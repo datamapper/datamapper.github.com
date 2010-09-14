@@ -113,6 +113,6 @@ This has great potential for browsing collections of content, like browsing all
 blog posts' comments by category or tag. At present, chaining beyond 2
 associations is still experimental.
 
-[Types_Discriminator]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Types/Discriminator
-[Types_ParanoidDateTime]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Types/ParanoidDateTime
-[Types_ParanoidBoolean]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Types/ParanoidBoolean
+[Types_Discriminator]:http://rubydoc.info/github/datamapper/dm-core/master/DataMapper/Property/Discriminator
+[Types_ParanoidDateTime]:http://rubydoc.info/github/datamapper/dm-types/master/DataMapper/Property/ParanoidDateTime
+[Types_ParanoidBoolean]:http://rubydoc.info/github/datamapper/dm-types/master/DataMapper/Property/ParanoidBoolean

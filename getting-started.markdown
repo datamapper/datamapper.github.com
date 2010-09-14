@@ -239,4 +239,4 @@ typecast) the value for us, before it saves it to the data-store.  Any
 properties which are not specified in the hash will take their default values in
 the data-store.
 
-[DataMapper_Resource]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Resource
+[DataMapper_Resource]:http://rubydoc.info/github/datamapper/dm-core/master/DataMapper/Resource

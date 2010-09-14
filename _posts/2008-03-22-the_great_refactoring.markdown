@@ -110,4 +110,4 @@ check up on the [wiki](http://datamapper.org/), chat it up in
 [#datamapper](irc://irc.freenode.net/#datamapper) and watch
 [github commit messages](http://github.com/datamapper/dm-core/commits/master) for updates.
 
-[DataMapper_Resource]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Resource
+[DataMapper_Resource]:http://rubydoc.info/github/datamapper/dm-core/master/DataMapper/Resource
