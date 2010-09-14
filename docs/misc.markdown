@@ -68,7 +68,7 @@ context known as `:default`
   DataMapper.setup(:default, 'mysql://localhost/dm_core_test')
 {% endhighlight %}
 
-But if you supply a context name, you will now have 2 database contexts with
+If you supply another context name, you will now have 2 database contexts with
 their own unique loggers, connection pool, identity map....one default context
 and one named context.
 
@@ -77,10 +77,10 @@ DataMapper.setup(:external, 'mysql://someother_host/dm_core_test')
 {% endhighlight %}
 
 To use one context rather than another, simply wrap your code block inside a
-`database` call. It will return whatever your block of code returns.
+`repository` call. It will return whatever your block of code returns.
 
 {% highlight ruby linenos %}
-repository(:external) { Person.first }
+DataMapper.repository(:external) { Person.first }
 # hits up your :external database and retrieves the first Person
 {% endhighlight %}
 
