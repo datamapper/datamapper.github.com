@@ -145,7 +145,7 @@ Where was rc1?
 
 You might be asking yourself "where was rc1?". Well... I decided to do
 a soft launch of the first rc and just announce it to people in the
-[#datamapper](irc://irc.freenode.net/#datamapper) IRC channel on freenode. It's been a few months since we
+[#datamapper](irc://irc.freenode.net/%23datamapper) IRC channel on freenode. It's been a few months since we
 did any kind of release, and with the new gem organization I wasn't
 sure if we'd have all the kinks worked out. There was one small issue
 actually, so we bumped to rc2 and released the same day. We also added
@@ -158,6 +158,6 @@ How to report issues
 Please report any issues you find in IRC, on the mailing list, or in
 the tracker:
 
-* [IRC](irc://irc.freenode.net/#datamapper)
+* [IRC](irc://irc.freenode.net/%23datamapper)
 * [Mailing List](http://groups.google.com/group/datamapper)
 * [Bug Tracker](http://datamapper.lighthouseapp.com/projects/20609-datamapper)

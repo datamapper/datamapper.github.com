@@ -75,6 +75,6 @@ How to report issues
 Please report any issues you find in IRC, on the mailing list, or in
 the tracker:
 
-* [IRC](irc://irc.freenode.net/#datamapper)
+* [IRC](irc://irc.freenode.net/%23datamapper)
 * [Mailing List](http://groups.google.com/group/datamapper)
 * [Bug Tracker](http://datamapper.lighthouseapp.com/projects/20609-datamapper)

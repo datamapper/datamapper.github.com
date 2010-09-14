@@ -44,7 +44,7 @@ Getting Help
 ------------
 
 If you still have issues, we suggest getting onto the [mailing list](http://groups.google.com/group/datamapper)
-or the [IRC channel](irc://irc.freenode.net/#datamapper) and asking around.
+or the [IRC channel](irc://irc.freenode.net/%23datamapper) and asking around.
 There are friendly people there to help you out.
 
 [addressable]:http://rubygems.org/gems/addressable

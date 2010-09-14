@@ -181,5 +181,5 @@ criticism. Go ahead, fork DataMapper, we'd love to see what you come up with!
 
 Make your voice heard! [Submit a ticket or patch](http://datamapper.lighthouseapp.com/projects/20609-datamapper/),
 speak up on our [mailing-list](http://groups.google.com/group/datamapper/),
-chat with us on [irc](irc://irc.freenode.net/#datamapper), write a spec,
+chat with us on [irc](irc://irc.freenode.net/%23datamapper), write a spec,
 get it reviewed, ask for commit rights. It's as easy as that to become a contributor.
