@@ -127,7 +127,7 @@ database store.
 ### DM-CouchDB-Adapter
 
 An adapter for the JSON based document database <a
-href="http://incubator.apache.org/couchdb/">couch-db</a>. The adaptor has
+href="http://couchdb.apache.org/">couch-db</a>. The adaptor has
 support for both defining models backed by a couch-db store and also for
 couch-db views.
 
@@ -152,13 +152,13 @@ ResourceControllers and Migrations.
 
 ### [rails_datamapper](http://github.com/datamapper/rails_datamapper)
 
-Integration with <a href="http://www.rubyonrails.org/">Rails 2.x</a>. It provides a
+Integration with <a href="http://rubyonrails.org/">Rails 2.x</a>. It provides a
 Model generator and also takes care of connecting to the data-store through
 DataMapper.
 
 ### [dm-rails](http://github.com/datamapper/dm-rails)
 
-Integration with <a href="http://www.rubyonrails.org/">Rails 3.x</a>. It provides a
+Integration with <a href="http://rubyonrails.org/">Rails 3.x</a>. It provides a
 model and migration generators, takes care of connecting to the data-store through
 DataMapper and supports <a href="http://github.com/rspec/rspec">RSpec2</a>.
 

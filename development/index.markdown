@@ -18,7 +18,7 @@ git clone git://github.com/datamapper/dm-core.git
 
 Or visit the [edge guide](/articles/stunningly_easy_way_to_live_on_the_edge).
 
-If you have a [github](http://www.github.com/) account, log in, and _fork_
+If you have a [github](http://github.com/) account, log in, and _fork_
 [the repo](http://github.com/datamapper/dm-core/).
 When you think you're ready, send dkubb a "pull request".
 

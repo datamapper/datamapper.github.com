@@ -34,7 +34,7 @@ Links, Blogs, Wiki's, and Stuff
   <dt><a href="http://datamapper.lighthouseapp.com/projects/20609-datamapper/">Lighthouse</a></dt>
   <dd>Official Bug Tracking System</dd>
 
-  <dt><a href="http://www.twitter.com/datamapper">Twitter</a></dt>
+  <dt><a href="http://twitter.com/datamapper">Twitter</a></dt>
   <dd>Official Twitter Feed</dd>
 </dl>
 

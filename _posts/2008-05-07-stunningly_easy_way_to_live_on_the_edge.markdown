@@ -19,14 +19,14 @@ relational database, you will also need to install [do](http://github.com/datama
 ### Step 0 - Prerequisites
 
 First, a couple of basic requirements before we begin. You will need to have
-an up-to-date installation of [rubygems](http://www.rubygems.org/), the [ruby](http://www.ruby-lang.org/)
+an up-to-date installation of [rubygems](http://rubygems.org/), the [ruby](http://www.ruby-lang.org/en/)
 package management system. To check what version you have, issue the following command:
 
 {% highlight bash %}
 gem --version
 {% endhighlight %}
 
-If that doesn't give at least version 1.3.5, update your [rubygems](http://www.rubygems.org/)
+If that doesn't give at least version 1.3.5, update your [rubygems](http://rubygems.org/)
 installation by running:
 
 {% highlight bash %}

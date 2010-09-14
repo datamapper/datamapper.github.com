@@ -91,7 +91,7 @@ query problem without having to do anything special in the initial retrieval.
 Contextual Lazy-loading
 -----------------------
 
-With a recent commit by [Guy van den Berg](http://www.guyvdb.info/ruby/lazy-loading-properties-in-datamapper/),
+With a recent commit by [Guy van den Berg](http://web.archive.org/web/20080706235220/http://www.guyvdb.info/ruby/lazy-loading-properties-in-datamapper/),
 DataMapper just got a whole lot more flexible.
 
 Most applications have only a few main views of a resource: a brief summary view
@@ -162,7 +162,7 @@ fires off 2 queries as you're iterating and calling the association inside the
 `each`. If you forget to `:include => [ :association ]` in the initial query,
 DataMapper only ever fires off one more query to get what it needs.
 
-[Yehuda Katz](http://www.yehudakatz.com/) has aptly named this 'Strategic Eager Loading'.
+[Yehuda Katz](http://yehudakatz.com/) has aptly named this 'Strategic Eager Loading'.
 
 Getting Around to It
 --------------------
