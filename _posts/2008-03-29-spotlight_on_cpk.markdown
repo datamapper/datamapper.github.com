@@ -52,7 +52,7 @@ post = Post.get('ruby', 'hello world')
 post.key  # => [ 'ruby', 'hello world' ]
 {% endhighlight %}
 
-p(attribution). example compiled from <http://code.google.com/p/ruby-sequel/wiki/SequelModels>.
+p(attribution). example compiled from <http://github.com/jeremyevans/sequel>.
 
 DataMapper
 ----------
