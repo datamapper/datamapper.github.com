@@ -182,6 +182,14 @@ via `belongs_to` or `has`) will also save those related resources, _if_ they are
 time `#save` is being called. Related resources are _loaded_ if they've been accessed either
 for _read_ or for _write_ purposes, prior to `#save` being called.
 
+NOTE the following behavior of `#save` when `dm-validations` are in effect!
+
+The symptom that people are seeing is that their records fail to save
+(i.e. `#save` returns `false`) while calling `#valid?` returns `true.
+This is caused when an object has a parent or child that fails validation
+and thus refuses to save, thereby also blocking the object which #save
+was called on from saving.
+
 Update
 ------
 
