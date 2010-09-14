@@ -89,6 +89,10 @@ it finds. Later, when you call `.save` on that person, it'll get saved back to
 the `:external` data-store; An object is aware of what context it came from and
 should be saved back to.
 
+NOTE that currently you **must** setup a `:default` repository to work
+with DataMapper (and to be able to use additional differently named
+repositories). This might change in the future.
+
 Chained Associations
 --------------------
 
