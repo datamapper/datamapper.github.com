@@ -38,9 +38,9 @@ Its installation is left up to the reader, but here's a few good resources to go
 to for help:
 
 * [Git - Fast Version Control System](http://git-scm.com/) - Homepage
-* [Installing GIT on MAC OSX 10.5 Leopard](http://dysinger.net/2007/12/30/installing-git-on-mac-os-x-105-leopard/)
-* [Git On Windows](http://ropiku.wordpress.com/2007/12/28/git-on-windows/)
-* [Installing Git on Ubuntu](http://chrisolsen.org/2008/03/10/installing-git-on-ubuntu/)
+* [Installing Git on Mac OSX](http://help.github.com/mac-git-installation/)
+* [Installing Git On Windows](http://help.github.com/win-git-installation/)
+* [Installing Git on Linux](http://help.github.com/linux-git-installation/)
 
 
 ### Step 1 - Gem dependencies
