@@ -23,7 +23,7 @@ Currently DataMapper needs help in a few particular areas:
 
 * API Documentation (using the [YARD documentation style](http://www.yardoc.org/))
 * Tutorials (we think the [Django](http://www.djangoproject.com/) documentation [guidelines](http://jacobian.org/writing/great-documentation/) are a good model)
-* Bug Reports (we use [Lighthouse](http://datamapper.lighthouseapp.com/))
+* Bug Reports (we use [Lighthouse](http://datamapper.lighthouseapp.com/projects/20609-datamapper/))
 
 Git - Edge DataMapper
 ---------------------
