@@ -4,7 +4,7 @@ body_id:      home
 title:        DataMapper
 ---
 
-<p class="blurb" markdown="true">DataMapper is a [Object Relational Mapper](http://en.wikipedia.org/wiki/Object-relational_mapping) written in [Ruby](http://ruby-lang.org/).
+<p class="blurb" markdown="true">DataMapper is a [Object Relational Mapper](http://en.wikipedia.org/wiki/Object-relational_mapping) written in [Ruby](http://ruby-lang.org/en/).
 The goal is to create an ORM which is fast, thread-safe and feature rich.</p>
 
 <p class="blurb" markdown="true">To learn a little more about this project and
