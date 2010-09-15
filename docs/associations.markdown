@@ -115,13 +115,59 @@ class Tagging
   belongs_to :tag,   :key => true
   belongs_to :photo, :key => true
 end
+{% endhighlight %}
 
+IMPORTANT NOTE: With the above definition of the `Tagging` model, you
+won't be able to call `Tagging.get(...)` reliably!
+
+{% highlight ruby linenos %}
+tag_id, photo_id = 1, 1
+Tagging.get(tag_id, photo_id) # won't work reliably!
+{% endhighlight %}
+
+This is because currently, DM doesn't remember the order in which the
+CPK components (`tag_id` and `photo_id`) got defined. Doing
+`Tagging.first(...)` instead, will work like you expect it to. The only
+difference being that results won't be cached inside the Identity map!
+
+{% highlight ruby linenos %}
+tag_id, photo_id = 1, 1
+Tagging.first(:tag_id => tag_id, :photo_id => photo_id) # works reliably!
+{% endhighlight %}
+
+To get around this limitation for now, it's advised to *always* declare
+properties that form CPK components explicitly. You still need to
+declare the relationships too, of course.
+
+{% highlight ruby linenos %}
+class Tagging
+  include DataMapper::Resource
+
+  # The :min => 1 makes sure that the column types match.
+  # This is important for establishing FK constraints, at
+  # least with some databases (like MySQL). Note that this
+  # is only relevant in case you're using dm-constraints,
+  # which you probably should, at least with any RDBMS adapter
+
+  property :tag_id,   Integer, :key => true, :min => 1
+  property :photo_id, Integer, :key => true, :min => 1
+
+  belongs_to :tag,   :key => true
+  belongs_to :photo, :key => true
+end
 {% endhighlight %}
 
 ### Has, and belongs to, many (Or Many-To-Many)
 
 The use of Resource in place of a class name tells DataMapper to use an
 anonymous resource to link the two models up.
+
+IMPORTANT NOTE: If you ever plan to call `#get` on your anonymous join
+model, you're currently better off defining the join model explicitly!
+This is because with an anonymous relationship, you have no way of
+defining the CPK component properties explicitly. Have a look at the
+above section about "has n, :through" relationships, for a more detailed
+explanation.
 
 {% highlight ruby linenos %}
 # When auto_migrate! is being called, the following model
@@ -194,7 +240,12 @@ link = article.article_categories.first(:category => category)
 link.destroy
 
 # unlink them by destroying the join resource directly
-link = ArticleCategory.get(article.id, category.id)
+link = ArticleCategory.first(:article_id => article.id, :category_id => category.id)
+link.destroy
+
+# NOTE have a look at the above section about "has n, :through"
+# to find out why the following currently won't work reliably!
+link = ArticleCategory.get(article.id, category.id) # WON'T WORK RELIABLY!
 link.destroy
 {% endhighlight %}
 
@@ -218,6 +269,13 @@ end
 
 class Friendship
   include DataMapper::Resource
+
+  # See the above section about "has n, :through" for a
+  # detailed explanation of why defining the CPK properties
+  # in addition to the relationships is necessary for now.
+
+  property :source_id, Integer, :key => true, :min => 1
+  property :target_id, Integer, :key => true, :min => 1
 
   belongs_to :source, 'Person', :key => true
   belongs_to :target, 'Person', :key => true
