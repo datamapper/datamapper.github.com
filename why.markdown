@@ -163,10 +163,59 @@ Person.all(:order => [ :age.desc ])
 # .asc is the default
 {% endhighlight %}
 
-To query a model by it's associations, you can use a QueryPath:
+Querying models by their associations
+-------------------------------------
+
+DataMapper allows you to create and search for any complex object graph simply by providing a nested hash of conditions. The following example uses a typical Customer - Order domain model to illustrate how nested conditions can be used to both create and query models by their associations.
+
+For a complete definition of the Customer - Order domain models have a look at the [Finders]((/docs/find) page.
 
 {% highlight ruby linenos %}
-  Person.all(:links => [ :pets ], Person.pets.name => 'Pixel')
+# A hash specifying one customer with one order
+#
+# In general, possible keys are all property and relationship
+# names that are available on the relationship's target model.
+# Possible toplevel keys depend on the property and relationship
+# names available in the model that receives the hash.
+#
+customer = {
+  :name   => 'Dan Kubb',
+  :orders => [
+    {
+      :reference   => 'TEST1234',
+      :order_lines => [
+        {
+          :item => {
+            :sku        => 'BLUEWIDGET1',
+            :unit_price => 1.00,
+          },
+        },
+      ],
+    },
+  ]
+}
+
+# Create the Customer with the nested options hash
+Customer.create(customer)
+# => [#<Customer @id=1 @name="Dan Kubb">]
+
+# The same options to create can also be used to query for the same object
+p Customer.all(customer)
+# => [#<Customer @id=1 @name="Dan Kubb">]
+
+# QueryPaths can be used to construct joins in a very declarative manner.
+#
+# Starting from a root model, you can call any relationship by its name.
+# The returned object again responds to all property and relationship names
+# that are defined in the relationship's target model.
+#
+# This means that you can walk the chain of available relationships, and then
+# match against a property at the end of that chain. The object returned by
+# the last call to a property name also responds to all the comparison
+# operators that we saw above. This makes for some powerful join construction!
+#
+Customer.all(Customer.orders.order_lines.item.sku.like => "%BLUE%")
+# => [#<Customer @id=1 @name="Dan Kubb">]
 {% endhighlight %}
 
 You can even chain calls to `all` or `first` to continue refining your query or
