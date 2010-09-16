@@ -166,7 +166,6 @@ Customer.create(customer)
 
 # The options to create can also be used to retrieve the same object
 p Customer.all(customer)
-{% endhighlight %}
 
 # QueryPaths can be used to construct joins in a very declarative manner.
 #
@@ -182,8 +181,9 @@ p Customer.all(customer)
 #
 Customer.all(Customer.orders.order_lines.item.sku.like => "%BLUE%")
 # => [#<Customer @id=1 @name="Dan Kubb">]
-
+{% endhighlight %}
 Order
+
 -----
 
 To specify the order in which your results are to be sorted, use:
