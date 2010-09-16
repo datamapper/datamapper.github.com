@@ -168,6 +168,21 @@ Customer.create(customer)
 p Customer.all(customer)
 {% endhighlight %}
 
+# QueryPaths can be used to construct joins in a very declarative manner.
+#
+# Starting from a root model, you can call any relationship by its name.
+# The returned object again responds to all property and relationship names
+# that are defined in the relationship's target model.
+#
+# This means that you can walk the chain of available relationships, and then
+# match against a property at the end of that chain. The object returned by
+# the last call to a property name also responds to all the comparison
+# operators available in traditional queries. This makes for some powerful
+# join construction!
+#
+Customer.all(Customer.orders.order_lines.item.sku.like => "%BLUE%")
+# => [#<Customer @id=1 @name="Dan Kubb">]
+
 Order
 -----
 
