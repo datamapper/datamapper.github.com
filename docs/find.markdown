@@ -182,8 +182,8 @@ p Customer.all(customer)
 Customer.all(Customer.orders.order_lines.item.sku.like => "%BLUE%")
 # => [#<Customer @id=1 @name="Dan Kubb">]
 {% endhighlight %}
-Order
 
+Order
 -----
 
 To specify the order in which your results are to be sorted, use:
