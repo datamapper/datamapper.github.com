@@ -91,11 +91,11 @@ Nested Conditions
 -----------------
 DataMapper allows you to create and search for any complex object graph simply by providing a nested hash of conditions.
 
-Possible keys are all properties and relationships (or simply their names as symbols or strings) established in the model the current nesting level points to. The available toplevel keys depend on the model the conditions hash is passed to. We'll see below how to change the nesting level and thus the model the property and relationship keys are scoped to.
+Possible keys are all property and relationship names (as symbols or strings) that are established in the model the current nesting level points to. The available toplevel keys depend on the model the conditions hash is passed to. We'll see below how to change the nesting level and thus the model the property and relationship keys are scoped to.
 
-For property (name) keys, possible values typically are simple objects like strings, numbers, dates or booleans. Using properties as keys doesn't add another nesting level.
+For property name keys, possible values typically are simple objects like strings, numbers, dates or booleans. Using properties as keys doesn't add another nesting level.
 
-For relationship (name) keys, possible values are either a hash (if the relationship points to a single resource) or an array of hashes (if the relationship points to many resources). Adding a relationship (name) as key adds another nesting level scoped to the Model the relationship is pointing to. Inside this new level, the available keys are the property and relationship (names) of the model that the relationship points to. This is what we meant by "the Model the current nesting level points to".
+For relationship name keys, possible values are either a hash (if the relationship points to a single resource) or an array of hashes (if the relationship points to many resources). Adding a relationship name as key adds another nesting level scoped to the Model the relationship is pointing to. Inside this new level, the available keys are the property and relationship names of the model that the relationship points to. This is what we meant by "the Model the current nesting level points to".
 
 The following example shows a typical Customer - Order domain model and illustrates how nested conditions can be used to both create and search for specific resources.
 
