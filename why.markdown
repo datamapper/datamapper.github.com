@@ -168,7 +168,7 @@ Querying models by their associations
 
 DataMapper allows you to create and search for any complex object graph simply by providing a nested hash of conditions. The following example uses a typical Customer - Order domain model to illustrate how nested conditions can be used to both create and query models by their associations.
 
-For a complete definition of the Customer - Order domain models have a look at the [Finders]((/docs/find) page.
+For a complete definition of the Customer - Order domain models have a look at the [Finders](/docs/find) page.
 
 {% highlight ruby linenos %}
 # A hash specifying one customer with one order
