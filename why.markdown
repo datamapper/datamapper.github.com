@@ -61,6 +61,70 @@ LineItem.get(order_id, item_number)
 # => [#<LineItem @orderid=1 @item_number=1>]
 {% endhighlight %}
 
+Less need for writing migrations
+--------------------------------
+
+With DataMapper, you specify the datastore layout inside your ruby
+models. This allows DataMapper to create the underlying datastore schema
+based on the models you defined. The `#auto_migrate!` and `#auto_upgrade!`
+methods can be used to generate a schema in the datastore that matches
+your model definitions.
+
+While `#auto_migrate!` *desctructively* drops and recreates tables to match
+your model definitions, `#auto_upgrade!` supports upgrading your
+datastore to match your model definitions, without actually destroying
+any already existing data. There are still some limitations in the
+operations that `#auto_upgrade!` can perform, but we're working on it.
+
+In cases where neither `#auto_migrate!` nor `#auto_upgrade!` quite cut
+it, you can still fall back to the classic migrations feature provided
+by [dm-migrations](http://github.com/datamapper/dm-migrations).
+
+Here's some code that puts `#auto_migrate!` and `#auto_upgrade!` to use.
+
+{% highlight ruby linenos %}
+require 'rubygems'
+require 'dm-core'
+require 'dm-migrations'
+
+DataMapper::Logger.new($stdout, :debug)
+DataMapper.setup(:default, 'mysql://localhost/test')
+
+class Person
+  include DataMapper::Resource
+  property :id,   Serial
+  property :name, String, :required => true
+end
+
+DataMapper.auto_migrate!
+
+# ~ (0.015754) SET sql_auto_is_null = 0
+# ~ (0.000335) SET SESSION sql_mode = 'ANSI,NO_BACKSLASH_ESCAPES,NO_DIR_IN_CREATE,NO_ENGINE_SUBSTITUTION,NO_UNSIGNED_SUBTRACTION,TRADITIONAL'
+# ~ (0.283290) DROP TABLE IF EXISTS `people`
+# ~ (0.029274) SHOW TABLES LIKE 'people'
+# ~ (0.000103) SET sql_auto_is_null = 0
+# ~ (0.000111) SET SESSION sql_mode = 'ANSI,NO_BACKSLASH_ESCAPES,NO_DIR_IN_CREATE,NO_ENGINE_SUBSTITUTION,NO_UNSIGNED_SUBTRACTION,TRADITIONAL'
+# ~ (0.000932) SHOW VARIABLES LIKE 'character_set_connection'
+# ~ (0.000393) SHOW VARIABLES LIKE 'collation_connection'
+# ~ (0.080191) CREATE TABLE `people` (`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, `name` VARCHAR(50) NOT NULL, PRIMARY KEY(`id`)) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci
+# => #<DataMapper::DescendantSet:0x101379a68 @descendants=[Person]>
+
+class Person
+  property :hobby, String
+end
+
+DataMapper.auto_upgrade!
+
+# ~ (0.000612) SHOW TABLES LIKE 'people'
+# ~ (0.000079) SET sql_auto_is_null = 0
+# ~ (0.000081) SET SESSION sql_mode = 'ANSI,NO_BACKSLASH_ESCAPES,NO_DIR_IN_CREATE,NO_ENGINE_SUBSTITUTION,NO_UNSIGNED_SUBTRACTION,TRADITIONAL'
+# ~ (1.794475) SHOW COLUMNS FROM `people` LIKE 'id'
+# ~ (0.001412) SHOW COLUMNS FROM `people` LIKE 'name'
+# ~ (0.001121) SHOW COLUMNS FROM `people` LIKE 'hobby'
+# ~ (0.153989) ALTER TABLE `people` ADD COLUMN `hobby` VARCHAR(50)
+# => #<DataMapper::DescendantSet:0x101379a68 @descendants=[Person]>
+{% endhighlight %}
+
 Strategic Eager Loading
 -----------------------
 
