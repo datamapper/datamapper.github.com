@@ -17,7 +17,8 @@ With DataMapper you define your mappings in your model. Your data-store can
 develop independently of your models using Migrations.
 
 To support data-stores which you don't have the ability to manage yourself, it's
-simply a matter of telling DataMapper where to look.
+simply a matter of telling DataMapper where to look. This makes
+DataMapper a good choice when dealing with legacy databases.
 
 {% highlight ruby linenos %}
 class Fruit
@@ -34,6 +35,27 @@ DataMapper only issues updates or creates for the properties it knows about. So
 it plays well with others. You can use it in an Integration Database without
 worrying that your application will be a bad actor causing trouble for all of
 your other processes.
+
+DataMapper has full support for Composite Primary Keys (CPK) builtin.
+Specifying the properties that form the primary key is easy.
+
+{% highlight ruby linenos %}
+class LineItem
+  include DataMapper::Resource
+
+  property :order_id,    Integer, :key => true
+  property :item_number, Integer, :key => true
+end
+{% endhighlight %}
+
+If we were to know an `order_id`/`item_number` combination, we can
+easily retrieve the corresponding line item from the datastore.
+
+{% highlight ruby linenos %}
+order_id, item_number = 1, 1
+LineItem.get(order_id, item_number)
+# => [#<LineItem @orderid=1 @item_number=1>]
+{% endhighlight %}
 
 Strategic Eager Loading
 -----------------------
