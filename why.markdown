@@ -10,23 +10,6 @@ Why DataMapper?
 DataMapper differentiates itself from other Ruby Object/Relational Mappers in a
 number of ways:
 
-Identity Map
-------------
-
-One row in the database should equal one object reference. Pretty simple idea.
-Pretty profound impact. If you run the following code in ActiveRecord you'll see
-all `false` results. Do the same in DataMapper and it's `true` all the way down.
-
-{% highlight ruby linenos %}
-@parent = Tree.first(:conditions => { :name => 'bob' })
-
-@parent.children.each do |child|
-  puts @parent.object_id == child.parent.object_id
-end
-{% endhighlight %}
-
-This makes DataMapper faster and allocate less resources to get things done.
-
 Plays Well With Others
 ----------------------
 
@@ -51,6 +34,118 @@ DataMapper only issues updates or creates for the properties it knows about. So
 it plays well with others. You can use it in an Integration Database without
 worrying that your application will be a bad actor causing trouble for all of
 your other processes.
+
+Strategic Eager Loading
+-----------------------
+
+DataMapper will only issue the very bare minimums of queries to your data-store
+that it needs to. For example, the following example will only issue 2 queries.
+Notice how we don't supply any extra `:include` information.
+
+{% highlight ruby linenos %}
+zoos = Zoo.all
+zoos.each do |zoo|
+  # on first iteration, DM loads up all of the exhibits for all of the items in zoos
+  # in 1 query to the data-store.
+
+  zoo.exhibits.each do |exhibit|
+    # n+1 queries in other ORMs, not in DataMapper
+    puts "Zoo: #{zoo.name}, Exhibit: #{exhibit.name}"
+  end
+end
+{% endhighlight %}
+
+The idea is that you aren't going to load a set of objects and use only an
+association in just one of them. This should hold up pretty well against a 99%
+rule.
+
+When you don't want it to work like this, just load the item you want in it's
+own set. So DataMapper thinks ahead. We like to call it "performant by default".
+*This feature single-handedly wipes out the "N+1 Query Problem".*
+
+DataMapper also waits until the very last second to actually issue the query to
+your data-store. For example, `zoos = Zoo.all` won't run the query until you
+start iterating over `zoos` or call one of the 'kicker' methods like `#length`.
+If you never do anything with the results of a query, DataMapper won't incur the
+latency of talking to your data-store.
+
+Querying models by their associations
+-------------------------------------
+
+DataMapper allows you to create and search for any complex object graph simply by providing a nested hash of conditions. The following example uses a typical Customer - Order domain model to illustrate how nested conditions can be used to both create and query models by their associations.
+
+For a complete definition of the Customer - Order domain models have a look at the [Finders](/docs/find) page.
+
+{% highlight ruby linenos %}
+# A hash specifying one customer with one order
+#
+# In general, possible keys are all property and relationship
+# names that are available on the relationship's target model.
+# Possible toplevel keys depend on the property and relationship
+# names available in the model that receives the hash.
+#
+customer = {
+  :name   => 'Dan Kubb',
+  :orders => [
+    {
+      :reference   => 'TEST1234',
+      :order_lines => [
+        {
+          :item => {
+            :sku        => 'BLUEWIDGET1',
+            :unit_price => 1.00,
+          },
+        },
+      ],
+    },
+  ]
+}
+
+# Create the Customer with the nested options hash
+Customer.create(customer)
+# => [#<Customer @id=1 @name="Dan Kubb">]
+
+# The same options to create can also be used to query for the same object
+p Customer.all(customer)
+# => [#<Customer @id=1 @name="Dan Kubb">]
+{% endhighlight %}
+
+QueryPaths can be used to construct joins in a very declarative manner.
+
+Starting from a root model, you can call any relationship by its name.
+The returned object again responds to all property and relationship names
+that are defined in the relationship's target model.
+
+This means that you can walk the chain of available relationships, and then
+match against a property at the end of that chain. The object returned by
+the last call to a property name also responds to all the comparison
+operators that we saw above. This makes for some powerful join construction!
+
+{% highlight ruby linenos %}
+Customer.all(Customer.orders.order_lines.item.sku.like => "%BLUE%")
+# => [#<Customer @id=1 @name="Dan Kubb">]
+{% endhighlight %}
+
+You can even chain calls to `all` or `first` to continue refining your query or
+search within a scope. See [Finders](/docs/find) for more information.
+
+
+Identity Map
+------------
+
+One row in the database should equal one object reference. Pretty simple idea.
+Pretty profound impact. If you run the following code in ActiveRecord you'll see
+all `false` results. Do the same in DataMapper and it's `true` all the way down.
+
+{% highlight ruby linenos %}
+@parent = Tree.first(:conditions => { :name => 'bob' })
+
+@parent.children.each do |child|
+  puts @parent.object_id == child.parent.object_id
+end
+{% endhighlight %}
+
+This makes DataMapper faster and allocate less resources to get things done.
 
 Laziness Can Be A Virtue
 ------------------------
@@ -86,40 +181,6 @@ animals.each do |pet|
   pet.notes
 end
 {% endhighlight %}
-
-Strategic Eager Loading
------------------------
-
-DataMapper will only issue the very bare minimums of queries to your data-store
-that it needs to. For example, the following example will only issue 2 queries.
-Notice how we don't supply any extra `:include` information.
-
-{% highlight ruby linenos %}
-zoos = Zoo.all
-zoos.each do |zoo|
-  # on first iteration, DM loads up all of the exhibits for all of the items in zoos
-  # in 1 query to the data-store.
-
-  zoo.exhibits.each do |exhibit|
-    # n+1 queries in other ORMs, not in DataMapper
-    puts "Zoo: #{zoo.name}, Exhibit: #{exhibit.name}"
-  end
-end
-{% endhighlight %}
-
-The idea is that you aren't going to load a set of objects and use only an
-association in just one of them. This should hold up pretty well against a 99%
-rule.
-
-When you don't want it to work like this, just load the item you want in it's
-own set. So DataMapper thinks ahead. We like to call it "performant by default".
-*This feature single-handedly wipes out the "N+1 Query Problem".*
-
-DataMapper also waits until the very last second to actually issue the query to
-your data-store. For example, `zoos = Zoo.all` won't run the query until you
-start iterating over `zoos` or call one of the 'kicker' methods like `#length`.
-If you never do anything with the results of a query, DataMapper won't incur the
-latency of talking to your data-store.
 
 All Ruby, All The Time
 ----------------------
@@ -162,64 +223,6 @@ Person.all(:name.not => [ 'bob', 'rick', 'steve' ])
 Person.all(:order => [ :age.desc ])
 # .asc is the default
 {% endhighlight %}
-
-Querying models by their associations
--------------------------------------
-
-DataMapper allows you to create and search for any complex object graph simply by providing a nested hash of conditions. The following example uses a typical Customer - Order domain model to illustrate how nested conditions can be used to both create and query models by their associations.
-
-For a complete definition of the Customer - Order domain models have a look at the [Finders](/docs/find) page.
-
-{% highlight ruby linenos %}
-# A hash specifying one customer with one order
-#
-# In general, possible keys are all property and relationship
-# names that are available on the relationship's target model.
-# Possible toplevel keys depend on the property and relationship
-# names available in the model that receives the hash.
-#
-customer = {
-  :name   => 'Dan Kubb',
-  :orders => [
-    {
-      :reference   => 'TEST1234',
-      :order_lines => [
-        {
-          :item => {
-            :sku        => 'BLUEWIDGET1',
-            :unit_price => 1.00,
-          },
-        },
-      ],
-    },
-  ]
-}
-
-# Create the Customer with the nested options hash
-Customer.create(customer)
-# => [#<Customer @id=1 @name="Dan Kubb">]
-
-# The same options to create can also be used to query for the same object
-p Customer.all(customer)
-# => [#<Customer @id=1 @name="Dan Kubb">]
-
-# QueryPaths can be used to construct joins in a very declarative manner.
-#
-# Starting from a root model, you can call any relationship by its name.
-# The returned object again responds to all property and relationship names
-# that are defined in the relationship's target model.
-#
-# This means that you can walk the chain of available relationships, and then
-# match against a property at the end of that chain. The object returned by
-# the last call to a property name also responds to all the comparison
-# operators that we saw above. This makes for some powerful join construction!
-#
-Customer.all(Customer.orders.order_lines.item.sku.like => "%BLUE%")
-# => [#<Customer @id=1 @name="Dan Kubb">]
-{% endhighlight %}
-
-You can even chain calls to `all` or `first` to continue refining your query or
-search within a scope. See [Finders](/docs/find) for more information.
 
 Open Development
 ----------------
