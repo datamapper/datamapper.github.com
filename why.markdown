@@ -17,8 +17,8 @@ With DataMapper you define your mappings in your model. Your data-store can
 develop independently of your models using Migrations.
 
 To support data-stores which you don't have the ability to manage yourself, it's
-simply a matter of telling DataMapper where to look. This makes
-DataMapper a good choice when dealing with legacy databases.
+simply a matter of telling DataMapper where to look. This makes DataMapper
+a good choice when [Working with legacy databases](/docs/legacy)
 
 {% highlight ruby linenos %}
 class Fruit
