@@ -21,13 +21,17 @@ simply a matter of telling DataMapper where to look. This makes DataMapper
 a good choice when [Working with legacy databases](/docs/legacy)
 
 {% highlight ruby linenos %}
-class Fruit
+class Post
   include DataMapper::Resource
 
-  storage_names[:default] = 'frt'  # equivalent to set_table_name in AR
+  # set the storage name for the :legacy repository
+  storage_names[:legacy] = 'tblPost'
 
-  property :id,   Serial
-  property :name, String, :field => 'col2'
+  # use the datastore's 'pid' field for the id property.
+  property :id, Serial, :field => :pid
+
+  # use a property called 'uid' as the child key (the foreign key)
+  belongs_to :user, :child_key => [ :uid ]
 end
 {% endhighlight %}
 
