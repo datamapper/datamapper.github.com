@@ -73,10 +73,17 @@ your model definitions.
 While `#auto_migrate!` *desctructively* drops and recreates tables to match
 your model definitions, `#auto_upgrade!` supports upgrading your
 datastore to match your model definitions, without actually destroying
-any already existing data. There are still some limitations in the
-operations that `#auto_upgrade!` can perform, but we're working on it.
+any already existing data.
 
-In cases where neither `#auto_migrate!` nor `#auto_upgrade!` quite cut
+There are still some limitations to the operations that `#auto_upgrade!`
+can perform. We're working hard on making it smarter, but there will
+always be scenarios where an automatic upgrade of your schema won't be
+possible. For example, there's no sane strategy for automatically changing
+a column length constraint from VARCHAR(100) to VARCHAR(50). DataMapper
+can't know what it should do when the data doesn't validate against the
+new tightened constraints.
+
+In situations where neither `#auto_migrate!` nor `#auto_upgrade!` quite cut
 it, you can still fall back to the classic migrations feature provided
 by [dm-migrations](http://github.com/datamapper/dm-migrations).
 
