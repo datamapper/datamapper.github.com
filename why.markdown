@@ -10,6 +10,20 @@ Why DataMapper?
 DataMapper differentiates itself from other Ruby Object/Relational Mappers in a
 number of ways:
 
+One API for a variety of datastores
+-----------------------------------
+
+DataMapper comes with the ability to use the same API to talk to a
+multitude of different datastores. There are adapters for the usual
+RDBMS suspects, NoSQL stores, various file formats and even some popular
+webservices.
+
+There's a probably incomplete list of available datamapper adapters on
+the [github wiki](http://github.com/datamapper/dm-core/wiki/Adapters)
+with new ones getting implemented regularly. A quick
+[github search](http://github.com/search?q=dm+adapter&type=Everything&repo=&langOverride=&start_value=1)
+should give you further hints on what's currently available.
+
 Plays Well With Others
 ----------------------
 
