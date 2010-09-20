@@ -146,6 +146,60 @@ DataMapper.auto_upgrade!
 # => #<DataMapper::DescendantSet:0x101379a68 @descendants=[Person]>
 {% endhighlight %}
 
+Data integrity is important
+---------------------------
+
+DataMapper makes it easy to leverage native techniques for enforcing
+data integrity. The [dm-constraints](http://github.com/datamapper/dm-constraints)
+plugin provides support for establishing true foreign key constraints in
+databases that support that concept.
+
+{% highlight ruby linenos %}
+require 'rubygems'
+require 'dm-core'
+require 'dm-constraints'
+require 'dm-migrations'
+
+DataMapper::Logger.new($stdout, :debug)
+DataMapper.setup(:default, 'mysql://localhost/test')
+
+class Person
+  include DataMapper::Resource
+  property :id, Serial
+  has n, :tasks, :constraint => :destroy
+end
+
+class Task
+  include DataMapper::Resource
+  property :id, Serial
+  belongs_to :person
+end
+
+DataMapper.auto_migrate!
+
+# ~ (0.000131) SET sql_auto_is_null = 0
+# ~ (0.000141) SET SESSION sql_mode = 'ANSI,NO_BACKSLASH_ESCAPES,NO_DIR_IN_CREATE,NO_ENGINE_SUBSTITUTION,NO_UNSIGNED_SUBTRACTION,TRADITIONAL'
+# ~ (0.017995) SHOW TABLES LIKE 'people'
+# ~ (0.000278) SHOW TABLES LIKE 'tasks'
+# ~ (0.001435) DROP TABLE IF EXISTS `people`
+# ~ (0.000226) SHOW TABLES LIKE 'people'
+# ~ (0.000093) SET sql_auto_is_null = 0
+# ~ (0.000087) SET SESSION sql_mode = 'ANSI,NO_BACKSLASH_ESCAPES,NO_DIR_IN_CREATE,NO_ENGINE_SUBSTITUTION,NO_UNSIGNED_SUBTRACTION,TRADITIONAL'
+# ~ (0.000334) SHOW VARIABLES LIKE 'character_set_connection'
+# ~ (0.000278) SHOW VARIABLES LIKE 'collation_connection'
+# ~ (0.187402) CREATE TABLE `people` (`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, PRIMARY KEY(`id`)) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci
+# ~ (0.000309) DROP TABLE IF EXISTS `tasks`
+# ~ (0.000313) SHOW TABLES LIKE 'tasks'
+# ~ (0.200487) CREATE TABLE `tasks` (`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, `person_id` INT(10) UNSIGNED NOT NULL, PRIMARY KEY(`id`)) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci
+# ~ (0.146982) CREATE INDEX `index_tasks_person` ON `tasks` (`person_id`)
+# ~ (0.002525) SELECT COUNT(*) FROM "information_schema"."table_constraints" WHERE "constraint_type" = 'FOREIGN KEY' AND "table_schema" = 'test' AND "table_name" = 'tasks' AND "constraint_name" = 'tasks_person_fk'
+# ~ (0.230075) ALTER TABLE `tasks` ADD CONSTRAINT `tasks_person_fk` FOREIGN KEY (`person_id`) REFERENCES `people` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+# => #<DataMapper::DescendantSet:0x101379a68 @descendants=[Person, Task]>
+{% endhighlight %}
+
+Notice how the last statement adds a foreign key constraint to the
+schema definition.
+
 Strategic Eager Loading
 -----------------------
 
