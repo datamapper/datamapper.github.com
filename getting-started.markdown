@@ -53,6 +53,9 @@ You need make sure this is set before you define your models.
   # An in-memory Sqlite3 connection:
   DataMapper.setup(:default, 'sqlite::memory:')
 
+  # A Sqlite3 connection to a persistent database
+  DataMapper.setup(:default, 'sqlite:///path/to/project.db')
+
   # A MySQL connection:
   DataMapper.setup(:default, 'mysql://localhost/the_database_name')
 
