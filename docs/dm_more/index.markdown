@@ -64,7 +64,7 @@ and `to_json`
 This plugin provides foreign key constrains on has n relationships for Postgres
 and MySQL adapters.
 
-### [dm-ddjust](http://github.com/datamapper/dm-adjust)
+### [dm-adjust](http://github.com/datamapper/dm-adjust)
 
 This plugin allows properties on resources, collections and models to
 incremented or decremented by a fixed amount.
@@ -176,7 +176,7 @@ more control than `auto_migrate!` and `auto_upgrade!`. Migrations can be written
 to create, modify and drop tables and columns. In addition, the plugin provides
 support for specing migrations and verifying they perform as intended.
 
-### [dm-bserver](http://github.com/datamapper/dm-observer)
+### [dm-observer](http://github.com/datamapper/dm-observer)
 
 This plugin eases operations involving models across multiple repositories,
 allowing wrapping in a `repository(:foo)` block to be replaced with a
