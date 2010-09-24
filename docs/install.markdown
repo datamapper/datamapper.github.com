@@ -40,6 +40,11 @@ The current database adapters are:
 
 There are also many more database, and non-database, adapters.
 
+Uninstalling all DataMapper gems
+--------------------------------
+
+Should you ever have the need to uninstall datamapper completely, Dan Kubb has prepared a bash command that does the trick. Have a look at [this gist](http://gist.github.com/31187) for a oneliner that gets rid of datamapper completely.
+
 Getting Help
 ------------
 
