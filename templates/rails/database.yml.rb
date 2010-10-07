@@ -5,6 +5,9 @@ database = options[:database]
 database = 'postgres' if database == 'postgresql'
 database = 'sqlite'   if database == 'sqlite3'
 
+prefix = ''
+prefix = 'db/' if database == 'sqlite'
+
 postfix = ''
 postfix = '.db' if database == 'sqlite'
 
@@ -15,7 +18,7 @@ defaults: &defaults
   adapter: #{database}
 
 development:
-  database: #{db_name}_development#{postfix}
+  database: #{prefix}#{db_name}_development#{postfix}
   <<: *defaults
 
   # Add more repositories
@@ -30,10 +33,10 @@ development:
   #     ...
 
 test:
-  database: #{db_name}_test#{postfix}
+  database: #{prefix}#{db_name}_test#{postfix}
   <<: *defaults
 production:
-  database: #{db_name}_production#{postfix}
+  database: #{prefix}#{db_name}_production#{postfix}
   <<: *defaults
 YAML
 end
