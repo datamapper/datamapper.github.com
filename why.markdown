@@ -234,6 +234,33 @@ start iterating over `zoos` or call one of the 'kicker' methods like `#length`.
 If you never do anything with the results of a query, DataMapper won't incur the
 latency of talking to your data-store.
 
+NOTE that this currently doesn't work when you start to nest loops
+that access the associations more than one level deep. The following
+would *not* issue the optimal amount of queries:
+
+{% highlight ruby linenos %}
+zoos = Zoo.all
+zoos.each do |zoo|
+  # on first iteration, DM loads up all of the exhibits for all of the items in zoos
+  # in 1 query to the data-store.
+
+  zoo.exhibits.each do |exhibit|
+    # n+1 queries in other ORMs, not in DataMapper
+    puts "Zoo: #{zoo.name}, Exhibit: #{exhibit.name}"
+
+    exhibit.items.each do |item|
+      # currently DM won't be smart about the queries it generates for
+      # accessing the items in any particular exhibit
+      puts "Item: #{item.name}"
+    end
+  end
+end
+{% endhighlight %}
+
+However, there's work underway to remove that limitation. In the future,
+it will be possible to get the same smart queries inside deeper nested
+iterations.
+
 Querying models by their associations
 -------------------------------------
 
