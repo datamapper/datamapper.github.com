@@ -261,6 +261,13 @@ However, there's work underway to remove that limitation. In the future,
 it will be possible to get the same smart queries inside deeper nested
 iterations.
 
+Depending on your specific needs, it might be possible to workaround
+this limitations by using DataMapper's feature that allows you to query
+models by their associations, as described briefly in the chapter below.
+
+You can also find more information about this feature on the
+[Finders](/docs/find) and the [Associations](/docs/associations) pages.
+
 Querying models by their associations
 -------------------------------------
 
