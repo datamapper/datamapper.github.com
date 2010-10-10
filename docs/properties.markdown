@@ -86,8 +86,8 @@ class Post
 end
 {% endhighlight %}
 
-Setting Defaults
-----------------
+Setting default values
+----------------------
 
 Defaults can be set via the `:default` key for a property. They can be static
 values, such as `12` or `"Hello"`, but DataMapper also offers the ability to use
@@ -111,6 +111,36 @@ it will be set to the hex digest of the file referred to by `path`.
 
 *Fair Warning*: A property default must _not_ refer to the value of the property
 it is about to set, or there will be an infinite loop.
+
+Setting default options
+-----------------------
+
+If you find that you're setting the same default options over and over
+again, you can specify them once and have them applied to all properties
+you add to your models.
+
+    # set all String properties to have a default length of 255
+    DataMapper::Property::String.length(255)
+
+    # set all Boolean properties to not allow nil (force true or false)
+    DataMapper::Property::Boolean.allow_nil(false)
+
+    # set all properties to be required by default
+    DataMapper::Property.required(true)
+
+    # turn off auto-validation for all properties by default
+    DataMapper::Property.auto_validation(false)
+
+    # set all mutator methods to be private by default
+    DataMapper::Property.writer(false)
+
+Please note that this has no effect when a subclass has explicitly
+defined it's own option. For example, setting the String length to
+255 will not affect the Text property even though it inherits from
+String, because it sets it's own default length to 65535.
+
+You can of course still override these defaults by specifying any
+option explicitly when defining a specific property.
 
 Lazy Loading
 ------------
