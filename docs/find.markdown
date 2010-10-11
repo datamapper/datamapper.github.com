@@ -272,6 +272,37 @@ the interpolated array condition syntax as well:
 zoos = repository(:default).adapter.select('SELECT name, open FROM zoos WHERE name = ?', 'Awesome Zoo')
 {% endhighlight %}
 
+Grouping
+--------
+
+DataMapper automatically groups by all selected columns in order to
+return consistent results across various datastores. If you need to
+group by some columns explicitly, you can use the `:fields` combined
+with the `:unique` option.
+
+
+{% highlight ruby linenos %}
+class Person
+  include DataMapper::Resource
+  property :id,  Serial
+  property :job, String
+end
+
+Person.auto_migrate!
+
+Person.all(:fields => [:job], :unique => true)
+# ...
+# SELECT "job" FROM "people" GROUP BY "job" ORDER BY "id"
+{% endhighlight %}
+
+Note that if you don't include the primary key in the selected columns,
+you will not be able to modify the returned resources because DataMapper
+cannot know how to persist them.
+
+If a `group by` isn't appropriate and you're rather looking for `select
+distinct`, you need to drop down to talking to your datastore directly,
+as shown in the section above.
+
 Aggregate functions
 -------------------
 For the following to work, you need to have
