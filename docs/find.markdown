@@ -272,14 +272,46 @@ the interpolated array condition syntax as well:
 zoos = repository(:default).adapter.select('SELECT name, open FROM zoos WHERE name = ?', 'Awesome Zoo')
 {% endhighlight %}
 
+Aggregate functions
+-------------------
+For the following to work, you need to have
+[dm-aggregates](http://github.com/datamapper/dm-aggregates) required.
+
 Counting
 --------
 
-With dm-aggregates included, the `count` method it adds will returns
-an integer of the number of records matching the every condition you pass in.
+{% highlight ruby linenos %}
+Friend.count # returns count of all friends
+Friend.count(:age.gt => 18) # returns count of all friends older then 18
+Friend.count(:conditions => [ 'gender = ?', 'female' ]) # returns count of all your female friends
+Friend.count(:address) # returns count of all friends with an address (NULL values are not included)
+Friend.count(:address, :age.gt => 18) # returns count of all friends with an address that are older then 18
+Friend.count(:address, :conditions => [ 'gender = ?', 'female' ]) # returns count of all your female friends with an address
+{% endhighlight %}
+
+Minimum and Maximum
+-------------------
 
 {% highlight ruby linenos %}
-count = Zoo.count(:age.gt => 200)  # => 2
+# Get the lowest value of a property
+Friend.min(:age) # returns the age of the youngest friend
+Friend.min(:age, :conditions => [ 'gender = ?', 'female' ]) # returns the age of the youngest female friends
+# Get the highest value of a property
+Friend.max(:age) # returns the age of the oldest friend
+Friend.max(:age, :conditions => [ 'gender = ?', 'female' ]) # returns the age of the oldest female friends
+{% endhighlight %}
+
+Average and Sum
+---------------
+
+{% highlight ruby linenos %}
+# Get the average value of a property
+Friend.avg(:age) # returns the average age of friends
+Friend.avg(:age, :conditions => [ 'gender = ?', 'female' ]) # returns the average age of the female friends
+
+# Get the total value of a property
+Friend.sum(:age) # returns total age of all friends
+Friend.max(:age, :conditions => [ 'gender = ?', 'female' ]) # returns the total age of all female friends
 {% endhighlight %}
 
 [DataMapper_Repository]:http://rubydoc.info/github/datamapper/dm-core/master/DataMapper/Repository
