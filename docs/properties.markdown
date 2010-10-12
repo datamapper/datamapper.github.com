@@ -134,10 +134,12 @@ you add to your models.
     # set all mutator methods to be private by default
     DataMapper::Property.writer(false)
 
-Please note that this has no effect when a subclass has explicitly
-defined it's own option. For example, setting the String length to
-255 will not affect the Text property even though it inherits from
-String, because it sets it's own default length to 65535.
+Please note that this currently has the unfortunate side effect of not
+allowing subclasses to define their own option values. For example,
+setting the String length to 255 will affect the Text property even
+though it inherits from String and sets it's own default length to 65535.
+This is a [known bug](http://datamapper.lighthouseapp.com/projects/20609/tickets/1430)
+and will be fixed in the next release (1.0.3).
 
 You can of course still override these defaults by specifying any
 option explicitly when defining a specific property.
