@@ -37,6 +37,8 @@ The current database adapters are:
 * dm-mysql-adapter
 * dm-sqlite-adapter
 * dm-postgres-adapter
+* dm-oracle-adapter
+* dm-sqlserver-adapter
 
 There are also many more database, and non-database, adapters.
 
