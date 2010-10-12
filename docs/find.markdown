@@ -290,9 +290,20 @@ end
 
 Person.auto_migrate!
 
-Person.all(:fields => [:job], :unique => true)
+# Note that if you don't include the primary key, you will need to
+# specify an explicit order vector, because DM will default to the
+# primary key if it's not told otherwise (at least currently).
+# PostgreSQL will present this rather informative error message when
+# you leave out the order vector in the query below.
+#
+#   column "people.id" must appear in the GROUP BY clause
+#   or be used in an aggregate function
+#
+# To not do any ordering, you would need to provide :order => nil
+#
+Person.all(:fields => [:job], :unique => true, :order => [:job.asc])
 # ...
-# SELECT "job" FROM "people" GROUP BY "job" ORDER BY "id"
+# SELECT "job" FROM "people" GROUP BY "job" ORDER BY "job"
 {% endhighlight %}
 
 Note that if you don't include the primary key in the selected columns,
