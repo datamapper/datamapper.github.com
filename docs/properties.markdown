@@ -119,20 +119,22 @@ If you find that you're setting the same default options over and over
 again, you can specify them once and have them applied to all properties
 you add to your models.
 
-    # set all String properties to have a default length of 255
-    DataMapper::Property::String.length(255)
+{% highlight ruby linenos %}
+# set all String properties to have a default length of 255
+DataMapper::Property::String.length(255)
 
-    # set all Boolean properties to not allow nil (force true or false)
-    DataMapper::Property::Boolean.allow_nil(false)
+# set all Boolean properties to not allow nil (force true or false)
+DataMapper::Property::Boolean.allow_nil(false)
 
-    # set all properties to be required by default
-    DataMapper::Property.required(true)
+# set all properties to be required by default
+DataMapper::Property.required(true)
 
-    # turn off auto-validation for all properties by default
-    DataMapper::Property.auto_validation(false)
+# turn off auto-validation for all properties by default
+DataMapper::Property.auto_validation(false)
 
-    # set all mutator methods to be private by default
-    DataMapper::Property.writer(false)
+# set all mutator methods to be private by default
+DataMapper::Property.writer(false)
+{% endhighlight %}
 
 Please note that this currently has the unfortunate side effect of not
 allowing subclasses to define their own option values. For example,
