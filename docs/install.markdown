@@ -34,11 +34,11 @@ gem install dm-mysql-adapter
 
 The current database adapters are:
 
-* dm-mysql-adapter
-* dm-sqlite-adapter
-* dm-postgres-adapter
-* dm-oracle-adapter
-* dm-sqlserver-adapter
+* [dm-mysql-adapter](http://github.com/datamapper/dm-mysql-adapter)
+* [dm-sqlite-adapter](http://github.com/datamapper/dm-sqlite-adapter)
+* [dm-postgres-adapter](http://github.com/datamapper/dm-postgres-adapter)
+* [dm-oracle-adapter](http://github.com/datamapper/dm-oracle-adapter)
+* [dm-sqlserver-adapter](http://github.com/datamapper/dm-sqlserver-adapter)
 
 There are also many more database, and non-database, adapters.
 
