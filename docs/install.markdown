@@ -40,7 +40,8 @@ The current database adapters are:
 * [dm-oracle-adapter](http://github.com/datamapper/dm-oracle-adapter)
 * [dm-sqlserver-adapter](http://github.com/datamapper/dm-sqlserver-adapter)
 
-There are also many more database, and non-database, adapters.
+There are also many more database, and non-database, adapters. Have a
+look at the (probably incomplete) list on the [github wiki](http://github.com/datamapper/dm-core/wiki/Adapters). Additionally, a quick [github search](http://github.com/search?langOverride=&q=dm+adapter&repo=&start_value=1&type=Repositories) might reveal some more.
 
 Uninstalling all DataMapper gems
 --------------------------------
