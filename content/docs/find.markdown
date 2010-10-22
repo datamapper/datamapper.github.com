@@ -9,7 +9,7 @@ created_at: Tue Dec 04 14:46:32 +1030 2007
 ================
 
 The finder methods for DataMapper objects are defined in
-[DataMapper::Repository][DataMapper_Repository]. They include `get()`, `all()`, `first()`
+[DataMapper::Repository][DataMapper_Repository]. They include `#get`, `#all`, `#first`, `#last`
 
 Finder Methods
 --------------
@@ -18,25 +18,25 @@ DataMapper has methods which allow you to grab a single record by key, the first
 match to a set of conditions, or a collection of records matching conditions.
 
 <pre><code class="language-ruby">
-zoo   = Zoo.get(1)                        # get the zoo with primary key of 1.
-zoo   = Zoo.get!(1)                       # Or get! if you want an ObjectNotFoundError on failure
-zoo   = Zoo.get('DFW')                    # wow, support for natural primary keys
-zoo   = Zoo.get('Metro', 'DFW')           # more wow, composite key look-up
-zoo   = Zoo.first(:name => 'Luke')        # first matching record with the name 'Luke'
-zoos  = Zoo.all                           # all zoos
-zoos  = Zoo.all(:open => true)            # all zoos that are open
-zoos  = Zoo.all(:opened_on => (s..e))     # all zoos that opened on a date in the date-range
+zoo  = Zoo.get(1)                     # get the zoo with primary key of 1.
+zoo  = Zoo.get!(1)                    # Or get! if you want an ObjectNotFoundError on failure
+zoo  = Zoo.get('DFW')                 # wow, support for natural primary keys
+zoo  = Zoo.get('Metro', 'DFW')        # more wow, composite key look-up
+zoo  = Zoo.first(:name => 'Metro')    # first matching record with the name 'Metro'
+zoo  = Zoo.last(:name => 'Metro')     # last matching record with the name 'Metro'
+zoos = Zoo.all                        # all zoos
+zoos = Zoo.all(:open => true)         # all zoos that are open
+zoos = Zoo.all(:opened_on => (s..e))  # all zoos that opened on a date in the date-range
 </code></pre>
 
 Scopes and Chaining
 -------------------
 
-A call to `all()` or `first()` can be chained together to further build a query
-to the data-store:
+Calls to `#all can be chained together to further build a query to the data-store:
 
 <pre><code class="language-ruby">
-all_zoos = Zoo.all
-open_zoos = all_zoos.all(:open => true)
+all_zoos      = Zoo.all
+open_zoos     = all_zoos.all(:open => true)
 big_open_zoos = open_zoos.all(:animal_count => 1000)
 </code></pre>
 
@@ -48,6 +48,7 @@ class Zoo
   def self.open
     all(:open => true)
   end
+
   def self.big
     all(:animal_count => 1000)
   end
@@ -84,8 +85,103 @@ lte   # less than or equal
 not   # not equal
 eql   # equal
 like  # like
-in    # in - will be used automatically when an array is passed in as an argument
 </code></pre>
+
+Nested Conditions
+-----------------
+DataMapper allows you to create and search for any complex object graph simply by providing a nested hash of conditions.
+
+Possible keys are all property and relationship names (as symbols or strings) that are established in the model the current nesting level points to. The available toplevel keys depend on the model the conditions hash is passed to. We'll see below how to change the nesting level and thus the model the property and relationship keys are scoped to.
+
+For property name keys, possible values typically are simple objects like strings, numbers, dates or booleans. Using properties as keys doesn't add another nesting level.
+
+For relationship name keys, possible values are either a hash (if the relationship points to a single resource) or an array of hashes (if the relationship points to many resources). Adding a relationship name as key adds another nesting level scoped to the Model the relationship is pointing to. Inside this new level, the available keys are the property and relationship names of the model that the relationship points to. This is what we meant by "the Model the current nesting level points to".
+
+The following example shows a typical Customer - Order domain model and illustrates how nested conditions can be used to both create and search for specific resources.
+
+{% highlight ruby linenos %}
+class Customer
+  include DataMapper::Resource
+
+  property :id,   Serial
+  property :name, String, :required => true, :length => 1..100
+
+  has n, :orders
+  has n, :items, :through => :orders
+end
+
+class Order
+  include DataMapper::Resource
+
+  property :id,        Serial
+  property :reference, String, :required => true, :length => 1..20
+
+  belongs_to :customer
+
+  has n, :order_lines
+  has n, :items, :through => :order_lines
+end
+
+class OrderLine
+  include DataMapper::Resource
+
+  property :id,         Serial
+  property :quantity,   Integer, :required => true, :default => 1, :min => 1
+  property :unit_price, Decimal, :required => true, :default => lambda { |r, p| r.item.unit_price }
+
+  belongs_to :order
+  belongs_to :item
+end
+
+class Item
+  include DataMapper::Resource
+
+  property :id,         Serial
+  property :sku,        String,  :required => true, :length => 1..20
+  property :unit_price, Decimal, :required => true, :min => 0
+
+  has n, :order_lines
+end
+
+# A hash specifying a customer with one order
+customer = {
+  :name   => 'Dan Kubb',
+  :orders => [
+    {
+      :reference   => 'TEST1234',
+      :order_lines => [
+        {
+          :item => {
+            :sku        => 'BLUEWIDGET1',
+            :unit_price => 1.00,
+          },
+        },
+      ],
+    },
+  ]
+}
+
+# Create the Customer with the nested options hash
+Customer.create(customer)
+
+# The options to create can also be used to retrieve the same object
+p Customer.all(customer)
+
+# QueryPaths can be used to construct joins in a very declarative manner.
+#
+# Starting from a root model, you can call any relationship by its name.
+# The returned object again responds to all property and relationship names
+# that are defined in the relationship's target model.
+#
+# This means that you can walk the chain of available relationships, and then
+# match against a property at the end of that chain. The object returned by
+# the last call to a property name also responds to all the comparison
+# operators available in traditional queries. This makes for some powerful
+# join construction!
+#
+Customer.all(Customer.orders.order_lines.item.sku.like => "%BLUE%")
+# => [#<Customer @id=1 @name="Dan Kubb">]
+{% endhighlight %}
 
 Order
 -----
@@ -94,28 +190,28 @@ To specify the order in which your results are to be sorted, use:
 
 <pre><code class="language-ruby">
 @zoos_by_tiger_count = Zoo.all(:order => [ :tiger_count.desc ])
-# in SQL =>  select * from zoos ORDER BY tiger_count DESC
+# in SQL => SELECT * FROM "zoos" ORDER BY "tiger_count" DESC
 </code></pre>
 
 Available order vectors are:
 
 <pre><code class="language-ruby">
-asc  # sorting ascending
-desc # sorting descending
+asc   # sorting ascending
+desc  # sorting descending
 </code></pre>
 
 Once you have the query, the order can be modified too.  Just call reverse:
 
 <pre><code class="language-ruby">
 @least_tigers_first = @zoos_by_tiger_count.reverse
-# in SQL =>  select * from zoos ORDER BY tiger_count ASC
+# in SQL => SELECT * FROM "zoos" ORDER BY "tiger_count" ASC
 </code></pre>
 
 Combining Queries
 -----------------
 
 Sometimes, the simple queries DataMapper allows you to specify with the hash
-interface to `all()` just won't cut it.  This might be because you want to
+interface to `#all` just won't cut it.  This might be because you want to
 specify an `OR` condition, though that's just one possibility.  To accomplish
 more complex queries, DataMapper allows queries (or more accurately,
 Collections) to be combined using set operators.
@@ -150,7 +246,9 @@ DataMapper supports other conditions syntaxes as well:
 
 <pre><code class="language-ruby">
 zoos = Zoo.all(:conditions => { :id => 34 })
-zoos = Zoo.all(:conditions => [ "id = ?", 34 ])
+
+# You can use this syntax to call native storage engine functions
+zoos = Zoo.all(:conditions => [ 'id = ?', 34 ])
 
 # even mix and match
 zoos = Zoo.all(:conditions => { :id => 34 }, :name.like => '%foo%')
@@ -171,17 +269,91 @@ than instances of the Zoo class. They'll also be read-only. You can still use
 the interpolated array condition syntax as well:
 
 <pre><code class="language-ruby">
-zoos = repository(:default).adapter.query('SELECT name, open FROM zoos WHERE name = ?', "Awesome Zoo")
+zoos = repository(:default).adapter.select('SELECT name, open FROM zoos WHERE name = ?', 'Awesome Zoo')
 </code></pre>
+
+Grouping
+--------
+
+DataMapper automatically groups by all selected columns in order to
+return consistent results across various datastores. If you need to
+group by some columns explicitly, you can use the `:fields` combined
+with the `:unique` option.
+
+
+{% highlight ruby linenos %}
+class Person
+  include DataMapper::Resource
+  property :id,  Serial
+  property :job, String
+end
+
+Person.auto_migrate!
+
+# Note that if you don't include the primary key, you will need to
+# specify an explicit order vector, because DM will default to the
+# primary key if it's not told otherwise (at least currently).
+# PostgreSQL will present this rather informative error message when
+# you leave out the order vector in the query below.
+#
+#   column "people.id" must appear in the GROUP BY clause
+#   or be used in an aggregate function
+#
+# To not do any ordering, you would need to provide :order => nil
+#
+Person.all(:fields => [:job], :unique => true, :order => [:job.asc])
+# ...
+# SELECT "job" FROM "people" GROUP BY "job" ORDER BY "job"
+{% endhighlight %}
+
+Note that if you don't include the primary key in the selected columns,
+you will not be able to modify the returned resources because DataMapper
+cannot know how to persist them.
+
+If a `group by` isn't appropriate and you're rather looking for `select
+distinct`, you need to drop down to talking to your datastore directly,
+as shown in the section above.
+
+Aggregate functions
+-------------------
+For the following to work, you need to have
+[dm-aggregates](http://github.com/datamapper/dm-aggregates) required.
 
 Counting
 --------
 
-With DM-More's DM-Aggregates included, the `count` method it adds will returns
-an integer of the number of records matching the every condition you pass in.
+{% highlight ruby linenos %}
+Friend.count # returns count of all friends
+Friend.count(:age.gt => 18) # returns count of all friends older then 18
+Friend.count(:conditions => [ 'gender = ?', 'female' ]) # returns count of all your female friends
+Friend.count(:address) # returns count of all friends with an address (NULL values are not included)
+Friend.count(:address, :age.gt => 18) # returns count of all friends with an address that are older then 18
+Friend.count(:address, :conditions => [ 'gender = ?', 'female' ]) # returns count of all your female friends with an address
+{% endhighlight %}
 
-<pre><code class="language-ruby">
-count = Zoo.count(:age.gt => 200) #=> 2
-</code></pre>
+Minimum and Maximum
+-------------------
 
-[DataMapper_Repository]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Repository
+{% highlight ruby linenos %}
+# Get the lowest value of a property
+Friend.min(:age) # returns the age of the youngest friend
+Friend.min(:age, :conditions => [ 'gender = ?', 'female' ]) # returns the age of the youngest female friends
+# Get the highest value of a property
+Friend.max(:age) # returns the age of the oldest friend
+Friend.max(:age, :conditions => [ 'gender = ?', 'female' ]) # returns the age of the oldest female friends
+{% endhighlight %}
+
+Average and Sum
+---------------
+
+{% highlight ruby linenos %}
+# Get the average value of a property
+Friend.avg(:age) # returns the average age of friends
+Friend.avg(:age, :conditions => [ 'gender = ?', 'female' ]) # returns the average age of the female friends
+
+# Get the total value of a property
+Friend.sum(:age) # returns total age of all friends
+Friend.max(:age, :conditions => [ 'gender = ?', 'female' ]) # returns the total age of all female friends
+{% endhighlight %}
+
+[DataMapper_Repository]:http://rubydoc.info/github/datamapper/dm-core/master/DataMapper/Repository

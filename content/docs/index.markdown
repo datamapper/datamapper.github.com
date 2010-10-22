@@ -9,7 +9,7 @@ created_at: Fri Nov 30 15:29:01 +1030 2007
 ================
 
 <dl>
-  <dt><a href="http://rdoc.info/projects/datamapper/dm-core">API</a></dt>
+  <dt><a href="http://rubydoc.info/gems/dm-core/1.0.2/frames">API</a></dt>
   <dd>The API for the current gem release.</dd>
   <dt><a href="/why">Why DataMapper?</a></dt>
   <dd>If you haven't read this yet, you should, right now!</dd>
@@ -19,7 +19,7 @@ created_at: Fri Nov 30 15:29:01 +1030 2007
   <dd>Troubleshooting installation, with instructions for specific platforms.</dd>
   <dt><a href="/docs/properties">Properties</a></dt>
   <dd>Properties declared in your model map to the fields in the database.</dd>
-  <dt><a href="/docs/create_and_destroy">Creating, Saving and Destroying Records</a></dt>
+  <dt><a href="/docs/create_and_destroy">Creating, Saving, Updating and Destroying Records</a></dt>
   <dd>Obviously you're going to be doing a lot of this :)</dd>
   <dt><a href="/docs/validations">Validations</a></dt>
   <dd>Auto-validations, manual validations, contextual validations</dd>
@@ -31,6 +31,8 @@ created_at: Fri Nov 30 15:29:01 +1030 2007
   <dd>Hooks, AKA Callbacks, allow you to "advise other methods" by running methods before or after calling other methods.</dd>
   <dt><a href="/docs/misc">Misc. Features</a></dt>
   <dd>Paranoia, Single Table Inheritance, and Multiple Repositories.</dd>
+  <dt><a href="/docs/legacy">Working with Legacy Schemas</a></dt>
+  <dd>Adapting data-store naming conventions to your own property names.</dd>
   <dt><a href="/docs/dm_more/">More</a></dt>
   <dd>Plugins galore for DataMapper.</dd>
 </dl>
@@ -38,8 +40,11 @@ created_at: Fri Nov 30 15:29:01 +1030 2007
 Documentarians Wanted!
 ----------------------
 
-Want to help DataMapper, but don't know where to start? A great way to
-contribute is to help out in the documentation effort.
+Want to help DataMapper, but don't know where to start? A great way to contribute is to help out in the documentation effort.
+
+If you know of some interesting and useful functionality that isn't covered on [datamapper.org](http://datamapper.org), just go ahead and fork [datamapper.github.com](http://github.com/datamapper/datamapper.github.com), send us a pull request, and we'll merge it as fast as we can. If you want to contribute more, we can give you commit access to the repository right after that.
+
+If you find some undocumented piece of code inside [dm-core](http://github.com/datamapper/dm-core) or any of the other [datamapper](http://github.com/datamapper) repositories, we would greatly appreciate it if you take the time to read and understand that code, fork the repository, add the necessary docs and send us a pull request. Again, we'll try to merge them as fast as we can.
 
 Documentation Style
 -------------------
@@ -67,10 +72,11 @@ from the internals of DM-Core:
 # @api public
 def self.setup(name, uri_or_options)
   raise ArgumentError, "+name+ must be a Symbol, but was #{name.class}", caller unless Symbol === name
-  ...
+  #...
+end
 </code></pre>
 
 For more information about the YARD documentation style, see the YARD
-[Getting Started](http://yardoc.org/docs/yard/file:docs/GettingStarted.md) document.
+[Getting Started](http://rubydoc.info/docs/yard/file/docs/GettingStarted.md) document.
 
 *[YARD]: Yet Another Ruby Documentation (tool)

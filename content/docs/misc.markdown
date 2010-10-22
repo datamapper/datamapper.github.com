@@ -22,18 +22,18 @@ class Person
   include DataMapper::Resource
 
   property :name, String
-  property :job,  String,        :length => 255
+  property :job,  String,        :length => 1..255
   property :type, Discriminator
   ...
 end
 
-class Male < Person; end
-class Father < Male; end
-class Son < Male;    end
+class Male   < Person; end
+class Father < Male;   end
+class Son    < Male;   end
 
-class Woman < Person;   end
-class Mother < Woman;   end
-class Daughter < Woman; end
+class Woman    < Person; end
+class Mother   < Woman;  end
+class Daughter < Woman;  end
 
 </code></pre>
 
@@ -68,7 +68,7 @@ context known as `:default`
   DataMapper.setup(:default, 'mysql://localhost/dm_core_test')
 </code></pre>
 
-But if you supply a context name, you will now have 2 database contexts with
+If you supply another context name, you will now have 2 database contexts with
 their own unique loggers, connection pool, identity map....one default context
 and one named context.
 
@@ -77,10 +77,10 @@ DataMapper.setup(:external, 'mysql://someother_host/dm_core_test')
 </code></pre>
 
 To use one context rather than another, simply wrap your code block inside a
-`database` call. It will return whatever your block of code returns.
+`repository` call. It will return whatever your block of code returns.
 
 <pre><code class="language-ruby">
-repository(:external) { Person.first }
+DataMapper.repository(:external) { Person.first }
 # hits up your :external database and retrieves the first Person
 </code></pre>
 
@@ -88,6 +88,10 @@ This will use your connection to the `:external` data-store and the first Person
 it finds. Later, when you call `.save` on that person, it'll get saved back to
 the `:external` data-store; An object is aware of what context it came from and
 should be saved back to.
+
+NOTE that currently you **must** setup a `:default` repository to work
+with DataMapper (and to be able to use additional differently named
+repositories). This might change in the future.
 
 Chained Associations
 --------------------
@@ -102,13 +106,13 @@ DataMapper's solution is to let you chain association calls:
 
 <pre><code class="language-ruby">
 zoo = Zoo.first
-zoo.exhibits.animals # retrieves all animals for all exhibits for that zoo
+zoo.exhibits.animals  # retrieves all animals for all exhibits for that zoo
 </code></pre>
 
 This has great potential for browsing collections of content, like browsing all
 blog posts' comments by category or tag. At present, chaining beyond 2
 associations is still experimental.
 
-[Types_Discriminator]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Types/Discriminator
-[Types_ParanoidDateTime]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Types/ParanoidDateTime
-[Types_ParanoidBoolean]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Types/ParanoidBoolean
+[Types_Discriminator]:http://rubydoc.info/github/datamapper/dm-core/master/DataMapper/Property/Discriminator
+[Types_ParanoidDateTime]:http://rubydoc.info/github/datamapper/dm-types/master/DataMapper/Property/ParanoidDateTime
+[Types_ParanoidBoolean]:http://rubydoc.info/github/datamapper/dm-types/master/DataMapper/Property/ParanoidBoolean

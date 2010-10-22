@@ -23,31 +23,39 @@ you, but just in case, make sure you have the following gems as well:
 * [RSpec][rspec] - for running specs on DataMapper itself
 * [YARD][yard]   - for building documentation
 
-Using Master
-------------
+Installing an adapter
+---------------------
 
-You will also need to install the DataObject gem and the adapter for your
-platform:
+You will also need to install the adapter for your platform:
 
 <pre><code class="language-bash">
-sudo gem install data_objects
-sudo gem install do_mysql
+gem install dm-mysql-adapter
 </code></pre>
 
 The current database adapters are:
 
-* do_mysql
-* do_sqlite3
-* do_postgres
+* [dm-mysql-adapter](http://github.com/datamapper/dm-mysql-adapter)
+* [dm-sqlite-adapter](http://github.com/datamapper/dm-sqlite-adapter)
+* [dm-postgres-adapter](http://github.com/datamapper/dm-postgres-adapter)
+* [dm-oracle-adapter](http://github.com/datamapper/dm-oracle-adapter)
+* [dm-sqlserver-adapter](http://github.com/datamapper/dm-sqlserver-adapter)
+
+There are also many more database, and non-database, adapters. Have a
+look at the (probably incomplete) list on the [github wiki](http://github.com/datamapper/dm-core/wiki/Adapters). Additionally, a quick [github search](http://github.com/search?langOverride=&q=dm+adapter&repo=&start_value=1&type=Repositories) might reveal some more.
+
+Uninstalling all DataMapper gems
+--------------------------------
+
+Should you ever have the need to uninstall datamapper completely, Dan Kubb has prepared a bash command that does the trick. Have a look at [this gist](http://gist.github.com/31187) for a oneliner that gets rid of datamapper completely.
 
 Getting Help
 ------------
 
 If you still have issues, we suggest getting onto the [mailing list](http://groups.google.com/group/datamapper)
-or the [IRC channel](irc://irc.freenode.net/#datamapper) and asking around.
+or the [IRC channel](irc://irc.freenode.net/%23datamapper) and asking around.
 There are friendly people there to help you out.
 
-[addressable]:http://gemcutter.org/gems/addressable
-[json_pure]:http://gemcutter.org/gems/json_pure
-[rspec]:http://gemcutter.org/gems/rspec
-[yard]:http://gemcutter.org/gems/yard
+[addressable]:http://rubygems.org/gems/addressable
+[json_pure]:http://rubygems.org/gems/json_pure
+[rspec]:http://rubygems.org/gems/rspec
+[yard]:http://rubygems.org/gems/yard

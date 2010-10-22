@@ -21,5 +21,4 @@ They're available for download and review direct from SlideShare at
 <http://www.slideshare.net/wycats/datamapper/>.
 
 Adam French (afrench) was in attendance and participated in the 'Birds Of A
-Feather' discussion panel on [Rails Alternatives and You](http://en.oreilly.com/rails2008/public/schedule/detail/4426) led by Mark
-Bates, of [www.mackframework.com](http://www.mackframework.com/) fame.
+Feather' discussion panel on [Rails Alternatives and You](http://en.oreilly.com/rails2008/public/schedule/detail/4426) led by [Mark Bates](http://www.metabates.com/).

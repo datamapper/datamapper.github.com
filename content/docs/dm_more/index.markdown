@@ -25,27 +25,27 @@ Resource Plugins
 These plugins modify the behavior of all resources in an application, adding new
 functionality to them, or providing easier ways of doing things.
 
-### DM-Validations
+### [dm-validations](http://github.com/datamapper/dm-validations)
 
 This provides validations for resources. The plugin both defines automatic
 validations based on the properties specified and also allows assignment of
 manual validations. It also supports contextual validation, allowing a resource
 to be considered valid for some purposes but not others.
 
-### DM-Timestamps
+### [dm-timestamps](/docs/dm_more/timestamps)
 
 This defines callbacks on the common timestamp properties, making them
 auto-update when the models are created or updated. The targeted properties are
 `:created_at` and `:updated_at` for DateTime properties and `:created_on` and
 `:updated_on` for Date properties.
 
-### DM-Aggregates
+### [dm-aggregates](/docs/dm_more/dm-aggregates)
 
 This provides methods for database calls to aggregate functions such as `count`,
 `sum`, `avg`, `max` and `min`. These aggregate functions are added to both
 collections and Models.
 
-### DM-Types
+### [dm-types](/docs/dm_more/types)
 
 This provides several more allowable property types. `Enum` and `Flag` allow a
 field to take a few set values. `URI`, `FilePath`, `Regexp`, `EpochTime` and
@@ -53,18 +53,18 @@ field to take a few set values. `URI`, `FilePath`, `Regexp`, `EpochTime` and
 retrieval. `Csv`, `Json` and `Yaml` store data in the field in the serial
 formats and de-serialize them on retrieval.
 
-### DM-Serializer
+### [dm-serializer](http://github.com/datamapper/dm-serializer)
 
 This provides '`to_*`' methods which take a resource and convert it to a serial
 format to be restored later. Currently the plugin provides `to_xml`, `to_yaml`
 and `to_json`
 
-### DM-Constraints
+### [dm-constraints](http://github.com/datamapper/dm-constraints)
 
 This plugin provides foreign key constrains on has n relationships for Postgres
 and MySQL adapters.
 
-### DM-Adjust
+### [dm-adjust](http://github.com/datamapper/dm-adjust)
 
 This plugin allows properties on resources, collections and models to
 incremented or decremented by a fixed amount.
@@ -76,19 +76,19 @@ These plugins make new functionality available to models, which can be accessed
 via the `is` method, for example `is :list`. These make the models behave in new
 ways.
 
-### DM-Is-List
+### [dm-is-list](http://github.com/datamapper/dm-is-list)
 
 The model acts as an item on a list. It has a position, and there are methods
 defined for moving it up or down the list based on this position. The position
 can also be scoped, for example on a user id.
 
-### DM-Is-Tree
+### [dm-is-tree](http://github.com/datamapper/dm-is-tree)
 
 The model acts as a node of a tree. It gains methods for querying parents and
 children as well as all the nodes of the current generation, the trail of
 ancestors to the root node and the root node itself.
 
-### DM-Is-Nested_Set
+### [dm-is-nested_set](http://github.com/datamapper/dm-is-nested_set)
 
 The model acts as an item in a 'nested set'. This might be used for some kind of
 categorization system, or for threaded conversations on a forum. The advantage
@@ -97,20 +97,20 @@ of a particular set in one query, not just the next generation. Added to a
 nested set is more complex under the hood, but the plugin takes care of this for
 you.
 
-### DM-Is-Versioned
+### [dm-is-versioned](http://github.com/datamapper/dm-is-versioned)
 
 The model is versioned. When it is updated, instead of the previous version
 being lost in the mists of time, it is saved in a subsidiary table, so that it
 can be restored later if needed.
 
-### DM-Is-State_Machine
+### [dm-is-state_machine](http://github.com/datamapper/dm-is-state_machine)
 
 The model acts as a state machine. Instead of a column being allowed to take any
 value, it is used to track the state of the machine, which is updated through
 events that cause transitions. For example, this might step a model through a
 sign-up process, or some other complex task.
 
-### DM-Is-Remixable
+### [dm-is-remixable](http://github.com/datamapper/dm-is-remixable)
 
 The model becomes 'remixable'. It can then be included (or remixed) in other
 models, which defines a new table to hold the remixed model and can have other
@@ -124,14 +124,7 @@ These plugins provide new adapters for different storage schemes, allowing them
 to be used to store resources, instead of the more conventional relational
 database store.
 
-### DM-CouchDB-Adapter
-
-An adapter for the JSON based document database <a
-href="http://incubator.apache.org/couchdb/">couch-db</a>. The adaptor has
-support for both defining models backed by a couch-db store and also for
-couch-db views.
-
-### DM-Rest-Adapter
+### [dm-rest-adapter](http://github.com/datamapper/dm-rest-adapter)
 
 An adapter for a XML based REST-backed storage scheme. All the usual DataMapper
 operations are performed as HTTP GETs, POSTs, UPDATEs and DELETEs, operating on
@@ -143,18 +136,24 @@ Integration Plugins
 These plugins are designed to ease integration with other libraries, currently
 just web frameworks.
 
-### merb_datamapper
+### [merb_datamapper](http://github.com/merb/merb_datamapper)
 
 Integration with the <a href="http://www.merbivore.com/">merb</a> web framework.
 The plugin takes care of setting up the DataMapper connection when the framework
 starts, provides several useful rake tasks as well as generators for Models,
 ResourceControllers and Migrations.
 
-### rails_datamapper
+### [rails_datamapper](http://github.com/datamapper/rails_datamapper)
 
-Integration with <a href="http://www.rubyonrails.org/">Rails</a>. It provides a
+Integration with <a href="http://rubyonrails.org/">Rails 2.x</a>. It provides a
 Model generator and also takes care of connecting to the data-store through
 DataMapper.
+
+### [dm-rails](http://github.com/datamapper/dm-rails)
+
+Integration with <a href="http://rubyonrails.org/">Rails 3.x</a>. It provides a
+model and migration generators, takes care of connecting to the data-store through
+DataMapper and supports <a href="http://github.com/rspec/rspec">RSpec2</a>.
 
 Utility Plugins
 ---------------
@@ -162,7 +161,7 @@ Utility Plugins
 These provide useful functionality, though are unlikely to be used by every
 project or assist more with development than production use.
 
-### DM-Sweatshop
+### [dm-sweatshop](http://github.com/datamapper/dm-sweatshop)
 
 A model factory for DataMapper, supporting the creation of random models for
 specing or to fill an application for development. Properties can be picked at
@@ -170,39 +169,34 @@ random or made to conform to a variety of regular expressions. dm-sweatshop also
 understands has n relationships and can assign a random selection of child
 models to a parent.
 
-### DM-Migrations
+### [dm-migrations](http://github.com/datamapper/dm-migrations)
 
 Migrations for DataMapper, allowing modification of the database schema with
 more control than `auto_migrate!` and `auto_upgrade!`. Migrations can be written
 to create, modify and drop tables and columns. In addition, the plugin provides
 support for specing migrations and verifying they perform as intended.
 
-### DM-Shorthand
+### [dm-observer](http://github.com/datamapper/dm-observer)
 
 This plugin eases operations involving models across multiple repositories,
 allowing wrapping in a `repository(:foo)` block to be replaced with a
 `MyModel(:foo).some_method` call.
 
-### DM-Observer
 
 Observers watch other classes, doing things when certain operations are
 performed on the remote class. This can be anything, but they are commonly used
 for writing logs or notifying via email or xmpp when a critical operation has
 occurred.
 
-### DM-CLI
+### [dm-cli](http://github.com/datamapper/dm-cli)
 
 The `dm` executable is a DataMapper optimized version of `irb`. It automatically
 connections to a data-store based on the arguments passed to it and supports
 easy loading of DataMapper plugins, models from a directory as well as reading
 connection information from a YAML configuration file.
 
-### DM-Querizer
+### [dm-ar-finders](http://github.com/datamapper/dm-ar-finders)
 
-This provides alternate syntax for queries, replacing the hash which DataMapper
-uses with a more 'ruby-ish' use of `&&`, `==` and `=~`.
-
-### DM-Ar_Finders
 
 ActiveRecord style syntax for DataMapper. This includes functionality such as
 `find_by_name`, `find_or_create` and `find_all_by_title`.

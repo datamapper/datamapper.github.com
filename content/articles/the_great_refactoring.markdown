@@ -76,14 +76,14 @@ command-line so that you can browse your resources without the need to load up
 the entire environment of your application. Here's an example session:
 
 <pre><code class="language-bash">
-$ dm mysql://root@localhost/great_musicians # connecting to a repository
+$ dm mysql://root@localhost/great_musicians  # connecting to a repository
 </code></pre>
 
 An IRB session boots up...
 
 <pre><code class="language-ruby">
 >> the_king = Person.first(:name => 'elvis')
->> the_king.alive? # => maybe
+>> the_king.alive?  # => maybe
 </code></pre>
 
 This is very similar to `script/console` in Rails or `merb -i` in Merb, only it
@@ -108,7 +108,7 @@ So close....so very very close...
 
 Stay tuned in to the [mailing list](http://groups.google.com/group/datamapper),
 check up on the [wiki](http://datamapper.org/), chat it up in
-[#datamapper](irc://irc.freenode.net/#datamapper) and watch
+[#datamapper](irc://irc.freenode.net/%23datamapper) and watch
 [github commit messages](http://github.com/datamapper/dm-core/commits/master) for updates.
 
-[DataMapper_Resource]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Resource
+[DataMapper_Resource]:http://rubydoc.info/github/datamapper/dm-core/master/DataMapper/Resource

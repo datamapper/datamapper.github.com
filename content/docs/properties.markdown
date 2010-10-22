@@ -86,8 +86,8 @@ class Post
 end
 </code></pre>
 
-Setting Defaults
-----------------
+Setting default values
+----------------------
 
 Defaults can be set via the `:default` key for a property. They can be static
 values, such as `12` or `"Hello"`, but DataMapper also offers the ability to use
@@ -111,6 +111,40 @@ it will be set to the hex digest of the file referred to by `path`.
 
 *Fair Warning*: A property default must _not_ refer to the value of the property
 it is about to set, or there will be an infinite loop.
+
+Setting default options
+-----------------------
+
+If you find that you're setting the same default options over and over
+again, you can specify them once and have them applied to all properties
+you add to your models.
+
+{% highlight ruby linenos %}
+# set all String properties to have a default length of 255
+DataMapper::Property::String.length(255)
+
+# set all Boolean properties to not allow nil (force true or false)
+DataMapper::Property::Boolean.allow_nil(false)
+
+# set all properties to be required by default
+DataMapper::Property.required(true)
+
+# turn off auto-validation for all properties by default
+DataMapper::Property.auto_validation(false)
+
+# set all mutator methods to be private by default
+DataMapper::Property.writer(false)
+{% endhighlight %}
+
+Please note that this currently has the unfortunate side effect of not
+allowing subclasses to define their own option values. For example,
+setting the String length to 255 will affect the Text property even
+though it inherits from String and sets it's own default length to 65535.
+This is a [known bug](http://datamapper.lighthouseapp.com/projects/20609/tickets/1430)
+and will be fixed in the next release (1.0.3).
+
+You can of course still override these defaults by specifying any
+option explicitly when defining a specific property.
 
 Lazy Loading
 ------------
@@ -150,7 +184,7 @@ end
 </code></pre>
 
 In this example, only the title (and the id, of course) will be loaded from the
-data-store on a `Post.all()`. But as soon as the value for subtitle, body or
+data-store on a `Post.all`. But as soon as the value for subtitle, body or
 views are called, all three will be loaded at once, since they're members of the
 `:show` group. The summary property on the other hand, will only be fetched when
 it is asked for.
@@ -165,24 +199,29 @@ DM-Core supports the following 'primitive' data-types.
 * Text
 * Float
 * Integer
-* BigDecimal,
+* Decimal
 * DateTime, Date, Time
 * Object, (marshalled)
 * Discriminator
 
 If you include DM-Types, the following data-types are supported:
 
+* BCryptHash
+* CommaSeparatedList
 * Csv
 * Enum
 * EpochTime
 * FilePath
 * Flag
 * IPAddress
-* URI
-* Yaml
 * Json
-* BCryptHash
-* Regex
+* ParanoidBoolean
+* ParanoidDateTme
+* Regexp
+* Slug
+* URI
+* UUID
+* Yaml
 
 Limiting Access
 ---------------
@@ -224,9 +263,7 @@ class Post
 
   def slug=(new_slug)
     raise ArgumentError if new_slug != 'DataMapper is Awesome'
-    attribute_set(:slug, new_slug)    # use attribute_set instead of talking
-                                      # to the @ivars directly.
-                                      # This tracks dirtiness.
+    super  # use original method instead of accessing @ivar directly
   end
 end
 </code></pre>

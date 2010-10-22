@@ -22,7 +22,7 @@ To install it:
 <pre><code class="language-bash">
 sudo gem install addressable english rspec
 sudo gem install data_objects do_mysql do_postgres do_sqlite3
-sudo gem install dm-core dm-more
+sudo gem install dm-core
 </code></pre>
 
 This is NOT a backwards compatible release. Code written for DataMapper 0.3 will
@@ -150,7 +150,7 @@ repository(:default).adapter.execute 'UPDATE posts...'
 validates_presence_of     :title
 validates_numericality_of :rating
 validates_format_of       :email,   :with => :email_address
-validates_length_of       :summary, :within => (1..100)
+validates_length_of       :summary, :within => 1..100
 validates_uniqueness_of   :slug
         </code></pre>
       </td>
@@ -159,7 +159,7 @@ validates_uniqueness_of   :slug
 validates_present   :title
 validates_is_number :rating
 validates_format    :email,   :as => :email_address
-validates_length    :summary, :in => (1..100)
+validates_length    :summary, :in => 1..100
 validates_is_unique :slug
         </code></pre>
       </td>

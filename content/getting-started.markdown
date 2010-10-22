@@ -27,11 +27,10 @@ gem install dm-core
 </code></pre>
 
 If you are planning on using DataMapper with a database, install a database
-driver from the DataObjects project: (Substitute `do_sqlite3` with `do_postgres`
-or `do_mysql` depending on your preferences)
+driver from the DataObjects project: (Substitute `dm-sqlite-adapter` with `dm-postgres-adapter` or `dm-mysql-adapter` depending on your preferences)
 
 <pre><code class="language-ruby">
-gem install do_sqlite3
+gem install dm-sqlite-adapter
 </code></pre>
 
 Require it in your application
@@ -52,7 +51,10 @@ You need make sure this is set before you define your models.
   DataMapper::Logger.new($stdout, :debug)
 
   # An in-memory Sqlite3 connection:
-  DataMapper.setup(:default, 'sqlite3::memory:')
+  DataMapper.setup(:default, 'sqlite::memory:')
+
+  # A Sqlite3 connection to a persistent database
+  DataMapper.setup(:default, 'sqlite:///path/to/project.db')
 
   # A MySQL connection:
   DataMapper.setup(:default, 'mysql://localhost/the_database_name')
@@ -73,10 +75,10 @@ whatever you want.
 class Post
   include DataMapper::Resource
 
-  property :id,         Serial   # An auto-increment integer key
-  property :title,      String   # A varchar type string, for short strings
-  property :body,       Text     # A text block, for longer string data.
-  property :created_at, DateTime # A DateTime, for any date you might like.
+  property :id,         Serial    # An auto-increment integer key
+  property :title,      String    # A varchar type string, for short strings
+  property :body,       Text      # A text block, for longer string data.
+  property :created_at, DateTime  # A DateTime, for any date you might like.
 end
 
 class Comment
@@ -159,11 +161,39 @@ end
 
 </code></pre>
 
+Finalize Models
+---------------
+
+After declaring all of the models, you should finalize them:
+
+{% highlight ruby %}
+DataMapper.finalize
+{% endhighlight %}
+
+This checks the models for validity and initializes all properties associated
+with relationships.  It is likely if you use a web-framework such as merb or
+rails, this will already be done for you. In case you do not, be sure to call it
+at an appropriate time.
+
+DataMapper allows the use of natural primary keys, composite primary keys and
+other complexities.  Because of this, when a model is declared with a
+`belongs_to` relationship the property to hold the foreign key cannot be
+initialized immediately.  It can only be initialized when the parent model has
+also been declared.  This is hard for DataMapper to determine, due to the
+dynamic nature of ruby, so it is left up to developers to determine the
+appropriate time.
+
 Set up your database tables
 ---------------------------
 
-Relational Databases work with pre-defined tables.  To create the tables in the
-underlying storage, run:
+Relational Databases work with pre-defined tables. To be able to create the tables in the
+underlying storage, you need to require `dm-migrations` first.
+
+{% highlight ruby %}
+require  'dm-migrations'
+{% endhighlight %}
+
+Once you made sure that `dm-migrations` is available, you can create the tables by issuing the following command.
 
 <pre><code class="language-ruby">
 DataMapper.auto_migrate!
@@ -212,4 +242,4 @@ typecast) the value for us, before it saves it to the data-store.  Any
 properties which are not specified in the hash will take their default values in
 the data-store.
 
-[DataMapper_Resource]:http://www.yardoc.org/docs/datamapper-dm-core/DataMapper/Resource
+[DataMapper_Resource]:http://rubydoc.info/github/datamapper/dm-core/master/DataMapper/Resource

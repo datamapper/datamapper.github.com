@@ -20,24 +20,25 @@ Much like a certain other Ruby ORM we can call validation methods directly by
 passing them a property name (or multiple property names) to validate against.
 
 <pre><code class="language-ruby">
-  validates_length :name
-  validates_length :name, :description
+  validates_length_of :name
+  validates_length_of :name, :description
 </code></pre>
 
 These are the currently available manual validations available. Please refer to
-the <a href="http://datamapper.rubyforge.org/dm-more/DataMapper/Validate/ClassMethods.html">API</a>
-for more detailed information.
+the [API docs](http://rubydoc.info/gems/dm-validations/1.0.2/frames) for more detailed
+information.
 
-* validates_present
-* validates_absent
-* validates_is_accepted
-* validates_is_confirmed
-* validates_format
-* validates_length
-* validates_with_method
+* validates_absence_of
+* validates_acceptance_of
 * validates_with_block
-* validates_is_number
-* validates_is_unique
+* validates_confirmation_of
+* validates_format_of
+* validates_length_of
+* validates_with_method
+* validates_numericality_of
+* validates_primitive_type_of
+* validates_presence_of
+* validates_uniqueness_of
 * validates_within
 
 Auto-Validations
@@ -50,19 +51,18 @@ Triggers that generate validator creation:
 
 <pre><code class="language-ruby">
   # implicitly creates a validates_present
-  :required => true
-  :length => (1..n)
+  :required => true  # cannot be nil
 
   # implicitly creates a validates_length
-  :length => 20
-  :length => (1..20) # cant be null
-  :length => (0..20) # can be null
-  # :size is a synonym to :length
+  :length => 0..20  # must be between 0 and 20 characters in length
+  :length => 1..20  # must be between 1 and 20 characters in length
 
   # implicitly creates a validates_format
-  :format => :email_address # more predefined regexes to come
+  :format => :email_address  # predefined regex
+  :format => :url            # predefined regex
   :format => /\w+_\w+/
-  :format => lambda {|str| str }
+  :format => lambda { |str| str }
+  :format => proc { |str| str }
   :format => Proc.new { |str| str }
 </code></pre>
 
@@ -78,9 +78,9 @@ Here we see an example of a class with both a manual and auto-validation declare
     property :name, String
 
     # good old fashioned manual validation
-    validates_length :name, :max => 20
+    validates_length_of :name, :max => 20
 
-    property :content, Text, :length => (100..500)
+    property :content, Text, :length => 100..500
   end
 </code></pre>
 
@@ -93,11 +93,6 @@ process for a model.
 You may manually validate a resource using the `valid?` method, which will
 return true if the resource is valid, and false if it is invalid.
 
-In addition to the `valid?` method, there is also an `all_valid?` method that
-recursively walks both the current object and its associated objects and returns
-a comprehensive true/false result for the entire walk. If anything returns
-`false`, `all_valid?` will return `false`
-
 Working with Validation Errors
 ------------------------------
 
@@ -106,7 +101,7 @@ If your validators find errors in your model, they will populate the
 through each of your models via calls to your model's `errors` method.
 
 <pre><code class="language-ruby">
-  my_account = Account.new(:name => "Jose")
+  my_account = Account.new(:name => 'Jose')
   if my_account.save
     # my_account is valid and has been saved
   else
@@ -125,7 +120,7 @@ they can be changed. This is done via providing a `:message` in the options
 hash, for example:
 
 <pre><code class="language-ruby">
-  validates_is_unique :title, :scope => :section_id,
+  validates_uniqueness_of :title, :scope => :section_id,
     :message => "There's already a page of that title in this section"
 </code></pre>
 
@@ -137,12 +132,13 @@ Something similar can be done for auto-validations, too, via setting `:messages`
 in the property options.
 
 <pre><code class="language-ruby">
-  property :email, String, :required => true, :unique => true, :format => :email_address,
-                           :messages => {
-                             :presence => "We need your email address.",
-                             :is_unique => "We already have that email.",
-                             :format => "Doesn't look like an email address to me ..."
-                           }
+  property :email, String, :required => true, :unique => true,
+    :format   => :email_address,
+    :messages => {
+      :presence  => 'We need your email address.',
+      :is_unique => 'We already have that email.',
+      :format    => 'Doesn't look like an email address to me ...'
+    }
 </code></pre>
 
 To set an error message on an arbitrary field of the model, DataMapper provides
@@ -168,7 +164,7 @@ block as the argument and the other taking a symbol representing a method name.
 The method or block performs the validation tests and then should return `true`
 if the resource is valid or `false` if it is invalid. If the resource isn't
 valid instead of just returning `false`, an array containing `false` and an
-error message, such as `[ false, "FAIL!" ]` can be returned. This will add the
+error message, such as `[ false, 'FAIL!' ]` can be returned. This will add the
 message to the `errors` on the resource.
 
 <pre><code class="language-ruby">
@@ -231,7 +227,7 @@ being validated.
     property :commit,      String
     property :status,      Enum[ :new, :open, :invalid, :complete ]
 
-    validates_present :commit, :if => Proc.new {|t| t.status == :complete }
+    validates_presence_of :commit, :if => lambda { |t| t.status == :complete }
   end
 </code></pre>
 
@@ -242,7 +238,7 @@ the resource is already there--'initial commit' is hardly an enlightening
 message.
 
 <pre><code class="language-ruby">
-  validates_length :change_summary, :min => 10, :unless => :new_record?
+  validates_length_of :change_summary, :min => 10, :unless => :new?
 </code></pre>
 
 Sometimes a simple on and off switch is not enough, and so ...
@@ -272,63 +268,63 @@ especially if we're messing with default validations.
   class Article
     include DataMapper::Resource
 
-    property :id,                  Serial
-    property :title,               String
-    property :sidebar_picture_url, String
-    property :body,                Text
-    property :published,           Boolean
+    property :id,          Serial
+    property :title,       String
+    property :picture_url, String
+    property :body,        Text
+    property :published,   Boolean
 
     # validations
-    validates_present :title,               :when => [ :draft, :publish ]
-    validates_present :sidebar_picture_url, :when => [ :publish ]
-    validates_present :body,                :when => [ :draft, :publish ]
-    validates_length  :body,                :minimum => 1000, :when => [ :publish ]
-    validates_absent  :published,           :when => [ :draft ]
+    validates_presence_of :title,       :when => [ :draft, :publish ]
+    validates_presence_of :picture_url, :when => [ :publish ]
+    validates_presence_of :body,        :when => [ :draft, :publish ]
+    validates_length_of   :body,        :when => [ :publish ], :minimum => 1000
+    validates_absence_of  :published,   :when => [ :draft ]
   end
 
   # and now some results
   @article = Article.new
 
   @article.valid?(:draft)
-  #=> false.  We have no title, for a start.
+  # => false.  We have no title, for a start.
 
   @article.valid_for_publish?
-  #=> false.  We have no title, amongst many other issues.
+  # => false.  We have no title, amongst many other issues.
   # valid_for_publish? is provided shorthand for valid?(:publish)
 
   # now set some properties
-  @article.title = "DataMapper is awesome because ..."
-  @article.body = "Well, where to begin ..."
+  @article.title = 'DataMapper is awesome because ...'
+  @article.body  = 'Well, where to begin ...'
 
   @article.valid?(:draft)
-  #=> true.  We have a title, and a little body
+  # => true.  We have a title, and a little body
 
   @article.valid?(:publish)
-  #=> false.  Our body isn't long enough yet.
+  # => false.  Our body isn't long enough yet.
 
   # save our article in the :draft context
   @article.save(:draft)
-  #=> true
+  # => true
 
   # set some more properties
-  @article.sidebar_picture_url = "http://www.greatpictures.com/flower.jpg"
-  @article.body = an_essay_about_why_datamapper_rocks
+  @article.picture_url = 'http://www.greatpictures.com/flower.jpg'
+  @article.body        = an_essay_about_why_datamapper_rocks
 
   @article.valid?(:draft)
-  #=> true.  Nothing wrong still
+  # => true.  Nothing wrong still
 
   @article.valid?(:publish)
-  #=> true.  We have everything we need for a full article to be published!
+  # => true.  We have everything we need for a full article to be published!
 
   @article.published = true
 
   @article.save(:draft)
-  #=> false.  We set the published to true, so we can't save this as a draft.
+  # => false.  We set the published to true, so we can't save this as a draft.
   # As long as our drafting method always saves with the :draft context, we won't ever
   # accidentally save a half finished draft that the public will see.
 
   @article.save(:publish)
-  #=> true
+  # => true
   # we can save it just fine as a published article though.
 </code></pre>
 
@@ -359,7 +355,7 @@ properties or derived from the environment. To set these properties, a `before :
     # our callback needs to accept the context used in the validation,
     # even if it ignores it, as #save calls #valid? with a context.
     def set_permalink(context = :default)
-      self.permalink = title.gsub(/\s+/,'-')
+      self.permalink = title.gsub(/\s+/, '-')
     end
   end
 </code></pre>
@@ -367,5 +363,3 @@ properties or derived from the environment. To set these properties, a `before :
 Be careful not to `save` your resource in these kinds of methods, or your
 application will spin off into infinite trying to save your object while saving
 your object.
-
-[Validate_ValidationErrors]:http://datamapper.rubyforge.org/dm-more/

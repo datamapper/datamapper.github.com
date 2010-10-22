@@ -50,10 +50,10 @@ class Post < Sequel::Model
 end
 
 post = Post.get('ruby', 'hello world')
-post.key # => [ 'ruby', 'hello world' ]
+post.key  # => [ 'ruby', 'hello world' ]
 </code></pre>
 
-p(attribution). example compiled from <http://code.google.com/p/ruby-sequel/wiki/SequelModels>.
+p(attribution). example compiled from <http://github.com/jeremyevans/sequel>.
 
 DataMapper
 ----------
@@ -71,7 +71,7 @@ end
 
 pig = Pig.get(1, 'Porky')
 
-pig.key # => [ 1, 'Wilbur' ]
+pig.key  # => [ 1, 'Wilbur' ]
 </code></pre>
 
 We declared our keys by adding the `:key => true` to the appropriate properties.
