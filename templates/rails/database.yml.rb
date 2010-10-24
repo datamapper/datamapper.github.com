@@ -5,11 +5,10 @@ database = options[:database]
 database = 'postgres' if database == 'postgresql'
 database = 'sqlite'   if database == 'sqlite3'
 
-prefix = ''
-prefix = 'db/' if database == 'sqlite'
-
-postfix = ''
-postfix = '.db' if database == 'sqlite'
+prefix   = ''
+postfix  = ''
+prefix   = 'db/' if database == 'sqlite'
+postfix  = '.db' if database == 'sqlite'
 
 remove_file 'config/database.yml'
 create_file 'config/database.yml' do
