@@ -7,20 +7,10 @@ created_at: Mon Mar 17 01:37:12 -0500 2008
 Development
 ===========
 
-DataMapper development has switched to the [Git](http://git-scm.com/) SCM. Please
-see [using git](/using-git) to learn how to contribute.
-To check out "tip" DataMapper anonymously:
-
-{% highlight bash %}
-git clone git://github.com/datamapper/extlib.git
-git clone git://github.com/datamapper/dm-core.git
-{% endhighlight %}
-
-Or visit the [edge guide](/articles/stunningly_easy_way_to_live_on_the_edge).
-
-If you have a [github](http://github.com/) account, log in, and _fork_
-[the repo](http://github.com/datamapper/dm-core/).
-When you think you're ready, send dkubb a "pull request".
+Contributing to DataMapper might seem a bit intimidating at first. The variety
+of available gems and github repositories might appear to be an
+impenetrable jungle. Fear not! The available [thor tasks](http://github.com/datamapper/dm-dev)
+actually make it really easy to solidly test any kind of patch for DataMapper.
 
 Coding Conventions and Considerations
 -------------------------------------
@@ -32,3 +22,4 @@ When contributing any code to DataMapper, please follow these guidelines.
 * Two space indent - not tabs!
 * Write optimal code, not magic code
 * Documentation is required (use the [official documentation style](/docs/))
+
