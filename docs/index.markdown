@@ -30,7 +30,7 @@ created_at: Fri Nov 30 15:29:01 +1030 2007
   <dt><a href="/docs/callbacks">Hooks</a></dt>
   <dd>Hooks, AKA Callbacks, allow you to "advise other methods" by running methods before or after calling other methods.</dd>
   <dt><a href="/docs/misc">Misc. Features</a></dt>
-  <dd>Paranoia, Single Table Inheritance, and Multiple Repositories.</dd>
+  <dd>Paranoia, Timezone Handling, Single Table Inheritance, and Multiple Repositories.</dd>
   <dt><a href="/docs/legacy">Working with Legacy Schemas</a></dt>
   <dd>Adapting data-store naming conventions to your own property names.</dd>
   <dt><a href="/docs/dm_more/">More</a></dt>

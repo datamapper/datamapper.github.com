@@ -43,6 +43,17 @@ the object you've created and later instantiate that row as that class. It also
 supports deep inheritance, so doing Woman.all will select all women, mothers,
 and daughters (and deeper inherited classes if they exist).
 
+Timezone handling
+-----------------
+
+Currently, DataMapper has no builtin support for working with timezones
+particularly. This means that time properties will always be stored and
+retrieved in the timezone the datastore is set to. There is no API to
+explicitly manipulate timezones.
+
+Have a look at [dm-zone-types](http://github.com/hassox/dm-zone-types)
+for more elaborate timezone handling support.
+
 Paranoia
 --------
 
