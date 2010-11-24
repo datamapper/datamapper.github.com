@@ -32,7 +32,7 @@ class Post
   storage_names[:legacy] = 'tblPost'
 
   # use the datastore's 'pid' field for the id property.
-  property :id, Serial, :field => :pid
+  property :id, Serial, :field => 'pid'
 
   # use a property called 'uid' as the child key (the foreign key)
   belongs_to :user, :child_key => [ :uid ]
