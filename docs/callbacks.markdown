@@ -9,13 +9,15 @@ created_at: Fri Nov 30 15:29:01 +1030 2007
 ================
 
 DataMapper supports callbacks using an [aspect-oriented approach](http://en.wikipedia.org/wiki/Aspect_oriented).
-You can define callbacks for any method as well as any class method arbitrarily.
+You can define callbacks for any of the model events: create, update, save, and destroy.
 
-Adding Instance-Level Advice
+Note: previously it was possible to declare advice for any method.  This is being deprecated in future versions of DataMapper.
+
+Adding callbacks
 ----------------------------
 
-To declare advice (callback) for a specific method, first define a new method to
-be run when another is called, then define your point-cut.
+To declare a callback (advice) for a specific event, first define a new method to
+be run when the event is raised, then define your point-cut.
 
 {% highlight ruby linenos %}
 class Post
@@ -45,29 +47,6 @@ class Post
   end
 end
 {% endhighlight %}
-
-Adding Class-Level Advice
--------------------------
-
-To install advice around a class method, use `before_class_method` or `after_class_method`:
-
-{% highlight ruby linenos %}
-class Post
-  include DataMapper::Resource
-
-  # ... key and properties here
-
-  before_class_method :find, :prepare
-
-  def self.prepare
-    # ... code here
-  end
-end
-{% endhighlight %}
-
-Class level advice does not have access to any resulting instances from the
-class method, so they might not be the best fit for `after_create` or
-`after_save`.
 
 Throw :halt, in the name of love...
 -----------------------------------
