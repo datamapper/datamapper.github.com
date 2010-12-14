@@ -84,7 +84,7 @@ based on the models you defined. The `#auto_migrate!` and `#auto_upgrade!`
 methods can be used to generate a schema in the datastore that matches
 your model definitions.
 
-While `#auto_migrate!` *desctructively* drops and recreates tables to match
+While `#auto_migrate!` *destructively* drops and recreates tables to match
 your model definitions, `#auto_upgrade!` supports upgrading your
 datastore to match your model definitions, without actually destroying
 any already existing data.
