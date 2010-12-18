@@ -340,6 +340,78 @@ class Person
 end
 {% endhighlight %}
 
+Another example of a self referential relationship would be the
+representation of a relationship where people can follow other people.
+In this situation, any person can follow any number of other people.
+
+{% highlight ruby linenos %}
+class Person
+
+  include DataMapper::Resource
+
+  property :id, Serial
+
+
+  # The 'Following' model contains two relationships, both pointing to a
+  # specific Person. This means that we can relate any two people in two
+  # different ways. In the 'Following' model, the :follower relationship
+  # always points to a person who is following some other person. The
+  # :followed relationship always points to a person who is followed by
+  # some other person.
+  #
+  # If we want to know all the people that John follows, we need to look
+  # at every 'Following' where John is a :follower. Knowing these, we
+  # know all the people that are :followed by John.
+  #
+  # If we want to know all the people that follow Jane, we need to look
+  # at every 'Following' where Jane is :followed. Knowing these, we know
+  # all the people that are a :follower of Jane.
+  #
+  # This means that we need to establish two different relationships to
+  # the 'Following' model. One where the person's role is :follower and
+  # one where the person's role is to be :followed by someone.
+
+  # In this relationship, the person is the follower
+  has n, :followed_relationships, 'Following', :child_key => [:follower_id]
+
+  # In this relationship, the person is the one followed by someone
+  has n, :follower_relationships, 'Following', :child_key => [:followed_id]
+
+
+  # We can then use these two relationships to relate any person to
+  # either the people followed by the person, or to the people this
+  # person follows.
+
+  # Every 'Following' where John is a :follower points to a person that
+  # is :followed by John.
+  has n, :followed_people, self,
+    :through => :followed_relationships, # The person is a follower
+    :via     => :followed
+
+  # Every 'Following' where Jane is :followed points to a person that
+  # is a :follower by Jane.
+  has n, :followers, self,
+    :through => :follower_relationships, # The person is followed by someone
+    :via     => :follower
+
+end
+
+class Following
+
+  include DataMapper::Resource
+
+  property :follower_id, Integer, :key => true, :min => 1
+  property :followed_id, Integer, :key => true, :min => 1
+
+  # the person who is following someone
+  belongs_to :follower, 'Person', :key => true
+
+  # the person who is followed by someone
+  belongs_to :followed, 'Person', :key => true
+
+end
+{% endhighlight %}
+
 Adding To Associations
 ----------------------
 
