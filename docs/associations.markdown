@@ -391,13 +391,13 @@ class Person
   # person follows.
 
   # Every 'Link' where John is a :follower points to a person that
-  # is :followed by John.
+  # is followed by John.
   has n, :followed_people, self,
     :through => :links_to_followed_people, # The person is a follower
     :via     => :followed
 
   # Every 'Link' where Jane is :followed points to a person that
-  # is a :follower by Jane.
+  # is one of Jane's followers.
   has n, :followers, self,
     :through => :links_to_followers, # The person is followed by someone
     :via     => :follower
