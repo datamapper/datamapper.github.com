@@ -104,6 +104,15 @@ constraints for your properties.  DataMapper supports a lot of different
 [property](/docs/properties) types natively, and more through
 [dm-types](/docs/dm_more/types).
 
+An important thing to note is that every model *must* have a key in
+order to be valid. If a model has no key, there's no way to identify a
+resource and thus no way to update its persistent state within the
+backend datastore. DataMapper will raise a `DataMapper::IncompleteModelError`
+when trying to `auto_migrate!` a model that has no key declared.
+
+Have a look at [property](/docs/properties) to learn about the different
+ways of declaring keys for your models.
+
 Associations
 ------------
 
