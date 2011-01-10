@@ -183,6 +183,9 @@ also been declared.  This is hard for DataMapper to determine, due to the
 dynamic nature of ruby, so it is left up to developers to determine the
 appropriate time.
 
+In general, you want to call `finalize` *before* your application starts
+accessing the models.
+
 Set up your database tables
 ---------------------------
 
