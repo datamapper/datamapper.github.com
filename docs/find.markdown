@@ -239,6 +239,25 @@ operators.  Set operators work on any Collection though, and so `Zoo.all(:state 
 could just as easily be replaced with `Zoo.open.big` or any other method which
 returns a collection.
 
+Projecting only specific properties
+-----------------------------------
+
+In order to not select all of your model's properties but only a subset of
+them, you can pass `:fields => [:desired, :property, :names]` in your queries.
+
+{% highlight ruby linenos %}
+# Will return a mutable collection of zoos
+Zoo.all(:fields => [:id, :name])
+
+# Will return an immutable collection of zoos.
+# The collection is immutable because we haven't
+# projected the primary key of the model.
+# DataMapper will raise DataMapper::ImmutableError
+# when trying to modify any resource inside the
+# returned collection.
+Zoo.all(:fields => [:name])
+{% endhighlight %}
+
 Compatibility
 -------------
 
@@ -280,7 +299,6 @@ return consistent results across various datastores. If you need to
 group by some columns explicitly, you can use the `:fields` combined
 with the `:unique` option.
 
-
 {% highlight ruby linenos %}
 class Person
   include DataMapper::Resource
@@ -308,7 +326,8 @@ Person.all(:fields => [:job], :unique => true, :order => [:job.asc])
 
 Note that if you don't include the primary key in the selected columns,
 you will not be able to modify the returned resources because DataMapper
-cannot know how to persist them.
+cannot know how to persist them. DataMapper will raise
+`DataMapper::ImmutableError` if you're trying to do so nevertheless.
 
 If a `group by` isn't appropriate and you're rather looking for `select
 distinct`, you need to drop down to talking to your datastore directly,
