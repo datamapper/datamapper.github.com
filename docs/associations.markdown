@@ -484,6 +484,48 @@ post.save           # This will save the post along with the newly added comment
 post.comments.save  # This will only save the comments collection
 {% endhighlight %}
 
+One important thing to know is that for related resources to know that they have
+changed, you must change them via the API that the relationship (collection)
+provides. If you cannot do this for whatever reason, you must call `reload` on the
+model or collection in order to fetch the latest state from the storage backend.
+
+The following example shows this behavior for a _one to many_ relationship.
+The same principle applies for all other kinds of relationships though.
+
+{% highlight ruby linenos %}
+class Person
+  include DataMapper::Resource
+  property :id, Serial
+  has n, :tasks
+end
+
+class Task
+  include DataMapper::Resource
+  property :id, Serial
+  belongs_to :person
+end
+{% endhighlight %}
+
+If we add a new task not by means of the API that the `tasks` collection
+provides us, we must `reload` the collection in order to get the correct
+results.
+
+{% highlight ruby linenos %}
+ree-1.8.7-2010.02 > p = Person.create
+ => #<Person @id=1>
+ree-1.8.7-2010.02 > t = Task.create :person => p
+ => #<Task @id=1 @person_id=1>
+ree-1.8.7-2010.02 > p.tasks
+ => [#<Task @id=1 @person_id=1>]
+ree-1.8.7-2010.02 > u = Task.create :person => p
+ => #<Task @id=2 @person_id=1>
+ree-1.8.7-2010.02 > p.tasks
+ => [#<Task @id=1 @person_id=1>]
+ree-1.8.7-2010.02 > p.tasks.reload
+ => [#<Task @id=1 @person_id=1>, #<Task @id=2 @person_id=1>]
+{% endhighlight %}
+
+
 Customizing Associations
 ------------------------
 
