@@ -25,21 +25,21 @@ passing them a property name (or multiple property names) to validate against.
 {% endhighlight %}
 
 These are the currently available manual validations available. Please refer to
-the [API docs](http://rubydoc.info/gems/dm-validations/1.0.2/frames) for more detailed
+the [API docs](http://rubydoc.info/gems/dm-validations/frames) for more detailed
 information.
 
-* [validates_absence_of](http://rubydoc.info/gems/dm-validations/1.0.2/DataMapper/Validations/ValidatesAbsence)
-* [validates_acceptance_of](http://rubydoc.info/gems/dm-validations/1.0.2/DataMapper/Validations/ValidatesAcceptance)
-* [validates_with_block](http://rubydoc.info/gems/dm-validations/1.0.2/DataMapper/Validations/ValidatesWithBlock)
-* [validates_confirmation_of](http://rubydoc.info/gems/dm-validations/1.0.2/DataMapper/Validations/ValidatesConfirmation)
-* [validates_format_of](http://rubydoc.info/gems/dm-validations/1.0.2/DataMapper/Validations/ValidatesFormat)
-* [validates_length_of](http://rubydoc.info/gems/dm-validations/1.0.2/DataMapper/Validations/ValidatesLength)
-* [validates_with_method](http://rubydoc.info/gems/dm-validations/1.0.2/DataMapper/Validations/ValidatesWithMethod)
-* [validates_numericality_of](http://rubydoc.info/gems/dm-validations/1.0.2/DataMapper/Validations/ValidatesNumericality)
-* [validates_primitive_type_of](http://rubydoc.info/gems/dm-validations/1.0.2/DataMapper/Validations/ValidatesPrimitiveType)
-* [validates_presence_of](http://rubydoc.info/gems/dm-validations/1.0.2/DataMapper/Validations/ValidatesPresence)
-* [validates_uniqueness_of](http://rubydoc.info/gems/dm-validations/1.0.2/DataMapper/Validations/ValidatesUniqueness)
-* [validates_within](http://rubydoc.info/gems/dm-validations/1.0.2/DataMapper/Validations/ValidatesWithin)
+* [validates_absence_of](http://rubydoc.info/gems/dm-validations/DataMapper/Validations/ValidatesAbsence)
+* [validates_acceptance_of](http://rubydoc.info/gems/dm-validations/DataMapper/Validations/ValidatesAcceptance)
+* [validates_with_block](http://rubydoc.info/gems/dm-validations/DataMapper/Validations/ValidatesWithBlock)
+* [validates_confirmation_of](http://rubydoc.info/gems/dm-validations/DataMapper/Validations/ValidatesConfirmation)
+* [validates_format_of](http://rubydoc.info/gems/dm-validations/DataMapper/Validations/ValidatesFormat)
+* [validates_length_of](http://rubydoc.info/gems/dm-validations/DataMapper/Validations/ValidatesLength)
+* [validates_with_method](http://rubydoc.info/gems/dm-validations/DataMapper/Validations/ValidatesWithMethod)
+* [validates_numericality_of](http://rubydoc.info/gems/dm-validations/DataMapper/Validations/ValidatesNumericality)
+* [validates_primitive_type_of](http://rubydoc.info/gems/dm-validations/DataMapper/Validations/ValidatesPrimitiveType)
+* [validates_presence_of](http://rubydoc.info/gems/dm-validations/DataMapper/Validations/ValidatesPresence)
+* [validates_uniqueness_of](http://rubydoc.info/gems/dm-validations/DataMapper/Validations/ValidatesUniqueness)
+* [validates_within](http://rubydoc.info/gems/dm-validations/DataMapper/Validations/ValidatesWithin)
 
 Auto-Validations
 ----------------
