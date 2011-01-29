@@ -117,7 +117,6 @@ DataMapper offers several choices for a data-store primitive.
 * Date
 * DateTime
 * BigDecimal
-* Float
 * Integer
 * Float
 * String
