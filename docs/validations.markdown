@@ -24,7 +24,7 @@ passing them a property name (or multiple property names) to validate against.
   validates_length_of :name, :description
 {% endhighlight %}
 
-These are the currently available manual validations available. Please refer to
+These are the currently available manual validations. Please refer to
 the [API docs](http://rubydoc.info/gems/dm-validations/frames) for more detailed
 information.
 
