@@ -22,7 +22,10 @@ If the number of modifications are small&mdash;just one table or a few
 properties&mdash;it is probably easiest to modify the properties and table names
 directly. This can be accomplished using the `:field` option for properties,
 `:child_key` (or `:target`) for relationships, and manipulation of
-`storage_names[]` for models.
+`storage_names[]` for models.  In all the following examples, the use of the
+`:legacy` repository name assumes that it is some secondary repository that
+should behave in the special manner.  If it is the main database the application
+will be interacting with, `:default` makes a much more sensible choice.
 
 {% highlight ruby linenos %}
 class Post
