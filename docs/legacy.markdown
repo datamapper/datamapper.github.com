@@ -26,6 +26,8 @@ directly. This can be accomplished using the `:field` option for properties,
 `:legacy` repository name assumes that it is some secondary repository that
 should behave in the special manner.  If it is the main database the application
 will be interacting with, `:default` makes a much more sensible choice.
+Note that for the below snippet to work, you need to have have the
+`:legacy` repository set up properly.
 
 {% highlight ruby linenos %}
 class Post
