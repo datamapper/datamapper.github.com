@@ -44,7 +44,7 @@ require 'dm-core'
 Specify your database connection
 --------------------------------
 
-You need make sure this is set before you define your models.
+You need to make sure to do this before you use your models, i.e. before you actually start accessing the database.
 
 {% highlight ruby %}
   # If you want the logs displayed you have to do this before the call to setup
