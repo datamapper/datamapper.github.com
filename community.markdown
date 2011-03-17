@@ -22,7 +22,7 @@ Links, Blogs, Wiki's, and Stuff
   <dt><a href="http://github.com/datamapper/">DM on GitHub</a></dt>
   <dd>Source Repository</dd>
 
-  <dt><a href="http://rubydoc.info/gems/dm-core/1.0.2/frames">API</a></dt>
+  <dt><a href="http://rubydoc.info/gems/dm-core/1.1.0/frames">API</a></dt>
   <dd>Documentation</dd>
 
   <dt><a href="irc://irc.freenode.net/%23datamapper"><code>#datamapper</code> on irc.Freenode.net</a></dt>
