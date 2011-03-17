@@ -62,7 +62,7 @@ Here's a list of the tickets we've resolved since 1.0.0:
 How to report issues
 --------------------
 
-Please report any issues you find in IRC, on the mailing list, or inthe tracker:
+Please report any issues you find in IRC, on the mailing list, or in the bug tracker:
 
 * [IRC](irc://irc.freenode.net/%23datamapper)
 * [Mailing List](http://groups.google.com/group/datamapper)

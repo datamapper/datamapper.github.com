@@ -97,7 +97,7 @@ Working with Validation Errors
 ------------------------------
 
 If your validators find errors in your model, they will populate the
-[Validate::ValidationErrors][Validate_ValidationErrors] object that is available
+`Validate::ValidationErrors` object that is available
 through each of your models via calls to your model's `errors` method.
 
 {% highlight ruby linenos %}
