@@ -52,7 +52,7 @@ News
   </dd>
 
 {% endfor %}
-</dl>
+</dl> 
 
 {{ paginator.previous_page }}
 {{ paginator.next_page }}
