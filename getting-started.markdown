@@ -33,6 +33,16 @@ driver from the DataObjects project: (Substitute `dm-sqlite-adapter` with `dm-po
 gem install dm-sqlite-adapter
 {% endhighlight %}
 
+If you want DataMapper to be able to create the underlying storage for you (i.e.
+the tables in an RDBMS), you will also have to install the `dm-migrations` gem.
+
+{% highlight ruby %}
+gem install dm-migrations
+{% endhighlight %}
+
+You can find more information about using `dm-migrations` further down that page.
+
+
 Require it in your application
 ------------------------------
 
