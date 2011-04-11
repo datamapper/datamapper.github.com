@@ -23,8 +23,20 @@ Install DataMapper
 If you have RubyGems installed, pop open your console and install a few things.
 
 {% highlight ruby %}
-gem install dm-core
+gem install data_mapper
 {% endhighlight %}
+
+This will install the following, most commonly used DataMapper gems.
+
+* [dm-core](http://github.com/datamapper/dm-core)
+* [dm-aggregates](http://github.com/datamapper/dm-aggregates)
+* [dm-constraints](http://github.com/datamapper/dm-constraints)
+* [dm-migrations](http://github.com/datamapper/dm-migrations)
+* [dm-transactions](http://github.com/datamapper/dm-transactions)
+* [dm-serializer](http://github.com/datamapper/dm-serializer)
+* [dm-timestamps](http://github.com/datamapper/dm-timestamps)
+* [dm-validations](http://github.com/datamapper/dm-validations)
+* [dm-types](http://github.com/datamapper/dm-types)
 
 If you are planning on using DataMapper with a database, install a database
 driver from the DataObjects project: (Substitute `dm-sqlite-adapter` with `dm-postgres-adapter` or `dm-mysql-adapter` depending on your preferences)
@@ -33,22 +45,12 @@ driver from the DataObjects project: (Substitute `dm-sqlite-adapter` with `dm-po
 gem install dm-sqlite-adapter
 {% endhighlight %}
 
-If you want DataMapper to be able to create the underlying storage for you (i.e.
-the tables in an RDBMS), you will also have to install the `dm-migrations` gem.
-
-{% highlight ruby %}
-gem install dm-migrations
-{% endhighlight %}
-
-You can find more information about using `dm-migrations` further down that page.
-
-
 Require it in your application
 ------------------------------
 
 {% highlight ruby %}
 require 'rubygems'
-require 'dm-core'
+require 'data_mapper' # requires all the gems listed above
 {% endhighlight %}
 
 Specify your database connection
@@ -209,7 +211,11 @@ Set up your database tables
 ---------------------------
 
 Relational Databases work with pre-defined tables. To be able to create the tables in the
-underlying storage, you need to require `dm-migrations` first.
+underlying storage, you need to have `dm-migrations` available on your load path.
+
+If you've been following this instructions and did `require 'data_mapper'`,
+you can safely skip the following require statement as it has already
+been done for you.
 
 {% highlight ruby %}
 require  'dm-migrations'
