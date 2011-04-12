@@ -53,6 +53,14 @@ Triggers that generate validator creation:
   # implicitly creates a validates_present
   :required => true  # cannot be nil
 
+  # implicitly creates a (scoped) validates_uniqueness
+  # a symbol value (or an array of symbols) must denote
+  # one or more of the resource's properties and will
+  # be passed on as the :scope option to validates_uniqueness
+  :unique => true            # must be unique
+  :unique => :some_scope     # must be unique within some_scope
+  :unique => [:some, :scope] # must be unique within [:some, :scope]
+
   # implicitly creates a validates_length
   :length => 0..20  # must be between 0 and 20 characters in length
   :length => 1..20  # must be between 1 and 20 characters in length
