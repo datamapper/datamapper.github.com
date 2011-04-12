@@ -50,10 +50,10 @@ your classes properties all in one fell swoop.
 Triggers that generate validator creation:
 
 {% highlight ruby %}
-  # implicitly creates a validates_present
+  # implicitly creates a validates_presence_of
   :required => true  # cannot be nil
 
-  # implicitly creates a (scoped) validates_uniqueness
+  # implicitly creates a (scoped) validates_uniqueness_of
   # a symbol value (or an array of symbols) must denote
   # one or more of the resource's properties and will
   # be passed on as the :scope option to validates_uniqueness
@@ -61,11 +61,11 @@ Triggers that generate validator creation:
   :unique => :some_scope     # must be unique within some_scope
   :unique => [:some, :scope] # must be unique within [:some, :scope]
 
-  # implicitly creates a validates_length
+  # implicitly creates a validates_length_of
   :length => 0..20  # must be between 0 and 20 characters in length
   :length => 1..20  # must be between 1 and 20 characters in length
 
-  # implicitly creates a validates_format
+  # implicitly creates a validates_format_of
   :format => :email_address  # predefined regex
   :format => :url            # predefined regex
   :format => /\w+_\w+/
@@ -240,7 +240,7 @@ being validated.
 {% endhighlight %}
 
 The autovalidation that requires the title to be present will always run, but
-the validates_present on the commit hash will only run if the status is
+the `validates_presence_of` on the commit hash will only run if the status is
 `:complete`. Another example might be a change summary that is only required if
 the resource is already there--'initial commit' is hardly an enlightening
 message.
