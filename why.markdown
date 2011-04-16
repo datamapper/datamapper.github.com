@@ -389,7 +389,7 @@ major Ruby versions. Before release, every gem is explicitly tested
 against MRI 1.8.7, 1.9.2, JRuby and Rubinius. We're proud to say that
 almost all of our specs pass on all these different implementations.
 
-Have a look at the [testing matrix](http://github.com/datamapper/dm-core/wiki/Matrix)
+Have a look at our [CI server reports](http://ci.datamapper.org)
 for detailed information about which gems pass or fail their specs on
 the various Ruby implementations.
 
