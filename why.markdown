@@ -391,7 +391,10 @@ almost all of our specs pass on all these different implementations.
 
 Have a look at our [CI server reports](http://ci.datamapper.org)
 for detailed information about which gems pass or fail their specs on
-the various Ruby implementations.
+the various Ruby implementations. Note that these results always reflect
+the state of the latest codes and not the state of the latest released
+gem. Our CI server runs tests for all permutations whenever someone
+commits to any of the tested repositories on Github.
 
 All Ruby, All The Time
 ----------------------
