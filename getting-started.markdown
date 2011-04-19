@@ -75,6 +75,10 @@ You need to make sure to do this before you use your models, i.e. before you act
   DataMapper.setup(:default, 'postgres://localhost/the_database_name')
 {% endhighlight %}
 
+NOTE that currently you **must** setup a `:default` repository to work
+with DataMapper (and to be able to [use additional differently named
+repositories](/docs/misc)). This might change in the future.
+
 Define your models
 ------------------
 
