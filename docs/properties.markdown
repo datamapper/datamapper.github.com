@@ -199,22 +199,29 @@ DM-Core supports the following 'primitive' data-types.
 
 If you include DM-Types, the following data-types are supported:
 
-* BCryptHash
-* CommaSeparatedList
-* Csv
-* Enum
-* EpochTime
-* FilePath
-* Flag
-* IPAddress
-* Json
-* ParanoidBoolean
-* ParanoidDateTme
-* Regexp
-* Slug
-* URI
-* UUID
-* Yaml
+You are encouraged to have a quick glance at the implementation of the
+various properties below. It's really easy to create a DataMapper
+property that encapsulates data that is suitable for use in high level
+application code while at the same time being able to be persisted in
+all kinds of datastores.
+
+* [APIKey](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/api_key.rb)
+* [BCryptHash](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/bcrypt_hash.rb)
+* [CommaSeparatedList](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/comma_separated_list.rb)
+* [Csv](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/csv.rb)
+* [Enum](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/enum.rb)
+* [EpochTime](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/epoch_time.rb)
+* [FilePath](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/file_path.rb)
+* [Flag](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/flag.rb)
+* [IPAddress](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/ip_address.rb)
+* [Json](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/json.rb)
+* [ParanoidBoolean](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/paranoid_boolean.rb)
+* [ParanoidDateTme](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/paranoid_datetime.rb)
+* [Regexp](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/regexp.rb)
+* [Slug](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/slug.rb)
+* [URI](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/uri.rb)
+* [UUID](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/uuid.rb)
+* [Yaml](https://github.com/datamapper/dm-types/blob/master/lib/dm-types/yaml.rb)
 
 Limiting Access
 ---------------
