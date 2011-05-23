@@ -63,19 +63,19 @@ end
 # this is the default
 DataMapper.repository(:legacy).adapter.resource_naming_convention =
   DataMapper::NamingConventions::Resource::UnderscoredAndPluralized
-Example::PostModel.storage_names[:legacy]
+Example::PostModel.storage_name(:legacy)
 # => example_post_models
 
 # underscored
 DataMapper.repository(:legacy).adapter.resource_naming_convention =
   DataMapper::NamingConventions::Resource::Underscored
-Example::PostModel.storage_names[:legacy]
+Example::PostModel.storage_name(:legacy)
 # => example/post_models
 
 # without the module name
 DataMapper.repository(:legacy).adapter.resource_naming_convention =
   DataMapper::NamingConventions::Resource::UnderscoredAndPluralizedWithoutModule
-Example::PostModel.storage_names[:legacy]
+Example::PostModel.storage_name(:legacy)
 # => post_models
 
 # custom conventions can be defined using procs, or any module which
@@ -88,7 +88,7 @@ end
 
 DataMapper.repository(:legacy).adapter.resource_naming_convention =
   ResourceNamingConvention
-Example::PostModel.storage_names[:legacy]
+Example::PostModel.storage_name(:legacy)
 # => 'tblExample::PostModel'
 
 {% endhighlight %}
