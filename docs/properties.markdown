@@ -196,6 +196,7 @@ DM-Core supports the following 'primitive' data-types.
 * DateTime, Date, Time
 * Object, (marshalled)
 * Discriminator
+* Binary
 
 If you include DM-Types, the following data-types are supported:
 
