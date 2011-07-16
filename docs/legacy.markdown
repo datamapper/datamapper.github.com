@@ -11,7 +11,7 @@ created_at: Fri Sep 10 16:37:37 GMT 2010
 DataMapper has quite a few features and plugins which are useful for working
 with legacy schemas. We're going to introduce the feature available in the core
 first, before moving on to plugins. Note that whilst the title is "{{page.title }}",
-really this applies to any situation where there is no control over over the
+really this applies to any situation where there is no control over the
 'table' in the data-store. These features could just as easily be used to
 modify the fields returned by a RESTful webservice adapter, for example.
 
