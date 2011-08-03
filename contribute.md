@@ -9,9 +9,9 @@ created_at: Wed Aug 29 20:37:00 +0930 2007
 
 DataMapper is always looking for more contributors. When you've got an itch to
 scratch, jump in and contribute! Write a few specs showing us how your code
-works, create a patch and [submit it](http://datamapper.lighthouseapp.com/projects/20609-datamapper/)
-as a new ticket or a fix for an existing one. After a few patches and many thanks, you'll
-get commit access.
+works, create a patch and [submit it](http://github.com/datamapper/)
+as a new ticket or a fix for an existing one. After a few patches and many
+thanks, you'll get commit access.
 
 We benchmark all but the most trivial of patches, because we care about
 performance and you should too!
