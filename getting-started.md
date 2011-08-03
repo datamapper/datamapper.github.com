@@ -10,8 +10,9 @@ created_at: Wed Aug 29 20:36:53 +0930 2007
 
 If you think you might need some help, there's an active community
 supporting DataMapper through
-[the mailing list](http://groups.google.com/group/datamapper) and the `#datamapper` IRC
-channel on irc.freenode.net.
+[the mailing list](http://groups.google.com/group/datamapper) and the
+[#datamapper](http://webchat.freenode.net/?channels=datamapper) IRC
+channel on [irc.freenode.net](irc://irc.freenode.net/#datamapper).
 
 So lets imagine we're setting up some models for a blogging app. We'll keep it
 nice and simple. The first thing to decide on is what models we want. Post is a
