@@ -6,16 +6,16 @@ title:   Using Git
 {{ page.title }}
 ================
 
-The DataMapper project uses the Git <span class="caps">SCM</span>. Committers
+The DataMapper project uses the Git SCM. Committers
 need to use git to commit their code directly to the main repository.
 
 This page contains information on getting Git installed, getting source code
 with Git, and steps for working with Git.
 
-Also, see these references: <a href="http://git-scm.com/course/svn.html">Git
-&#8211; <span class="caps">SVN</span> Crash Course</a> and <a
-href="http://www.kernel.org/pub/software/scm/git/docs/everyday.html">Everyday
-<span class="caps">GIT</span> With 20 Commands Or So</a>
+Also, see these references:
+
+* [Git - SVN Crash Course](http://git-scm.com/course/svn.html)
+* [Everyday Git With 20 Commands Or So](http://www.kernel.org/pub/software/scm/git/docs/everyday.html)
 
 Getting Git for Your System
 ---------------------------
@@ -67,7 +67,7 @@ Fixes for Module#make_my_day return values.
 Getting the Code
 ----------------
 
-DataMapper is hosted at <a href="http://github.com/datamapper/">GitHub</a>.
+DataMapper is hosted at [GitHub](http://github.com/datamapper/).
 Getting the code is easy once you have git installed but is slightly different
 depending on your access. In both cases that exact command will put the
 repository in a local directory called dm. You can give it a different name just
@@ -88,10 +88,10 @@ git clone git@github.com/datamapper/dm-core.git
 Git Workflow
 ------------
 
-Working with Git is significantly different than working with <span
-class="caps">SVN</span>. In particular, although similar, git pull is not svn
+Working with Git is significantly different than working with 
+SVN. In particular, although similar, git pull is not svn
 update, git push is not svn commit, and git add is not svn add. If you are a
-<span class="caps">SVN</span> user, be sure to read the man pages for the
+SVN user, be sure to read the man pages for the
 different git commands.</p>
 
 The following workflow is recommended by Rein and is the guideline for

@@ -89,7 +89,7 @@ First, you will need to install an Adapter, which allows DataMapper to communica
 Install DataMapper
 ------------------
 
-If you have RubyGems installed, pop open your console and install a few things.
+If you have RubyGems installed, open a Terminal and install a few things.
 
     gem install data_mapper
 
@@ -135,7 +135,7 @@ You need to make sure to do this before you use your models, i.e. before you act
   DataMapper.setup(:default, 'postgres://localhost/the_database_name')
 {% endhighlight %}
 
-NOTE that currently you **must** setup a `:default` repository to work
+**Note**: that currently you **must** setup a `:default` repository to work
 with DataMapper (and to be able to [use additional differently named
 repositories](/docs/misc)). This might change in the future.
 
@@ -193,8 +193,8 @@ Associations
 ------------
 
 Ideally, these declarations should be done inside your class definition with the
-properties and things, but for demonstration purposes, we’re just going to crack
-open the classes.
+properties and things, but for demonstration purposes, we will just
+re-open the classes.
 
 ### One To Many
 
@@ -275,9 +275,9 @@ Set up your database tables
 ---------------------------
 
 Relational Databases work with pre-defined tables. To be able to create the tables in the
-underlying storage, you need to have `dm-migrations` available on your load path.
+underlying storage, you need to have `dm-migrations` loaded.
 
-If you've been following this instructions and did `require 'data_mapper'`,
+**Note:** If you've been following this instructions and did `require 'data_mapper'`,
 you can safely skip the following require statement as it has already
 been done for you.
 
@@ -285,7 +285,7 @@ been done for you.
 require  'dm-migrations'
 {% endhighlight %}
 
-Once you made sure that `dm-migrations` is available, you can create the tables by issuing the following command.
+Once `dm-migrations` is loaded, you can create the tables by issuing the following command:
 
 {% highlight ruby %}
 DataMapper.auto_migrate!
@@ -304,7 +304,7 @@ DataMapper.auto_upgrade!
 
 This tries to make the schema match the model.  It will `CREATE` new tables, and
 add columns to existing tables.  It won't change any existing columns though
-(say, to add a NOT NULL constraint) and it doesn't drop any columns.  Both these commands
+(say, to add a `NOT NULL` constraint) and it doesn't drop any columns.  Both these commands
 also can be used on an individual model (e.g. `Post.auto_migrate!`)
 
 Create your first resource

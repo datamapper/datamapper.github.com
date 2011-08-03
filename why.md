@@ -93,7 +93,7 @@ There are still some limitations to the operations that `#auto_upgrade!`
 can perform. We're working hard on making it smarter, but there will
 always be scenarios where an automatic upgrade of your schema won't be
 possible. For example, there's no sane strategy for automatically changing
-a column length constraint from VARCHAR(100) to VARCHAR(50). DataMapper
+a column length constraint from `VARCHAR(100)` to `VARCHAR(50)`. DataMapper
 can't know what it should do when the data doesn't validate against the
 new tightened constraints.
 
@@ -234,7 +234,7 @@ start iterating over `zoos` or call one of the 'kicker' methods like `#length`.
 If you never do anything with the results of a query, DataMapper won't incur the
 latency of talking to your data-store.
 
-NOTE that this currently doesn't work when you start to nest loops
+**Note:** that this currently doesn't work when you start to nest loops
 that access the associations more than one level deep. The following
 would *not* issue the optimal amount of queries:
 
