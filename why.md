@@ -445,7 +445,7 @@ DataMapper sports a very accessible code-base and a welcoming community. Outside
 contributions and feedback are welcome and encouraged, especially constructive
 criticism. Go ahead, fork DataMapper, we'd love to see what you come up with!
 
-Make your voice heard! [Submit a ticket or patch](http://datamapper.lighthouseapp.com/projects/20609-datamapper/),
+Make your voice heard! [Submit a ticket or patch](http://github.com/datamapper/dm-core/issues),
 speak up on our [mailing-list](http://groups.google.com/group/datamapper/),
 chat with us on [irc](irc://irc.freenode.net/%23datamapper), write a spec,
 get it reviewed, ask for commit rights. It's as easy as that to become a contributor.
