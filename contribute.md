@@ -22,19 +22,20 @@ What we need
 Currently DataMapper needs help in a few particular areas:
 
 * API Documentation (using the [YARD documentation style](http://www.yardoc.org/))
-* Tutorials (we think the [Django](http://www.djangoproject.com/) documentation [guidelines](http://jacobian.org/writing/great-documentation/) are a good model)
-* Bug Reports (we use [Github
-  Issues](https://github.com/datamapper/dm-core/issues/)) - **important**: if you found a bug
-in a DataMapper project other than dm-core, please use that project's Issue
-Tracker instead of reporting everything as dm-core issues
+* Tutorials (we think the [Django](http://www.djangoproject.com/)
+  documentation [guidelines](http://jacobian.org/writing/great-documentation/) are a good model)
+* Bug Reports (we use [Github Issues](https://github.com/datamapper/dm-core/issues/))
+  * **important**: if you found a bug in a DataMapper project other than
+    dm-core, please use that project's Issue Tracker instead of reporting
+    everything as dm-core issues
 
 Git - Edge DataMapper
 ---------------------
 
-DataMapper development uses [Git](http://git-scm.com/) SCM. Please see [using git](/using-git)
-to learn how to contribute. For detailed instructions how to get a proper development setup for datamapper
-up and running, have a look at the [edge
-guide](http://github.com/datamapper/dm-dev).
+DataMapper development uses [Git](http://git-scm.com/) SCM.
+Please see [using git](/using-git) to learn how to contribute.
+For detailed instructions how to get a proper development setup for
+datamapper up and running, have a look at the [edge guide](http://github.com/datamapper/dm-dev).
 
 Code Style Guidelines
 ---------------------
