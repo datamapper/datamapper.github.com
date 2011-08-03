@@ -36,7 +36,7 @@ Issues
 If you're still having trouble, or you think you came across something you think
 might be a bug, let us know.
 
-[Log a ticket](http://datamapper.lighthouseapp.com/projects/20609-datamapper/overview)
+[Log a ticket](http://github.com/datamapper/dm-core/issues)
 </div>
 
 News
