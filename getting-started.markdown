@@ -8,7 +8,7 @@ created_at: Wed Aug 29 20:36:53 +0930 2007
 {{page.title}}
 ==============
 
-First, if you think you might need some help, there's an active community
+If you think you might need some help, there's an active community
 supporting DataMapper through
 [the mailing list](http://groups.google.com/group/datamapper) and the `#datamapper` IRC
 channel on irc.freenode.net.
@@ -17,14 +17,80 @@ So lets imagine we're setting up some models for a blogging app. We'll keep it
 nice and simple. The first thing to decide on is what models we want. Post is a
 given. So is Comment. But let's mix it up and do Category too.
 
+Install an Adapter
+------------------
+
+First, you will need to install an Adapter, which allows DataMapper to communicate to the Database:
+
+* [dm-sqlite-adapter](https://github.com/datamapper/dm-sqlite-adapter)
+  * Debian / Ubuntu:
+
+        sudo apt-get install libsqlite3-dev
+        gem install dm-sqlite-adapter
+
+  * RedHat / Fedora:
+
+        sudo yum install sqlite-devel
+        gem install dm-sqlite-adapter
+
+  * MacPorts:
+
+        sudo port install sqlite3
+        gem install dm-sqlite-adapter
+
+  * HomeBrew:
+
+        sudo brew install sqlite
+        gem install dm-sqlite-adapter
+
+* [dm-mysql-adapter](https://github.com/datamapper/dm-mysql-adapter)
+  * Debian / Ubuntu:
+
+        sudo apt-get install libmysqlclient-dev
+        gem install dm-mysql-adapter
+
+  * RedHat / Fedora:
+
+        sudo yum install mysql-devel
+        gem install dm-mysql-adapter
+
+  * MacPorts:
+
+        sudo port install mysql5
+        gem install dm-mysql-adapter
+
+  * HomeBrew:
+
+        sudo brew install mysql
+        gem install dm-mysql-adapter
+
+* [dm-postgres-adapter](https://github.com/datamapper/dm-postgres-adapter)
+  * Debian / Ubuntu:
+
+        sudo apt-get install libpg-dev
+        gem install dm-postgres-adapter
+
+  * RedHat / Fedora:
+
+        sudo yum install postgresql-devel
+        gem install dm-postgres-adapter
+
+  * MacPorts:
+
+        sudo port install postgresql91
+        gem install dm-postgres-adapter
+
+  * HomeBrew:
+
+        sudo brew install postgresql
+        gem install dm-postgres-adapter
+
 Install DataMapper
 ------------------
 
 If you have RubyGems installed, pop open your console and install a few things.
 
-{% highlight ruby %}
-gem install data_mapper
-{% endhighlight %}
+    gem install data_mapper
 
 This will install the following, most commonly used DataMapper gems.
 
@@ -37,13 +103,6 @@ This will install the following, most commonly used DataMapper gems.
 * [dm-timestamps](http://github.com/datamapper/dm-timestamps)
 * [dm-validations](http://github.com/datamapper/dm-validations)
 * [dm-types](http://github.com/datamapper/dm-types)
-
-If you are planning on using DataMapper with a database, install a database
-driver from the DataObjects project: (Substitute `dm-sqlite-adapter` with `dm-postgres-adapter` or `dm-mysql-adapter` depending on your preferences)
-
-{% highlight ruby %}
-gem install dm-sqlite-adapter
-{% endhighlight %}
 
 Require it in your application
 ------------------------------
