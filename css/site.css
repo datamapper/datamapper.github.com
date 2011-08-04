@@ -34,8 +34,6 @@ p#download a { background: center center no-repeat url(../images/download_button
 p.attribution { font-size: 0.8em; margin-top: -2em; }
 p.footnote { font-size: 0.8em; }
 
-.highlight { margin: 0 29px 0 30px; background: #0C182A; border: 1px solid #26518A; padding: 1em 15px; line-height: 1.5; margin-bottom: 2em; font-family: 'Courier New', 'Terminal', monospace; color: #E6E0DB; overflow: auto; font-size: 12px; }
-
 .puff { margin: 0 29px 0 30px; }
 
 ul { margin: 0 29px 0 30px; margin-bottom: 1.5em; line-height: 1.5; padding: 0 0 0 2em; }
@@ -48,6 +46,8 @@ a:link { color: #66FF33; }
 a:visited { color: #cccccc; }
 
 blockquote { margin: auto 1em; font-style: italic; }
+
+pre { margin: 0 29px 0 30px; background: #0C182A; border: 1px solid #26518A; padding: 1em 15px; line-height: 1.5; margin-bottom: 2em; font-family: 'Courier New', 'Terminal', monospace; color: #E6E0DB; overflow: auto; font-size: 12px; }
 
 #home #content { background-image: url(../images/home_bkg.gif); }
 #home .blurb { font-size: 1.2em; }
