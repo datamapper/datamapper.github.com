@@ -13,7 +13,7 @@ Links, Blogs, Wiki's, and Stuff
 -------------------------------
 
 <dl>
-  <dt><a href="/news">News and Notes</a></dt>
+  <dt><a href="/news.html">News and Notes</a></dt>
   <dd>Official News and other contributed articles</dd>
 
   <dt><a href="http://wiki.github.com/datamapper/dm-core">Wiki</a></dt>

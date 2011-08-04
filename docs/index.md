@@ -11,27 +11,27 @@ created_at: Fri Nov 30 15:29:01 +1030 2007
 <dl>
   <dt><a href="http://rubydoc.info/gems/dm-core/1.1.0/frames">API</a></dt>
   <dd>The API for the current gem release.</dd>
-  <dt><a href="/why">Why DataMapper?</a></dt>
+  <dt><a href="/why.html">Why DataMapper?</a></dt>
   <dd>If you haven't read this yet, you should, right now!</dd>
-  <dt><a href="/getting-started">Getting Started</a></dt>
+  <dt><a href="/getting-started.html">Getting Started</a></dt>
   <dd>A whirlwind tour of DM. This is the place to start if you haven't used the library before.</dd>
-  <dt><a href="/docs/install">Common installation issues</a></dt>
+  <dt><a href="/docs/install.html">Common installation issues</a></dt>
   <dd>Troubleshooting installation, with instructions for specific platforms.</dd>
-  <dt><a href="/docs/properties">Properties</a></dt>
+  <dt><a href="/docs/properties.html">Properties</a></dt>
   <dd>Properties declared in your model map to the fields in the database.</dd>
-  <dt><a href="/docs/create_and_destroy">Creating, Saving, Updating and Destroying Records</a></dt>
+  <dt><a href="/docs/create_and_destroy.html">Creating, Saving, Updating and Destroying Records</a></dt>
   <dd>Obviously you're going to be doing a lot of this :)</dd>
-  <dt><a href="/docs/validations">Validations</a></dt>
+  <dt><a href="/docs/validations.html">Validations</a></dt>
   <dd>Auto-validations, manual validations, contextual validations</dd>
-  <dt><a href="/docs/find">Finding and Counting Records</a></dt>
+  <dt><a href="/docs/find.html">Finding and Counting Records</a></dt>
   <dd>There are lots of nice ways to find records.</dd>
-  <dt><a href="/docs/associations">Associations</a></dt>
+  <dt><a href="/docs/associations.html">Associations</a></dt>
   <dd>Models can be associated to each other in various ways using the <code>has</code> keyword</dd>
-  <dt><a href="/docs/callbacks">Hooks</a></dt>
+  <dt><a href="/docs/callbacks.html">Hooks</a></dt>
   <dd>Hooks, AKA Callbacks, allow you to "advise other methods" by running methods before or after calling other methods.</dd>
-  <dt><a href="/docs/misc">Misc. Features</a></dt>
+  <dt><a href="/docs/misc.html">Misc. Features</a></dt>
   <dd>Paranoia, Timezone Handling, Single Table Inheritance, and Multiple Repositories.</dd>
-  <dt><a href="/docs/legacy">Working with Legacy Schemas</a></dt>
+  <dt><a href="/docs/legacy.html">Working with Legacy Schemas</a></dt>
   <dd>Adapting data-store naming conventions to your own property names.</dd>
   <dt><a href="/docs/dm_more/">More</a></dt>
   <dd>Plugins galore for DataMapper.</dd>

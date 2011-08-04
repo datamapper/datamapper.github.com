@@ -19,7 +19,7 @@ no matter what the ruby object is, or which data-store is used as the backend.
 dm-types
 --------
 
-In [DM More](/docs/dm_more) there is the dm-types gem, which supplies several
+In [DM More](/docs/dm_more/) there is the dm-types gem, which supplies several
 more types that map less common ruby classes to data-store values or take care
 of serializing them to text based formats.
 

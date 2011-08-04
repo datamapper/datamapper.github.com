@@ -32,7 +32,7 @@ develop independently of your models using Migrations.
 
 To support data-stores which you don't have the ability to manage yourself, it's
 simply a matter of telling DataMapper where to look. This makes DataMapper
-a good choice when [Working with legacy databases](/docs/legacy)
+a good choice when [Working with legacy databases](/docs/legacy.html)
 
 {% highlight ruby linenos %}
 class Post
@@ -266,14 +266,14 @@ this limitations by using DataMapper's feature that allows you to query
 models by their associations, as described briefly in the chapter below.
 
 You can also find more information about this feature on the
-[Finders](/docs/find) and the [Associations](/docs/associations) pages.
+[Finders](/docs/find.html) and the [Associations](/docs/associations.html) pages.
 
 Querying models by their associations
 -------------------------------------
 
 DataMapper allows you to create and search for any complex object graph simply by providing a nested hash of conditions. The following example uses a typical Customer - Order domain model to illustrate how nested conditions can be used to both create and query models by their associations.
 
-For a complete definition of the Customer - Order domain models have a look at the [Finders](/docs/find) page.
+For a complete definition of the Customer - Order domain models have a look at the [Finders](/docs/find.html) page.
 
 {% highlight ruby linenos %}
 # A hash specifying one customer with one order
@@ -326,7 +326,7 @@ Customer.all(Customer.orders.order_lines.item.sku.like => "%BLUE%")
 {% endhighlight %}
 
 You can even chain calls to `all` or `first` to continue refining your query or
-search within a scope. See [Finders](/docs/find) for more information.
+search within a scope. See [Finders](/docs/find.html) for more information.
 
 
 Identity Map

@@ -32,20 +32,20 @@ validations based on the properties specified and also allows assignment of
 manual validations. It also supports contextual validation, allowing a resource
 to be considered valid for some purposes but not others.
 
-### [dm-timestamps](/docs/dm_more/timestamps)
+### [dm-timestamps](/docs/dm_more/timestamps.html)
 
 This defines callbacks on the common timestamp properties, making them
 auto-update when the models are created or updated. The targeted properties are
 `:created_at` and `:updated_at` for DateTime properties and `:created_on` and
 `:updated_on` for Date properties.
 
-### [dm-aggregates](/docs/dm_more/dm-aggregates)
+### [dm-aggregates](/docs/dm_more/dm-aggregates.html)
 
 This provides methods for database calls to aggregate functions such as `count`,
 `sum`, `avg`, `max` and `min`. These aggregate functions are added to both
 collections and Models.
 
-### [dm-types](/docs/dm_more/types)
+### [dm-types](/docs/dm_more/types.html)
 
 This provides several more allowable property types. `Enum` and `Flag` allow a
 field to take a few set values. `URI`, `FilePath`, `Regexp`, `EpochTime` and

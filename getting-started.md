@@ -137,7 +137,7 @@ You need to make sure to do this before you use your models, i.e. before you act
 
 **Note**: that currently you **must** setup a `:default` repository to work
 with DataMapper (and to be able to [use additional differently named
-repositories](/docs/misc)). This might change in the future.
+repositories](/docs/misc.html)). This might change in the future.
 
 Define your models
 ------------------
@@ -177,8 +177,8 @@ end
 
 The above example is simplified, but you can also specify more options such as
 constraints for your properties.  DataMapper supports a lot of different
-[property](/docs/properties) types natively, and more through
-[dm-types](/docs/dm_more/types).
+[property](/docs/properties.html) types natively, and more through
+[dm-types](/docs/dm_more/types.html).
 
 An important thing to note is that every model *must* have a key in
 order to be valid. If a model has no key, there's no way to identify a
@@ -186,7 +186,7 @@ resource and thus no way to update its persistent state within the
 backend datastore. DataMapper will raise a `DataMapper::IncompleteModelError`
 when trying to `auto_migrate!` a model that has no key declared.
 
-Have a look at [property](/docs/properties) to learn about the different
+Have a look at [property](/docs/properties.html) to learn about the different
 ways of declaring keys for your models.
 
 Associations
@@ -199,7 +199,7 @@ re-open the classes.
 ### One To Many
 
 Posts can have comments, so we’ll need to setup a simple
-[one-to-many](/docs/associations#has_n_and_belongs_to_or_onetomany) association
+[one-to-many](/docs/associations.html#has_n_and_belongs_to_or_onetomany) association
 between then:
 
 {% highlight ruby %}
@@ -216,7 +216,7 @@ end
 
 Has and belongs to many Categories can have many Posts and Posts can have many
 Categories, so we’ll need a
-[many to many](/docs/associations#has_n_through_or_onetomanythrough) relationships
+[many to many](/docs/associations.html#has_n_through_or_onetomanythrough) relationships
 commonly referred to “has and belongs to many”. We’ll setup a quick model to
 wrap our join table between the two so that we can record a little bit of
 meta-data about when the post was categorized into a category.
@@ -310,7 +310,7 @@ also can be used on an individual model (e.g. `Post.auto_migrate!`)
 Create your first resource
 --------------------------
 
-Using DataMapper to [create](/docs/create_and_destroy#creating) a resource (A
+Using DataMapper to [create](/docs/create_and_destroy.html#creating) a resource (A
 resource is an instance of a model) is simple
 
 {% highlight ruby %}
