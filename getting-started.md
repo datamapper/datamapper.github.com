@@ -24,51 +24,66 @@ Install an Adapter
 First, you will need to install an Adapter, which allows DataMapper to communicate to the Database:
 
 * [dm-sqlite-adapter](https://github.com/datamapper/dm-sqlite-adapter)
+  * Debian / Ubuntu:
 
-        # Debian / Ubuntu
         sudo apt-get install libsqlite3-dev
+        gem install dm-sqlite-adapter
 
-        # RedHat / Fedora
-        sudo yum install sqlite-devel         
+  * RedHat / Fedora:
 
-        # MacPorts
+        sudo yum install sqlite-devel
+        gem install dm-sqlite-adapter
+
+  * MacPorts:
+
         sudo port install sqlite3
+        gem install dm-sqlite-adapter
 
-        # HomeBrew
+  * HomeBrew:
+
         sudo brew install sqlite
-
         gem install dm-sqlite-adapter
 
 * [dm-mysql-adapter](https://github.com/datamapper/dm-mysql-adapter)
+  * Debian / Ubuntu:
 
-        # Debian / Ubuntu
         sudo apt-get install libmysqlclient-dev
+        gem install dm-mysql-adapter
 
-        # RedHat / Fedora
+  * RedHat / Fedora:
+
         sudo yum install mysql-devel
+        gem install dm-mysql-adapter
 
-        # MacPorts
+  * MacPorts:
+
         sudo port install mysql5
+        gem install dm-mysql-adapter
 
-        # HomeBrew
+  * HomeBrew:
+
         sudo brew install mysql
-
         gem install dm-mysql-adapter
 
 * [dm-postgres-adapter](https://github.com/datamapper/dm-postgres-adapter)
+  * Debian / Ubuntu:
 
-        # Debian / Ubuntu:
         sudo apt-get install libpg-dev
+        gem install dm-postgres-adapter
 
-        # RedHat / Fedora:
+  * RedHat / Fedora:
+
         sudo yum install postgresql-devel
+        gem install dm-postgres-adapter
 
-        # MacPorts:
+  * MacPorts:
+
         sudo port install postgresql91
+        gem install dm-postgres-adapter
 
-        # HomeBrew:
+  * HomeBrew:
+
         sudo brew install postgresql
-
         gem install dm-postgres-adapter
 
 Install DataMapper
