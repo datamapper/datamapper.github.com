@@ -2,6 +2,7 @@
 
 apply 'http://datamapper.org/templates/rails/config.rb'
 apply 'http://datamapper.org/templates/rails/database.yml.rb'
+apply 'http://datamapper.org/templates/rails/gitignore.rb'
 
 inject_into_file  'app/controllers/application_controller.rb',
                   "require 'dm-rails/middleware/identity_map'\n",
