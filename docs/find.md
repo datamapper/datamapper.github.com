@@ -375,4 +375,19 @@ Friend.sum(:age) # returns total age of all friends
 Friend.max(:age, :conditions => [ 'gender = ?', 'female' ]) # returns the total age of all female friends
 {% endhighlight %}
 
+Multiple aggregates
+-------------------
+
+{% highlight ruby linenos %}
+sum, count = Friend.aggregate(:age.sum, :all.count) # returns the sum of all ages and the count of all friends
+{% endhighlight %}
+
+Aggregates with order-by
+------------------------
+
+{% highlight ruby linenos %}
+Friend.aggregate(:city, :all.count) # returns the city names and the number of friends living in each city
+# e.g. [['Hamburg', 3], ['New York', 4], ['Rome', 0], ... ]
+{% endhighlight %}
+
 [DataMapper_Repository]:http://rubydoc.info/github/datamapper/dm-core/master/DataMapper/Repository
