@@ -12,7 +12,7 @@ create_file 'Gemfile' do
 <<-GEMFILE
 source 'http://rubygems.org'
 
-RAILS_VERSION = '~> 3.1.1'
+RAILS_VERSION = '~> 3.1.3'
 DM_VERSION    = '~> 1.2.0'
 
 gem 'activesupport',      RAILS_VERSION, :require => 'active_support'
@@ -47,6 +47,14 @@ gem 'dm-transactions',      DM_VERSION
 gem 'dm-aggregates',        DM_VERSION
 gem 'dm-timestamps',        DM_VERSION
 gem 'dm-observer',          DM_VERSION
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.1.5'
+  gem 'coffee-rails', '~> 3.1.1'
+  gem 'uglifier', '>= 1.0.3'
+end
 
 group(:development, :test) do
 
