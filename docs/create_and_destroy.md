@@ -129,7 +129,7 @@ zoo = Zoo.first_or_create({ :name => 'The Glue Factory' }, { :inception => Time.
 {% endhighlight %}
 
 This will search for a Zoo named 'The Glue Factory' and if it can't find one, it will
-return a new Zoo instance with it's name set to 'The Glue Factory' and the inception
+return a new Zoo instance with its name set to 'The Glue Factory' and the inception
 set to what has been Time.now at the time of execution. You can see that for creating
 a new resource, both hash arguments will be merged so you don't need to specify the
 query criteria again in the second argument `Hash` that lists the attributes for creating
@@ -234,7 +234,7 @@ relationship accessor for any `1:n` or `m:n` relationship.
 Destroy
 -------
 
-To destroy a record, you simply call it's `#destroy` method. It will return
+To destroy a record, you simply call its `#destroy` method. It will return
 `true` or `false` depending if the record is successfully deleted or not. Here
 is an example of finding an existing record then destroying it.
 
