@@ -18,6 +18,7 @@ DM_VERSION    = '~> 1.2.0'
 gem 'activesupport',      RAILS_VERSION, :require => 'active_support'
 gem 'actionpack',         RAILS_VERSION, :require => 'action_pack'
 gem 'actionmailer',       RAILS_VERSION, :require => 'action_mailer'
+gem 'activeresource',     RAILS_VERSION, :require => 'active_resource'
 gem 'railties',           RAILS_VERSION, :require => 'rails'
 gem 'tzinfo'
 
@@ -48,6 +49,7 @@ gem 'dm-aggregates',        DM_VERSION
 gem 'dm-timestamps',        DM_VERSION
 gem 'dm-observer',          DM_VERSION
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -56,26 +58,23 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group(:development, :test) do
+gem 'jquery-rails'
 
-  # Uncomment this if you want to use rspec for testing your application
+# To use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.0.0'
 
-  # gem 'rspec-rails', '~> 2.0.1'
+# Use unicorn as the web server
+# gem 'unicorn'
 
-  # To get a detailed overview about what queries get issued and how long they take
-  # have a look at rails_metrics. Once you bundled it, you can run
-  #
-  #   rails g rails_metrics Metric
-  #   rake db:automigrate
-  #
-  # to generate a model that stores the metrics. You can access them by visiting
-  #
-  #   /rails_metrics
-  #
-  # in your rails application.
+# Deploy with Capistrano
+# gem 'capistrano'
 
-  # gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'
+# To use debugger
+# gem 'ruby-debug19', :require => 'ruby-debug'
 
+group :test do
+  # Pretty printed test output
+  gem 'turn', '~> 0.8.3', :require => false
 end
 
 GEMFILE
