@@ -12,7 +12,7 @@ create_file 'Gemfile' do
 <<-GEMFILE
 source 'http://rubygems.org'
 
-RAILS_VERSION = '~> 3.1.3'
+RAILS_VERSION = '~> 3.2.0'
 DM_VERSION    = '~> 1.2.0'
 
 gem 'activesupport',      RAILS_VERSION, :require => 'active_support'
@@ -22,7 +22,7 @@ gem 'activeresource',     RAILS_VERSION, :require => 'active_resource'
 gem 'railties',           RAILS_VERSION, :require => 'rails'
 gem 'tzinfo'
 
-gem 'dm-rails',               DM_VERSION
+gem 'dm-rails',               '~> 1.2.1'
 gem 'dm-#{database}-adapter', DM_VERSION
 
 # You can use any of the other available database adapters.
