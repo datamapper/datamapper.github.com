@@ -58,7 +58,7 @@ First, you will need to install an Adapter, which allows DataMapper to communica
 * [dm-postgres-adapter](https://github.com/datamapper/dm-postgres-adapter)
 
         # Debian / Ubuntu
-        sudo apt-get install libpg-dev
+        sudo apt-get install libpq-dev
 
         # RedHat / Fedora
         sudo yum install postgresql-devel
