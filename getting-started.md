@@ -114,10 +114,10 @@ You need to make sure to do this before you use your models, i.e. before you act
   DataMapper.setup(:default, 'sqlite:///path/to/project.db')
 
   # A MySQL connection:
-  DataMapper.setup(:default, 'mysql://localhost/the_database_name')
+  DataMapper.setup(:default, 'mysql://user:password@hostname/database')
 
   # A Postgres connection:
-  DataMapper.setup(:default, 'postgres://localhost/the_database_name')
+  DataMapper.setup(:default, 'postgres://user:password@hostname/database')
 {% endhighlight %}
 
 **Note**: that currently you **must** setup a `:default` repository to work
