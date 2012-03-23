@@ -145,7 +145,7 @@ in the property options.
     :messages => {
       :presence  => 'We need your email address.',
       :is_unique => 'We already have that email.',
-      :format    => 'Doesn't look like an email address to me ...'
+      :format    => "Doesn't look like an email address to me ..."
     }
 {% endhighlight %}
 
