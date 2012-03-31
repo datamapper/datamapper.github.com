@@ -12,7 +12,7 @@ create_file 'Gemfile' do
 <<-GEMFILE
 source 'http://rubygems.org'
 
-RAILS_VERSION = '~> 3.2.0'
+RAILS_VERSION = '~> #{Rails::VERSION::STRING}'
 DM_VERSION    = '~> 1.2.0'
 
 gem 'activesupport',      RAILS_VERSION, :require => 'active_support'
