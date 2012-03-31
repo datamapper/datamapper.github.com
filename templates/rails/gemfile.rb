@@ -10,7 +10,7 @@ database = 'sqlite'   if database == 'sqlite3'
 remove_file 'Gemfile'
 create_file 'Gemfile' do
 <<-GEMFILE
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 RAILS_VERSION = '~> #{Rails::VERSION::STRING}'
 DM_VERSION    = '~> 1.2.0'
