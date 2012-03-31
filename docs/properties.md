@@ -188,8 +188,8 @@ Available Types
 DM-Core supports the following 'primitive' data-types.
 
 * Boolean
-* String
-* Text
+* String (default length limit of 50 characters)
+* Text (defaults to lazy loading and length limit of 65535 characters)
 * Float
 * Integer
 * Decimal
