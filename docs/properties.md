@@ -67,7 +67,7 @@ definition. Most commonly, you'll see String as a natural key:
 {% endhighlight %}
 
 Natural Keys are protected against mass-assignment, so their `setter=` will need
-to be called individually if your looking to set them.
+to be called individually if you're looking to set them.
 
 *Fair warning:* Using Boolean, Discriminator, and the time related types as keys
 may cause your DBA to hunt you down and "educate" you. DM will not be held
