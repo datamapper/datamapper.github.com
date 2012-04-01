@@ -19,7 +19,7 @@ say '---------------------------------------------------------------------------
 say 'Have a look at available rake tasks:  rake -T'
 say 'Generate a simple scaffold:           rails g scaffold Person name:string'
 say 'Create, automigrate and seed the DB:  rake db:setup'
-say 'Start the server:                     script/rails server'
+say 'Start the server:                     rails server'
 say '---------------------------------------------------------------------------'
 say 'After the server booted, point your browser at http://localhost:3000/people'
 say '---------------------------------------------------------------------------'
