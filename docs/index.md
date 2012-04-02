@@ -33,6 +33,8 @@ created_at: Fri Nov 30 15:29:01 +1030 2007
   <dd>Paranoia, Timezone Handling, Single Table Inheritance, and Multiple Repositories.</dd>
   <dt><a href="/docs/legacy.html">Working with Legacy Schemas</a></dt>
   <dd>Adapting data-store naming conventions to your own property names.</dd>
+  <dt><a href="/docs/pitfalls.html">Common Pitfalls</a></dt>
+  <dd>Solutions and work-arounds to common problems.</dd>
   <dt><a href="/docs/dm_more/">More</a></dt>
   <dd>Plugins galore for DataMapper.</dd>
 </dl>
