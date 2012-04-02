@@ -35,7 +35,7 @@ Here's a [full list of the tickets we've resolved for 1.1](http://datamapper.lig
 
 Highlights:
 
-* ActiveSupport / Extlib dependency is removed. If your code relies on one of these libs then just add a dependency on your own. 
+* ActiveSupport / Extlib dependency is removed. If your code relies on one of these libs then just add a dependency on your own.
 
 * `DataMapper::Type` is gone now in favour of `DataMapper::Property`. The Type API was deprecated in 1.0 but if you still have some Types floating around read how to upgrade them [in this thread](http://groups.google.com/group/datamapper/browse_thread/thread/5d3d212c3614db36/ae7be012e06488f6).
 

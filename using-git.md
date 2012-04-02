@@ -88,7 +88,7 @@ git clone git@github.com/datamapper/dm-core.git
 Git Workflow
 ------------
 
-Working with Git is significantly different than working with 
+Working with Git is significantly different than working with
 SVN. In particular, although similar, git pull is not svn
 update, git push is not svn commit, and git add is not svn add. If you are a
 SVN user, be sure to read the man pages for the

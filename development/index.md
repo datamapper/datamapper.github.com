@@ -22,4 +22,3 @@ When contributing any code to DataMapper, please follow these guidelines.
 * Two space indent - not tabs!
 * Write optimal code, not magic code
 * Documentation is required (use the [official documentation style](/docs/))
-
