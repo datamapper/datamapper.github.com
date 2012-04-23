@@ -81,4 +81,4 @@ end
 For more information about the YARD documentation style, see the YARD
 [Getting Started](http://rubydoc.info/docs/yard/file/docs/GettingStarted.md) document.
 
-*[YARD]: Yet Another Ruby Documentation (tool)
+* [YARD]: Yet Another Ruby Documentation (tool)
