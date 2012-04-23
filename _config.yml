@@ -3,5 +3,3 @@ server:      true
 markdown:    rdiscount
 pygments:    true
 permalink:   none
-redirects:
-  "/doku.php": "/"
