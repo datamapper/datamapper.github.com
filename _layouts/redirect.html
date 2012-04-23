@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="refresh" content="5;url={{ page.redirect }}" />
+
+    <title>DataMapper - {{ page.title }}</title>
+    <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/code.css" type="text/css" media="screen, projection" />
+    <!--[if lt IE 7]> <link rel="stylesheet" href="css/ie_hacks.css" type="text/css" media="screen, projection" /> <![endif]-->
+    <link rel="alternate" type="application/rss+xml" title="News and Notes feed" href="/news.rss" />
+    <link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico" />
+    <script type='text/javascript'>
+    //<![CDATA[
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-11917142-1']);
+      _gaq.push(['_trackPageview']);
+    //]]>
+    </script>
+
+    <script type="text/javascript">
+      setTimeout(function() {
+        document.location = "{{ page.redirect }}";
+      }, 3000);
+    </script>
+  </head>
+
+  <body id="home">
+    <div id="content">
+      <div id="header">
+        {% include menu.html %}
+      </div>
+
+      <h1>Page Moved</h1>
+
+      <p>
+        <strong>{{ page.title }}</strong> has moved.
+        You will be redirected shortly.
+      </p>
+
+      <p>
+        If you are not redirected properly, please
+        <a href="{{ page.redirect }}">click here</a>.
+      </p>
+
+      {% include footer.html %}
+    </div>
+    <script src="//www.google-analytics.com/ga.js" type="text/javascript" async="async"></script>
+  </body>
+</html>
