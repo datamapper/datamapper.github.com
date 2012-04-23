@@ -1,5 +1,7 @@
 auto:        true
 server:      true
-markdown:    redcarpet
+markdown:    rdiscount
 pygments:    true
 permalink:   none
+redirects:
+  "/doku.php": "/"
