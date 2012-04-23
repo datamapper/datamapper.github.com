@@ -128,7 +128,7 @@ they can be changed. This is done via providing a `:message` in the options
 hash, for example:
 
 {% highlight ruby %}
-  validates_uniqueness_of_ :title, :scope => :section_id,
+  validates_uniqueness_of :title, :scope => :section_id,
     :message => "There's already a page of that title in this section"
 {% endhighlight %}
 
