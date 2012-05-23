@@ -191,7 +191,7 @@ occurred.
 ### [dm-cli](http://github.com/datamapper/dm-cli)
 
 The `dm` executable is a DataMapper optimized version of `irb`. It automatically
-connections to a data-store based on the arguments passed to it and supports
+connects to a data-store based on the arguments passed to it and supports
 easy loading of DataMapper plugins, models from a directory as well as reading
 connection information from a YAML configuration file.
 
