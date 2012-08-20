@@ -133,7 +133,7 @@ DataMapper::Property.required(true)
 DataMapper::Property.auto_validation(false)
 
 # set all mutator methods to be private by default
-DataMapper::Property.writer(false)
+DataMapper::Property.writer(:private)
 {% endhighlight %}
 
 You can of course still override these defaults by specifying any
