@@ -19,8 +19,8 @@ The types of associations currently in DataMapper are:
 <table summary="Associations">
   <thead>
     <tr>
-      <td>DataMapper Terminology</td>
-      <td>ActiveRecord Terminology</td>
+      <th>DataMapper Terminology</th>
+      <th>ActiveRecord Terminology</th>
     </tr>
   </thead>
   <tbody>
