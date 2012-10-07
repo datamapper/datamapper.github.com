@@ -402,6 +402,8 @@ table {
     table tr td.pointer {
       vertical-align: middle;
       text-align: center; }
+  table tr th {
+    font-weight: bold; }
 
 .changeSummary {
   width: 840px !important; }

@@ -19,30 +19,30 @@ The types of associations currently in DataMapper are:
 <table summary="Associations">
   <thead>
     <tr>
-      <td>ActiveRecord Terminology</td>
-      <td>DataMapper Terminology</td>
+      <th>DataMapper Terminology</th>
+      <th>ActiveRecord Terminology</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>has_many</td>
       <td>has n</td>
+      <td>has_many</td>
     </tr>
     <tr>
-      <td>has_one</td>
       <td>has 1</td>
+      <td>has_one</td>
     </tr>
     <tr>
       <td>belongs_to</td>
       <td>belongs_to</td>
     </tr>
     <tr>
-      <td>has_and_belongs_to_many</td>
       <td>has n, :things, :through => Resource</td>
+      <td>has_and_belongs_to_many</td>
     </tr>
     <tr>
-      <td>has_many :association, :through => Model</td>
       <td>has n, :things, :through => :model</td>
+      <td>has_many :association, :through => Model</td>
     </tr>
   </tbody>
 </table>
