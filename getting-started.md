@@ -199,9 +199,9 @@ end
 
 ### Has and belongs to many
 
-Has and belongs to many Categories can have many Posts and Posts can have many
+Categories can have many Posts and Posts can have many
 Categories, so we’ll need a
-[many to many](/docs/associations.html#has_n_through_or_onetomanythrough) relationships
+[many to many](/docs/associations.html#has_n_through_or_onetomanythrough) relationship
 commonly referred to “has and belongs to many”. We’ll setup a quick model to
 wrap our join table between the two so that we can record a little bit of
 meta-data about when the post was categorized into a category.
