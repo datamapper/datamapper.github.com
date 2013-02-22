@@ -196,7 +196,7 @@ DM-Core supports the following 'primitive' data-types.
 * DateTime, Date, Time
 * Object, (marshalled)
 * Discriminator
-* Binary
+* Binary (inherits default length limit of 50 characters from String)
 
 If you include DM-Types, the following data-types are supported:
 
