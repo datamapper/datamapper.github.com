@@ -126,8 +126,8 @@ class Tagging
 
   property :id, Serial
   
-  property :tag_id,          :unique_index => :uniqueness
-  property :tagged_photo_id, :unique_index => :uniqueness
+  property :tag_id,          :unique_index => :uniqueness, :required => true
+  property :tagged_photo_id, :unique_index => :uniqueness, :required => true
 
   belongs_to :tag
   belongs_to :tagged_photo, 'Photo'
