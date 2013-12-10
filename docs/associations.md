@@ -117,6 +117,24 @@ class Tagging
 end
 {% endhighlight %}
 
+Note that some options that you might wish to add to an association have to be added to a property instead. For instance, if you wanted your association to be part of a unique index rather than the key, you might do something like this.
+
+{% highlight ruby linenos %}
+
+class Tagging
+  include DataMapper::Resource
+
+  property :id, Serial
+  
+  property :tag_id,          :unique_index => :uniqueness
+  property :tagged_photo_id, :unique_index => :uniqueness
+
+  belongs_to :tag
+  belongs_to :tagged_photo, 'Photo'
+end
+
+{% endhighlight %}
+
 ### Has, and belongs to, many (Or Many-To-Many)
 
 The use of Resource in place of a class name tells DataMapper to use an
