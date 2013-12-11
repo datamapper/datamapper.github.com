@@ -207,6 +207,21 @@ Once you have the query, the order can be modified too.  Just call reverse:
 # in SQL => SELECT * FROM "zoos" ORDER BY "tiger_count" ASC
 {% endhighlight %}
 
+Ranges
+------
+
+If you have guaranteed the order of a set of results, you might choose to only use the first ten results, like this.
+
+{% highlight ruby linenos %}
+@zoos_by_tiger_count = Zoo.all(:limit => 10, :order => [ :tiger_count.desc ])
+{% endhighlight %}
+
+Or maybe you wanted the fifth set of ten results.
+
+{% highlight ruby linenos %}
+@zoos_by_tiger_count = Zoo.all(:offset => 40, :limit => 10, :order => [ :tiger_count.desc ])
+{% endhighlight %}
+
 Combining Queries
 -----------------
 
