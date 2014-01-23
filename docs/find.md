@@ -72,7 +72,7 @@ some clever additions to the Symbol class, it's easy!
 
 {% highlight ruby linenos %}
 exhibitions = Exhibition.all(:run_time.gt => 2, :run_time.lt => 5)
-# => SQL conditions: 'run_time > 1 AND run_time < 5'
+# => SQL conditions: 'run_time > 2 AND run_time < 5'
 {% endhighlight %}
 
 Valid symbol operators for the conditions are:
