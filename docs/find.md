@@ -387,7 +387,7 @@ Friend.avg(:age, :conditions => [ 'gender = ?', 'female' ]) # returns the averag
 
 # Get the total value of a property
 Friend.sum(:age) # returns total age of all friends
-Friend.max(:age, :conditions => [ 'gender = ?', 'female' ]) # returns the total age of all female friends
+Friend.sum(:age, :conditions => [ 'gender = ?', 'female' ]) # returns the total age of all female friends
 {% endhighlight %}
 
 Multiple aggregates
