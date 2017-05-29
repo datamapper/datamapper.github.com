@@ -9,7 +9,7 @@ created_at: Tue Dec 04 13:27:16 +1030 2007
 ================
 
 A model's properties are not introspected from the fields in the data-store; In
-fact the reverse happens. You declare the properties for a model inside it's
+fact the reverse happens. You declare the properties for a model inside its
 class definition, which is then used to generate the fields in the data-store.
 
 This has a few advantages. First it means that a model's properties are
@@ -143,7 +143,7 @@ Lazy Loading
 ------------
 
 Properties can be configured to be lazy loaded. A lazily loaded property is not
-requested from the data-store by default. Instead it is only loaded when it's
+requested from the data-store by default. Instead it is only loaded when its
 accessor is called for the first time. This means you can stop default queries
 from being greedy, a particular problem with text fields. Text fields are lazily
 loaded by default, which you can over-ride if you need to.
@@ -253,7 +253,7 @@ end
 Over-riding Accessors
 ---------------------
 
-When a property has declared accessors for getting and setting, it's values are
+When a property has declared accessors for getting and setting, its values are
 added to the model. Just like using `attr_accessor`, you can over-ride these
 with your own custom accessors. It's a simple matter of adding an accessor after
 the property declaration. Reopening the Post class....
