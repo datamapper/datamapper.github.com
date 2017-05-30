@@ -224,7 +224,7 @@ The idea is that you aren't going to load a set of objects and use only an
 association in just one of them. This should hold up pretty well against a 99%
 rule.
 
-When you don't want it to work like this, just load the item you want in it's
+When you don't want it to work like this, just load the item you want in its
 own set. So DataMapper thinks ahead. We like to call it "performant by default".
 *This feature single-handedly wipes out the "N+1 Query Problem".*
 
